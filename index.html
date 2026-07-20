@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#a93f3f">
+  <meta name="description" content="Công cụ ghi âm luyện nói của Tiếng Trung Hải Yến.">
+  <title>Ghi âm luyện nói – Tiếng Trung Hải Yến</title>
+  <style>
+    :root{--wine:#a93f3f;--red:#c94b42;--peach:#f6ded6;--cream:#fff9f0;--ink:#302b2a;--muted:#746864;--line:#eadbd5;--green:#287a60}
+    *{box-sizing:border-box}html{min-height:100%;background:var(--cream)}body{min-height:100vh;margin:0;color:var(--ink);font-family:Arial,Helvetica,sans-serif}button,a{font:inherit}button{cursor:pointer}
+    .shell{min-height:100vh;display:grid;place-items:center;padding:32px 18px;background:radial-gradient(circle at 10% 10%,rgba(201,75,66,.12),transparent 28%),radial-gradient(circle at 90% 90%,rgba(169,63,63,.08),transparent 30%),var(--cream)}
+    .card{width:min(760px,100%);overflow:hidden;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:0 24px 70px rgba(86,45,39,.14)}
+    .brand{display:flex;align-items:center;gap:13px;padding:20px 28px;background:var(--wine);color:#fff}.mark{display:grid;place-items:center;width:48px;height:48px;border:1px solid rgba(255,255,255,.55);border-radius:14px;font-size:20px;font-weight:800}.brand-name{margin:0;font-size:15px;font-weight:800;letter-spacing:.06em}.tagline{margin:4px 0 0;color:#f9d9d4;font-size:12px}
+    .intro{padding:34px 34px 22px}.eyebrow{margin:0 0 8px;color:var(--red);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1{margin:0;font-size:clamp(32px,7vw,52px);line-height:1.08}.intro>p:last-child{max-width:600px;margin:14px 0 0;color:var(--muted);line-height:1.65}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0;padding:0 34px 24px;list-style:none}.steps li{display:grid;grid-template-columns:34px 1fr;gap:4px 10px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fffdfb}.steps span{grid-row:1/3;display:grid;place-items:center;align-self:start;width:32px;height:32px;border-radius:10px;background:var(--peach);color:var(--wine);font-weight:800}.steps b{font-size:14px}.steps small{color:var(--muted);line-height:1.4}
+    .status{display:flex;align-items:center;gap:12px;margin:0 34px;padding:16px 18px;border-radius:14px;background:#f8f3ef;color:var(--muted)}.dot{width:12px;height:12px;flex:none;border-radius:50%;background:#a99d98}.status b{display:block}.status time{display:none;margin-top:4px;font-size:24px;font-weight:800}.status.recording{background:#fce9e5;color:var(--wine)}.status.recording .dot{background:var(--red);animation:pulse 1s infinite}.status.recording time{display:block}.status.ready{background:#eaf5f0;color:var(--green)}.status.ready .dot{background:var(--green)}.status.error{background:#fff0ed;color:var(--wine)}@keyframes pulse{50%{opacity:.3;transform:scale(.75)}}
+    .controls{display:flex;flex-wrap:wrap;gap:10px;padding:20px 34px}.controls button,.result a{min-height:46px;border-radius:11px;padding:11px 17px;font-weight:800}.controls button{border:0}.controls button:disabled{cursor:not-allowed;opacity:.42}.primary{background:var(--red);color:#fff}.secondary{background:var(--ink);color:#fff}.ghost{outline:1px solid var(--line);background:#fff;color:var(--wine)}
+    .result{display:none;margin:0 34px 22px;padding:20px;border:1px solid var(--line);border-radius:16px;background:#fffdfb}.result.show{display:block}.result h2{margin:0 0 12px;font-size:19px}.result audio{display:block;width:100%;margin-bottom:14px}.result a{display:inline-flex;align-items:center;background:var(--peach);color:var(--wine);text-decoration:none}.privacy{padding:17px 34px;border-top:1px solid var(--line);background:#fffaf7;color:var(--muted);font-size:13px;line-height:1.55}
+    @media(max-width:680px){.shell{padding:0;place-items:start center}.card{min-height:100vh;border:0;border-radius:0}.brand{padding:18px 20px}.intro{padding:28px 20px 20px}.steps{grid-template-columns:1fr;padding:0 20px 20px}.status{margin:0 20px}.controls{padding:18px 20px}.controls button{flex:1 1 150px}.result{margin:0 20px 20px}.privacy{padding:16px 20px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="card" aria-labelledby="title">
+      <header class="brand"><div class="mark">海燕</div><div><p class="brand-name">TIẾNG TRUNG HẢI YẾN</p><p class="tagline">Học bài bản – Nói tự tin</p></div></header>
+      <div class="intro"><p class="eyebrow">Công cụ ghi âm luyện nói</p><h1 id="title">Luyện phát âm</h1><p>Ghi âm trực tiếp trên thiết bị, nghe lại và tải bản ghi để tự kiểm tra phần phát âm.</p></div>
+      <ol class="steps" aria-label="Hướng dẫn ghi âm">
+        <li><span>1</span><b>Nhấn Bắt đầu ghi</b><small>Chrome sẽ hỏi quyền micro.</small></li>
+        <li><span>2</span><b>Đọc nội dung</b><small>Nói rõ và giữ nhịp tự nhiên.</small></li>
+        <li><span>3</span><b>Dừng và nghe lại</b><small>Có thể tải bản ghi xuống.</small></li>
+      </ol>
+      <div class="status" id="status" role="status" aria-live="polite"><span class="dot"></span><div><b id="message">Sẵn sàng ghi âm.</b><time id="timer">00:00</time></div></div>
+      <div class="controls"><button class="primary" id="start">● Bắt đầu ghi</button><button class="secondary" id="stop" disabled>■ Dừng ghi</button><button class="ghost" id="reset" hidden>Làm lại</button></div>
+      <section class="result" id="result" aria-label="Bản ghi âm"><h2>Nghe lại bản ghi</h2><audio id="audio" controls></audio><a id="download" download>Tải bản ghi âm</a></section>
+      <aside class="privacy"><b>Quyền riêng tư:</b> Bản ghi chỉ được xử lý trong trình duyệt và không tự động tải lên máy chủ.</aside>
+    </section>
+  </main>
+  <script>
+    const names={pronunciation:'Luyện phát âm','dialogue-1':'Hội thoại 1','dialogue-2':'Hội thoại 2','dialogue-3':'Hội thoại 3','dialogue-4':'Hội thoại 4','dialogue-5':'Hội thoại 5','dialogue-6':'Hội thoại 6','dialogue-7':'Hội thoại 7'};
+    const key=new URLSearchParams(location.search).get('activity')||'pronunciation';
+    const activity=names[key]||names.pronunciation;
+    document.getElementById('title').textContent=activity;
+    const start=document.getElementById('start'),stop=document.getElementById('stop'),reset=document.getElementById('reset'),status=document.getElementById('status'),message=document.getElementById('message'),timer=document.getElementById('timer'),result=document.getElementById('result'),audio=document.getElementById('audio'),download=document.getElementById('download');
+    let recorder,stream,chunks=[],url='',seconds=0,clock;
+    const setState=(state,text)=>{status.className='status '+state;message.textContent=text};
+    const format=n=>String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');
+    start.addEventListener('click',async()=>{
+      if(!navigator.mediaDevices?.getUserMedia||typeof MediaRecorder==='undefined'){setState('error','Trình duyệt này chưa hỗ trợ ghi âm. Hãy mở bằng Chrome phiên bản mới nhất.');return}
+      try{
+        start.disabled=true;setState('requesting','Đang yêu cầu quyền sử dụng micro…');
+        stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];
+        if(url){URL.revokeObjectURL(url);url=''} result.classList.remove('show');reset.hidden=true;
+        const preferred=['audio/webm;codecs=opus','audio/webm','audio/mp4'].find(t=>MediaRecorder.isTypeSupported(t));
+        recorder=preferred?new MediaRecorder(stream,{mimeType:preferred}):new MediaRecorder(stream);
+        recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+        recorder.onstop=()=>{
+          const blob=new Blob(chunks,{type:recorder.mimeType||'audio/webm'});url=URL.createObjectURL(blob);audio.src=url;download.href=url;download.download='tieng-trung-hai-yen-'+key+'.webm';
+          stream.getTracks().forEach(t=>t.stop());stream=null;start.disabled=false;stop.disabled=true;reset.hidden=false;result.classList.add('show');setState('ready','Đã ghi âm xong. Bạn có thể nghe lại hoặc tải xuống.');
+          if(window.opener)window.opener.postMessage({type:'hsk-recorder-complete',activity:key},'*');
+        };
+        recorder.start();seconds=0;timer.textContent='00:00';clock=setInterval(()=>{seconds++;timer.textContent=format(seconds)},1000);stop.disabled=false;setState('recording','Đang ghi âm… Hãy đọc rõ ràng và giữ khoảng cách ổn định với micro.');
+      }catch(e){start.disabled=false;const denied=e&&(['NotAllowedError','SecurityError'].includes(e.name));setState('error',denied?'Micro đang bị chặn. Hãy chọn “Cho phép” trên thanh địa chỉ của Chrome rồi thử lại.':'Không thể mở micro. Hãy kiểm tra micro của thiết bị rồi thử lại.')}
+    });
+    stop.addEventListener('click',()=>{if(recorder?.state==='recording')recorder.stop();clearInterval(clock)});
+    reset.addEventListener('click',()=>{if(url)URL.revokeObjectURL(url);url='';audio.removeAttribute('src');result.classList.remove('show');reset.hidden=true;seconds=0;timer.textContent='00:00';setState('','Sẵn sàng ghi âm lại.')});
+  </script>
+</body>
+</html>
