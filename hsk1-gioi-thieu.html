@@ -3,48 +3,45 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Giới thiệu Giáo trình chuẩn HSK1 (3.0) | Tiếng Trung Hải Yến</title>
+  <title>Bài tập Giáo trình chuẩn HSK1 (3.0) | Tiếng Trung Hải Yến</title>
   <style>
-    :root{--wine:#a8453d;--rose:#c98575;--soft:#f7e6df;--cream:#fffaf5;--paper:#fff;--ink:#302b29;--muted:#746b67;--line:#eadbd4;--dark:#342f2e;--shadow:0 12px 30px rgba(74,42,35,.08)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 Arial,"Noto Sans SC",sans-serif}
-    button,a{font:inherit}.app{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;padding:26px 20px;background:var(--dark);color:#fff;overflow:auto}
-    .brand{font-size:18px;font-weight:800;line-height:1.35}.course{margin:7px 0 18px;color:#efb5a6;font-size:12px;font-weight:700;letter-spacing:.07em}.progress{display:flex;align-items:center;gap:10px;margin-bottom:20px}.track{height:7px;flex:1;border-radius:99px;background:#514a48;overflow:hidden}.track i{display:block;width:18.75%;height:100%;background:var(--rose)}.progress span{font-size:12px;color:#ddd4d1}
-    .lesson-list{display:grid;gap:7px}.lesson{display:block;width:100%;padding:10px 12px;border:1px solid transparent;border-radius:10px;background:transparent;color:#d9d1cf;text-align:left;text-decoration:none}.lesson.ready:hover,.lesson.ready:focus{border-color:#887a76;background:#463f3d;color:#fff;outline:none}.lesson.active{background:var(--rose);color:#fff;font-weight:700}.lesson small{float:right;opacity:.65}
-    .main{min-width:0;padding:28px}.content{max-width:1120px;margin:auto}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--wine);text-transform:uppercase}.hero{position:relative;overflow:hidden;margin:10px 0 28px;padding:44px;border-radius:26px;background:linear-gradient(135deg,#c94d47,#963a36);color:#fff;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;right:-80px;bottom:-120px;width:320px;height:320px;border:60px solid rgba(255,255,255,.09);border-radius:50%}.hero h1{position:relative;z-index:1;max-width:850px;margin:0;font-size:clamp(34px,6vw,68px);line-height:1.08}.hero p{position:relative;z-index:1;margin:14px 0 0;font-size:clamp(18px,2.4vw,27px);font-weight:700}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{padding:24px;border:1px solid var(--line);border-radius:20px;background:var(--paper);box-shadow:var(--shadow)}.card h2,.card h3{margin:0 0 10px}.card p{margin:0;color:var(--muted)}.card ul{margin:12px 0 0;padding-left:21px}.card li+li{margin-top:7px}.section-title{margin:34px 0 14px;font-size:clamp(25px,4vw,36px)}.section-title span{color:var(--wine)}
-    .lesson-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.lesson-card{display:flex;min-height:176px;flex-direction:column;padding:20px;border:1px solid var(--line);border-radius:18px;background:#fff;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:.18s}.lesson-card:hover{transform:translateY(-3px);border-color:var(--rose)}.lesson-card .num{color:var(--wine);font-size:13px;font-weight:800;letter-spacing:.12em}.lesson-card h3{margin:8px 0 6px;font-size:22px}.lesson-card p{margin:0 0 18px;color:var(--muted)}.lesson-card strong{margin-top:auto;color:var(--wine)}.note{margin-top:18px;padding:16px 18px;border-left:4px solid var(--rose);border-radius:12px;background:var(--soft);color:#594c48}
-    @media(max-width:880px){.app{display:block}.side{position:relative;height:auto;padding:18px}.lesson-list{grid-template-columns:repeat(4,1fr)}.lesson small{display:none}.main{padding:18px}.lesson-cards{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:560px){.hero{padding:30px 22px}.grid,.lesson-cards{grid-template-columns:1fr}.lesson-list{grid-template-columns:repeat(3,1fr)}.lesson{padding:9px 8px}.main{padding:14px}.card{padding:19px}}
+    :root{--wine:#a8453d;--rose:#c94d47;--coral:#e59a88;--soft:#fff0ea;--cream:#fffaf6;--paper:#fff;--ink:#2d2928;--muted:#736967;--line:#eadbd5;--green:#28755f;--shadow:0 10px 28px rgba(92,48,39,.09)}
+    *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 Arial,"Noto Sans SC",sans-serif}.page{max-width:1160px;margin:auto;padding:28px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--wine);text-transform:uppercase}.hero{position:relative;overflow:hidden;margin:10px 0 24px;padding:44px;border-radius:26px;background:linear-gradient(135deg,#c94d47,#963a36);color:#fff;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;right:-80px;bottom:-120px;width:320px;height:320px;border:60px solid rgba(255,255,255,.09);border-radius:50%}.hero h1{position:relative;z-index:1;margin:0;font-size:clamp(34px,6vw,66px);line-height:1.08}.hero p{position:relative;z-index:1;margin:14px 0 0;font-size:clamp(18px,2.4vw,26px);font-weight:700}.intro{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.card{padding:24px;border:1px solid var(--line);border-radius:20px;background:var(--paper);box-shadow:var(--shadow)}.card h2{margin:0 0 10px}.card p{margin:0;color:var(--muted)}.card ul{margin:10px 0 0;padding-left:21px}.card li+li{margin-top:7px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:34px 0 15px}.section-head h2{margin:0;font-size:clamp(26px,4vw,37px)}.section-head p{margin:0;color:var(--muted)}.lesson-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.lesson{display:flex;min-height:145px;flex-direction:column;padding:19px;border:1px solid var(--line);border-radius:18px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:var(--shadow);transition:.18s}.lesson.ready:hover,.lesson.ready:focus{transform:translateY(-3px);border-color:var(--rose);outline:none}.lesson .num{color:var(--wine);font-size:13px;font-weight:800;letter-spacing:.11em}.lesson h3{margin:7px 0 5px;font-size:20px;line-height:1.35}.lesson p{margin:0;color:var(--muted);font-size:14px}.lesson strong{margin-top:auto;padding-top:12px;color:var(--wine)}.lesson.pending{background:#fff7f3;color:#887b77;box-shadow:none}.lesson.pending .num{color:#a59691}.status{display:inline-flex;align-items:center;gap:7px;margin-top:auto;padding-top:12px;font-size:13px;font-weight:700;color:#9a8984}.status:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral)}.note{margin-top:18px;padding:15px 18px;border-left:4px solid var(--rose);border-radius:12px;background:var(--soft);color:#614d48}.footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.page{padding:20px}.lesson-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:680px){.intro{grid-template-columns:1fr}.lesson-grid{grid-template-columns:repeat(2,1fr)}.section-head{display:block}.section-head p{margin-top:5px}.hero{padding:32px 24px}}
+    @media(max-width:440px){.page{padding:14px}.lesson-grid{grid-template-columns:1fr}.lesson{min-height:124px}.card{padding:19px}}
   </style>
 </head>
 <body>
-<div class="app">
-  <aside class="side">
-    <div class="brand">Bài tập Giáo trình chuẩn HSK1 (3.0)</div>
-    <div class="course">HỌC BÀI BẢN · LUYỆN TỪNG KỸ NĂNG</div>
-    <div class="progress"><div class="track"><i></i></div><span>Đã có 3/16</span></div>
-    <nav class="lesson-list" aria-label="Mục lục bài học">
-      <a class="lesson ready" target="_top" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/bai-tap-giao-trinh-chuan-hsk1-3-0/bai-1-AI-tieu-ngu-xin-chao">Bài 1</a>
-      <a class="lesson ready" target="_top" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/bai-tap-giao-trinh-chuan-hsk1-3-0/bai-2-toi-ten-la-ly-van">Bài 2</a>
-      <a class="lesson ready" target="_top" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/bai-tap-giao-trinh-chuan-hsk1-3-0/bai-3-toi-la-nguoi-trung-quoc">Bài 3</a>
-      <span class="lesson">Bài 4 <small>Đang cập nhật</small></span><span class="lesson">Bài 5 <small>Đang cập nhật</small></span><span class="lesson">Bài 6 <small>Đang cập nhật</small></span><span class="lesson">Bài 7 <small>Đang cập nhật</small></span><span class="lesson">Bài 8 <small>Đang cập nhật</small></span><span class="lesson">Bài 9 <small>Đang cập nhật</small></span><span class="lesson">Bài 10 <small>Đang cập nhật</small></span><span class="lesson">Bài 11 <small>Đang cập nhật</small></span><span class="lesson">Bài 12 <small>Đang cập nhật</small></span><span class="lesson">Bài 13 <small>Đang cập nhật</small></span><span class="lesson">Bài 14 <small>Đang cập nhật</small></span><span class="lesson">Bài 15 <small>Đang cập nhật</small></span><span class="lesson">Ôn tập <small>Đang cập nhật</small></span>
-    </nav>
-  </aside>
-  <main class="main"><div class="content">
-    <div class="eyebrow">Tiếng Trung Hải Yến</div>
-    <section class="hero"><h1>Giáo trình chuẩn HSK1 (3.0)</h1><p>Học bài bản từ nền tảng · Thực hành theo từng bài</p></section>
-    <div class="grid">
-      <section class="card"><h2>Giới thiệu giáo trình</h2><p>Hệ thống bài tập được sắp xếp theo từng bài học, hỗ trợ người mới củng cố phát âm, từ vựng, mẫu câu và khả năng sử dụng tiếng Trung trong ngữ cảnh.</p></section>
-      <section class="card"><h2>Cách sử dụng</h2><ul><li>Chọn bài học trong mục lục bên trái.</li><li>Hoàn thành từng thẻ bài tập theo thứ tự.</li><li>Kiểm tra đáp án và xem lại câu làm sai.</li><li>Thực hành phần nghe, đọc và ghi âm khi bài học có yêu cầu.</li></ul></section>
-    </div>
-    <h2 class="section-title">Các bài học <span>đã có nội dung</span></h2>
-    <div class="lesson-cards">
-      <a class="lesson-card" target="_top" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/bai-tap-giao-trinh-chuan-hsk1-3-0/bai-1-AI-tieu-ngu-xin-chao"><span class="num">BÀI 1</span><h3>AI小语，你好！</h3><p>Khởi động với các nội dung luyện tập của Bài 1.</p><strong>Mở bài học →</strong></a>
-      <a class="lesson-card" target="_top" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/bai-tap-giao-trinh-chuan-hsk1-3-0/bai-2-toi-ten-la-ly-van"><span class="num">BÀI 2</span><h3>我叫李文</h3><p>Luyện tập chủ đề giới thiệu tên và các mẫu câu liên quan.</p><strong>Mở bài học →</strong></a>
-      <a class="lesson-card" target="_top" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/bai-tap-giao-trinh-chuan-hsk1-3-0/bai-3-toi-la-nguoi-trung-quoc"><span class="num">BÀI 3</span><h3>我是中国人</h3><p>Luyện tập chủ đề quốc tịch, nghề nghiệp và giới thiệu người khác.</p><strong>Mở bài học →</strong></a>
-    </div>
-    <div class="note">Các bài từ Bài 4 đến Bài 15 và phần Ôn tập sẽ được cập nhật lần lượt. Những mục chưa có nội dung không tạo liên kết trống.</div>
-  </div></main>
-</div>
+<main class="page">
+  <div class="eyebrow">Tiếng Trung Hải Yến</div>
+  <section class="hero"><h1>Bài tập Giáo trình chuẩn HSK1 (3.0)</h1><p>Học bài bản từ nền tảng · Thực hành theo từng bài</p></section>
+  <div class="intro">
+    <section class="card"><h2>Giới thiệu giáo trình</h2><p>Hệ thống bài tập được sắp xếp theo từng bài học, hỗ trợ người mới củng cố phát âm, từ vựng, mẫu câu và khả năng sử dụng tiếng Trung trong ngữ cảnh.</p></section>
+    <section class="card"><h2>Cách học</h2><ul><li>Chọn bài học trong mục lục bên dưới.</li><li>Hoàn thành từng thẻ bài tập theo thứ tự.</li><li>Kiểm tra đáp án và xem lại câu làm sai.</li><li>Cuối bài, chọn “Quay lại mục lục HSK1” để học bài tiếp theo.</li></ul></section>
+  </div>
+
+  <div class="section-head"><div><h2>Mục lục bài học</h2><p>Chọn một bài đã mở để bắt đầu luyện tập.</p></div><p><b>Đã có 3/16 phần</b></p></div>
+  <nav class="lesson-grid" aria-label="Mục lục Giáo trình chuẩn HSK1">
+    <a class="lesson ready" href="hsk1-bai1-embed.html"><span class="num">BÀI 1</span><h3>AI小语，你好！</h3><p>Xin chào AI Tiểu Ngữ</p><strong>Mở bài học →</strong></a>
+    <a class="lesson ready" href="bai-2-toi-ten-la-ly-van.html"><span class="num">BÀI 2</span><h3>我叫李文</h3><p>Tôi tên là Lý Văn</p><strong>Mở bài học →</strong></a>
+    <a class="lesson ready" href="bai-3-toi-la-nguoi-trung-quoc.html"><span class="num">BÀI 3</span><h3>我是中国人</h3><p>Tôi là người Trung Quốc</p><strong>Mở bài học →</strong></a>
+    <div class="lesson pending"><span class="num">BÀI 4</span><h3>Bài học 4</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 5</span><h3>Bài học 5</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 6</span><h3>Bài học 6</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 7</span><h3>Bài học 7</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 8</span><h3>Bài học 8</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 9</span><h3>Bài học 9</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 10</span><h3>Bài học 10</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 11</span><h3>Bài học 11</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 12</span><h3>Bài học 12</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 13</span><h3>Bài học 13</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 14</span><h3>Bài học 14</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">BÀI 15</span><h3>Bài học 15</h3><span class="status">Đang cập nhật</span></div>
+    <div class="lesson pending"><span class="num">ÔN TẬP</span><h3>Bài ôn tập</h3><span class="status">Đang cập nhật</span></div>
+  </nav>
+  <div class="note">Các bài chưa có nội dung được hiển thị rõ là “Đang cập nhật” và chưa gắn liên kết, tránh học sinh mở nhầm trang trống.</div>
+  <div class="footer">TIẾNG TRUNG HẢI YẾN · Học bài bản – Nói tự tin – Vững bước chinh phục HSK</div>
+</main>
 </body>
 </html>

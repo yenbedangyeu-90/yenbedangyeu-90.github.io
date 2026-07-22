@@ -16,17 +16,12 @@
 @media(max-width:900px){.app{display:block}.side{position:relative;height:auto}.lesson-list{grid-template-columns:repeat(4,1fr)}.main{padding:18px}.word-table,.initial-grid{grid-template-columns:repeat(2,1fr)}.picture-words{grid-template-columns:repeat(3,1fr)}.fill-list{grid-template-columns:1fr}.scorebox{grid-template-columns:auto 1fr}.score-actions{grid-column:1/-1;grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.hero{padding:28px 22px}.card{padding:18px}.lesson-list{grid-template-columns:repeat(3,1fr)}.lesson small{display:none}.word-table,.initial-grid{grid-template-columns:1fr}.match-wrap{grid-template-columns:1fr}.match-col{grid-template-columns:repeat(2,1fr)}.picture-grid{grid-template-columns:repeat(2,1fr)}.scorebox{grid-template-columns:1fr;text-align:center}.score-ring{margin:auto}.score-actions{grid-template-columns:1fr}.inline-input{width:155px;max-width:52%;margin:2px 3px}.grammar-examples{grid-template-columns:1fr}}
 .photo-card img{display:block;width:100%;height:100%;object-fit:cover}
+.app{display:block}.side{display:none}.backbar{max-width:1120px;margin:0 auto 14px}.backlink{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border:1px solid var(--rose);border-radius:10px;background:#fff;color:var(--wine);font-weight:700;text-decoration:none}.backlink:hover{background:var(--soft)}
 </style>
 </head>
 <body>
 <div class="app">
-<aside class="side">
-  <div class="brand">Bài tập Giáo trình chuẩn HSK1 (3.0)</div>
-  <div class="course">HỌC BÀI BẢN · LUYỆN TỪNG KỸ NĂNG</div>
-  <div class="progress"><div class="track"><i></i></div><span>Bài 3/16</span></div>
-  <nav class="lesson-list" id="lessons"></nav>
-</aside>
-<main class="main"><div class="content">
+<main class="main"><div class="backbar"><a class="backlink" href="hsk1-gioi-thieu.html">← Quay lại mục lục HSK1</a></div><div class="content">
   <div class="eyebrow">TIẾNG TRUNG HẢI YẾN · HSK 1 (3.0)</div>
   <section class="hero"><h1>BÀI 3</h1><p>我是中国人 · Tôi là người Trung Quốc</p></section>
   <div class="stage-note"><b>Bài 3 hoàn chỉnh:</b> Trang đã có đầy đủ phần ngữ âm, từ vựng, luyện câu, bài nghe và hội thoại mẫu.</div>
@@ -82,8 +77,8 @@
 </div>
 <div class="toast" id="toast"></div>
 <script>
-const BAI1_URL='https://sites.google.com/view/tiengtrunghaiyen-hanu/bai-tap-giao-trinh-chuan-hsk1-3-0/bai-1-AI-tieu-ngu-xin-chao';
-const BAI2_URL='https://sites.google.com/view/tiengtrunghaiyen-hanu/bai-tap-giao-trinh-chuan-hsk1-3-0/bai-2-toi-ten-la-ly-van';
+const BAI1_URL='https://yenbedangyeu-90.github.io/hsk1-bai1-embed.html';
+const BAI2_URL='https://yenbedangyeu-90.github.io/bai-2-toi-ten-la-ly-van.html';
 
 
 const pronunciationWords=['Zhōngguó','Fǎguó','Tàiguó','Zhōngwén','nǎ guó','shì ma','wǒ de','nǐ de','tā de','wǒ men','nǐ men','jiějie','gōngzuò','hěnmáng','bú tài','xiǎng nǐ','lǎo tóngxué','xuéxiào','nán péngyou','zhè shì'];
@@ -192,7 +187,7 @@ function renderInitials(){document.getElementById('initial-grid').innerHTML=init
 function checkInitials(){const inputs=[...document.querySelectorAll('#initial-grid .initial-input')];let got=0;inputs.forEach(input=>{const item=input.closest('.initial-item'),note=item.querySelector('.answer-note'),value=input.value.trim().toLowerCase(),answer=input.dataset.answer.toLowerCase();input.classList.remove('correct','wrong');if(value===answer){got++;input.classList.add('correct');note.className='answer-note ok';note.innerHTML=`✓ Chính xác. Đáp án: <b>${input.dataset.answer}</b>. Từ hoàn chỉnh: <b>${input.dataset.full}</b>.`}else{input.classList.add('wrong');note.className='answer-note bad';note.innerHTML=`✕ ${value?'Bạn điền: <b>'+value+'</b>. ':'Bạn chưa điền. '}Đáp án đúng: <b>${input.dataset.answer}</b>. Từ hoàn chỉnh: <b>${input.dataset.full}</b>.`}});showResult('initial-feedback',got,inputs.length);document.getElementById('initial-feedback').innerHTML+=`<div class="answer-list"><b>Đáp án đầy đủ:</b><br>${initialRows.map((x,i)=>`${i+1}. ${x[1]} → ${x[2]}`).join('<br>')}</div>`;return[got,inputs.length]}
 function resetInitials(){document.querySelectorAll('#initial-grid .initial-input').forEach(input=>{input.value='';input.classList.remove('correct','wrong');const note=input.closest('.initial-item').querySelector('.answer-note');note.className='answer-note';note.textContent=''});document.getElementById('initial-feedback').textContent=''}
 
-function renderLessons(){document.getElementById('lessons').innerHTML=[...Array(15)].map((_,i)=>{const n=i+1;if(n===1)return `<button class="lesson" onclick="window.top.location.href=BAI1_URL">Bài 1</button>`;if(n===2)return `<button class="lesson" onclick="window.top.location.href=BAI2_URL">Bài 2</button>`;if(n===3)return `<button class="lesson active" onclick="scrollTo({top:0,behavior:'smooth'})">Bài 3</button>`;return `<button class="lesson" onclick="toast('Bài ${n} sẽ được bổ sung sau.')">Bài ${n}<small>Sắp có</small></button>`}).join('')+`<button class="lesson" onclick="toast('Phần Ôn tập sẽ được bổ sung sau.')">Ôn tập<small>Sắp có</small></button>`}
+function renderLessons(){document.getElementById('lessons').innerHTML=[...Array(15)].map((_,i)=>{const n=i+1;if(n===1)return `<button class="lesson" onclick="window.location.href=BAI1_URL">Bài 1</button>`;if(n===2)return `<button class="lesson" onclick="window.location.href=BAI2_URL">Bài 2</button>`;if(n===3)return `<button class="lesson active" onclick="scrollTo({top:0,behavior:'smooth'})">Bài 3</button>`;return `<button class="lesson" onclick="toast('Bài ${n} sẽ được bổ sung sau.')">Bài ${n}<small>Sắp có</small></button>`}).join('')+`<button class="lesson" onclick="toast('Phần Ôn tập sẽ được bổ sung sau.')">Ôn tập<small>Sắp có</small></button>`}
 function makeQuiz(id,data){document.getElementById(id).innerHTML=data.map((q,i)=>`<div class="quiz-row" data-answer="${q[2]}"><div class="qtitle">${q[0]}</div><div class="choices">${q[1].map((x,j)=>`<button class="choice" data-i="${j}" onclick="selectChoice(this)">${String.fromCharCode(65+j)}. ${x}</button>`).join('')}</div><div class="answer-note" aria-live="polite"></div></div>`).join('')}
 function selectChoice(button){const row=button.closest('.quiz-row');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected','correct','wrong'));row.classList.remove('correct-row','wrong-row');const note=row.querySelector('.answer-note');note.className='answer-note';note.textContent='';button.classList.add('selected')}
 function checkChoiceQuiz(id,feedbackId){const rows=[...document.querySelectorAll('#'+id+' .quiz-row')];let got=0;rows.forEach(row=>{const answer=+row.dataset.answer,selected=row.querySelector('.choice.selected'),correct=row.querySelector(`[data-i="${answer}"]`),note=row.querySelector('.answer-note');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('correct','wrong'));row.classList.remove('correct-row','wrong-row');if(selected&&+selected.dataset.i===answer){got++;selected.classList.add('correct');row.classList.add('correct-row');note.className='answer-note ok';note.innerHTML=`✓ Chính xác. Đáp án: <b>${correct.textContent}</b>.`}else{if(selected)selected.classList.add('wrong');correct.classList.add('correct');row.classList.add('wrong-row');note.className='answer-note bad';note.innerHTML=`✕ ${selected?'Bạn chọn: <b>'+selected.textContent+'</b>. ':'Bạn chưa chọn đáp án. '}Đáp án đúng: <b>${correct.textContent}</b>.`}});showResult(feedbackId,got,rows.length);return[got,rows.length]}
@@ -253,7 +248,6 @@ function renderReading(){document.getElementById('reading-text').innerHTML=`
 function showResult(id,got,total){const el=document.getElementById(id),percent=Math.round(got/total*100);el.className='feedback '+(got===total?'ok':'bad');el.innerHTML=`<b>Kết quả: ${got}/${total} mục đúng (${percent}%).</b>`+(got===total?' Hoàn thành rất tốt!':' Các đáp án sai đã được đánh dấu; hãy làm lại rồi kiểm tra lần nữa.')}
 function gradeAll(){const results=[checkInitials(),checkChoiceQuiz('listen-quiz','listen-feedback'),checkChoiceQuiz('pinyin-quiz','pinyin-feedback'),showMatchResult(),checkChoiceQuiz('hanzi-quiz','hanzi-feedback'),showPictureResult(),checkChoiceQuiz('response-quiz','response-feedback'),checkFill(),checkArrange(),checkChoiceQuiz('sentence-quiz','sentence-feedback'),checkDialogueOrder()];const got=results.reduce((sum,x)=>sum+x[0],0),total=results.reduce((sum,x)=>sum+x[1],0),percent=Math.round(got/total*100);document.getElementById('score-ring').textContent=percent+'%';document.getElementById('score-title').textContent=percent>=85?'Làm tốt lắm!':percent>=60?'Bạn đang tiến bộ!':'Hãy luyện thêm nhé!';document.getElementById('score-text').textContent=`Kết quả: ${percent}% — đúng ${got} trên tổng số ${total} mục chấm tự động.`;document.getElementById('score-breakdown').textContent='Phần nghe–đọc mẫu và câu nói nhanh không tính điểm; phần hoàn thành hội thoại mở và phần đọc/ghi âm cũng không tính điểm tự động.';document.querySelector('.scorebox').scrollIntoView({behavior:'smooth',block:'center'});try{localStorage.setItem('hsk1-bai3-score',JSON.stringify({percent,got,total}))}catch(error){}}
 
-renderLessons();
 renderPronunciation();
 renderInitials();
 makeQuiz('listen-quiz',listenQuiz);
