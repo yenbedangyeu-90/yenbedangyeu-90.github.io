@@ -73,16 +73,16 @@
 <script>
 const pronunciationWords=[["jīntiān","今天"],["jiǔ yuè","九月"],["bā hào","八号"],["jǐ hào","几号"],["xīngqī","星期"],["xiūxi","休息"],["huì zuò","会做"],["zuòfàn","做饭"],["miàntiáor","面条儿"],["jiǎozi","饺子"],["yìxiē","一些"],["zuò cài","做菜"],["xiàbān","下班"],["xīn de","新的"],["diànnǎo","电脑"],["zhēn hǎo","真好"],["hǎokàn","好看"],["xǐhuan","喜欢"],["wǒ yě","我也"],["tā de","他的"]];
 const initialRows=[
- {ends:["ī","uì","īng","u"],answers:["j","h","t","sh"],full:["jī","huì","tīng","shū"]},
+ {ends:["ī","uì","īng","u"],answers:["j","h","q","ch"],full:["jī","huì","qīng","chu"]},
  {ends:["ué","í","ì","ǐ"],answers:["x","x","z","j"],full:["xué","xí","zì","jǐ"]},
- {ends:["ǎo","ì","ī","ī"],answers:["k","sh","x","y"],full:["kǎo","shì","xī","yī"]},
- {ends:["ōng","uó","ū","ēng"],answers:["zh","g","sh","sh"],full:["zhōng","guó","shū","shēng"]},
+ {ends:["ǎo","ì","ī","ī"],answers:["c","d","s","j"],full:["cǎo","dì","sī","jī"]},
+ {ends:["ōng","uó","ū","ēng"],answers:["zh","g","ch","sh"],full:["zhōng","guó","chū","shēng"]},
  {ends:["èn","i","í","ou"],answers:["r","sh","sh","h"],full:["rèn","shi","shí","hou"]},
  {ends:["ōng","uò","è","i"],answers:["g","z","k","q"],full:["gōng","zuò","kè","qi"]},
- {ends:["ěn","ǎo","ì","iē"],answers:["h","h","y","x"],full:["hěn","hǎo","yì","xiē"]},
- {ends:["óng","ué","ān","iā"],answers:["t","x","b","j"],full:["tóng","xué","bān","jiā"]},
- {ends:["è","íng","ī","i"],answers:["r","q","x","y"],full:["rè","qíng","xī","yi"]},
- {ends:["ǎi","ǐ","ì","iě"],answers:["m","m","d","t"],full:["mǎi","mǐ","dì","tiě"]}
+ {ends:["ěn","ǎo","ì","iě"],answers:["h","h","d","t"],full:["hěn","hǎo","dì","tiě"]},
+ {ends:["óng","ué","ān","iā"],answers:["t","x","c","j"],full:["tóng","xué","cān","jiā"]},
+ {ends:["è","íng","ī","i"],answers:["r","q","zh","sh"],full:["rè","qíng","zhī","shi"]},
+ {ends:["ǎi","ǐ","ì","iě"],answers:["k","sh","j","zh"],full:["kǎi","shǐ","jì","zhe"]}
 ];
 const pinyinQuiz=[["今天",["jīntiān","jǐntiān","jīntiǎn","jìntiān"],0],["号",["hāo","háo","hǎo","hào"],3],["星期",["xīngqī","xǐngqī","xīngqí","xīnqī"],0],["休息",["xiūxī","xiūxi","xiǔxi","xīuxi"],1],["会",["huī","huí","huǐ","huì"],3],["做饭",["zuòfàn","zhuòfàn","zuófàn","zuòfǎn"],0],["面条儿",["miàntiáor","miǎntiáor","miàntiǎor","miàntiáo"],0],["饺子",["jiāozi","jiáozi","jiǎozi","jiàozǐ"],2],["电脑",["diānnǎo","diànnǎo","diànnáo","diǎnnǎo"],1],["喜欢",["xīhuan","xíhuan","xǐhuan","xìhuān"],2]];
 const meaningPairs={"今天":"hôm nay","号":"ngày, số ngày","月":"tháng","星期":"tuần; thứ","休息":"nghỉ ngơi","会":"biết, có thể (do học mà biết)","做饭":"nấu cơm, nấu ăn","面条儿":"mì sợi","饺子":"sủi cảo","下班":"tan làm","电脑":"máy tính","喜欢":"thích"};
@@ -102,6 +102,7 @@ let chosenWord=null,chosenMeaning=null,meaningMatched={},chosenPicWord=null,pict
 
 function toast(text){const el=document.getElementById('toast');el.textContent=text;el.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove('show'),2400)}
 function escapeHtml(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+function showResult(id,got,total){const el=document.getElementById(id);if(!el)return;const percent=total?Math.round(got/total*100):0;el.className='feedback '+(got===total?'ok':'');el.innerHTML=`<b>Kết quả: ${got}/${total} câu đúng (${percent}%).</b>`}
 function renderPronunciation(){document.getElementById('pronunciation').innerHTML=pronunciationWords.map(([py])=>`<div class="sound-word"><span>${py}</span></div>`).join('')}
 function renderInitials(){document.getElementById('initial-grid').innerHTML=initialRows.map((r,i)=>`<div class="initial-item"><div class="initial-stem"><span>${i+1}.</span>${r.ends.map((end,j)=>`${j===2?'<span>　</span>':''}<span class="syllable"><input class="initial-input" maxlength="2" data-row="${i}" data-pos="${j}" aria-label="Thanh mẫu âm tiết thứ ${j+1} câu ${i+1}"><span>${end}</span></span>`).join('')}</div><div class="answer-note"></div></div>`).join('')}
 function checkInitials(){let got=0,total=initialRows.reduce((sum,row)=>sum+row.answers.length,0);document.querySelectorAll('#initial-grid .initial-item').forEach((item,i)=>{const inputs=[...item.querySelectorAll('.initial-input')],note=item.querySelector('.answer-note');let rowGot=0;inputs.forEach((inp,j)=>{const val=inp.value.trim().toLowerCase(),ans=initialRows[i].answers[j].toLowerCase();inp.classList.remove('correct','wrong');if(val===ans){rowGot++;got++;inp.classList.add('correct')}else inp.classList.add('wrong')});const rowTotal=initialRows[i].answers.length;item.classList.remove('correct-row','wrong-row');item.classList.add(rowGot===rowTotal?'correct-row':'wrong-row');const full=`${initialRows[i].full.slice(0,2).join(' ')}；${initialRows[i].full.slice(2).join(' ')}`;note.className='answer-note '+(rowGot===rowTotal?'ok':'bad');note.innerHTML=rowGot===rowTotal?`✓ Chính xác: <b>${initialRows[i].answers.slice(0,2).join(' – ')}　${initialRows[i].answers.slice(2).join(' – ')}</b> → <b>${full}</b>`:`✕ Đáp án đúng: <b>${initialRows[i].answers.slice(0,2).join(' – ')}　${initialRows[i].answers.slice(2).join(' – ')}</b> → <b>${full}</b>`});showResult('initial-feedback',got,total);return[got,total]}
