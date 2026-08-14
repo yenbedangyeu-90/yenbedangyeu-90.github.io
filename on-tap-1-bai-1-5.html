@@ -58,7 +58,7 @@
 <section class="card"><div class="card-head"><div><h3>4. Chọn câu đúng</h3><p class="sub">Chọn câu có trật tự từ và cấu trúc chính xác.</p></div><span class="level">Khá</span></div><div id="sentence-quiz" class="quiz-list"></div><div class="actions"><button class="btn" onclick="checkChoiceQuiz('sentence-quiz','sentence-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('sentence-quiz','sentence-feedback')">Chọn lại</button></div><div id="sentence-feedback" class="feedback"></div></section>
 <section class="card"><div class="card-head"><div><h3>5. Hoàn thành hội thoại</h3><p class="sub">Tự điền câu phù hợp. Sau khi làm xong có thể xem đáp án tham khảo.</p></div><span class="level">Vận dụng</span></div><div id="dialogue-complete"></div><div class="actions"><button class="btn" onclick="showDialogueSamples()">Xem đáp án gợi ý</button><button class="btn outline" onclick="clearDialogueInputs()">Xóa nội dung đã điền</button></div><div id="dialogue-feedback" class="feedback"></div></section>
 <section class="card"><div class="card-head"><div><h3>6. Sắp xếp hội thoại</h3><p class="sub">Chọn các câu theo thứ tự hội thoại tự nhiên.</p></div><span class="level">Vận dụng</span></div><div id="dialogue-order"></div><div class="actions"><button class="btn" onclick="checkDialogueOrder()">Kiểm tra đáp án</button><button class="btn outline" onclick="renderDialogueOrder()">Làm lại</button></div><div id="dialogue-order-feedback" class="feedback"></div></section>
-<section class="card"><div class="card-head"><div><h3>7. 阅读理解 · Đọc hiểu tổng hợp</h3><p class="sub">Đọc đoạn văn kết hợp kiến thức Bài 1–5 rồi chọn đáp án đúng.</p></div><span class="level">Vận dụng</span></div><div class="reading-box"><div class="reading-text">大家好！我叫陈天中，我是中国人。我家有四口人：爸爸、妈妈、妹妹和我。妹妹今年十二岁。今天9月8号，星期日，我休息。我会做饭，会做面条儿和一些菜。我有一个新电脑，我很喜欢它。</div></div><div id="reading-quiz" class="quiz-list"></div><div class="actions"><button class="btn" onclick="checkChoiceQuiz('reading-quiz','reading-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('reading-quiz','reading-feedback')">Chọn lại</button></div><div id="reading-feedback" class="feedback"></div></section>
+<section class="card"><div class="card-head"><div><h3>7. 阅读理解 · Đọc hiểu tổng hợp</h3><p class="sub">Đọc đoạn văn kết hợp kiến thức Bài 1–5 rồi chọn đáp án đúng.</p></div><span class="level">Vận dụng nâng cao</span></div><div class="reading-box"><div class="reading-text">大家好！我叫陈天中，是中国人，也是学生。我家有四口人：爸爸、妈妈、妹妹和我。爸爸叫陈大山，是中文老师。他有二十个学生，工作很忙。妈妈叫白家月，她不是老师。她会做饭，会做面条儿、饺子和一些菜。妹妹叫陈小月，今年十二岁，也是学生。她不会做饭，很喜欢妈妈做的面条儿。今天9月8号，星期日。爸爸今天休息，妈妈也休息。我会做一些菜，妈妈会做面条儿和饺子。妹妹不会做饭。我的新电脑很好看，妹妹也很喜欢它。</div></div><div id="reading-quiz" class="quiz-list"></div><div class="actions"><button class="btn" onclick="checkChoiceQuiz('reading-quiz','reading-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('reading-quiz','reading-feedback')">Chọn lại</button></div><div id="reading-feedback" class="feedback"></div></section>
 
 <h2 class="section-title"><span>四、翻译</span> · Luyện dịch</h2>
 <section class="card"><div class="card-head"><div><h3>1. 汉语 → 越南语 · Dịch Trung → Việt</h3><p class="sub">Từ cụm ngắn đến câu tổng hợp. Viết bản dịch tự nhiên, đúng ý.</p></div><span class="level">Cơ bản → Vận dụng</span></div><div class="translate-list" id="trans-cnvi"></div><div class="actions"><button class="btn" onclick="toggleTranslation('trans-cnvi')">Xem/ẩn đáp án tham khảo</button><button class="btn outline" onclick="clearTranslation('trans-cnvi')">Xóa bài làm</button></div></section>
@@ -133,11 +133,11 @@ const vocabFill={
   ["你叫什么","？","名字"],
   ["我","李文。","叫"],
   ["我是","。","中国人"],
-  ["这是我的","。","女朋友"],
+  ["这是我的","。","女朋友",["女朋友","哥哥","孩子","电脑","工作","家"]],
   ["姐姐的","还很忙。","工作"],
-  ["我没有","。","哥哥"],
+  ["我没有","。","哥哥",["哥哥","女朋友","孩子","电脑","工作","家"]],
   ["我","有四口人。","家"],
-  ["我有两个","。","孩子"],
+  ["我有两个","。","孩子",["孩子","哥哥"]],
   ["妹妹今年十二","。","岁"],
   ["","9月8号。","今天"],
   ["今天9","8号。","月"],
@@ -146,7 +146,7 @@ const vocabFill={
   ["你","做饭吗？","会"],
   ["我会","。","做饭"],
   ["我不会做","。","饺子"],
-  ["这是我的新","。","电脑"]
+  ["这是我的新","。","电脑",["电脑","工作","家","女朋友"]]
  ]
 };
 const readSteps={
@@ -201,7 +201,7 @@ const responseQuiz=[
 const sentenceFill={
  bank:["您","们","叫","是","不","的","吗","也","有","没有","呢","个","口","岁","会","今天","号","星期"],
  data:[
-  ["老师，","好！","您"],["同学","，再见！","们"],["我","李文。","叫"],["我","中国人。","是"],["她","是法国人。","不"],["这是我","中文老师。","的"],["你是学生","？","吗"],["我","很高兴认识你。","也"],
+  ["老师，","好！","您"],["同学","，再见！","们"],["我","李文。","叫"],["我","中国人。","是"],["她","是法国人。","不"],["这是我","中文老师。","的"],["你是学生","？","吗"],["认识你我","很高兴。","也"],
   ["我家","四口人。","有"],["我","哥哥。","没有"],["我有两个哥哥，你","？","呢"],["我有两","姐姐。","个"],["我家有四","人。","口"],["妹妹今年十二","。","岁"],["我","做饭。","会"],["","9月8号。","今天"],["今天9月8","。","号"],["今天","日。","星期"]
  ]
 };
@@ -210,7 +210,7 @@ const arrangeData=[
 ["认识","也","我","高兴","很","你","。"],
 ["中文","人","的","也是","中国","老师","我","。"],
 ["哪","是","国","你","女朋友","人","？"],
-["我们","很","忙","工作","也不","想","你","。"],
+["我们","也","很","想","你","。"],
 ["学生","十","王老师","有","个","二","。"],
 ["你","家","人","口","有","几","？"],
 ["哥哥","两个","你","有","我","呢","，","？"],
@@ -223,21 +223,21 @@ const arrangeData=[
 ["号","是","年","月","2025","今天","5","22","。"]
 ];
 const arrangeAnswers=[
-"请问，你叫什么名字？",
-"认识你，我也很高兴。",
-"我的中文老师也是中国人。",
-"你女朋友是哪国人？",
-"我们工作也不忙，很想你。",
-"王老师有二十个学生。",
-"你家有几口人？",
-"我有两个哥哥，你呢？",
-"他儿子今年几岁？",
-"我有两个孩子，一个女儿和一个儿子。",
-"今天9月8号，星期日，我休息。",
-"我会做面条儿，也会做一些菜。",
-"这是你的新电脑吗？",
-"真好看！我也很喜欢它。",
-"今天是2025年5月22号。"
+["请问，你叫什么名字？"],
+["认识你，我也很高兴。","我也很高兴认识你。"],
+["我的中文老师也是中国人。"],
+["你女朋友是哪国人？"],
+["我们也很想你。"],
+["王老师有二十个学生。"],
+["你家有几口人？"],
+["我有两个哥哥，你呢？"],
+["他儿子今年几岁？","今年他儿子几岁？"],
+["我有两个孩子，一个女儿和一个儿子。","我有两个孩子，一个儿子和一个女儿。"],
+["今天9月8号，星期日，我休息。"],
+["我会做面条儿，也会做一些菜。"],
+["这是你的新电脑吗？"],
+["真好看！我也很喜欢它。"],
+["今天是2025年5月22号。"]
 ];
 const sentenceQuiz=[
 ["Câu 1",["老师，您好！","老师，你们好！","您老师，好！"],0],["Câu 2",["我叫李文。","我李文叫。","叫我李文。"],0],["Câu 3",["她不是法国人。","她是不法国人。","她法国人不是。"],0],["Câu 4",["这是我的中文老师。","这是我中文的老师。","这我的中文老师是。"],0],
@@ -259,8 +259,14 @@ const dialogueOrders=[
  {items:["我也很喜欢它。","是的，是我的新电脑。","真好看！","这是你的新电脑吗？"],ans:[3,1,2,0]}
 ];
 const readingQuiz=[
-["1. 陈天中是哪国人？",["法国人","中国人","泰国人","老师"],1],["2. 他家有几口人？",["三口人","四口人","五口人","两口人"],1],["3. 妹妹今年多大？",["十岁","十一岁","十二岁","二十岁"],2],
-["4. 今天星期几？",["星期一","星期五","星期日","星期六"],2],["5. 陈天中会做什么？",["会做饭","会工作","会写名字","会做电脑"],0],["6. 他喜欢什么？",["他的新电脑","他的老师","他的工作","星期日"],0]
+["1. 陈天中和陈小月是谁的孩子？",["陈大山和白家月的孩子","王老师的孩子","陈天中的孩子","白家月的学生"],0],
+["2. 谁是中文老师？",["陈天中","白家月","陈大山","陈小月"],2],
+["3. 爸爸有多少个学生？",["十二个","二十个","两个","四个"],1],
+["4. 妈妈会做什么？",["做面条儿、饺子和一些菜","做电脑","做中文老师","做学生"],0],
+["5. 陈天中和妹妹是什么？",["老师","学生","法国人","爸爸妈妈"],1],
+["6. 今天谁休息？",["陈天中和妹妹","爸爸和妈妈","爸爸和妹妹","妈妈和妹妹"],1],
+["7. 妹妹不会做什么？",["不会做饭","不会学习","不会工作","不会休息"],0],
+["8. 妹妹喜欢谁做的面条儿和谁的电脑？",["爸爸做的面条儿和妈妈的电脑","妈妈做的面条儿和陈天中的电脑","陈天中做的面条儿和爸爸的电脑","妹妹做的面条儿和妈妈的电脑"],1]
 ];
 const transCnVi=[
 ["你好！","Xin chào!"],["老师，您好！","Xin chào thầy/cô!"],["请问，你叫什么名字？","Xin hỏi, bạn tên là gì?"],["很高兴认识你。","Rất vui được làm quen với bạn."],
@@ -308,13 +314,13 @@ function showPictureResult(){const total=pictureWords.length,got=pictureMatched.
 function resetPictures(){pictureMatched=new Set();clearPicSel();renderPictures();document.getElementById('picture-feedback').textContent=''}
 function renderReadSteps(){const chip=x=>`<span style="padding:6px 9px;border:1px solid var(--line);border-radius:8px;background:#f8fcff;font-size:18px;font-weight:700">${x}</span>`;const group=(title,groups)=>`<div class="read-step"><h4>${title}</h4>${groups.map(([lesson,arr])=>`<div class="read-item"><b>${lesson}:</b><div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:7px">${arr.map(chip).join('')}</div></div>`).join('')}</div>`;document.getElementById('read-steps').innerHTML=group('Cấp độ 1 · Đọc từ',readSteps.wordGroups)+group('Cấp độ 2 · Đọc cụm từ',readSteps.phraseGroups)+group('Cấp độ 3 · Đọc câu',readSteps.sentenceGroups)}
 function renderPatterns(){document.getElementById('patterns').innerHTML=patterns.map((p,i)=>`<div class="pattern"><span class="tag">${p[0]}</span><div class="hanzi">${p[1]}</div><div class="translation">${p[2]}</div></div>`).join('')}
-function renderBankFill(prefix){const cfg=prefix==='vocab'?vocabFill:sentenceFill,bank=document.getElementById(`${prefix}-fill-bank`),list=document.getElementById(`${prefix}-fill-list`);bankSelections[prefix]=null;bank.innerHTML=shuffle(cfg.bank).map(w=>`<button class="token" data-word="${w}" onclick="selectBankToken('${prefix}',this)">${w}</button>`).join('');list.innerHTML=cfg.data.map((r,i)=>`<div class="fill-row" data-answer="${r[2]}"><span>${i+1}. ${r[0]}</span><button class="blank-button" data-value="" onclick="setBankBlank('${prefix}',this)">____</button><span>${r[1]}</span><div class="answer-note"></div></div>`).join('');document.getElementById(`${prefix}-fill-feedback`).textContent=''}
+function renderBankFill(prefix){const cfg=prefix==='vocab'?vocabFill:sentenceFill,bank=document.getElementById(`${prefix}-fill-bank`),list=document.getElementById(`${prefix}-fill-list`);bankSelections[prefix]=null;bank.innerHTML=shuffle(cfg.bank).map(w=>`<button class="token" data-word="${w}" onclick="selectBankToken('${prefix}',this)">${w}</button>`).join('');list.innerHTML=cfg.data.map((r,i)=>`<div class="fill-row" data-index="${i}"><span>${i+1}. ${r[0]}</span><button class="blank-button" data-value="" onclick="setBankBlank('${prefix}',this)">____</button><span>${r[1]}</span><div class="answer-note"></div></div>`).join('');document.getElementById(`${prefix}-fill-feedback`).textContent=''}
 function selectBankToken(prefix,el){document.querySelectorAll(`#${prefix}-fill-bank .token`).forEach(x=>x.classList.remove('selected'));el.classList.add('selected');bankSelections[prefix]=el}
 function setBankBlank(prefix,el){if(el.dataset.value){const old=el.dataset.value,tok=[...document.querySelectorAll(`#${prefix}-fill-bank .token`)].find(x=>x.dataset.word===old);if(tok)tok.classList.remove('used');el.dataset.value='';el.textContent='____';el.classList.remove('correct','wrong');return}const tok=bankSelections[prefix];if(!tok||tok.classList.contains('used')){toast('Hãy chọn một từ ở ngân hàng trước.');return}el.dataset.value=tok.dataset.word;el.textContent=tok.dataset.word;tok.classList.add('used');tok.classList.remove('selected');bankSelections[prefix]=null}
-function checkBankFill(prefix){let got=0,total=0;document.querySelectorAll(`#${prefix}-fill-list .fill-row`).forEach(row=>{total++;const blank=row.querySelector('.blank-button'),note=row.querySelector('.answer-note'),ok=blank.dataset.value===row.dataset.answer;blank.classList.remove('correct','wrong');row.classList.remove('correct-row','wrong-row');if(ok){got++;blank.classList.add('correct');row.classList.add('correct-row');note.className='answer-note ok';note.textContent='✓ Chính xác.'}else{blank.classList.add('wrong');row.classList.add('wrong-row');note.className='answer-note bad';note.textContent=`✕ Đáp án: ${row.dataset.answer}`}});showResult(`${prefix}-fill-feedback`,got,total);return[got,total]}
+function checkBankFill(prefix){const cfg=prefix==='vocab'?vocabFill:sentenceFill;let got=0,total=0;document.querySelectorAll(`#${prefix}-fill-list .fill-row`).forEach(row=>{total++;const blank=row.querySelector('.blank-button'),note=row.querySelector('.answer-note'),item=cfg.data[+row.dataset.index],accepted=item[3]||[item[2]],ok=accepted.includes(blank.dataset.value);blank.classList.remove('correct','wrong');row.classList.remove('correct-row','wrong-row');if(ok){got++;blank.classList.add('correct');row.classList.add('correct-row');note.className='answer-note ok';note.textContent='✓ Chính xác.'}else{blank.classList.add('wrong');row.classList.add('wrong-row');note.className='answer-note bad';note.textContent=`✕ Đáp án chấp nhận: ${accepted.join(' / ')}`}});showResult(`${prefix}-fill-feedback`,got,total);return[got,total]}
 function renderArrange(){document.getElementById('arrange-list').innerHTML=arrangeData.map((words,i)=>`<div class="arrange-row" data-index="${i}"><b>${i+1}.</b><div class="arrange-bank">${shuffle(words).map(w=>`<button class="order-chip" onclick="moveArrange(this,'answer')">${w}</button>`).join('')}</div><div class="arrange-answer"></div><div class="answer-note"></div></div>`).join('');document.getElementById('arrange-feedback').textContent=''}
 function moveArrange(el,to){const row=el.closest('.arrange-row');(to==='answer'?row.querySelector('.arrange-answer'):row.querySelector('.arrange-bank')).appendChild(el);el.setAttribute('onclick',`moveArrange(this,'${to==='answer'?'bank':'answer'}')`)}
-function checkArrange(){let got=0,total=arrangeAnswers.length;const normalize=s=>String(s).replace(/[\s，。？！、；：,.!?]/g,'');document.querySelectorAll('#arrange-list .arrange-row').forEach(row=>{const i=+row.dataset.index,ans=row.querySelector('.arrange-answer'),val=[...ans.querySelectorAll('.order-chip')].map(x=>x.textContent.trim()).join(''),note=row.querySelector('.answer-note'),ok=normalize(val)===normalize(arrangeAnswers[i]);row.classList.remove('correct-row','wrong-row');ans.classList.remove('correct','wrong');if(ok){got++;row.classList.add('correct-row');ans.classList.add('correct');note.className='answer-note ok';note.textContent='✓ Chính xác.'}else{row.classList.add('wrong-row');ans.classList.add('wrong');note.className='answer-note bad';note.textContent=`✕ Đáp án: ${arrangeAnswers[i]}`}});showResult('arrange-feedback',got,total);return[got,total]}
+function checkArrange(){let got=0,total=arrangeAnswers.length;const normalize=s=>String(s).replace(/[\s，。？！、；：,.!?]/g,'');document.querySelectorAll('#arrange-list .arrange-row').forEach(row=>{const i=+row.dataset.index,ans=row.querySelector('.arrange-answer'),val=[...ans.querySelectorAll('.order-chip')].map(x=>x.textContent.trim()).join(''),note=row.querySelector('.answer-note'),accepted=arrangeAnswers[i],ok=accepted.some(x=>normalize(val)===normalize(x));row.classList.remove('correct-row','wrong-row');ans.classList.remove('correct','wrong');if(ok){got++;row.classList.add('correct-row');ans.classList.add('correct');note.className='answer-note ok';note.textContent='✓ Chính xác.'}else{row.classList.add('wrong-row');ans.classList.add('wrong');note.className='answer-note bad';note.textContent=`✕ Đáp án chấp nhận: ${accepted.join(' / ')}`}});showResult('arrange-feedback',got,total);return[got,total]}
 function renderDialogueComplete(){document.getElementById('dialogue-complete').innerHTML=dialogueComplete.map((d,i)=>`<div class="dialogue-box">${d.html.replaceAll('________',`<input class="text-input inline-input" placeholder="Điền câu/từ phù hợp">`)}<div class="answer-note" data-sample="${escapeHtml(d.sample)}"></div></div>`).join('')}
 function showDialogueSamples(){document.querySelectorAll('#dialogue-complete .answer-note').forEach(n=>{n.className='answer-note ok';n.innerHTML='Gợi ý: <b>'+n.dataset.sample+'</b>'});document.getElementById('dialogue-feedback').className='feedback ok';document.getElementById('dialogue-feedback').textContent='Đã hiển thị đáp án tham khảo. Phần này không tính điểm tự động.'}
 function clearDialogueInputs(){document.querySelectorAll('#dialogue-complete input').forEach(x=>x.value='');document.querySelectorAll('#dialogue-complete .answer-note').forEach(x=>{x.textContent='';x.className='answer-note'});document.getElementById('dialogue-feedback').textContent=''}
