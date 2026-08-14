@@ -97,16 +97,22 @@ const listeningChoiceQuiz=[
  ]}
 ];
 const initialRows=[
- {ends:["ǐ","ǎo","ué","ēng"],answers:["n","h","x","sh"],full:["nǐ","hǎo","xué","shēng"]},
- {ends:["ǎo","ī","ǐng","èn"],answers:["l","sh","q","w"],full:["lǎo","shī","qǐng","wèn"]},
- {ends:["íng","i","èn","i"],answers:["m","z","r","sh"],full:["míng","zi","rèn","shi"]},
- {ends:["ōng","uó","ǎ","uó"],answers:["zh","g","f","g"],full:["zhōng","guó","fǎ","guó"]},
- {ends:["ōng","uò","áng","iǎng"],answers:["g","z","m","x"],full:["gōng","zuò","máng","xiǎng"]},
- {ends:["uō","ao","ǐ","ǒu"],answers:["d","sh","j","k"],full:["duō","shao","jǐ","kǒu"]},
- {ends:["īn","iān","īng","ī"],answers:["j","t","x","q"],full:["jīn","tiān","xīng","qī"]},
- {ends:["iū","i","uò","àn"],answers:["x","x","z","f"],full:["xiū","xi","zuò","fàn"]},
- {ends:["iàn","iáor","iǎo","i"],answers:["m","t","j","z"],full:["miàn","tiáor","jiǎo","zi"]},
- {ends:["iàn","ǎo","ǐ","uan"],answers:["d","n","x","h"],full:["diàn","nǎo","xǐ","huan"]}
+ {ends:["ī","ào"],answers:["y","h"],full:["yī","hào"]},
+ {ends:["ǐ","ǎo"],answers:["x","z"],full:["xǐ","zǎo"]},
+ {ends:["ǐng","èn"],answers:["q","w"],full:["qǐng","wèn"]},
+ {ends:["íng","èn"],answers:["q","f"],full:["qíng","fèn"]},
+ {ends:["ōng","uó"],answers:["zh","g"],full:["zhōng","guó"]},
+ {ends:["ōng","uò"],answers:["g","z"],full:["gōng","zuò"]},
+ {ends:["īn","iān"],answers:["j","t"],full:["jīn","tiān"]},
+ {ends:["iū","iān"],answers:["q","t"],full:["qiū","tiān"]},
+ {ends:["iàn","ǎo"],answers:["b","h"],full:["biàn","hǎo"]},
+ {ends:["iàn","ǎo"],answers:["b","l"],full:["biàn","lǎo"]},
+ {ends:["īng","uò"],answers:["j","g"],full:["jīng","guò"]},
+ {ends:["īng","ù"],answers:["j","j"],full:["jīng","jù"]},
+ {ends:["iǎng","iàng"],answers:["x","x"],full:["xiǎng","xiàng"]},
+ {ends:["iāng","iú"],answers:["x","q"],full:["xiāng","qiú"]},
+ {ends:["iàn","í"],answers:["l","x"],full:["liàn","xí"]},
+ {ends:["iàn","í"],answers:["n","c"],full:["niàn","cí"]}
 ];
 const pinyinQuiz=[
 ["你好",["nǐ hǎo","ní hǎo","nǐ hào","lǐ hǎo"],0],["大家",["dàjiā","dājiā","dàjiǎ","tàjiā"],0],["学生",["xuésheng","xuěsheng","xuéshēng","xuéshen"],0],["谢谢",["xièxie","xiěxie","xìexie","xièxiè"],0],
@@ -271,7 +277,7 @@ function renderListeningChoices(){document.getElementById('listening-choice-quiz
 function selectListeningChoice(btn){const row=btn.closest('.listening-choice-row');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected')}
 function resetListeningChoices(){document.querySelectorAll('#listening-choice-quiz .choice').forEach(x=>x.classList.remove('selected','correct','wrong'))}
 function renderInitials(){document.getElementById('initial-grid').innerHTML=initialRows.map((r,i)=>`<div class="initial-item"><div class="initial-stem"><span>${i+1}.</span>${r.ends.map((end,j)=>`<span class="syllable"><input class="initial-input" maxlength="2" data-row="${i}" data-pos="${j}" aria-label="Thanh mẫu ${j+1} dòng ${i+1}"><span>${end}</span></span>`).join('<span>｜</span>')}</div><div class="answer-note"></div></div>`).join('')}
-function checkInitials(){let got=0,total=initialRows.length*4;document.querySelectorAll('#initial-grid .initial-item').forEach((item,i)=>{const inputs=[...item.querySelectorAll('.initial-input')],note=item.querySelector('.answer-note');let rowGot=0;inputs.forEach((inp,j)=>{const val=inp.value.trim().toLowerCase(),ans=initialRows[i].answers[j].toLowerCase();inp.classList.remove('correct','wrong');if(val===ans){rowGot++;got++;inp.classList.add('correct')}else inp.classList.add('wrong')});item.classList.remove('correct-row','wrong-row');item.classList.add(rowGot===4?'correct-row':'wrong-row');note.className='answer-note '+(rowGot===4?'ok':'bad');note.innerHTML=(rowGot===4?'✓ ':'✕ Đáp án: ')+`<b>${initialRows[i].answers.join(' – ')}</b> → <b>${initialRows[i].full.join(' · ')}</b>`});showResult('initial-feedback',got,total);return[got,total]}
+function checkInitials(){let got=0,total=initialRows.reduce((sum,row)=>sum+row.answers.length,0);document.querySelectorAll('#initial-grid .initial-item').forEach((item,i)=>{const inputs=[...item.querySelectorAll('.initial-input')],note=item.querySelector('.answer-note');let rowGot=0;inputs.forEach((inp,j)=>{const val=inp.value.trim().toLowerCase(),ans=initialRows[i].answers[j].toLowerCase();inp.classList.remove('correct','wrong');if(val===ans){rowGot++;got++;inp.classList.add('correct')}else inp.classList.add('wrong')});const rowCorrect=rowGot===initialRows[i].answers.length;item.classList.remove('correct-row','wrong-row');item.classList.add(rowCorrect?'correct-row':'wrong-row');note.className='answer-note '+(rowCorrect?'ok':'bad');note.innerHTML=(rowCorrect?'✓ ':'✕ Đáp án: ')+`<b>${initialRows[i].answers.join(' – ')}</b> → <b>${initialRows[i].full.join(' · ')}</b>`});showResult('initial-feedback',got,total);return[got,total]}
 function resetInitials(){document.querySelectorAll('#initial-grid .initial-input').forEach(x=>{x.value='';x.classList.remove('correct','wrong')});document.querySelectorAll('#initial-grid .initial-item').forEach(x=>{x.classList.remove('correct-row','wrong-row');x.querySelector('.answer-note').textContent=''});document.getElementById('initial-feedback').textContent=''}
 function makeQuiz(id,data){document.getElementById(id).innerHTML=data.map((q,i)=>{const options=q[1],target=i%options.length,shift=(q[2]-target+options.length)%options.length,rotated=options.slice(shift).concat(options.slice(0,shift));return `<div class="quiz-row" data-answer="${target}"><div class="qtitle">${q[0]}</div><div class="choices">${rotated.map((x,j)=>`<button class="choice" data-i="${j}" onclick="selectChoice(this)">${String.fromCharCode(65+j)}. ${escapeHtml(x)}</button>`).join('')}</div><div class="answer-note"></div></div>`}).join('')}
 function selectChoice(btn){const row=btn.closest('.quiz-row');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected')}
