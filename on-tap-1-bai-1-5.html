@@ -39,8 +39,8 @@
 <section class="hero"><h1>ÔN TẬP BÀI 1–5</h1><div class="mini">Từ cơ bản → vận dụng · Từ vựng · Ngữ pháp · Hội thoại · Đọc · Dịch</div></section>
 
 <h2 class="section-title"><span>一、听力</span> · Luyện nghe</h2>
-<section class="card"><div class="card-head"><div><h3>1. Nghe và điền thanh mẫu vào chỗ trống</h3><p class="sub">Nghe mỗi âm tiết và điền thanh mẫu còn thiếu, ví dụ: n, h, sh, zh. Không phân biệt chữ hoa/thường.</p></div><span class="level">Cơ bản → Khá</span></div><div class="audio-row"><audio controls preload="none" src="assets/review1-5/nghe-va-dien-thanh-mau.m4a">Trình duyệt không hỗ trợ âm thanh.</audio></div><div class="audio-placeholder">Tệp sẽ bổ sung sau: <b>assets/review1-5/nghe-va-dien-thanh-mau.m4a</b></div><div class="initial-grid" id="initial-grid"></div><div class="actions"><button class="btn" onclick="checkInitials()">Kiểm tra đáp án</button><button class="btn outline" onclick="resetInitials()">Làm lại</button></div><div id="initial-feedback" class="feedback"></div></section>
-<section class="card"><div class="card-head"><div><h3>2. Nghe và chọn đáp án đúng</h3><p class="sub">Nghe nội dung và chọn đáp án phù hợp nhất cho từng câu.</p></div><span class="level">Cơ bản → Khá</span></div><div class="audio-row"><audio controls preload="none" src="assets/review1-5/nghe-va-chon-dap-an-dung.m4a">Trình duyệt không hỗ trợ âm thanh.</audio></div><div class="audio-placeholder">Tệp sẽ bổ sung sau: <b>assets/review1-5/nghe-va-chon-dap-an-dung.m4a</b></div><div id="listening-choice-quiz" class="quiz-list"></div><div class="actions"><button class="btn outline" onclick="resetListeningChoices()">Chọn lại</button></div><div class="note missing"><b>Lưu ý:</b> File nghe và đáp án đúng sẽ được bổ sung sau. Hiện học sinh có thể chọn đáp án để luyện tập, nhưng phần này chưa tính điểm tự động.</div></section>
+<section class="card"><div class="card-head"><div><h3>1. Nghe và điền thanh mẫu vào chỗ trống</h3><p class="sub">Nghe mỗi âm tiết và điền thanh mẫu còn thiếu, ví dụ: n, h, sh, zh. Không phân biệt chữ hoa/thường.</p></div><span class="level">Cơ bản → Khá</span></div><div class="audio-row"><audio controls preload="metadata" src="on-tap-1-bai-nghe-1.mp3">Trình duyệt không hỗ trợ âm thanh.</audio></div><div class="initial-grid" id="initial-grid"></div><div class="actions"><button class="btn" onclick="checkInitials()">Kiểm tra đáp án</button><button class="btn outline" onclick="resetInitials()">Làm lại</button></div><div id="initial-feedback" class="feedback"></div></section>
+<section class="card"><div class="card-head"><div><h3>2. Nghe và chọn đáp án đúng</h3><p class="sub">Nghe nội dung và chọn đáp án phù hợp nhất cho từng câu.</p></div><span class="level">Cơ bản → Khá</span></div><div class="audio-row"><audio controls preload="metadata" src="on-tap-1-bai-nghe-2.m4a">Trình duyệt không hỗ trợ âm thanh.</audio></div><div id="listening-choice-quiz" class="quiz-list"></div><div class="actions"><button class="btn" onclick="checkListeningChoices()">Kiểm tra đáp án</button><button class="btn outline" onclick="resetListeningChoices()">Chọn lại</button></div><div id="listening-choice-feedback" class="feedback"></div></section>
 
 <h2 class="section-title"><span>二、词语练习</span> · Luyện tập từ vựng</h2>
 <section class="card"><div class="card-head"><div><h3>1. Chọn phiên âm đúng</h3><p class="sub">Từ chào hỏi, giới thiệu bản thân, quốc tịch, gia đình, ngày tháng và hoạt động.</p></div><span class="level">Cơ bản</span></div><div id="pinyin-quiz" class="quiz-list"></div><div class="actions"><button class="btn" onclick="checkChoiceQuiz('pinyin-quiz','pinyin-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('pinyin-quiz','pinyin-feedback')">Chọn lại</button></div><div id="pinyin-feedback" class="feedback"></div></section>
@@ -68,31 +68,31 @@
 </div></main><div class="toast" id="toast"></div>
 <script>
 const listeningChoiceQuiz=[
- {no:1,options:[
+ {no:1,answer:1,options:[
   {text:"张东 (Zhāng Dōng)"},{text:"张彤 (Zhāng Tóng)"},{text:"张通 (Zhāng Tōng)"},{text:"常彤 (Cháng Tóng)"}
  ]},
- {no:2,options:[
+ {no:2,answer:1,options:[
   {text:"爸爸"},{text:"妈妈"},{text:"我"},{text:"爸爸和妈妈"}
  ]},
- {no:3,options:[
+ {no:3,answer:0,options:[
   {text:"一个是，一个不是"},{text:"他们是麦克的朋友",note:"Màikè: Mike"},{text:"他们是麦克哥哥的朋友"},{text:"他们是麦克的哥哥"}
  ]},
- {no:4,options:[
+ {no:4,answer:3,options:[
   {text:"去学校",note:"qù xuéxiào: đến trường"},{text:"去公园",note:"qù gōngyuán: đến công viên"},{text:"去学习"},{text:"去天安门",note:"qù Tiān'ānmén: đi Thiên An Môn"}
  ]},
- {no:5,options:[
+ {no:5,answer:1,options:[
   {text:"Qiāng"},{text:"Jiāng"},{text:"Zhāng"},{text:"Xiāng"}
  ]},
- {no:6,options:[
+ {no:6,answer:0,options:[
   {text:"英语书是妹妹的",note:"Yīngyǔ shū: sách tiếng Anh"},{text:"男的有英语书"},{text:"男的没有英语书"},{text:"女的没有英语书"}
  ]},
- {no:7,options:[
+ {no:7,answer:2,options:[
   {text:"男的是英国人，女的不是"},{text:"女的是英国人，男的不是"},{text:"他们都是英国人"},{text:"一个是英国人，一个是美国人",note:"Měiguó rén: người Mỹ"}
  ]},
- {no:8,options:[
+ {no:8,answer:1,options:[
   {text:"他们都是学生"},{text:"一个是学生，一个不是"},{text:"男的是老师"},{text:"女的是学生"}
  ]},
- {no:9,options:[
+ {no:9,answer:3,options:[
   {text:"Sòng Xiān"},{text:"Sòng Shān"},{text:"Cóng Shān"},{text:"Zhōngshān"}
  ]}
 ];
@@ -111,7 +111,7 @@ const initialRows=[
  {ends:["īng","ù"],answers:["j","j"],full:["jīng","jù"]},
  {ends:["iǎng","iàng"],answers:["x","x"],full:["xiǎng","xiàng"]},
  {ends:["iāng","iú"],answers:["x","q"],full:["xiāng","qiú"]},
- {ends:["iàn","í"],answers:["l","x"],full:["liàn","xí"]},
+ {ends:["iàn","í"],answers:["l","x"],aliases:[[],["xi"]],full:["liàn","xí"]},
  {ends:["iàn","í"],answers:["n","c"],full:["niàn","cí"]}
 ];
 const pinyinQuiz=[
@@ -273,11 +273,12 @@ function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
 function escapeHtml(s){return String(s).replace(/[&<>\"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[m]))}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove('show'),2200)}
 function showResult(id,got,total){const el=document.getElementById(id);const p=total?Math.round(got/total*100):0;el.className='feedback '+(p>=80?'ok':'bad');el.textContent=`Kết quả: ${got}/${total} (${p}%).`}
-function renderListeningChoices(){document.getElementById('listening-choice-quiz').innerHTML=listeningChoiceQuiz.map(q=>`<div class="quiz-row listening-choice-row" data-no="${q.no}"><div class="qtitle">${q.no}.</div><div class="choices">${q.options.map((o,j)=>{const item=typeof o==='string'?{text:o}:o;return `<button class="choice" data-i="${j}" onclick="selectListeningChoice(this)">${String.fromCharCode(65+j)}. ${escapeHtml(item.text)}${item.note?` <em style="font-weight:400;color:var(--muted)">[${escapeHtml(item.note)}]</em>`:''}</button>`}).join('')}</div></div>`).join('')}
+function renderListeningChoices(){document.getElementById('listening-choice-quiz').innerHTML=listeningChoiceQuiz.map(q=>`<div class="quiz-row listening-choice-row" data-no="${q.no}" data-answer="${q.answer}"><div class="qtitle">${q.no}.</div><div class="choices">${q.options.map((o,j)=>{const item=typeof o==='string'?{text:o}:o;return `<button class="choice" data-i="${j}" onclick="selectListeningChoice(this)">${String.fromCharCode(65+j)}. ${escapeHtml(item.text)}${item.note?` <em style="font-weight:400;color:var(--muted)">[${escapeHtml(item.note)}]</em>`:''}</button>`}).join('')}</div><div class="answer-note"></div></div>`).join('')}
 function selectListeningChoice(btn){const row=btn.closest('.listening-choice-row');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected')}
-function resetListeningChoices(){document.querySelectorAll('#listening-choice-quiz .choice').forEach(x=>x.classList.remove('selected','correct','wrong'))}
+function checkListeningChoices(){let got=0,total=listeningChoiceQuiz.length;document.querySelectorAll('#listening-choice-quiz .listening-choice-row').forEach(row=>{const ans=+row.dataset.answer,choices=[...row.querySelectorAll('.choice')],sel=choices.findIndex(x=>x.classList.contains('selected')),note=row.querySelector('.answer-note');choices.forEach((x,i)=>{x.classList.remove('correct','wrong');if(i===ans)x.classList.add('correct');if(i===sel&&i!==ans)x.classList.add('wrong')});const ok=sel===ans;if(ok)got++;row.classList.remove('correct-row','wrong-row');row.classList.add(ok?'correct-row':'wrong-row');note.className='answer-note '+(ok?'ok':'bad');note.textContent=ok?'✓ Chính xác.':`✕ Đáp án: ${String.fromCharCode(65+ans)}. ${choices[ans].textContent.replace(/^[A-D]\.\s*/, '')}`});showResult('listening-choice-feedback',got,total);return[got,total]}
+function resetListeningChoices(){document.querySelectorAll('#listening-choice-quiz .choice').forEach(x=>x.classList.remove('selected','correct','wrong'));document.querySelectorAll('#listening-choice-quiz .listening-choice-row').forEach(row=>{row.classList.remove('correct-row','wrong-row');row.querySelector('.answer-note').textContent=''});document.getElementById('listening-choice-feedback').textContent=''}
 function renderInitials(){document.getElementById('initial-grid').innerHTML=initialRows.map((r,i)=>`<div class="initial-item"><div class="initial-stem"><span>${i+1}.</span>${r.ends.map((end,j)=>`<span class="syllable"><input class="initial-input" maxlength="2" data-row="${i}" data-pos="${j}" aria-label="Thanh mẫu ${j+1} dòng ${i+1}"><span>${end}</span></span>`).join('<span>｜</span>')}</div><div class="answer-note"></div></div>`).join('')}
-function checkInitials(){let got=0,total=initialRows.reduce((sum,row)=>sum+row.answers.length,0);document.querySelectorAll('#initial-grid .initial-item').forEach((item,i)=>{const inputs=[...item.querySelectorAll('.initial-input')],note=item.querySelector('.answer-note');let rowGot=0;inputs.forEach((inp,j)=>{const val=inp.value.trim().toLowerCase(),ans=initialRows[i].answers[j].toLowerCase();inp.classList.remove('correct','wrong');if(val===ans){rowGot++;got++;inp.classList.add('correct')}else inp.classList.add('wrong')});const rowCorrect=rowGot===initialRows[i].answers.length;item.classList.remove('correct-row','wrong-row');item.classList.add(rowCorrect?'correct-row':'wrong-row');note.className='answer-note '+(rowCorrect?'ok':'bad');note.innerHTML=(rowCorrect?'✓ ':'✕ Đáp án: ')+`<b>${initialRows[i].answers.join(' – ')}</b> → <b>${initialRows[i].full.join(' · ')}</b>`});showResult('initial-feedback',got,total);return[got,total]}
+function checkInitials(){let got=0,total=initialRows.reduce((sum,row)=>sum+row.answers.length,0);document.querySelectorAll('#initial-grid .initial-item').forEach((item,i)=>{const inputs=[...item.querySelectorAll('.initial-input')],note=item.querySelector('.answer-note');let rowGot=0;inputs.forEach((inp,j)=>{const val=inp.value.trim().toLowerCase(),ans=initialRows[i].answers[j].toLowerCase(),valid=[ans,...(initialRows[i].aliases?.[j]||[])];inp.classList.remove('correct','wrong');if(valid.includes(val)){rowGot++;got++;inp.classList.add('correct')}else inp.classList.add('wrong')});const rowCorrect=rowGot===initialRows[i].answers.length;item.classList.remove('correct-row','wrong-row');item.classList.add(rowCorrect?'correct-row':'wrong-row');note.className='answer-note '+(rowCorrect?'ok':'bad');note.innerHTML=(rowCorrect?'✓ ':'✕ Đáp án: ')+`<b>${initialRows[i].answers.join(' – ')}</b> → <b>${initialRows[i].full.join(' · ')}</b>`});showResult('initial-feedback',got,total);return[got,total]}
 function resetInitials(){document.querySelectorAll('#initial-grid .initial-input').forEach(x=>{x.value='';x.classList.remove('correct','wrong')});document.querySelectorAll('#initial-grid .initial-item').forEach(x=>{x.classList.remove('correct-row','wrong-row');x.querySelector('.answer-note').textContent=''});document.getElementById('initial-feedback').textContent=''}
 function makeQuiz(id,data){document.getElementById(id).innerHTML=data.map((q,i)=>{const options=q[1],target=i%options.length,shift=(q[2]-target+options.length)%options.length,rotated=options.slice(shift).concat(options.slice(0,shift));return `<div class="quiz-row" data-answer="${target}"><div class="qtitle">${q[0]}</div><div class="choices">${rotated.map((x,j)=>`<button class="choice" data-i="${j}" onclick="selectChoice(this)">${String.fromCharCode(65+j)}. ${escapeHtml(x)}</button>`).join('')}</div><div class="answer-note"></div></div>`}).join('')}
 function selectChoice(btn){const row=btn.closest('.quiz-row');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected')}
