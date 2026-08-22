@@ -70,6 +70,7 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-se
 .text-input, textarea{width:100%;padding:11px 12px;border:1.5px solid #d9c842;border-radius:12px;background:#fffef8;color:var(--ink);font:inherit}
 textarea{min-height:110px;resize:vertical}
 .ai-actions{display:flex;align-items:center;gap:10px;margin-top:10px}.ai-grade-btn{background:#a93f3f;color:#fff}.ai-grade-btn:disabled{opacity:.55;cursor:wait}.ai-result{display:none;margin-top:10px;padding:13px 14px;border-radius:12px;line-height:1.6}.ai-result.show{display:block}.ai-result.good{background:#e8f5ec;border-left:5px solid #2f8b57;color:#175b32}.ai-result.warn{background:#fff7d6;border-left:5px solid #d2a600;color:#6f5700}.ai-result.bad{background:#fdecec;border-left:5px solid #c74343;color:#8a1f1f}.ai-result b{color:inherit}.ai-note{font-size:.9rem;color:var(--muted)}
+.text-correct{border-left:5px solid #2f8b57}.text-incorrect{border-left:5px solid #c74343}
 .question-img{display:block;max-width:100%;width:220px;height:auto;margin:10px 0 15px;border-radius:12px;border:2px solid #ead957;box-shadow:0 4px 12px rgba(120,100,0,.1)}
 .note{padding:12px 14px;border-radius:14px;background:var(--soft-2);border:1px solid #eedf71;color:#6f620f}
 .btn{border:0;border-radius:14px;padding:10px 16px;background:var(--lemon-400);color:#3f3700;font-weight:800;cursor:pointer;transition:.18s;box-shadow:0 4px 10px rgba(120,100,0,.12)}
@@ -109,7 +110,7 @@ textarea{min-height:110px;resize:vertical}
         <div>
           <h2 id="score-title">Kết quả chấm tự động</h2>
           <p id="score-text">Bấm “Chấm toàn bộ” ở cuối trang để xem kết quả phần trắc nghiệm.</p>
-          <p id="score-breakdown">Các phần viết tự do và sắp xếp câu vẫn cần bạn đối chiếu thêm với đáp án tham khảo.</p>
+          <p id="score-breakdown">Kết quả từng phần Nghe – Đọc – Viết sẽ xuất hiện tại đây.</p>
         </div>
         <div class="score-actions">
           <button class="btn" onclick="checkAllAnswers()">Chấm toàn bộ</button>
@@ -275,7 +276,8 @@ function renderQuiz() {
       html += `<h2 class="section-title"><span>${majorTitleMap[major] || major}</span></h2>`;
     }
 
-    html += `<section class="card">
+    const isPictureSection = sectionData.section.includes('第二部分 (Nhìn tranh đặt câu)');
+    html += `<section class="card" data-major="${major}">
       <div class="card-head"><div><h3>${sectionSubtitle(sectionData.section)}</h3>${sectionData.instructions ? `<p class="sub">Làm theo hướng dẫn bên dưới.</p>` : ''}</div></div>`;
 
     if (sectionData.instructions) {
@@ -310,7 +312,9 @@ function renderQuiz() {
       }
     });
     html += `</div>`;
-    html += `<div class="section-actions"><span class="section-result"></span><button class="btn" type="button" onclick="checkSection(this)">✓ Chấm phần này</button></div></section>`;
+    html += `<div class="section-actions"><span class="section-result"></span>${isPictureSection
+      ? `<button class="btn" type="button" onclick="showReferenceAnswers(this)">Xem đáp án tham khảo</button>`
+      : `<button class="btn" type="button" onclick="checkSection(this)">✓ Chấm phần này</button>`}</div></section>`;
   });
 
   container.innerHTML = html;
@@ -372,6 +376,9 @@ function haiyenReceiveAiGrade(message) {
   }
   const p = message.payload || {};
   const score = Number(p.score) || 0;
+  const question = pending.button.closest('.ai-picture-question');
+  question.dataset.aiGraded = 'true';
+  question.dataset.aiScore = String(Math.max(0, Math.min(10, score)));
   const tone = score >= 8 ? 'good' : score >= 5 ? 'warn' : 'bad';
   pending.resultBox.className = 'ai-result show ' + tone;
   pending.resultBox.innerHTML = `<b>${escapeHtml(p.verdict || 'Đã chấm')} · ${score}/10 điểm</b><br>${escapeHtml(p.feedback || '')}<br><b>Câu gợi ý:</b> ${escapeHtml(p.corrected_sentence || '')}`;
@@ -420,38 +427,101 @@ function formatSortAnswer(question, answerPath) {
   return answerPath.split('-').map(id => wordMap[id] || id).join(' ');
 }
 
-function updateGlobalScore(score, total) {
-  const pct = total ? Math.round(score / total * 100) : 0;
-  document.getElementById('score-ring').textContent = pct + '%';
+function updateGlobalScore(score, total, breakdown) {
+  const listeningPoints = breakdown.listening.total ? breakdown.listening.score / breakdown.listening.total * 100 : 0;
+  const readingPoints = breakdown.reading.total ? breakdown.reading.score / breakdown.reading.total * 100 : 0;
+  const writingPoints = breakdown.writing.total ? breakdown.writing.score / breakdown.writing.total * 100 : 0;
+  const totalPoints = listeningPoints + readingPoints + writingPoints;
+  const average = totalPoints / 3;
+  document.getElementById('score-ring').textContent = Math.round(average) + '%';
   document.getElementById('score-title').textContent = 'Kết quả chấm tự động';
-  document.getElementById('score-text').textContent = `Bạn làm đúng ${score} / ${total} câu trắc nghiệm.`;
-  document.getElementById('score-breakdown').textContent = 'Các phần viết tự do và sắp xếp câu vẫn cần bạn đối chiếu thêm với đáp án tham khảo.';
+  document.getElementById('score-text').textContent = `Tổng điểm: ${formatScore(totalPoints)} / 300 · Trung bình: ${formatScore(average)}%.`;
+  document.getElementById('score-breakdown').textContent =
+    `Nghe: ${formatScore(listeningPoints)}/100 (${formatScore(100 / breakdown.listening.total)} điểm/câu) · ` +
+    `Đọc: ${formatScore(readingPoints)}/100 (${formatScore(100 / breakdown.reading.total)} điểm/câu) · ` +
+    `Viết: ${formatScore(writingPoints)}/100 (${formatScore(100 / breakdown.writing.total)} điểm/câu)`;
+}
+
+function formatScore(value) {
+  return Number.isInteger(value) ? String(value) : value.toFixed(1).replace(/\.0$/, '');
+}
+
+function normalizeChinese(value) {
+  return String(value || '').toLowerCase().replace(/[\s，。！？、；：,.!?;:“”"'（）()]/g, '');
+}
+
+function textAnswerIsCorrect(question) {
+  const input = question.querySelector('.text-input');
+  const submitted = normalizeChinese(input && input.value);
+  if (!submitted) return false;
+  const references = decodeURIComponent(question.dataset.reference || '').split('/').map(normalizeChinese).filter(Boolean);
+  return references.includes(submitted);
 }
 
 function checkAllAnswers(){
-  let total=0, score=0;
-  document.querySelectorAll('.question').forEach(q => {
-    q.querySelectorAll('.options label').forEach(l => l.classList.remove('correct-choice', 'incorrect-choice'));
-    const ansDiv = q.querySelector('.answer');
-    if(ansDiv && ansDiv.dataset.a) {
-      total++;
-      const [radioName, correctVal] = ansDiv.dataset.a.split(':');
-      const checked = q.querySelector(`input[name="${radioName}"]:checked`);
-      if(checked) {
-        if(checked.value === correctVal) {
-          score++;
+  const breakdown = {
+    listening: {score: 0, total: 0},
+    reading: {score: 0, total: 0},
+    writing: {score: 0, total: 0}
+  };
+  document.querySelectorAll('.card').forEach(card => {
+    const major = card.dataset.major || '';
+    const bucket = major.includes('听力') ? breakdown.listening : major.includes('阅读') ? breakdown.reading : breakdown.writing;
+
+    card.querySelectorAll('.question').forEach(q => {
+      q.classList.remove('text-correct', 'text-incorrect');
+      q.querySelectorAll('.options label').forEach(l => l.classList.remove('correct-choice', 'incorrect-choice'));
+      const ansDiv = q.querySelector('.answer');
+      if (ansDiv && ansDiv.dataset.a) {
+        bucket.total++;
+        const [radioName, correctVal] = ansDiv.dataset.a.split(':');
+        const checked = q.querySelector(`input[name="${radioName}"]:checked`);
+        if (checked && checked.value === correctVal) {
+          bucket.score++;
           checked.closest('label').classList.add('correct-choice');
           ansDiv.classList.remove('show');
         } else {
-          checked.closest('label').classList.add('incorrect-choice');
+          if (checked) checked.closest('label').classList.add('incorrect-choice');
           ansDiv.classList.add('show');
         }
-      } else {
-        ansDiv.classList.add('show');
+      } else if (q.classList.contains('ai-picture-question')) {
+        bucket.total++;
+        const aiScore = q.dataset.aiGraded === 'true' ? Number(q.dataset.aiScore || 0) : 0;
+        bucket.score += Math.max(0, Math.min(10, aiScore)) / 10;
+        if (q.dataset.aiGraded !== 'true') {
+          const resultBox = q.querySelector('.ai-result');
+          resultBox.className = 'ai-result show warn';
+          resultBox.textContent = 'Hãy bấm “AI chấm câu này” để câu này được tính vào điểm Viết.';
+        }
+      } else if (q.querySelector('.text-input')) {
+        bucket.total++;
+        const correct = textAnswerIsCorrect(q);
+        q.classList.add(correct ? 'text-correct' : 'text-incorrect');
+        if (correct) bucket.score++;
+        if (ansDiv) ansDiv.classList.toggle('show', !correct);
       }
-    }
+    });
+
+    card.querySelectorAll('.sort-question').forEach(question => {
+      bucket.total++;
+      const selected = [...question.querySelectorAll('.answer-box .answer-chip')].map(x => x.dataset.id).join('-');
+      const correct = question.dataset.answer.split('|').includes(selected);
+      question.classList.remove('sort-correct', 'sort-incorrect');
+      question.classList.add(correct ? 'sort-correct' : 'sort-incorrect');
+      if (correct) bucket.score++;
+    });
   });
-  updateGlobalScore(score,total);
+  const total = breakdown.listening.total + breakdown.reading.total + breakdown.writing.total;
+  const score = breakdown.listening.score + breakdown.reading.score + breakdown.writing.score;
+  updateGlobalScore(score, total, breakdown);
+}
+
+function showReferenceAnswers(btn) {
+  const card = btn.closest('.card');
+  const answers = card.querySelectorAll('.answer');
+  const shouldShow = [...answers].some(answer => !answer.classList.contains('show'));
+  answers.forEach(answer => answer.classList.toggle('show', shouldShow));
+  btn.textContent = shouldShow ? 'Ẩn đáp án tham khảo' : 'Xem đáp án tham khảo';
 }
 
 function checkSection(btn) {
@@ -533,10 +603,13 @@ function resetQuiz(){
   document.querySelectorAll('.answer-box').forEach(x=>x.innerHTML='<span style="color:#95872d">Nhấn vào các cụm từ ở trên để tạo câu...</span>');
   document.querySelectorAll('.sort-feedback').forEach(x=>{x.classList.remove('show'); x.innerHTML='';});
   document.querySelectorAll('.sort-question').forEach(x=>x.classList.remove('sort-correct', 'sort-incorrect'));
+  document.querySelectorAll('.question').forEach(x=>x.classList.remove('text-correct', 'text-incorrect'));
+  document.querySelectorAll('.ai-picture-question').forEach(x=>{delete x.dataset.aiGraded; delete x.dataset.aiScore;});
   document.querySelectorAll('.ai-result').forEach(x=>{x.className='ai-result'; x.innerHTML='';});
+  document.querySelectorAll('.section-actions button').forEach(x=>{if(x.textContent.includes('đáp án tham khảo')) x.textContent='Xem đáp án tham khảo';});
   document.getElementById('score-ring').textContent='0%';
   document.getElementById('score-text').textContent='Bấm “Chấm toàn bộ” ở cuối trang để xem kết quả phần trắc nghiệm.';
-  document.getElementById('score-breakdown').textContent='Các phần viết tự do và sắp xếp câu vẫn cần bạn đối chiếu thêm với đáp án tham khảo.';
+  document.getElementById('score-breakdown').textContent='Kết quả từng phần Nghe – Đọc – Viết sẽ xuất hiện tại đây.';
 }
 
 function checkSort(btn){
