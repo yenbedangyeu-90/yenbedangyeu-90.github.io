@@ -90,7 +90,7 @@ textarea{min-height:110px;resize:vertical}
 <div class="app">
   <main class="main">
     <div class="content">
-      <div class="backbar"><a class="backlink" href="#top">← Đề mô phỏng HSK4</a></div>
+      <div class="backbar"><a class="backlink" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/b%C3%A0i-t%E1%BA%ADp-hsk4-2-0">← Đề mô phỏng HSK4</a></div>
       <div class="eyebrow">Tiếng Trung Hải Yến · HSK 4</div>
       <section class="hero" id="top">
         <h1>仿真试题五</h1>
@@ -108,7 +108,7 @@ textarea{min-height:110px;resize:vertical}
         <div class="score-ring" id="score-ring">0%</div>
         <div>
           <h2 id="score-title">Kết quả chấm tự động</h2>
-          <p id="score-text">Bấm “Chấm toàn bộ trắc nghiệm” để xem kết quả phần trắc nghiệm.</p>
+          <p id="score-text">Bấm “Chấm toàn bộ” ở cuối trang để xem kết quả phần trắc nghiệm.</p>
           <p id="score-breakdown">Các phần viết tự do và sắp xếp câu vẫn cần bạn đối chiếu thêm với đáp án tham khảo.</p>
         </div>
         <div class="score-actions">
@@ -548,7 +548,7 @@ function resetQuiz(){
   document.querySelectorAll('.sort-question').forEach(x=>x.classList.remove('sort-correct', 'sort-incorrect'));
   document.querySelectorAll('.ai-result').forEach(x=>{x.className='ai-result'; x.innerHTML='';});
   document.getElementById('score-ring').textContent='0%';
-  document.getElementById('score-text').textContent='Bấm “Chấm toàn bộ trắc nghiệm” để xem kết quả phần trắc nghiệm.';
+  document.getElementById('score-text').textContent='Bấm “Chấm toàn bộ” ở cuối trang để xem kết quả phần trắc nghiệm.';
   document.getElementById('score-breakdown').textContent='Các phần viết tự do và sắp xếp câu vẫn cần bạn đối chiếu thêm với đáp án tham khảo.';
 }
 
