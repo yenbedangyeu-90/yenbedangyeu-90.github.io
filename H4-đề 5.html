@@ -69,6 +69,7 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-se
 .section-result{margin-right:auto;font-weight:800;color:#7b6800}
 .text-input, textarea{width:100%;padding:11px 12px;border:1.5px solid #d9c842;border-radius:12px;background:#fffef8;color:var(--ink);font:inherit}
 textarea{min-height:110px;resize:vertical}
+.ai-actions{display:flex;align-items:center;gap:10px;margin-top:10px}.ai-grade-btn{background:#a93f3f;color:#fff}.ai-grade-btn:disabled{opacity:.55;cursor:wait}.ai-result{display:none;margin-top:10px;padding:13px 14px;border-radius:12px;line-height:1.6}.ai-result.show{display:block}.ai-result.good{background:#e8f5ec;border-left:5px solid #2f8b57;color:#175b32}.ai-result.warn{background:#fff7d6;border-left:5px solid #d2a600;color:#6f5700}.ai-result.bad{background:#fdecec;border-left:5px solid #c74343;color:#8a1f1f}.ai-result b{color:inherit}.ai-note{font-size:.9rem;color:var(--muted)}
 .question-img{display:block;max-width:100%;width:220px;height:auto;margin:10px 0 15px;border-radius:12px;border:2px solid #ead957;box-shadow:0 4px 12px rgba(120,100,0,.1)}
 .note{padding:12px 14px;border-radius:14px;background:var(--soft-2);border:1px solid #eedf71;color:#6f620f}
 .btn{border:0;border-radius:14px;padding:10px 16px;background:var(--lemon-400);color:#3f3700;font-weight:800;cursor:pointer;transition:.18s;box-shadow:0 4px 10px rgba(120,100,0,.12)}
@@ -97,7 +98,6 @@ textarea{min-height:110px;resize:vertical}
       </section>
 
       <section class="utility">
-        <button class="btn" onclick="checkAllAnswers()">✓ Chấm toàn bộ trắc nghiệm</button>
         <button class="btn outline" onclick="window.print()">🖨 In bài</button>
         <button class="btn outline" onclick="resetQuiz()">↺ Làm lại từ đầu</button>
       </section>
@@ -304,7 +304,10 @@ function renderQuiz() {
         html += `<div class="sort-question quiz-row" data-answer="${q.ans}"><div class="qtitle">${q.id}. Sắp xếp câu</div><div class="word-bank">${buttonsHtml}</div><div class="answer-box"><span style="color:#95872d">Nhấn vào các cụm từ ở trên để tạo câu...</span></div><div class="sort-feedback"></div></div>`;
       } else if (q.type === 'text' || q.type === 'textarea') {
         const inputHtml = q.type === 'text' ? `<input class="text-input" type="text" placeholder="Viết câu tiếng Trung...">` : `<textarea class="text-input" placeholder="Viết câu tiếng Trung..."></textarea>`;
-        html += `<div class="question quiz-row"><div class="qtitle">Câu ${q.id}</div><div class="question-text">${q.text}</div>${inputHtml}<div class="answer"><b>Đáp án tham khảo:</b><br>${q.ref}</div></div>`;
+        const isAiPicture = sectionData.section.includes('第二部分 (Nhìn tranh đặt câu)') && q.type === 'textarea';
+        const keywordMatch = q.text.match(/<b>([^<]+)<\/b>/);
+        const aiHtml = isAiPicture ? `<div class="ai-actions"><button type="button" class="btn ai-grade-btn" onclick="gradePictureSentence(this)">🤖 AI chấm câu này</button><span class="ai-note">AI chấp nhận nhiều cách diễn đạt đúng.</span></div><div class="ai-result" aria-live="polite"></div>` : '';
+        html += `<div class="question quiz-row${isAiPicture ? ' ai-picture-question' : ''}" data-question-id="${q.id}" data-keyword="${keywordMatch ? keywordMatch[1] : ''}" data-reference="${encodeURIComponent(q.ref || '')}"><div class="qtitle">Câu ${q.id}</div><div class="question-text">${q.text}</div>${inputHtml}${aiHtml}<div class="answer"><b>Đáp án tham khảo:</b><br>${q.ref}</div></div>`;
       }
     });
     html += `</div>`;
@@ -314,6 +317,78 @@ function renderQuiz() {
   container.innerHTML = html;
   initSorting();
 }
+
+const AI_GRADER_URL = 'https://script.google.com/macros/s/AKfycbwfr3m68nMa45UHO07JhEITsYSi2n-Xr9imIq_COjqG-IzG9zVQTG2xQC093p5AxjpCLA/exec';
+const pendingAiGrades = new Map();
+
+function escapeHtml(value) {
+  return String(value == null ? '' : value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+}
+
+function gradePictureSentence(button) {
+  const question = button.closest('.ai-picture-question');
+  const answer = question.querySelector('textarea').value.trim();
+  const resultBox = question.querySelector('.ai-result');
+  if (!answer) {
+    resultBox.className = 'ai-result show bad';
+    resultBox.textContent = 'Hãy viết câu tiếng Trung trước khi gửi AI chấm.';
+    return;
+  }
+  const requestId = 'hsk4-' + question.dataset.questionId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+  pendingAiGrades.set(requestId, {button, resultBox});
+  button.disabled = true;
+  button.textContent = 'AI đang chấm…';
+  resultBox.className = 'ai-result show warn';
+  resultBox.textContent = 'Đang phân tích câu trả lời, vui lòng chờ…';
+
+  const frameName = 'ai-grade-frame-' + requestId;
+  const iframe = document.createElement('iframe');
+  iframe.name = frameName;
+  iframe.hidden = true;
+  document.body.appendChild(iframe);
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = AI_GRADER_URL;
+  form.target = frameName;
+  form.hidden = true;
+  const fields = {
+    mode: 'grade_hsk4_picture_sentence',
+    requestId,
+    studentAnswer: answer,
+    keyword: question.dataset.keyword,
+    reference: decodeURIComponent(question.dataset.reference || '')
+  };
+  Object.entries(fields).forEach(([name, value]) => {
+    const input = document.createElement('input');
+    input.name = name;
+    input.value = value;
+    form.appendChild(input);
+  });
+  document.body.appendChild(form);
+  form.submit();
+  form.remove();
+  setTimeout(() => iframe.remove(), 90000);
+}
+
+window.addEventListener('message', event => {
+  if (event.origin !== 'https://script.google.com' && !event.origin.endsWith('.googleusercontent.com')) return;
+  const message = event.data;
+  if (!message || message.type !== 'haiyen-ai-feedback' || !pendingAiGrades.has(message.requestId)) return;
+  const pending = pendingAiGrades.get(message.requestId);
+  pendingAiGrades.delete(message.requestId);
+  pending.button.disabled = false;
+  pending.button.textContent = '🤖 AI chấm lại';
+  if (!message.ok) {
+    pending.resultBox.className = 'ai-result show bad';
+    pending.resultBox.textContent = (message.payload && message.payload.error) || 'AI chưa thể chấm lúc này. Hãy thử lại.';
+    return;
+  }
+  const p = message.payload || {};
+  const score = Number(p.score) || 0;
+  const tone = score >= 8 ? 'good' : score >= 5 ? 'warn' : 'bad';
+  pending.resultBox.className = 'ai-result show ' + tone;
+  pending.resultBox.innerHTML = `<b>${escapeHtml(p.verdict || 'Đã chấm')} · ${score}/10 điểm</b><br>${escapeHtml(p.feedback || '')}<br><b>Câu gợi ý:</b> ${escapeHtml(p.corrected_sentence || '')}`;
+});
 
 function initSorting() {
   document.querySelectorAll('.sort-question').forEach(question => {
@@ -471,6 +546,7 @@ function resetQuiz(){
   document.querySelectorAll('.answer-box').forEach(x=>x.innerHTML='<span style="color:#95872d">Nhấn vào các cụm từ ở trên để tạo câu...</span>');
   document.querySelectorAll('.sort-feedback').forEach(x=>{x.classList.remove('show'); x.innerHTML='';});
   document.querySelectorAll('.sort-question').forEach(x=>x.classList.remove('sort-correct', 'sort-incorrect'));
+  document.querySelectorAll('.ai-result').forEach(x=>{x.className='ai-result'; x.innerHTML='';});
   document.getElementById('score-ring').textContent='0%';
   document.getElementById('score-text').textContent='Bấm “Chấm toàn bộ trắc nghiệm” để xem kết quả phần trắc nghiệm.';
   document.getElementById('score-breakdown').textContent='Các phần viết tự do và sắp xếp câu vẫn cần bạn đối chiếu thêm với đáp án tham khảo.';
