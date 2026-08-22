@@ -334,47 +334,35 @@ function gradePictureSentence(button) {
     return;
   }
   const requestId = 'hsk4-' + question.dataset.questionId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2);
-  pendingAiGrades.set(requestId, {button, resultBox, iframe: null});
+  pendingAiGrades.set(requestId, {button, resultBox, script: null});
   button.disabled = true;
   button.textContent = 'AI đang chấm…';
   resultBox.className = 'ai-result show warn';
   resultBox.textContent = 'Đang phân tích câu trả lời, vui lòng chờ…';
 
-  const frameName = 'ai-grade-frame-' + requestId;
-  const iframe = document.createElement('iframe');
-  iframe.name = frameName;
-  iframe.hidden = true;
-  document.body.appendChild(iframe);
-  pendingAiGrades.get(requestId).iframe = iframe;
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = AI_GRADER_URL;
-  form.target = frameName;
-  form.hidden = true;
-  const fields = {
+  const fields = new URLSearchParams({
     mode: 'grade_hsk4_picture_sentence',
     requestId,
     studentAnswer: answer,
     keyword: question.dataset.keyword,
     reference: decodeURIComponent(question.dataset.reference || '')
-  };
-  Object.entries(fields).forEach(([name, value]) => {
-    const input = document.createElement('input');
-    input.name = name;
-    input.value = value;
-    form.appendChild(input);
   });
-  document.body.appendChild(form);
-  form.submit();
-  form.remove();
-  setTimeout(() => iframe.remove(), 90000);
+  const script = document.createElement('script');
+  script.src = AI_GRADER_URL + '?' + fields.toString();
+  script.onerror = () => haiyenReceiveAiGrade({type: 'haiyen-ai-feedback', requestId, ok: false, payload: {error: 'Không thể kết nối tới AI. Hãy thử lại.'}});
+  pendingAiGrades.get(requestId).script = script;
+  document.body.appendChild(script);
+  setTimeout(() => {
+    if (!pendingAiGrades.has(requestId)) return;
+    haiyenReceiveAiGrade({type: 'haiyen-ai-feedback', requestId, ok: false, payload: {error: 'AI phản hồi quá lâu. Hãy thử lại.'}});
+  }, 45000);
 }
 
-window.addEventListener('message', event => {
-  const message = event.data;
+function haiyenReceiveAiGrade(message) {
   if (!message || message.type !== 'haiyen-ai-feedback' || !pendingAiGrades.has(message.requestId)) return;
   const pending = pendingAiGrades.get(message.requestId);
   pendingAiGrades.delete(message.requestId);
+  if (pending.script) pending.script.remove();
   pending.button.disabled = false;
   pending.button.textContent = '🤖 AI chấm lại';
   if (!message.ok) {
@@ -387,7 +375,7 @@ window.addEventListener('message', event => {
   const tone = score >= 8 ? 'good' : score >= 5 ? 'warn' : 'bad';
   pending.resultBox.className = 'ai-result show ' + tone;
   pending.resultBox.innerHTML = `<b>${escapeHtml(p.verdict || 'Đã chấm')} · ${score}/10 điểm</b><br>${escapeHtml(p.feedback || '')}<br><b>Câu gợi ý:</b> ${escapeHtml(p.corrected_sentence || '')}`;
-});
+}
 
 function initSorting() {
   document.querySelectorAll('.sort-question').forEach(question => {
