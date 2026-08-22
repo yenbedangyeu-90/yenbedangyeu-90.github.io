@@ -374,9 +374,6 @@ window.addEventListener('message', event => {
   const message = event.data;
   if (!message || message.type !== 'haiyen-ai-feedback' || !pendingAiGrades.has(message.requestId)) return;
   const pending = pendingAiGrades.get(message.requestId);
-  const trustedGoogleOrigin = event.origin === 'https://script.google.com' || event.origin.endsWith('.googleusercontent.com');
-  const trustedSandboxFrame = event.origin === 'null' && pending.iframe && event.source === pending.iframe.contentWindow;
-  if (!trustedGoogleOrigin && !trustedSandboxFrame) return;
   pendingAiGrades.delete(message.requestId);
   pending.button.disabled = false;
   pending.button.textContent = '🤖 AI chấm lại';
