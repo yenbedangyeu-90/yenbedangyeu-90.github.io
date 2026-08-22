@@ -43,6 +43,8 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-se
 .reading-box{margin:8px 0 10px;padding:15px 16px;border-radius:14px;background:var(--soft-2);border:1px solid #efdf79}
 .quiz-list{display:grid;gap:12px}
 .quiz-row,.question,.sort-question{padding:14px 15px;border:1px solid var(--line);border-radius:16px;background:#fffef6}
+.sort-question.sort-correct{background:#e8f5ec;border-color:#78bd8d;box-shadow:0 0 0 2px rgba(31,122,67,.08)}
+.sort-question.sort-incorrect{background:#fdecec;border-color:#dc8f8f;box-shadow:0 0 0 2px rgba(177,53,53,.07)}
 .qtitle{font-weight:800;margin-bottom:8px;color:#5f5300}
 .question-text{margin-bottom:8px}
 .options,.choices{display:grid;gap:8px;margin-top:10px}
@@ -320,15 +322,22 @@ function initSorting() {
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         if (btn.classList.contains('selected')) return;
+        question.classList.remove('sort-correct', 'sort-incorrect');
+        const oldFeedback = question.querySelector('.sort-feedback');
+        oldFeedback.classList.remove('show');
+        oldFeedback.innerHTML = '';
         const placeholder = box.querySelector('span[style]');
         if (placeholder) placeholder.remove();
         btn.classList.add('selected');
         const chip = document.createElement('span');
         chip.className = 'answer-chip';
-        chip.textContent = btn.dataset.id;
+        chip.textContent = btn.textContent.replace(/^[A-Z]:\s*/, '');
         chip.dataset.id = btn.dataset.id;
         chip.title = btn.textContent;
         chip.addEventListener('click', () => {
+          question.classList.remove('sort-correct', 'sort-incorrect');
+          oldFeedback.classList.remove('show');
+          oldFeedback.innerHTML = '';
           btn.classList.remove('selected');
           chip.remove();
           if (box.children.length === 0) {
@@ -339,6 +348,14 @@ function initSorting() {
       });
     });
   });
+}
+
+function formatSortAnswer(question, answerPath) {
+  const wordMap = {};
+  question.querySelectorAll('.word-btn').forEach(btn => {
+    wordMap[btn.dataset.id] = btn.textContent.replace(/^[A-Z]:\s*/, '');
+  });
+  return answerPath.split('-').map(id => wordMap[id] || id).join(' ');
 }
 
 function updateGlobalScore(score, total) {
@@ -412,19 +429,23 @@ function checkSection(btn) {
     const selectedIdPath = chips.map(x => x.dataset.id).join('-');
     const validAnswers = question.dataset.answer.split('|');
     const feedback = question.querySelector('.sort-feedback');
+    question.classList.remove('sort-correct', 'sort-incorrect');
     feedback.classList.add('show');
 
     if (validAnswers.includes(selectedIdPath)) {
       correctCount++;
-      feedback.innerHTML = `✓ Chính xác: <b>${selectedIdPath.replace(/-/g, ' → ')}</b>`;
+      question.classList.add('sort-correct');
+      feedback.innerHTML = `✓ Chính xác: <b>${formatSortAnswer(question, selectedIdPath)}</b>`;
       feedback.style.background = '#d4edda';
       feedback.style.color = '#155724';
     } else if (!selectedIdPath) {
-      feedback.innerHTML = `✗ Chưa sắp xếp. Đáp án đúng: <b>${validAnswers[0].replace(/-/g, ' → ')}</b>`;
+      question.classList.add('sort-incorrect');
+      feedback.innerHTML = `✗ Chưa sắp xếp.<br>Đáp án đúng: <b>${formatSortAnswer(question, validAnswers[0])}</b>`;
       feedback.style.background = '#f8d7da';
       feedback.style.color = '#721c24';
     } else {
-      feedback.innerHTML = `✗ Chưa đúng. Bạn chọn: <b>${selectedIdPath.replace(/-/g, ' → ')}</b><br>Đáp án đúng: <b>${validAnswers[0].replace(/-/g, ' → ')}</b>`;
+      question.classList.add('sort-incorrect');
+      feedback.innerHTML = `✗ Chưa đúng.<br>Bạn chọn: <b>${formatSortAnswer(question, selectedIdPath)}</b><br>Đáp án đúng: <b>${formatSortAnswer(question, validAnswers[0])}</b>`;
       feedback.style.background = '#f8d7da';
       feedback.style.color = '#721c24';
     }
@@ -449,6 +470,7 @@ function resetQuiz(){
   document.querySelectorAll('.word-btn').forEach(x=>x.classList.remove('selected'));
   document.querySelectorAll('.answer-box').forEach(x=>x.innerHTML='<span style="color:#95872d">Nhấn vào các cụm từ ở trên để tạo câu...</span>');
   document.querySelectorAll('.sort-feedback').forEach(x=>{x.classList.remove('show'); x.innerHTML='';});
+  document.querySelectorAll('.sort-question').forEach(x=>x.classList.remove('sort-correct', 'sort-incorrect'));
   document.getElementById('score-ring').textContent='0%';
   document.getElementById('score-text').textContent='Bấm “Chấm toàn bộ trắc nghiệm” để xem kết quả phần trắc nghiệm.';
   document.getElementById('score-breakdown').textContent='Các phần viết tự do và sắp xếp câu vẫn cần bạn đối chiếu thêm với đáp án tham khảo.';
