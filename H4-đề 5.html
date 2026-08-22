@@ -90,7 +90,7 @@ textarea{min-height:110px;resize:vertical}
 <div class="app">
   <main class="main">
     <div class="content">
-      <div class="backbar"><a class="backlink" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/b%C3%A0i-t%E1%BA%ADp-hsk4-2-0">← Đề mô phỏng HSK4</a></div>
+      <div class="backbar"><a class="backlink" target="_top" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/b%C3%A0i-t%E1%BA%ADp-hsk4-2-0">← Đề mô phỏng HSK4</a></div>
       <div class="eyebrow">Tiếng Trung Hải Yến · HSK 4</div>
       <section class="hero" id="top">
         <h1>仿真试题五</h1>
@@ -117,7 +117,6 @@ textarea{min-height:110px;resize:vertical}
         </div>
       </section>
 
-      <div class="footer">仿真试题五 · HSK4 Mock Test · Giao diện đồng bộ theo mẫu Bài 7, giữ nguyên tông màu vàng chanh</div>
     </div>
   </main>
 </div>
@@ -335,7 +334,7 @@ function gradePictureSentence(button) {
     return;
   }
   const requestId = 'hsk4-' + question.dataset.questionId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2);
-  pendingAiGrades.set(requestId, {button, resultBox});
+  pendingAiGrades.set(requestId, {button, resultBox, iframe: null});
   button.disabled = true;
   button.textContent = 'AI đang chấm…';
   resultBox.className = 'ai-result show warn';
@@ -346,6 +345,7 @@ function gradePictureSentence(button) {
   iframe.name = frameName;
   iframe.hidden = true;
   document.body.appendChild(iframe);
+  pendingAiGrades.get(requestId).iframe = iframe;
   const form = document.createElement('form');
   form.method = 'POST';
   form.action = AI_GRADER_URL;
@@ -371,10 +371,12 @@ function gradePictureSentence(button) {
 }
 
 window.addEventListener('message', event => {
-  if (event.origin !== 'https://script.google.com' && !event.origin.endsWith('.googleusercontent.com')) return;
   const message = event.data;
   if (!message || message.type !== 'haiyen-ai-feedback' || !pendingAiGrades.has(message.requestId)) return;
   const pending = pendingAiGrades.get(message.requestId);
+  const trustedGoogleOrigin = event.origin === 'https://script.google.com' || event.origin.endsWith('.googleusercontent.com');
+  const trustedSandboxFrame = event.origin === 'null' && pending.iframe && event.source === pending.iframe.contentWindow;
+  if (!trustedGoogleOrigin && !trustedSandboxFrame) return;
   pendingAiGrades.delete(message.requestId);
   pending.button.disabled = false;
   pending.button.textContent = '🤖 AI chấm lại';
