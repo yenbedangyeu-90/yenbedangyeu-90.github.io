@@ -65,8 +65,8 @@
 const listeningTimeQuiz=[
   ["Câu 1",["8:15","9:00","10:10","12h30"],3],
   ["Câu 2",["15:40","15:20","13:45","18:00"],0],
-  ["Câu 3",["20:10","22:10","21:10","21:01"],2],
-  ["Câu 4",["22:50","22:05","20:25","21:05"],1],
+  ["Câu 3",["20:10","22:10","21:10","21:01"],3],
+  ["Câu 4",["22:50","22:05","20:25","21:05"],0],
   ["Câu 5",["13:30","14:03","15:30","14:30"],3],
   ["Câu 6",["18:30","18:00","16:30","20:30"],0]
 ];
@@ -153,7 +153,19 @@ const arrangeData=[
   ["我","八","点","去","医院","上","班"],
   ["我","十","分","钟","后","去"]
 ];
-const arrangeAnswers=["现在几点","早上八点四十","我上午十点十分有课","我们下午两点见吧","下午我想去电影院看电影","我不想去下午还有事","我明天下午两点还上课呢","四点半下课","我晚上六点半下班","我八点去医院上班","我十分钟后去"];
+const arrangeAnswers=[
+  ["现在几点"],
+  ["早上八点四十"],
+  ["我上午十点十分有课","上午十点十分我有课"],
+  ["我们下午两点见吧","下午两点我们见吧"],
+  ["下午我想去电影院看电影","我下午想去电影院看电影"],
+  ["我不想去下午还有事"],
+  ["我明天下午两点还上课呢","明天下午两点我还上课呢"],
+  ["四点半下课"],
+  ["我晚上六点半下班","晚上六点半我下班"],
+  ["我八点去医院上班","八点我去医院上班"],
+  ["我十分钟后去","十分钟后我去"]
+];
 const sentenceQuiz=[
   ["Câu 1",["现在几点？","几点现在？","现在点几？"],0],
   ["Câu 2",["我十点上午十分有课。","我上午十点十分有课。","上午有课我十点十分。"],1],
@@ -231,7 +243,7 @@ function shuffledIndexes(length){const a=Array.from({length},(_,i)=>i);for(let i
 function renderArrange(){arrangeState=arrangeData.map(()=>[]);document.getElementById('arrange-list').innerHTML=arrangeData.map((arr,i)=>{const order=shuffledIndexes(arr.length);return `<div class="arrange-row"><div class="arrange-bank" id="ab-${i}">${order.map(j=>`<button class="token" data-j="${j}" onclick="moveArrange(${i},${j},this)">${arr[j]}</button>`).join('')}</div><div class="arrange-answer" id="aa-${i}"></div><div class="answer-note"></div></div>`}).join('');document.getElementById('arrange-feedback').textContent=''}
 function moveArrange(i,j,button){if(button.parentElement.id.startsWith('ab')){arrangeState[i].push(j);document.getElementById('aa-'+i).appendChild(button)}else{arrangeState[i]=arrangeState[i].filter(x=>x!==j);document.getElementById('ab-'+i).appendChild(button)}}
 function norm(text){return text.replace(/[，。！？、\s]/g,'')}
-function checkArrange(){let got=0;arrangeData.forEach((arr,i)=>{const made=arrangeState[i].map(j=>arr[j]).join(''),box=document.getElementById('aa-'+i),row=box.closest('.arrange-row'),note=row.querySelector('.answer-note');box.classList.remove('correct','wrong');row.classList.remove('correct-row','wrong-row');if(norm(made)===norm(arrangeAnswers[i])){got++;box.classList.add('correct');row.classList.add('correct-row');note.className='answer-note ok';note.innerHTML=`✓ Chính xác: <b>${arrangeAnswers[i]}。</b>`}else{box.classList.add('wrong');row.classList.add('wrong-row');note.className='answer-note bad';note.innerHTML=`✕ ${made?'Bạn sắp xếp: <b>'+made+'</b>. ':'Chưa sắp xếp. '}Đáp án: <b>${arrangeAnswers[i]}。</b>`}});showResult('arrange-feedback',got,arrangeData.length);return[got,arrangeData.length]}
+function checkArrange(){let got=0;arrangeData.forEach((arr,i)=>{const made=arrangeState[i].map(j=>arr[j]).join(''),validAnswers=arrangeAnswers[i],box=document.getElementById('aa-'+i),row=box.closest('.arrange-row'),note=row.querySelector('.answer-note'),valid=validAnswers.some(answer=>norm(made)===norm(answer)),answerText=validAnswers.map(answer=>answer+'。').join(' / ');box.classList.remove('correct','wrong');row.classList.remove('correct-row','wrong-row');if(valid){got++;box.classList.add('correct');row.classList.add('correct-row');note.className='answer-note ok';note.innerHTML=`✓ Chính xác: <b>${made}。</b>`}else{box.classList.add('wrong');row.classList.add('wrong-row');note.className='answer-note bad';note.innerHTML=`✕ ${made?'Bạn sắp xếp: <b>'+made+'</b>. ':'Chưa sắp xếp. '}Đáp án chấp nhận: <b>${answerText}</b>`}});showResult('arrange-feedback',got,arrangeData.length);return[got,arrangeData.length]}
 
 function renderDialogueComplete(){document.getElementById('dialogue-complete').innerHTML=`
 <div class="dialogue-box"><b>Hội thoại 1</b><p>A：现在几点？<br>B：<input class="text-input inline-input" placeholder="Giờ hiện tại">。<br>A：我上午十点十分有课。<br>B：<input class="text-input inline-input" placeholder="Hẹn thời gian gặp">。</p></div>
