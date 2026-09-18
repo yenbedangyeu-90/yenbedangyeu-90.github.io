@@ -145,7 +145,7 @@
       <div class="timer" id="timer">110:00</div>
       <button class="btn" id="startTimer" type="button">Bắt đầu</button>
       <button class="btn" type="button" onclick="window.print()">In đề</button>
-      <button class="btn primary" type="button" onclick="submitExam()">Nộp bài &amp; AI chấm</button>
+      <button class="btn primary" id="submitExamBtn" type="button" onclick="submitExam()">Nộp bài</button>
     </div>
   </div>
 </header>
@@ -284,6 +284,8 @@ let timerStarted = false;
 let submitted = false;
 let activeSection = 'listen';
 let aiGrades = {};
+let aiGrading = false;
+let aiLastError = '';
 const AI_GRADER_URL = 'https://script.google.com/macros/s/AKfycbwfr3m68nMa45UHO07JhEITsYSi2n-Xr9imIq_COjqG-IzG9zVQTG2xQC093p5AxjpCLA/exec';
 const pendingAiGrades = new Map();
 
@@ -513,9 +515,14 @@ function requestAIGrade(q,answer) {
   });
 }
 async function runAIGrading() {
+  if(aiGrading) return;
+  aiGrading=true; aiLastError='';
   const status=document.getElementById('aiStatus');
   const btn=document.getElementById('runAiBtn');
+  const submitBtn=document.getElementById('submitExamBtn');
+  if(submitBtn) submitBtn.disabled=true;
   status.textContent='AI đang chấm câu 96–100…'; status.classList.add('show'); btn.disabled=true;
+  updateResultSummary();
   try {
     const fresh={};
     const tasks=[];
@@ -534,8 +541,11 @@ async function runAIGrading() {
     updateResultSummary();
     setTimeout(closeAIModal,700);
   } catch(err) {
+    aiLastError=err.message || 'AI chưa thể chấm lúc này.';
     status.textContent='Không thể chấm bằng AI: '+err.message;
-  } finally { btn.disabled=false; }
+  } finally {
+    aiGrading=false; btn.disabled=false; if(submitBtn) submitBtn.disabled=false; updateResultSummary();
+  }
 }
 function updateResultSummary(listenScore, readScore, reorderScore) {
   if(listenScore===undefined || readScore===undefined || reorderScore===undefined) {
@@ -554,7 +564,10 @@ function updateResultSummary(listenScore, readScore, reorderScore) {
   box.innerHTML=`<b>Kết quả chấm theo thang HSK4:</b><br>Nghe: <b>${listeningScaled}/100</b> (${listenScore}/45 câu) · Đọc: <b>${readingScaled}/100</b> (${readScore}/40 câu).<br>`+
     (aiDone
       ? `Viết: <b>${writingScaled}/100</b> (${reorderScore}/10 câu sắp xếp + ${formatAiScore(aiTotal)}/5 điểm AI).<div class="score-total"><b>Tổng điểm: ${listeningScaled+readingScaled+writingScaled}/300</b></div>`
-      : `Viết: câu 86–95 đúng <b>${reorderScore}/10</b>; câu 96–100 <b>chờ AI chấm</b>.<div class="score-total"><b>Tổng điểm sẽ hiển thị sau khi AI chấm xong phần Viết.</b></div><button class="ai-grade-btn" type="button" onclick="openAIModal()">AI chấm câu 96–100</button>`);
+      : `Viết: câu 86–95 đúng <b>${reorderScore}/10</b>; câu 96–100 <b>${aiGrading?'AI đang chấm tự động…':'chưa có điểm AI'}</b>.`+
+        (aiLastError?`<br><span class="error-text">AI chưa chấm được: ${escapeHtml(aiLastError)}</span>`:'')+
+        `<div class="score-total"><b>Tổng điểm sẽ hiển thị sau khi AI chấm xong phần Viết.</b></div>`+
+        (!aiGrading&&aiLastError?`<button class="ai-grade-btn" type="button" onclick="runAIGrading()">Thử chấm AI lại</button>`:''));
 }
 
 function submitExam() {
@@ -588,7 +601,7 @@ function submitExam() {
   updateResultSummary(listen, read, reorder);
   const aiDone=Object.keys(aiGrades).filter(q=>+q>=96&&+q<=100).length===5;
   if(!aiDone) {
-    openAIModal('Bấm “Chấm bằng AI” để hoàn tất phần Viết trên thang 100 điểm và tính tổng điểm trên 300.');
+    runAIGrading();
   }
   document.getElementById('resultBox').scrollIntoView({behavior:'smooth',block:'nearest'}); saveState();
 }
