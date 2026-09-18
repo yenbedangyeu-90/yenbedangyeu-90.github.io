@@ -552,12 +552,15 @@ function updateResultSummary(listenScore, readScore, reorderScore) {
   }
   const aiDone=Object.keys(aiGrades).filter(q=>+q>=96&&+q<=100).length===5;
   const aiTotal=aiDone?Object.values(aiGrades).reduce((n,g)=>n+(Number(g.score)===1?1:0),0):null;
-  const objectiveTotal=listenScore+readScore+reorderScore;
+  const listeningScaled=Math.round(listenScore*100/45);
+  const readingScaled=Math.round(readScore*100/40);
+  const writingRaw=aiDone ? reorderScore+aiTotal : null;
+  const writingScaled=aiDone ? Math.round(writingRaw*100/15) : null;
   const box=document.getElementById('resultBox'); box.style.display='block';
-  box.innerHTML=`<b>Kết quả chấm:</b><br>Nghe: ${listenScore}/45 · Đọc: ${readScore}/40 · Sắp xếp câu 86–95: ${reorderScore}/10.<br>`+
+  box.innerHTML=`<b>Kết quả chấm theo thang HSK4:</b><br>Nghe: <b>${listeningScaled}/100</b> (${listenScore}/45 câu) · Đọc: <b>${readingScaled}/100</b> (${readScore}/40 câu).<br>`+
     (aiDone
-      ? `AI chấm câu 96–100: <b>${aiTotal}/5</b>.<div class="score-total"><b>Tổng điểm: ${objectiveTotal+aiTotal}/100</b></div>`
-      : `Câu 96–100: <b>chờ AI chấm</b>.<div class="score-total"><b>Tạm tính: ${objectiveTotal}/95</b></div><button class="ai-grade-btn" type="button" onclick="openAIModal()">AI chấm câu 96–100</button>`);
+      ? `Viết: <b>${writingScaled}/100</b> (${reorderScore}/10 câu sắp xếp + ${aiTotal}/5 câu AI chấm).<div class="score-total"><b>Tổng điểm: ${listeningScaled+readingScaled+writingScaled}/300</b></div>`
+      : `Viết: câu 86–95 đúng <b>${reorderScore}/10</b>; câu 96–100 <b>chờ AI chấm</b>.<div class="score-total"><b>Tổng điểm sẽ hiển thị sau khi AI chấm xong phần Viết.</b></div><button class="ai-grade-btn" type="button" onclick="openAIModal()">AI chấm câu 96–100</button>`);
 }
 
 function submitExam() {
@@ -591,7 +594,7 @@ function submitExam() {
   updateResultSummary(listen, read, reorder);
   const aiDone=Object.keys(aiGrades).filter(q=>+q>=96&&+q<=100).length===5;
   if(!aiDone) {
-    openAIModal('Để hoàn tất nộp bài và tính tổng điểm trên 100, hãy nhập API key rồi bấm “Chấm bằng AI”.');
+    openAIModal('Để hoàn tất phần Viết trên thang 100 điểm và tính tổng điểm trên 300, hãy nhập API key rồi bấm “Chấm bằng AI”.');
   }
   document.getElementById('resultBox').scrollIntoView({behavior:'smooth',block:'nearest'}); saveState();
 }
