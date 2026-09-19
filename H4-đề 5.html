@@ -24,6 +24,7 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-se
 .hero{padding:34px 32px;border-radius:28px;background:linear-gradient(135deg,#fff36a,#ffe600,#fff9b1);box-shadow:var(--shadow);border:1px solid #efd955}
 .hero h1{margin:0 0 8px;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.03em}
 .hero p{margin:0;font-size:1.08rem;font-weight:650;color:#5f5300}
+.student-name-wrap{margin-top:20px;max-width:440px}.student-name-wrap label{display:block;margin-bottom:7px;font-weight:800;color:#5f5300}.student-name{width:100%;box-sizing:border-box;border:2px solid #d5bd24;border-radius:13px;padding:12px 14px;font:inherit;background:#fff}.student-name:focus{outline:3px solid rgba(168,137,0,.2);border-color:#8b7200}.student-name.invalid{border-color:#c62828;background:#fff4f4}.save-status{margin-top:8px;font-weight:700;color:#655900}.save-status.success{color:#17713b}.save-status.error{color:#b3261e}
 .utility{display:flex;flex-wrap:wrap;gap:10px;padding:14px 16px;border-radius:20px;background:rgba(255,254,242,.95);border:1px solid var(--line);box-shadow:var(--shadow);position:sticky;top:10px;z-index:5}
 .section-title{display:flex;align-items:center;gap:10px;margin:8px 0 0;font-size:1.5rem;font-weight:800;color:#5f5300}
 .section-title span{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;background:#fff9b1;border:1px solid var(--line);box-shadow:var(--shadow)}
@@ -96,6 +97,7 @@ textarea{min-height:110px;resize:vertical}
       <section class="hero" id="top">
         <h1>仿真试题五</h1>
         <p>Nghe hiểu · Đọc hiểu · Viết</p>
+        <div class="student-name-wrap"><label for="studentName">Họ và tên học sinh</label><input class="student-name" id="studentName" type="text" autocomplete="name" maxlength="100" placeholder="Nhập họ và tên trước khi nộp bài"></div>
       </section>
 
       <section class="utility">
@@ -111,9 +113,10 @@ textarea{min-height:110px;resize:vertical}
           <h2 id="score-title">Kết quả chấm tự động</h2>
           <p id="score-text">Bấm “Chấm toàn bộ” ở cuối trang để xem kết quả phần trắc nghiệm.</p>
           <p id="score-breakdown">Kết quả từng phần Nghe – Đọc – Viết sẽ xuất hiện tại đây.</p>
+          <p class="save-status" id="resultSaveStatus"></p>
         </div>
         <div class="score-actions">
-          <button class="btn" onclick="checkAllAnswers()">Chấm toàn bộ</button>
+          <button class="btn" onclick="checkAllAnswers()">Nộp bài</button>
           <button class="btn outline" onclick="resetQuiz()">Làm lại</button>
         </div>
       </section>
@@ -322,7 +325,31 @@ function renderQuiz() {
 }
 
 const AI_GRADER_URL = 'https://script.google.com/macros/s/AKfycbwfr3m68nMa45UHO07JhEITsYSi2n-Xr9imIq_COjqG-IzG9zVQTG2xQC093p5AxjpCLA/exec';
+const EXAM_NUMBER = 5;
 const pendingAiGrades = new Map();
+let resultSavePending = null;
+
+function haiyenReceiveResultSave(message) {
+  if (!message || message.type !== 'haiyen-result-save' || !resultSavePending || message.requestId !== resultSavePending.requestId) return;
+  if (resultSavePending.script) resultSavePending.script.remove();
+  resultSavePending = null;
+  const box = document.getElementById('resultSaveStatus');
+  if (message.ok) { box.className = 'save-status success'; box.textContent = 'Đã lưu kết quả vào bảng Google Sheets của giáo viên.'; }
+  else { box.className = 'save-status error'; box.textContent = 'Chưa lưu được kết quả: ' + ((message.payload && message.payload.error) || 'Vui lòng thử nộp lại.'); }
+}
+
+function saveResultToTeacherSheet(scores) {
+  const name = document.getElementById('studentName').value.trim().replace(/\s+/g, ' ');
+  const attemptId = 'hsk4-5-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+  const fields = new URLSearchParams({mode:'save_hsk4_result', requestId:attemptId, attemptId, studentName:name, examNumber:String(EXAM_NUMBER), listening:String(scores.listening), reading:String(scores.reading), writing:String(scores.writing), total:String(scores.total)});
+  const script = document.createElement('script');
+  resultSavePending = {requestId:attemptId, script};
+  const box = document.getElementById('resultSaveStatus'); box.className='save-status'; box.textContent='Đang lưu kết quả cho giáo viên…';
+  script.src = AI_GRADER_URL + '?' + fields.toString();
+  script.onerror = () => haiyenReceiveResultSave({type:'haiyen-result-save', requestId:attemptId, ok:false, payload:{error:'Không thể kết nối tới bảng kết quả.'}});
+  document.body.appendChild(script);
+  setTimeout(() => { if (resultSavePending && resultSavePending.requestId === attemptId) haiyenReceiveResultSave({type:'haiyen-result-save', requestId:attemptId, ok:false, payload:{error:'Máy chủ phản hồi quá lâu.'}}); }, 30000);
+}
 
 function escapeHtml(value) {
   return String(value == null ? '' : value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
@@ -459,6 +486,9 @@ function textAnswerIsCorrect(question) {
 }
 
 function checkAllAnswers(){
+  const nameInput = document.getElementById('studentName');
+  if (!nameInput.value.trim()) { nameInput.classList.add('invalid'); nameInput.focus(); alert('Vui lòng nhập họ và tên học sinh trước khi nộp bài.'); return; }
+  nameInput.classList.remove('invalid');
   const breakdown = {
     listening: {score: 0, total: 0},
     reading: {score: 0, total: 0},
@@ -514,6 +544,15 @@ function checkAllAnswers(){
   const total = breakdown.listening.total + breakdown.reading.total + breakdown.writing.total;
   const score = breakdown.listening.score + breakdown.reading.score + breakdown.writing.score;
   updateGlobalScore(score, total, breakdown);
+  const ungradedAi = [...document.querySelectorAll('.ai-picture-question')].filter(q => q.dataset.aiGraded !== 'true').length;
+  if (ungradedAi) {
+    const box = document.getElementById('resultSaveStatus'); box.className='save-status error'; box.textContent=`Còn ${ungradedAi} câu viết chưa được AI chấm. Hãy chấm các câu này rồi nộp lại để lưu kết quả.`;
+    return;
+  }
+  const listening = Math.round(breakdown.listening.score / breakdown.listening.total * 100);
+  const reading = Math.round(breakdown.reading.score / breakdown.reading.total * 100);
+  const writing = Math.round(breakdown.writing.score / breakdown.writing.total * 100);
+  saveResultToTeacherSheet({listening, reading, writing, total:listening + reading + writing});
 }
 
 function showReferenceAnswers(btn) {
@@ -617,6 +656,7 @@ function resetQuiz(){
   document.getElementById('score-ring').textContent='0%';
   document.getElementById('score-text').textContent='Bấm “Chấm toàn bộ” ở cuối trang để xem kết quả phần trắc nghiệm.';
   document.getElementById('score-breakdown').textContent='Kết quả từng phần Nghe – Đọc – Viết sẽ xuất hiện tại đây.';
+  const saveStatus=document.getElementById('resultSaveStatus'); saveStatus.className='save-status'; saveStatus.textContent='';
 }
 
 function checkSort(btn){
@@ -655,6 +695,9 @@ function clearSort(btn){
 }
 
 renderQuiz();
+const savedStudentName = localStorage.getItem('haiyen-hsk4-student-name') || '';
+document.getElementById('studentName').value = savedStudentName;
+document.getElementById('studentName').addEventListener('input', event => { event.target.classList.remove('invalid'); localStorage.setItem('haiyen-hsk4-student-name', event.target.value); });
 </script>
 </body>
 </html>
