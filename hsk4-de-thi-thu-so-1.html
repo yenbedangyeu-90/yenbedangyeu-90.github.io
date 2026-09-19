@@ -23,6 +23,11 @@
   .btn:hover { border-color:#86efac; }
   .btn.primary { background:var(--accent); color:white; border-color:var(--accent); }
   .btn.danger { color:var(--bad); }
+  .student-name { width:210px; max-width:32vw; border:1px solid var(--line); border-radius:10px; padding:9px 11px; font:600 14px Arial; }
+  .student-name.invalid { border-color:#d92d20; box-shadow:0 0 0 3px rgba(217,45,32,.12); }
+  .save-status { margin-top:8px; font-size:12px; color:#475467; }
+  .save-status.ok { color:#067647; }
+  .save-status.bad { color:#b42318; }
   .timer { min-width:96px; text-align:center; font-variant-numeric:tabular-nums; font-weight:800; padding:9px 12px; border-radius:10px; background:#14532d; color:#fff; }
   .notice { max-width:1480px; margin:14px auto 0; padding:0 18px; }
   .notice-box { background:#f0fdf4; border:1px solid #bbf7d0; border-left:5px solid var(--accent); border-radius:14px; padding:16px 18px; color:#14532d; box-shadow:0 5px 16px rgba(16,24,40,.04); }
@@ -142,6 +147,7 @@
     </div>
     <div class="controls">
       <a class="btn" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/b%C3%A0i-t%E1%BA%ADp-hsk4-2-0" target="_top">← Mục lục HSK4</a>
+      <input class="student-name" id="studentName" type="text" maxlength="100" autocomplete="name" placeholder="Họ và tên học sinh" aria-label="Họ và tên học sinh">
       <div class="timer" id="timer">110:00</div>
       <button class="btn" id="startTimer" type="button">Bắt đầu</button>
       <button class="btn" type="button" onclick="window.print()">In đề</button>
@@ -286,6 +292,9 @@ let activeSection = 'listen';
 let aiGrades = {};
 let aiGrading = false;
 let aiLastError = '';
+let latestScores = null;
+let resultSavePending = null;
+const EXAM_NUMBER = 1;
 const AI_GRADER_URL = 'https://script.google.com/macros/s/AKfycbwfr3m68nMa45UHO07JhEITsYSi2n-Xr9imIq_COjqG-IzG9zVQTG2xQC093p5AxjpCLA/exec';
 const pendingAiGrades = new Map();
 
@@ -425,10 +434,10 @@ function setValue(q,v) {
   else if (q >= 86 && q <= 95) restoreDragOrder(q,v);
   else { const el=document.querySelector(`[name="q${q}"]`); if(el) el.value=v; }
 }
-function collectState() { const a={}; for(let q=1;q<=100;q++){const v=getValue(q); if(v)a[q]=v;} return {answers:a, remaining, started:timerStarted, aiGrades}; }
+function collectState() { const a={}; for(let q=1;q<=100;q++){const v=getValue(q); if(v)a[q]=v;} return {answers:a, remaining, started:timerStarted, aiGrades, studentName:(document.getElementById('studentName')||{}).value||''}; }
 function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(collectState())); } catch(e){} }
 function restoreState() {
-  try { const raw=localStorage.getItem(STORAGE_KEY); if(!raw)return; const s=JSON.parse(raw); if(s.answers) Object.entries(s.answers).forEach(([q,v])=>setValue(+q,v)); if(Number.isFinite(s.remaining)) remaining=s.remaining; if(s.aiGrades && typeof s.aiGrades==='object') aiGrades=s.aiGrades; updateTimer(); applyAIGrades(); } catch(e){}
+  try { const raw=localStorage.getItem(STORAGE_KEY); if(!raw)return; const s=JSON.parse(raw); if(s.answers) Object.entries(s.answers).forEach(([q,v])=>setValue(+q,v)); if(Number.isFinite(s.remaining)) remaining=s.remaining; if(s.aiGrades && typeof s.aiGrades==='object') aiGrades=s.aiGrades; if(s.studentName&&document.getElementById('studentName'))document.getElementById('studentName').value=s.studentName; updateTimer(); applyAIGrades(); } catch(e){}
 }
 function onAnswerChange() { if(submitted) clearMarking(); const el=document.activeElement; if(el && el.name && /^q(?:9[6-9]|100)$/.test(el.name)){ const q=Number(el.name.slice(1)); delete aiGrades[q]; const b=document.getElementById('ai-feedback-'+q); if(b){b.className='ai-feedback';b.innerHTML='';} const r=document.getElementById('ref-'+q); if(r)r.style.display='none'; } updateProgress(); saveState(); }
 function currentSectionRange() {
@@ -495,6 +504,26 @@ function openAIModal(message='') {
 }
 function closeAIModal() { document.getElementById('aiModal').classList.remove('open'); }
 function formatAiScore(value) { const n=Math.round(Number(value)*10)/10; return Number.isInteger(n)?String(n):n.toFixed(1); }
+function haiyenReceiveResultSave(message) {
+  if(!message || message.type!=='haiyen-result-save' || !resultSavePending || message.requestId!==resultSavePending.requestId) return;
+  if(resultSavePending.script) resultSavePending.script.remove();
+  const box=document.getElementById('resultSaveStatus');
+  if(message.ok){box.className='save-status ok';box.textContent='Đã lưu kết quả vào bảng tổng hợp của giáo viên.';}
+  else {box.className='save-status bad';box.textContent='Chưa lưu được kết quả: '+((message.payload&&message.payload.error)||'Vui lòng thử nộp lại.');}
+  resultSavePending=null;
+}
+function saveResultToTeacherSheet() {
+  if(!latestScores || Object.keys(aiGrades).filter(q=>+q>=96&&+q<=100).length!==5) return;
+  const name=document.getElementById('studentName').value.trim().replace(/\s+/g,' ');
+  if(!name) return;
+  const attemptId='hsk4-'+EXAM_NUMBER+'-'+Date.now()+'-'+Math.random().toString(36).slice(2);
+  const fields=new URLSearchParams({mode:'save_hsk4_result',requestId:attemptId,attemptId,studentName:name,examNumber:String(EXAM_NUMBER),listening:String(latestScores.listening),reading:String(latestScores.reading),writing:String(latestScores.writing),total:String(latestScores.total)});
+  const script=document.createElement('script'); resultSavePending={requestId:attemptId,script};
+  const box=document.getElementById('resultSaveStatus'); box.className='save-status';box.textContent='Đang lưu kết quả cho giáo viên…';
+  script.src=AI_GRADER_URL+'?'+fields.toString(); script.onerror=()=>haiyenReceiveResultSave({type:'haiyen-result-save',requestId:attemptId,ok:false,payload:{error:'Không thể kết nối tới bảng kết quả.'}});
+  document.body.appendChild(script);
+  setTimeout(()=>{if(resultSavePending&&resultSavePending.requestId===attemptId)haiyenReceiveResultSave({type:'haiyen-result-save',requestId:attemptId,ok:false,payload:{error:'Máy chủ phản hồi quá lâu.'}})},30000);
+}
 function haiyenReceiveAiGrade(message) {
   if(!message || message.type!=='haiyen-ai-feedback' || !pendingAiGrades.has(message.requestId)) return;
   const pending=pendingAiGrades.get(message.requestId); pendingAiGrades.delete(message.requestId);
@@ -539,6 +568,7 @@ async function runAIGrading() {
     const total=Object.values(aiGrades).reduce((n,g)=>n+(Number(g.score)||0),0);
     status.textContent=`Đã chấm xong: ${formatAiScore(total)}/5 điểm cho câu 96–100.`;
     updateResultSummary();
+    saveResultToTeacherSheet();
     setTimeout(closeAIModal,700);
   } catch(err) {
     aiLastError=err.message || 'AI chưa thể chấm lúc này.';
@@ -560,6 +590,7 @@ function updateResultSummary(listenScore, readScore, reorderScore) {
   const readingScaled=Math.round(readScore*100/40);
   const writingRaw=aiDone ? reorderScore+aiTotal : null;
   const writingScaled=aiDone ? Math.round(writingRaw*100/15) : null;
+  latestScores=aiDone?{listening:listeningScaled,reading:readingScaled,writing:writingScaled,total:listeningScaled+readingScaled+writingScaled}:null;
   const box=document.getElementById('resultBox'); box.style.display='block';
   box.innerHTML=`<b>Kết quả chấm theo thang HSK4:</b><br>Nghe: <b>${listeningScaled}/100</b> (${listenScore}/45 câu) · Đọc: <b>${readingScaled}/100</b> (${readScore}/40 câu).<br>`+
     (aiDone
@@ -568,9 +599,13 @@ function updateResultSummary(listenScore, readScore, reorderScore) {
         (aiLastError?`<br><span class="error-text">AI chưa chấm được: ${escapeHtml(aiLastError)}</span>`:'')+
         `<div class="score-total"><b>Tổng điểm sẽ hiển thị sau khi AI chấm xong phần Viết.</b></div>`+
         (!aiGrading&&aiLastError?`<button class="ai-grade-btn" type="button" onclick="runAIGrading()">Thử chấm AI lại</button>`:''));
+  if(!document.getElementById('resultSaveStatus')) box.insertAdjacentHTML('beforeend','<div class="save-status" id="resultSaveStatus"></div>');
 }
 
 function submitExam() {
+  const nameInput=document.getElementById('studentName');
+  if(!nameInput.value.trim()){nameInput.classList.add('invalid');nameInput.focus();alert('Vui lòng nhập họ và tên học sinh trước khi nộp bài.');return;}
+  nameInput.classList.remove('invalid');
   submitted=true;
   let listen=0, read=0, total=0;
   for(let q=1;q<=85;q++) {
@@ -600,6 +635,7 @@ function submitExam() {
   applyAIGrades();
   updateResultSummary(listen, read, reorder);
   const aiDone=Object.keys(aiGrades).filter(q=>+q>=96&&+q<=100).length===5;
+  if(aiDone) saveResultToTeacherSheet();
   if(!aiDone) {
     runAIGrading();
   }
@@ -628,6 +664,7 @@ function startTimer() {
   timerId=setInterval(()=>{ remaining=Math.max(0,remaining-1); updateTimer(); if(remaining%10===0)saveState(); if(remaining===0){clearInterval(timerId);timerId=null;submitExam();alert('Hết thời gian. Hãy hoàn tất bước AI chấm câu 96–100 để nhận tổng điểm.');} },1000);
 }
 document.getElementById('startTimer').addEventListener('click',startTimer);
+document.getElementById('studentName').addEventListener('input',function(){this.classList.remove('invalid');saveState();});
 
 function filterPages(filter, btn) {
   if(!['listen','read','write'].includes(filter)) return;
