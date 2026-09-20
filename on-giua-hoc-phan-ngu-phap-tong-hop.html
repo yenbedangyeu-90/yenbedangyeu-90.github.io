@@ -332,7 +332,7 @@ async function submit(){if(aiGrading)return;const missing=TOTAL-allAnswered();if
  try{
   const tasks=writing.map(q=>{const answer=String(vals[key('writing',q.n)]||'').trim();if(!answer){fresh[q.n]={score:0,feedback:'Câu trả lời đang để trống.',suggestion:q.sample};return Promise.resolve();}
    return requestAIGrade(q,answer).then(p=>{const score=Math.max(0,Math.min(1,(Number(p.score)||0)/10));fresh[q.n]={score,feedback:String(p.feedback||p.verdict||'Câu chưa đúng.'),suggestion:String(p.corrected_sentence||q.sample)};});});
-  await Promise.all(tasks);aiGrades=fresh;submitted=true;applyMarking();updateResults();save();document.getElementById('resultBox').scrollIntoView({behavior:'smooth',block:'nearest'});
+  await Promise.all(tasks);aiGrades=fresh;submitted=true;aiGrading=false;applyMarking();updateResults();save();document.getElementById('resultBox').scrollIntoView({behavior:'smooth',block:'nearest'});
  }catch(e){submitted=false;const box=document.getElementById('resultBox');box.classList.add('show');box.innerHTML='<strong>Chưa thể chấm bài</strong><div>'+esc(e.message||'Vui lòng thử lại sau.')+'</div>';
  }finally{aiGrading=false;btn.disabled=false;btn.textContent='Nộp bài và chấm điểm';}
 }
