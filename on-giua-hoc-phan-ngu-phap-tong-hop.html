@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#c8eafb">
+<title>Ôn tập giữa học phần – Ngữ pháp tổng hợp</title>
+<style>
+:root {
+  --bg:#f4faff; --card:#ffffff; --ink:#20354c; --muted:#667d94;
+  --line:#d6e8f6; --line2:#bddcf2; --accent:#62b5e8; --accent-dark:#287eb5;
+  --accent-deep:#195e91; --pale:#e7f6ff; --pale2:#d6efff;
+  --good:#15803d; --good-bg:#effcf4; --bad:#c53f43; --bad-bg:#fff2f2;
+  --shadow:0 11px 30px rgba(31,92,138,.075);
+  --top-h:77px; --tabs-h:62px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at top left,#e9f7ff,transparent 47%),var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,'Segoe UI',Arial,'Microsoft YaHei',sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #70c9fc;outline-offset:2px}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(13px)}
+.top-inner{max-width:1500px;margin:auto;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand h1{font-size:23px;line-height:1.2;margin:0;letter-spacing:-.45px;color:#1d506e}
+.meta{margin-top:6px;font-size:12px;color:var(--muted);font-weight:580}
+.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.btn{border:1px solid var(--line2);border-radius:11px;color:var(--accent-deep);background:#fff;padding:10px 14px;font-weight:750;transition:background .15s,border-color .15s,transform .15s;white-space:nowrap}
+.btn:hover{background:#eaf7ff;border-color:var(--accent)}
+.btn.primary{color:#fff;background:var(--accent-dark);border-color:var(--accent-dark);box-shadow:0 3px 9px rgba(40,126,181,.16)}
+.btn.primary:hover{background:#216eaa}
+.btn.ghost-danger{color:#a63c43}
+.intro{max-width:1500px;margin:22px auto 12px;padding:0 22px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px;background:linear-gradient(122deg,#e0f4ff 0%,#f6fcff 63%,white 100%);border:1px solid #b8dff9;border-radius:23px;padding:24px 27px;box-shadow:var(--shadow);overflow:hidden;position:relative}
+.hero:after{content:'';position:absolute;right:-68px;bottom:-106px;width:240px;height:240px;border:35px solid rgba(112,192,242,.13);border-radius:50%;pointer-events:none}
+.eyebrow{color:var(--accent-deep);font-weight:850;font-size:11px;letter-spacing:1.6px;text-transform:uppercase}
+.hero h2{font-size:27px;line-height:1.28;margin:8px 0 10px;color:#1d506e}
+.hero p{font-size:14px;color:#4b718d;line-height:1.65;margin:5px 0}
+.hero strong{color:#25658f}
+.hero-stats{display:flex;gap:10px;flex-wrap:wrap;align-items:center;z-index:1}
+.stat{background:#fff;min-width:100px;border:1px solid #cbe8fa;border-radius:16px;padding:12px 13px;text-align:center;box-shadow:0 4px 12px rgba(34,102,151,.07)}
+.stat b{font-size:22px;color:#287eb5;display:block;line-height:1.1}
+.stat span{display:block;margin-top:6px;font-size:11px;color:var(--muted)}
+.intro details{margin-top:11px;background:#fff;border:1px solid var(--line);border-radius:12px;color:#547086;box-shadow:0 2px 10px rgba(43,110,158,.03)}
+.intro summary{padding:11px 16px;cursor:pointer;font-size:13px;font-weight:760;color:#2b709e}
+.scope-body{padding:0 18px 14px;font-size:13px;line-height:1.7}
+.scope-body p{margin:5px 0}
+.tabs-wrap{position:sticky;top:var(--top-h);z-index:35;background:rgba(244,250,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #d4e9f8;box-shadow:0 7px 17px rgba(34,99,145,.05)}
+.tabs{max-width:1500px;margin:auto;padding:11px 22px;display:flex;gap:9px;overflow-x:auto;scrollbar-width:thin}
+.tab{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);background:#fff;color:#366b8e;padding:10px 15px;border-radius:999px;white-space:nowrap;font-size:13px;font-weight:810;transition:.15s}
+.tab em{font-size:10px;font-style:normal;border-radius:99px;background:#e6f5ff;padding:3px 6px}
+.tab.active{color:white;background:#257fb6;border-color:#257fb6;box-shadow:0 3px 10px rgba(27,119,184,.13)}
+.tab.active em{color:#195f92;background:#e2f4ff}
+.layout{max-width:1320px;margin:14px auto 50px;padding:0 22px;display:block}
+.main-content{min-width:0;width:100%}
+.section{min-width:0}
+.section-heading{margin-bottom:15px;padding:21px 24px 18px;border:1px solid var(--line);border-radius:18px;background:white;box-shadow:var(--shadow);border-left:6px solid var(--accent)}
+.section-heading .section-label{display:flex;gap:10px;align-items:center;color:#4a91c0;font-size:11px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase}
+.section-heading h2{font-size:25px;margin:8px 0 5px;color:#1d506e;font-weight:840}
+.section-heading .trans{font-weight:690;color:#3285b7;font-size:14px}
+.section-heading .instruction{margin-top:10px;line-height:1.6;color:#667b8e;font-size:13px}
+.paper{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden}
+.paper-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--line);background:#f9fcff;padding:13px 19px;font-size:12px;font-weight:840;color:#457b9e}
+.paper-heading .tiny{color:#7c94a6;font-weight:600}
+.q-card{position:relative;padding:21px 22px 18px;border-bottom:1px solid #e8f1f9;scroll-margin-top:calc(var(--top-h) + var(--tabs-h) + 16px)}
+.q-card:last-child{border-bottom:0}
+.q-card.correct{background:linear-gradient(90deg,#f2fcf7,white 78%)}
+.q-card.wrong{background:linear-gradient(90deg,#fff4f4,white 78%)}
+.question-hd{display:flex;align-items:flex-start;gap:11px;padding-right:25px}
+.number{display:inline-flex;align-items:center;justify-content:center;flex:0 0 34px;height:34px;border:1px solid #b5def8;border-radius:11px;background:#e8f6ff;color:#236d9e;font-size:13px;font-weight:900}
+.q-stem{font-family:system-ui,'Noto Sans CJK SC','Microsoft YaHei',sans-serif;font-size:17px;line-height:1.8;min-width:0;overflow-wrap:anywhere;flex:1}
+.q-card.wrong .mark,.q-card.correct .mark{display:block}
+.mark{display:none;position:absolute;top:20px;right:20px;font-size:26px;line-height:1;font-weight:900}
+.q-card.correct .mark{color:var(--good)}.q-card.wrong .mark{color:var(--bad)}
+.question-options{margin:14px 0 0 45px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.opt{border:1px solid #ddeaf6;background:#fbfdff;color:#344f66;border-radius:11px;padding:10px 13px;text-align:left;display:flex;gap:10px;align-items:flex-start;line-height:1.55;font-size:14px;transition:.14s}
+.opt:hover{background:#eff9ff;border-color:#aad9f4}
+.opt .letter{display:inline-flex;align-items:center;justify-content:center;flex:0 0 23px;height:23px;border-radius:7px;background:#e8f3fb;color:#347dab;font-size:12px;font-weight:850}
+.opt.selected{background:#dff2ff;border-color:#4da9df;color:#165b89;box-shadow:inset 0 0 0 1px rgba(64,162,218,.18)}
+.opt.selected .letter{background:#3185b8;color:white}
+.sentences{margin:13px 0 5px 45px;padding:13px 16px;background:#f4faff;border:1px solid #d6eafb;border-radius:11px}
+.sentences p{margin:5px 0;line-height:1.85;color:#34516a;font-size:15px}
+.explanation{margin:9px 0 0 45px;color:#566c7d;font-size:15px;line-height:1.85}
+.explanation strong{color:#387fa9}
+.word-instruction{margin:7px 0 8px 45px;color:#6b8699;font-size:12px}
+.write-box{display:block;width:calc(100% - 45px);margin:12px 0 0 45px;min-height:90px;resize:vertical;border:1px solid #c9e4f5;border-radius:12px;padding:12px 13px;background:#fafeff;color:#23445e;font-size:15px;line-height:1.75}
+.write-box:focus{background:white;border-color:#6bb8e9}
+.feedback{display:none;margin:13px 0 0 45px;padding:11px 13px;border-radius:11px;font-size:13px;line-height:1.7}
+.feedback.show{display:block}
+.feedback.bad{background:#fff4f4;border:1px solid #f5b3b3;color:#913f42}
+.feedback.good{background:#edfbf3;border:1px solid #a3dfb9;color:#287045}
+.feedback.sample{background:#f0f9ff;border:1px solid #b8e2f8;color:#24638e}
+.article{padding:20px 23px;border-bottom:1px solid var(--line);background:linear-gradient(110deg,#f3fbff,#fff)}
+.article-tag{font-weight:870;font-size:13px;color:#267cae;margin:0 0 12px}
+.article p{font-family:system-ui,'Microsoft YaHei',sans-serif;font-size:16px;line-height:2.05;margin:10px 0;color:#2d4962;text-align:justify}
+.article-note{border-left:3px solid #84bfe3;padding-left:10px;font-size:11px;color:#678397}
+/* Phiếu trả lời bên phải đã được bỏ; tất cả thao tác làm bài ở câu hỏi. */
+.review-status{margin-bottom:16px;padding:15px 21px;background:#fff;border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow);scroll-margin-top:calc(var(--top-h) + var(--tabs-h) + 15px)}
+.review-status-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.review-status h2{font-size:14px;color:#285d7b;margin:0}
+.review-status-sub{color:#7793a7;font-size:12px}
+.progress-row{display:flex;gap:12px;align-items:center;color:#69839a;font-size:12px;font-weight:730;margin-top:11px}
+.progress{height:9px;flex:1;border-radius:99px;background:#ecf4fa;overflow:hidden}
+.progress span{display:block;height:100%;background:linear-gradient(90deg,#a7d9f8,#4dace3);width:0%;transition:width .15s}
+.total-row{margin-top:8px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:#7290a7;font-size:11px}
+.result{display:none;padding:15px 17px;border:1px solid #b6dff6;border-radius:11px;background:#edfbff;margin-top:13px;font-size:13px;line-height:1.8;color:#246080;scroll-margin-top:calc(var(--top-h) + var(--tabs-h) + 22px)}
+.result.show{display:block}
+.result .score-big{display:block;font-size:23px;font-weight:900;color:#1f74a8;margin:4px 0}
+.result .btn{margin-top:7px;font-size:12px;white-space:normal;text-align:left}
+.modal{position:fixed;z-index:70;inset:0;background:rgba(24,56,80,.62);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.show{display:flex}.modal-card{width:min(560px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:19px;border:1px solid #d4ebfa;box-shadow:0 22px 70px rgba(7,51,86,.3)}
+.modal-header{padding:19px 21px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.modal-header h2{font-size:20px;color:#22648d;margin:0}
+.modal-body{padding:21px;font-size:13px;line-height:1.65;color:#58758a}
+.modal-body label{display:block;font-size:12px;color:#386783;font-weight:750;margin-top:13px;margin-bottom:5px}
+.modal-body input{width:100%;padding:11px 13px;border:1px solid var(--line2);border-radius:10px}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;flex-wrap:wrap}
+.ai-status{display:none;margin-top:12px;padding:11px 12px;background:#ecf8ff;border:1px solid #bee2f9;border-radius:10px;white-space:pre-wrap}
+.ai-status.show{display:block}
+.ai-feedback{display:none;padding:10px 12px;margin:10px 0 0 45px;font-size:12px;line-height:1.65;border-radius:10px;background:#edf8ff;border:1px solid #b8e1f7;color:#285d80}
+.ai-feedback.show{display:block}.ai-feedback.pass{background:#effcf4;border-color:#a7dbb9;color:#277a45}.ai-feedback.fail{background:#fff5f5;border-color:#f3b9bc;color:#9f4949}
+.footnote{max-width:1500px;margin:0 auto 30px;padding:0 22px;color:#7c95a7;font-size:12px}
+.hidden{display:none!important}
+@media(max-width:1100px){.hero-stats{max-width:230px}}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.hero-stats{max-width:none}.hero h2{font-size:23px}}
+@media(max-width:560px){.top-inner{padding:12px 14px;align-items:flex-start}.brand h1{font-size:18px}.meta{font-size:10px}.controls .btn{font-size:12px;padding:8px 10px}.intro{padding:0 12px;margin-top:14px}.hero{padding:17px}.hero-stats .stat{min-width:78px;padding:10px}.tabs{padding:9px 12px}.tab{font-size:12px;padding:9px 10px}.layout{padding:0 12px;gap:12px;margin-top:12px}.question-options{grid-template-columns:1fr}.review-status{padding:13px}.q-card{padding:16px 12px}.question-options,.sentences,.explanation,.word-instruction,.feedback,.ai-feedback{margin-left:0}.write-box{margin-left:0;width:100%}.q-stem{font-size:15px}.paper-heading{padding:11px}.section-heading{padding:17px}.section-heading h2{font-size:21px}.article{padding:14px}.article p{font-size:15px}}
+@media print{.topbar,.tabs-wrap,.review-status,.intro details,.controls,.footnote{display:none!important}.layout{display:block;max-width:none;padding:0}.section{display:block!important}.section-heading,.paper{box-shadow:none;break-inside:avoid}.question-options button{border-color:#ddd}.q-card{break-inside:avoid}.intro{margin-top:0}.hero{box-shadow:none}}
+</style>
+
+<style id="pastel-palette-overrides">
+:root{
+  --bg:#fffcf8;
+  --card:#ffffff;
+  --ink:#5f5050;
+  --muted:#8a7770;
+  --line:#ead8d5;
+  --line2:#dbc2c1;
+  --accent:#d0a4a3;
+  --accent-dark:#b98688;
+  --accent-deep:#8c6b6c;
+  --pale:#f9dddd;
+  --pale2:#fef9da;
+  --good:#6f8a51;
+  --good-bg:#f2f5ea;
+  --bad:#b75f64;
+  --bad-bg:#fff1f2;
+  --shadow:0 11px 30px rgba(137,111,111,.08);
+}
+body{
+  background:
+    radial-gradient(ellipse at top left, rgba(249,221,221,.75), rgba(249,221,221,0) 42%),
+    linear-gradient(180deg, #fffdf9 0%, #fffaf3 100%);
+  color:var(--ink);
+}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #d0a4a3;outline-offset:2px}
+.topbar{background:rgba(255,252,250,.97);border-bottom:1px solid var(--line)}
+.brand h1,.section-heading h2{color:#8c6b6c}
+.meta,.review-status-sub,.paper-heading .tiny,.word-instruction{color:var(--muted)}
+.btn{border-color:var(--line2);color:var(--accent-deep);background:#fffdfc}
+.btn:hover{background:#fdf1f1;border-color:var(--accent)}
+.btn.primary{background:#93a571;border-color:#93a571;color:#fff;box-shadow:0 3px 10px rgba(111,138,81,.18)}
+.btn.primary:hover{background:#82945f}
+.btn.ghost-danger{color:#a85f64}
+.tabs-wrap{background:rgba(255,250,247,.97);border-bottom:1px solid var(--line);box-shadow:0 7px 17px rgba(137,111,111,.06)}
+.tab{background:#fffdfc;color:#8c6b6c;border-color:var(--line2)}
+.tab em{background:#fef9da;color:#807367}
+.tab.active{background:#d0a4a3;border-color:#d0a4a3;color:#fff;box-shadow:0 3px 10px rgba(176,126,126,.16)}
+.tab.active em{background:#fef9da;color:#8c6b6c}
+.section-heading{background:linear-gradient(180deg,#ffffff 0%,#fff8f7 100%);border-left:6px solid #93a571}
+.section-heading .section-label{color:#b98688}
+.section-heading .trans{color:#93a571}
+.paper{border-color:var(--line)}
+.paper-heading{background:#fff9f8;color:#8c6b6c;border-bottom:1px solid var(--line)}
+.q-card{border-bottom:1px solid #f0e5e1}
+.q-card.correct{background:linear-gradient(90deg,#f2f5ea 0%,#ffffff 78%)}
+.q-card.wrong{background:linear-gradient(90deg,#fff1f2 0%,#ffffff 78%)}
+.number{border-color:#dbc2c1;background:#f9dddd;color:#8c6b6c}
+.q-stem{color:#5f5050}
+.opt{border-color:#eadfdd;background:#fffdfc;color:#5c5050}
+.opt:hover{background:#fff5f5;border-color:#d0a4a3}
+.opt .letter{background:#fef9da;color:#8c6b6c}
+.opt.selected{background:#f9eded;border-color:#d0a4a3;color:#6b5657;box-shadow:inset 0 0 0 1px rgba(208,164,163,.22)}
+.opt.selected .letter{background:#93a571;color:#fff}
+.sentences{background:#fffdf4;border:1px solid #efe5ba}
+.sentences p,.explanation,.article p{color:#5f5050}
+.explanation strong,.article-tag,.review-status h2{color:#8c6b6c}
+.write-box{border-color:#dbc2c1;background:#fffdfc;color:#5f5050}
+.write-box:focus{background:#fff;border-color:#d0a4a3}
+.feedback.sample{background:#fffaf1;border-color:#efe5ba;color:#7a6a58}
+.article{background:linear-gradient(110deg,#fff9f8,#fffdf4);border-bottom:1px solid var(--line)}
+.article-note{border-left:3px solid #93a571;color:#86796f}
+.review-status{background:#fff;border-color:var(--line)}
+.progress-row{color:#7f766d}
+.progress{background:#efe7e4}
+.progress span{background:linear-gradient(90deg,#d0a4a3,#93a571)}
+.ai-status{background:#fffaf1;border:1px solid #efe5ba;color:#7a6a58}
+.ai-feedback{background:#fffaf1;border-color:#efe5ba;color:#7a6a58}
+.ai-feedback.pass{background:#f2f5ea;border-color:#c8d5b5;color:#58703f}
+.ai-feedback.fail{background:#fff1f2;border-color:#e7c0c3;color:#a0585d}
+.mark{filter:none}
+</style>
+
+</head>
+<body>
+<header class="topbar"><div class="top-inner">
+  <div class="brand"><h1>Ôn tập giữa học phần – Ngữ pháp tổng hợp</h1><div class="meta">跨越篇 1 · 第 1—5 课 &nbsp;|&nbsp; 123 câu · 7 dạng bài</div></div>
+  <div class="controls"><button class="btn ghost-danger" id="resetBtn" type="button">Làm lại</button><button class="btn primary" id="submitBtn" type="button">Nộp bài · Chấm điểm ↗</button></div>
+</div></header>
+<nav class="tabs-wrap" aria-label="Chọn phần ôn tập"><div class="tabs" id="tabs"></div></nav>
+<div class="layout">
+<div class="review-status" aria-label="Tiến độ và kết quả ôn tập">
+  <div class="review-status-head"><h2>Tiến độ làm bài</h2><span class="review-status-sub" id="sectionStatus">选词填空 · Chọn từ điền chỗ trống</span></div>
+  <div class="progress-row"><span id="progressText">0/36</span><div class="progress" aria-hidden="true"><span id="progressFill"></span></div></div>
+  <div class="total-row"><span id="globalProgress">0/123 câu đã làm</span><span id="autoSaved">Tự lưu trên trình duyệt</span></div>
+  <div class="result" id="resultBox" role="status" aria-live="polite"></div>
+</div>
+<main class="main-content" id="mainContent"></main>
+</div>
+<div class="modal" id="aiModal" role="dialog" aria-modal="true" aria-labelledby="aiTitle"><div class="modal-card"><div class="modal-header"><h2 id="aiTitle">AI nhận xét phần đặt câu · 用词造句</h2><button type="button" class="btn" id="closeAi" aria-label="Đóng">✕</button></div><div class="modal-body">
+<p>Chức năng <strong>tuỳ chọn</strong> cho 20 câu tự đặt. AI đánh giá cách dùng từ, ngữ pháp và mức độ tự nhiên; chấp nhận câu đúng khác đáp án mẫu. Kết quả chỉ có tính hỗ trợ ôn tập.</p>
+<p>File HTML độc lập không có máy chủ giữ khóa. Nếu sử dụng AI trực tiếp, bạn cần tự nhập <strong>OpenAI API key</strong>; khóa chỉ dùng cho yêu cầu đang gửi, không lưu vào tệp hay bộ nhớ trình duyệt.</p>
+<label for="aiApiKey">OpenAI API key</label><input type="password" autocomplete="off" spellcheck="false" id="aiApiKey" placeholder="sk-…">
+<label for="aiModel">Model</label><input type="text" id="aiModel" value="gpt-4.1-mini" spellcheck="false">
+<div class="ai-status" id="aiStatus"></div><div class="modal-actions"><button type="button" class="btn" id="cancelAi">Để sau</button><button type="button" class="btn primary" id="runAi">Chấm 20 câu bằng AI</button></div>
+</div></div></div>
+<script>
+const DATA={"title":"Bài ôn tập môn Ngữ pháp tổng hợp","subtitle":"ÔN TẬP THỰC HÀNH TIẾNG TỔNG HỢP | 跨越篇 1 · 第 1—5 课","author":"ThS Đỗ Hải Yến","sections":[{"id":"fill","zh":"一、选词填空","vi":"Chọn từ điền chỗ trống","short":"Điền từ","icon":"01","chunk":6,"instructions":"Chọn A hoặc B để hoàn thành câu.","questions":[{"n":1,"stem":"这幅画_____很普通，走近后却能看到许多精巧的细节。","opts":{"A":"看来","B":"看起来"},"answer":"B"},{"n":2,"stem":"他连续三次没接电话，_____现在不方便说话。","opts":{"A":"看起来","B":"看来"},"answer":"B"},{"n":3,"stem":"_____保护区的扩大，越来越多的候鸟回到这里。","opts":{"A":"随着","B":"伴随"},"answer":"A"},{"n":4,"stem":"孩子们的歌声_____着清晨的微风传到远处。","opts":{"A":"伴随","B":"随着"},"answer":"A"},{"n":5,"stem":"这份报告缺少数据支持，结论_____说服力。","opts":{"A":"毫不","B":"毫无"},"answer":"B"},{"n":6,"stem":"面对新的任务，她_____犹豫地接受了挑战。","opts":{"A":"毫无","B":"毫不"},"answer":"B"},{"n":7,"stem":"连续几天的暴雨给山区公路_____了严重破坏。","opts":{"A":"造成","B":"引起"},"answer":"A"},{"n":8,"stem":"这篇关于野生动物的文章_____了不少读者的讨论。","opts":{"A":"造成","B":"引起"},"answer":"B"},{"n":9,"stem":"离家前，父亲_____叮嘱我保管好证件。","opts":{"A":"再三","B":"不断"},"answer":"A"},{"n":10,"stem":"进入新环境以后，她的表达能力在_____提高。","opts":{"A":"再三","B":"不断"},"answer":"B"},{"n":11,"stem":"学校通过小组活动_____学生合作解决问题的能力。","opts":{"A":"培养","B":"教育"},"answer":"A"},{"n":12,"stem":"这件事_____了我：做决定前应该听听别人的意见。","opts":{"A":"教育","B":"培养"},"answer":"A"},{"n":13,"stem":"她_____说话温和，很少与同事发生争执。","opts":{"A":"一直","B":"一向"},"answer":"B"},{"n":14,"stem":"从上午九点到现在，他_____在会议室里工作。","opts":{"A":"一向","B":"一直"},"answer":"B"},{"n":15,"stem":"有问题你_____提出来，大家可以一起讨论。","opts":{"A":"只管","B":"尽管"},"answer":"A"},{"n":16,"stem":"_____项目很难，团队还是坚持完成了任务。","opts":{"A":"尽管","B":"只管"},"answer":"A"},{"n":17,"stem":"看到同学获奖，他在心里_____下决心，也要努力进步。","opts":{"A":"偷偷","B":"暗暗"},"answer":"B"},{"n":18,"stem":"小李怕吵醒家人，_____地关上了房门。","opts":{"A":"偷偷","B":"暗暗"},"answer":"A"},{"n":19,"stem":"工作人员发现机器异常，_____按下了停止按钮。","opts":{"A":"随后","B":"随即"},"answer":"B"},{"n":20,"stem":"校长先介绍活动安排，_____各组代表分享经验。","opts":{"A":"随后","B":"随即"},"answer":"A"},{"n":21,"stem":"他_____一转身，差点儿碰到身后的同学。","opts":{"A":"猛然","B":"突然"},"answer":"A"},{"n":22,"stem":"讲座进行到一半，教室里_____停电了。","opts":{"A":"猛然","B":"突然"},"answer":"B"},{"n":23,"stem":"他只顾赶路，没有看路标，_____走错了方向。","opts":{"A":"以致","B":"因此"},"answer":"A"},{"n":24,"stem":"今天空气质量不好，学校_____取消了户外跑步活动。","opts":{"A":"以致","B":"因此"},"answer":"B"},{"n":25,"stem":"虽然_____还有不少困难，我们仍然愿意继续尝试。","opts":{"A":"眼前","B":"面前"},"answer":"A"},{"n":26,"stem":"经理站在全体员工_____介绍了明年的目标。","opts":{"A":"眼前","B":"面前"},"answer":"B"},{"n":27,"stem":"周末我们去农场_____了一天采摘生活。","opts":{"A":"体验","B":"体会"},"answer":"A"},{"n":28,"stem":"独自照顾孩子几天后，他才真正_____到母亲的不容易。","opts":{"A":"体会","B":"体验"},"answer":"A"},{"n":29,"stem":"_____城市交通的角度____，步行与公共交通结合是不错的选择。","opts":{"A":"对……来说","B":"从……来说"},"answer":"B"},{"n":30,"stem":"_____初到中国的留学生____，熟悉校园环境很重要。","opts":{"A":"从……来说","B":"对……来说"},"answer":"B"},{"n":31,"stem":"志愿者主动为游客_____路线信息和饮水地点。","opts":{"A":"提供","B":"供应"},"answer":"A"},{"n":32,"stem":"这家工厂长期向多家企业_____环保包装材料。","opts":{"A":"供应","B":"提供"},"answer":"A"},{"n":33,"stem":"公司重新安排了工作流程，_____，大家不必重复提交资料。","opts":{"A":"于是","B":"这样一来"},"answer":"B"},{"n":34,"stem":"电话始终没人接，_____他决定亲自去办公室询问。","opts":{"A":"这样一来","B":"于是"},"answer":"B"},{"n":35,"stem":"企业改进售后服务，_____提高了客户的满意度。","opts":{"A":"从而","B":"因此"},"answer":"A"},{"n":36,"stem":"她明天要参加面试，_____今晚准备得格外认真。","opts":{"A":"从而","B":"因此"},"answer":"B"}],"count":36},{"id":"sort","zh":"二、连句成段","vi":"Sắp xếp câu thành đoạn","short":"Sắp xếp","icon":"02","chunk":4,"instructions":"Đọc các câu A–D, chọn thứ tự sắp xếp đúng.","questions":[{"n":1,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"居民们商量后，决定每周组织一次清理活动。","B":"几个月后，河岸变得整洁，来这里散步的人也多了。","C":"某个社区最近发现河边的垃圾明显增多。","D":"越来越多的年轻人加入，大家还制作了垃圾分类提示牌。"},"opts":{"A":"DBCA","B":"BADC","C":"CADB","D":"CDAB"},"answer":"C","correctSequence":"CADB"},{"n":2,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"鸟少了以后，附近农田里的害虫明显增多。","B":"一种鸟类在当地数量突然减少，引起了研究人员的注意。","C":"人们这才体会到，保护一个物种也在保护整个生态系统。","D":"调查发现，这种鸟主要以害虫为食。"},"opts":{"A":"BDAC","B":"BACD","C":"DCBA","D":"BDCA"},"answer":"A","correctSequence":"BDAC"},{"n":3,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"他们原以为保护动物只需要把动物养起来。","B":"于是大家决定做一份介绍湿地价值的校园海报。","C":"听完专家介绍，他们了解到栖息地同样重要。","D":"几名大学生参加了一次湿地观察活动。"},"opts":{"A":"BCDA","B":"DACB","C":"ACBD","D":"DCAB"},"answer":"B","correctSequence":"DACB"},{"n":4,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"出发那天，母亲虽然依依不舍，仍鼓励他勇敢尝试。","B":"母亲一开始十分担心，反复询问他的生活安排。","C":"小宇第一次提出想独自到外地实习。","D":"看到他准备了路线、住所和紧急联系电话，母亲渐渐放心。"},"opts":{"A":"ADCB","B":"CBDA","C":"ABCD","D":"CDBA"},"answer":"B","correctSequence":"CBDA"},{"n":5,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"如果让他们独立做一些决定，他们会从错误中积累经验。","B":"随着孩子长大，这种安排有时反而限制了他们的选择。","C":"因此，适当放手也是一种培养能力的方式。","D":"孩子小时候，父母常替他们安排所有事情。"},"opts":{"A":"DBAC","B":"DBCA","C":"BADC","D":"DABC"},"answer":"A","correctSequence":"DBAC"},{"n":6,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"现在，他会先提出自己的想法，再听取家人的建议。","B":"刚进入大学时，阿明总想请父亲替他做决定。","C":"一次选课失败后，他开始自己查资料并咨询老师。","D":"虽然过程并不轻松，但他逐渐学会分析不同方案。"},"opts":{"A":"BCDA","B":"BDAC","C":"BACD","D":"BCAD"},"answer":"A","correctSequence":"BCDA"},{"n":7,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"会议上，一位同事的方案存在明显问题。","B":"同事接受了建议，讨论也得以顺利继续。","C":"小林没有当众说‘你的想法完全错了’。","D":"他先肯定了方案的优点，随后提出两点具体建议。"},"opts":{"A":"BCDA","B":"ACBD","C":"ACDB","D":"ADCB"},"answer":"C","correctSequence":"ACDB"},{"n":8,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"小张一时愣住，因为他并未收到那封邮件。","B":"核查后大家发现，邮件地址被写错了一个字母。","C":"经理随即解释情况，并向小张表示歉意。","D":"经理突然问小张为什么没有回复客户邮件。"},"opts":{"A":"ABCD","B":"DABC","C":"ADCB","D":"DBAC"},"answer":"B","correctSequence":"DABC"},{"n":9,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"越来越多的人开始到店参加线下交流。","B":"一家小书店在网上推出了读书分享活动。","C":"店员们轮流介绍新书，也认真回答读者提问。","D":"店长把活动的成功归功于全体员工的合作。"},"opts":{"A":"BADC","B":"BCAD","C":"DBCA","D":"BACD"},"answer":"B","correctSequence":"BCAD"},{"n":10,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"路上她发现了以前从未注意过的书店和小花园。","B":"小敏以前每天坐车经过学校附近的老街。","C":"从那以后，她每周都安排一次慢慢走路的时间。","D":"有一天，她决定提前出门，沿着老街步行。"},"opts":{"A":"DCBA","B":"BACD","C":"BDAC","D":"BDCA"},"answer":"C","correctSequence":"BDAC"},{"n":11,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"他们每天记录路程，也写下当天观察到的细节。","B":"他们体会到，运动的价值不只在于消耗热量。","C":"一群同学计划开展一个月的步行记录活动。","D":"一个月后，大家发现自己的生活节奏慢了下来。"},"opts":{"A":"ACBD","B":"BCDA","C":"CADB","D":"CDAB"},"answer":"C","correctSequence":"CADB"},{"n":12,"stem":"Hãy chọn trình tự sắp xếp đúng cho đoạn văn sau.","sentences":{"A":"产品上市后逐渐赢得消费者信任，销售量也提高了。","B":"团队先调查当地家庭的住房面积和使用习惯。","C":"随后，他们调整产品体积，并建立售后服务点。","D":"一家电器公司准备进入新的海外市场。"},"opts":{"A":"DBCA","B":"ADCB","C":"ABCD","D":"DCBA"},"answer":"A","correctSequence":"DBCA"}],"count":12},{"id":"wrong","zh":"三、选择错句","vi":"Chọn câu sai","short":"Tìm lỗi sai","icon":"03","chunk":5,"instructions":"Chọn câu mắc lỗi sử dụng từ hoặc ngữ pháp.","questions":[{"n":1,"stem":"选出有语病的一句。","opts":{"A":"这篇报道引起了大家对环境问题的关注。","B":"严重的噪声引起了附近居民很大的经济损失。","C":"保护区扩大以后，鸟类的数量逐渐增加。"},"answer":"B","fix":"严重的噪声造成了附近居民很大的经济损失。"},{"n":2,"stem":"选出有语病的一句。","opts":{"A":"面对批评，他毫不生气。","B":"大家对这个没有依据的建议毫无兴趣。","C":"她毫无犹豫地答应了志愿者的邀请。"},"answer":"C","fix":"她毫不犹豫地答应了志愿者的邀请。"},{"n":3,"stem":"选出有语病的一句。","opts":{"A":"这些年他的口语水平再三提高。","B":"老师再三提醒我们带好身份证。","C":"企业不断开发更节能的产品。"},"answer":"A","fix":"这些年他的口语水平不断提高。"},{"n":4,"stem":"选出有语病的一句。","opts":{"A":"父母应该教育孩子尊重劳动。","B":"活动能培养学生独立思考的能力。","C":"学校希望教育学生良好的阅读习惯。"},"answer":"C","fix":"学校希望培养学生良好的阅读习惯。"},{"n":5,"stem":"选出有语病的一句。","opts":{"A":"姐姐一向很有耐心。","B":"我一直等到晚上八点才见到他。","C":"我一向在门口等了他整整两个小时。"},"answer":"C","fix":"我一直在门口等他，等了整整两个小时。"},{"n":6,"stem":"选出有语病的一句。","opts":{"A":"尽管天气不好，他们还是去了郊外。","B":"只管工作很忙，他每天都去散步。","C":"你有什么想法只管说。"},"answer":"B","fix":"尽管工作很忙，他每天还是去散步。"},{"n":7,"stem":"选出有语病的一句。","opts":{"A":"他暗暗地当着全班同学大声宣布了秘密。","B":"他偷偷把礼物放在朋友的桌上。","C":"小赵暗暗下决心，明年一定考过。"},"answer":"A","fix":"他当着全班同学大声宣布了秘密。／他暗暗把秘密记在心里。"},{"n":8,"stem":"选出有语病的一句。","opts":{"A":"医生看完检查结果，随即安排了治疗。","B":"听到警报，他随即过了三个星期才采取行动。","C":"主持人介绍完嘉宾，随后开始讨论。"},"answer":"B","fix":"听到警报，他立刻采取行动。／过了三个星期，他才采取行动。"},{"n":9,"stem":"选出有语病的一句。","opts":{"A":"汽车猛然停住，车上的人向前一晃。","B":"公司的产品质量猛然稳定了整整十年。","C":"课程进行到一半，突然下起了大雨。"},"answer":"B","fix":"公司的产品质量一直很稳定。"},{"n":10,"stem":"选出有语病的一句。","opts":{"A":"由于大家共同努力，以致活动取得圆满成功。","B":"因为忘了关窗，雨水流进屋里，以致地板受损。","C":"她认真准备，因此顺利通过了考核。"},"answer":"A","fix":"由于大家共同努力，因此活动取得圆满成功。"},{"n":11,"stem":"选出有语病的一句。","opts":{"A":"站在我眼前面前的人正是班长。","B":"老师站在大家面前解释规则。","C":"眼前的这条小路通向图书馆。"},"answer":"A","fix":"站在我面前的人正是班长。"},{"n":12,"stem":"选出有语病的一句。","opts":{"A":"我想亲自体验一下当地的生活。","B":"照顾生病的家人后，她体会到了责任的分量。","C":"这次经历让我体验到了“坚持”这个道理的深刻含义。"},"answer":"C","fix":"这次经历让我体会到了“坚持”这个道理的深刻含义。"},{"n":13,"stem":"选出有语病的一句。","opts":{"A":"从时间安排来说，这个计划还需要调整。","B":"从小李来说，他更喜欢步行上班。","C":"对刚毕业的学生来说，积累经验很重要。"},"answer":"B","fix":"对小李来说，他更喜欢步行上班。"},{"n":14,"stem":"选出有语病的一句。","opts":{"A":"主办方为听众提供了免费的资料。","B":"这家企业向餐厅供应新鲜蔬菜。","C":"辅导老师供应了几条学习建议给我。"},"answer":"C","fix":"辅导老师给我提供了几条学习建议。"},{"n":15,"stem":"选出有语病的一句。","opts":{"A":"昨天突然停电，从而学校决定推迟考试。","B":"工厂改进了技术，从而减少了能源消耗。","C":"今天气温下降，因此活动改到室内。"},"answer":"A","fix":"昨天突然停电，因此学校决定推迟考试。"}],"count":15},{"id":"writing","zh":"四、用词造句","vi":"Đặt câu với từ cho trước","short":"Đặt câu","icon":"04","chunk":5,"instructions":"Tự đặt câu bằng tiếng Trung, sử dụng đúng từ hoặc cấu trúc đã cho. Phần này có đáp án tham khảo; không tự chấm theo trùng khớp văn bản.","questions":[{"n":1,"stem":"出于","answer":"她参加志愿活动是出于对野生动物的关心。","sample":"她参加志愿活动是出于对野生动物的关心。"},{"n":2,"stem":"随着","answer":"随着城市绿地增多，居民有了更多散步的地方。","sample":"随着城市绿地增多，居民有了更多散步的地方。"},{"n":3,"stem":"毫不","answer":"他面对困难毫不退缩。","sample":"他面对困难毫不退缩。"},{"n":4,"stem":"造成","answer":"过度捕捞可能造成生态失衡。","sample":"过度捕捞可能造成生态失衡。"},{"n":5,"stem":"再三","answer":"出门前，妈妈再三提醒我关好窗户。","sample":"出门前，妈妈再三提醒我关好窗户。"},{"n":6,"stem":"不断","answer":"这家公司不断改进产品设计。","sample":"这家公司不断改进产品设计。"},{"n":7,"stem":"培养","answer":"参加团队项目可以培养合作能力。","sample":"参加团队项目可以培养合作能力。"},{"n":8,"stem":"一向","answer":"他一向信守承诺。","sample":"他一向信守承诺。"},{"n":9,"stem":"尽管","answer":"尽管路程很远，我们还是决定步行过去。","sample":"尽管路程很远，我们还是决定步行过去。"},{"n":10,"stem":"巴不得","answer":"她巴不得马上听到面试结果。","sample":"她巴不得马上听到面试结果。"},{"n":11,"stem":"差点儿","answer":"我看错了站名，差点儿坐过站。","sample":"我看错了站名，差点儿坐过站。"},{"n":12,"stem":"暗暗","answer":"他听完老师的话，暗暗下定决心要改变自己。","sample":"他听完老师的话，暗暗下定决心要改变自己。"},{"n":13,"stem":"不料","answer":"我们已安排好活动，不料当天忽然刮起大风。","sample":"我们已安排好活动，不料当天忽然刮起大风。"},{"n":14,"stem":"八成儿","answer":"他这么晚还没回信，八成儿正在开会。","sample":"他这么晚还没回信，八成儿正在开会。"},{"n":15,"stem":"归功于","answer":"这次进步归功于老师的指导和自己的坚持。","sample":"这次进步归功于老师的指导和自己的坚持。"},{"n":16,"stem":"以致","answer":"他忽视了天气预报，以致整个行程被耽误了。","sample":"他忽视了天气预报，以致整个行程被耽误了。"},{"n":17,"stem":"体验","answer":"暑假里我想体验一次农场劳动。","sample":"暑假里我想体验一次农场劳动。"},{"n":18,"stem":"对……来说","answer":"对初学者来说，每天练习一点儿更容易坚持。","sample":"对初学者来说，每天练习一点儿更容易坚持。"},{"n":19,"stem":"要不是……就……","answer":"要不是同学提醒我，我就忘了提交报告。","sample":"要不是同学提醒我，我就忘了提交报告。"},{"n":20,"stem":"从而","answer":"公司提高了产品质量，从而赢得了更多客户。","sample":"公司提高了产品质量，从而赢得了更多客户。"}],"count":20},{"id":"terms","zh":"五、判断对词语解释的正误","vi":"Đúng / sai về giải thích từ","short":"Giải thích từ","icon":"05","chunk":5,"instructions":"Đọc câu và lời giải thích; chọn Đúng (对) hoặc Sai (错).","questions":[{"n":1,"stem":"这种决定完全【出于】他个人的兴趣。","explanation":"解释：这里的“出于”表示“从某种原因或动机出发”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":2,"stem":"这场大风【造成】了严重的损失。","explanation":"解释：这里的“造成”表示“主动赞美”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":3,"stem":"老师【再三】提醒我们注意格式。","explanation":"解释：这里的“再三”表示“多次重复”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":4,"stem":"她【一向】认真守时。","explanation":"解释：这里的“一向”主要表示“从前到现在的一贯状态”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":5,"stem":"他【巴不得】马上见到家人。","explanation":"解释：这里的“巴不得”表示“非常不愿意”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":6,"stem":"看到结果，他心里【暗暗】高兴。","explanation":"解释：这里的“暗暗”表示“内心里、不公开地”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":7,"stem":"问题出现后，负责人【随即】进行了处理。","explanation":"解释：这里的“随即”表示“几年以后”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":8,"stem":"他【猛然】一抬头，碰到了柜门。","explanation":"解释：这里的“猛然”强调动作突然且有力度。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":9,"stem":"她看见我就【告辞】了。","explanation":"解释：这里的“告辞”表示“向人道别后离开”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":10,"stem":"这次改进【归功于】研发团队。","explanation":"解释：这里的“归功于”表示“把成绩归于……的贡献”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":11,"stem":"我【差点儿】忘了带钥匙。","explanation":"解释：这里的“差点儿”表示“已经完全忘记并无法补救”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":12,"stem":"长期熬夜【以致】他上课没有精神。","explanation":"解释：这里的“以致”表示“引出前文导致的后果”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":13,"stem":"孩子们在农场【体验】了劳动。","explanation":"解释：这里的“体验”强调“通过实际参与而经历”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":14,"stem":"我终于【体会】到他的难处。","explanation":"解释：这里的“体会”表示“亲手制造某个产品”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":15,"stem":"这家企业【供应】各种建筑材料。","explanation":"解释：这里的“供应”表示“供给所需的物品”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":16,"stem":"这份报告【提供】了详细的数据。","explanation":"解释：这里的“提供”只能与食物搭配。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":17,"stem":"公司【进一步】优化了维修流程。","explanation":"解释：这里的“进一步”表示“在原基础上再向前推进”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":18,"stem":"他们【默默无闻】地做了多年志愿工作。","explanation":"解释：这里的“默默无闻”表示“名气极大”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":19,"stem":"这个回答十分【直截了当】。","explanation":"解释：这里的“直截了当”表示“说话直接、不绕弯子”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":20,"stem":"他【依依不舍】地离开了家乡。","explanation":"解释：这里的“依依不舍”表示“留恋、不愿分离”。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"}],"count":20},{"id":"read","zh":"六、根据阅读内容选择正确答案","vi":"Đọc hiểu – trắc nghiệm","short":"Đọc chọn","icon":"06","chunk":5,"instructions":"Đọc hai đoạn văn rồi trả lời 5 câu cho mỗi đoạn.","questions":[{"n":1,"local":1,"article":1,"stem":"小林第一次步行上班的直接原因是什么？","opts":{"A":"为了减肥","B":"公司组织活动","C":"地铁临时停运","D":"朋友邀请"},"answer":"C"},{"n":2,"local":2,"article":1,"stem":"她在路上没有发现什么？","opts":{"A":"大型体育场","B":"小公园","C":"早餐店的邻居","D":"社区书店"},"answer":"A"},{"n":3,"local":3,"article":1,"stem":"后来她选择怎样调整出行？","opts":{"A":"搬到公司旁边","B":"只在下雨时步行","C":"每天都不乘车","D":"每周有些日子提前出门步行一段"},"answer":"D"},{"n":4,"local":4,"article":1,"stem":"作者如何看待步行与其他交通工具的关系？","opts":{"A":"任何时候都要步行","B":"步行能取代一切","C":"乘车会让人失去朋友","D":"应根据情况选择合适方式"},"answer":"D"},{"n":5,"local":5,"article":1,"stem":"文章最适合的标题是什么？","opts":{"A":"地铁发展史","B":"在路上重新发现生活","C":"最便宜的汽车","D":"如何成为运动员"},"answer":"B"},{"n":6,"local":1,"article":2,"stem":"第一批产品销售不理想的原因之一是什么？","opts":{"A":"天气太冷","B":"部分厨房放不下原有产品","C":"没有公司名称","D":"质量完全不合格"},"answer":"B"},{"n":7,"local":2,"article":2,"stem":"顾客对售后服务有什么期待？","opts":{"A":"只能写纸质信件","B":"不接受解释","C":"使用当地语言","D":"取消维修"},"answer":"C"},{"n":8,"local":3,"article":2,"stem":"公司采取了哪项措施？","opts":{"A":"培训售后员工","B":"退出海外市场","C":"停止调查","D":"只增加广告"},"answer":"A"},{"n":9,"local":4,"article":2,"stem":"负责人怎样评价取得的成绩？","opts":{"A":"来自多部门合作","B":"主要靠降低工资","C":"全部归功于广告","D":"全部归功于运气"},"answer":"A"},{"n":10,"local":5,"article":2,"stem":"文章主要说明什么？","opts":{"A":"维修服务毫无意义","B":"产品越大越好","C":"照搬旧产品一定成功","D":"开发市场需要了解当地需求"},"answer":"D"}],"count":10},{"id":"truefalse","zh":"七、根据阅读内容判断正误","vi":"Đọc hiểu – đúng / sai","short":"Đọc đúng/sai","icon":"07","chunk":5,"instructions":"Đọc hai đoạn văn rồi quyết định nhận định đúng hay sai.","questions":[{"n":1,"local":1,"article":1,"stem":"小辰希望由母亲安排全部行程。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":2,"local":2,"article":1,"stem":"父亲建议母亲先了解孩子的计划。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":3,"local":3,"article":1,"stem":"小辰出行前没有准备证件信息。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":4,"local":4,"article":1,"stem":"到校后，小辰主动处理一些生活问题。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":5,"local":5,"article":1,"stem":"母亲最后认为放手一定等于不关心孩子。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":6,"local":1,"article":2,"stem":"阿杰提出的方案在场地安排上有问题。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":7,"local":2,"article":2,"stem":"负责人没有提到方案的任何优点。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":8,"local":3,"article":2,"stem":"阿杰后来修改了方案。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"},{"n":9,"local":4,"article":2,"stem":"负责人认为任何情况下都不该直接说话。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"错"},{"n":10,"local":5,"article":2,"stem":"短文赞成结合具体情境选择表达方式。","opts":{"对":"Đúng · 对","错":"Sai · 错"},"answer":"对"}],"count":10}],"articles":{"read":[{"title":"阅读一 · 步行与生活节奏","paragraphs":["城市生活节奏越来越快，不少人出门时首先想到的是汽车、地铁或网约车。小林也曾如此：从住处到公司只有两站地铁，她却很少步行。一次地铁临时停运，小林只好沿街走去上班。不料，这段原本让她担心迟到的路，却使她发现了附近的一座小公园、几家社区书店，还有早餐店门口热情打招呼的邻居。","从那天起，小林尝试每周选择两三天提前出门，用步行代替一段短途乘车。最初她觉得多走路会浪费时间，后来发现自己能借此调整心情，还能在路上思考工作中的问题。她也明白，步行并不适合取代所有交通工具：赶时间、天气恶劣或距离太远时，仍应选择更合适的方式。对她来说，重要的不是每天走多少公里，而是主动给生活留一点儿观察和体验的空间。"]},{"title":"阅读二 · 一家小企业的海外尝试","paragraphs":["华新是一家生产小型家用电器的企业。最初，管理层以为只要把国内畅销的产品直接卖到海外，就一定会取得好成绩。然而，第一批产品的销售情况并不理想。市场调查发现，部分家庭的厨房面积较小，原有产品的体积不合适；不少顾客还希望能通过当地语言得到维修帮助。","公司随即调整策略：研发人员重新设计了几种小型产品，销售团队与当地商店合作，售后部门则培训熟悉当地语言的员工。为了避免只追求短期销量，公司还定期收集顾客意见，根据实际使用情况改进功能。一年后，新产品的市场反应逐渐好转。负责人在总结时说，这次成绩不能只归功于广告，而是来自调查、研发、销售和售后团队的共同努力。他还指出，进入新市场不等于简单复制旧经验，真正了解消费者才是重要的一步。"]}],"truefalse":[{"title":"阅读三 · 家庭中的责任","paragraphs":["高三毕业后，小辰准备离开家去另一座城市读大学。母亲一向关心他的生活，连买车票、收拾行李都想替他完成。小辰却提出，希望由自己规划出行和住宿。母亲起初感到有些失落，父亲建议她不妨先听听孩子的计划。小辰拿出一张表，上面写着车次、学校地址、报到时间以及需要携带的证件。母亲看完以后，放心了许多，但仍再三提醒他注意安全。到校后，小辰按约定给家里报平安，也会主动处理生活中的小问题。母亲后来发现，孩子有能力时适当放手，并不是减少关心，而是让关心变得更有分寸。"]},{"title":"阅读四 · 说话需要分寸","paragraphs":["一家机构准备举办环保讲座。筹备会上，新同事阿杰提出了一个方案，但场地安排存在问题。负责人没有当众批评他，而是先肯定了内容设计中的新意，再请他考虑如果听众人数增加，座位是否足够。阿杰听懂了提醒，随即修改了方案。另一位同事却觉得这样的表达太委婉，可能浪费时间。负责人解释说，面对紧急危险时，应当直截了当地提醒；但讨论普通工作方案时，清楚表达事实并照顾他人的感受，往往更能推动合作。会议结束后，阿杰主动表示感谢。对他来说，既指出问题又尊重人的建议，比简单说“你错了”更容易接受。"]}]},"scope":["Nhóm từ chính thức ở mục 辨析近义词 của năm bài:","• Bài 1: 看起来/看来；随着/伴随；毫无/毫不；造成/引起。","• Bài 2: 再三/不断；培养/教育；一向/一直；只管/尽管。","• Bài 3: 暗暗/偷偷；随即/随后；猛然/突然。","• Bài 4: 以致/因此；眼前/面前；体验/体会；从……来说/对……来说。","• Bài 5: 提供/供应；这样一来/于是；从而/因此。","Chủ đề bài khóa và đọc mở rộng: bảo vệ động vật – môi trường; cha mẹ và sự trưởng thành; giao tiếp khéo léo; đi bộ và sức khỏe; doanh nghiệp – sản phẩm – thị trường – dịch vụ.","Lưu ý: Một số từ và kết cấu bổ trợ (如 要不是……就……、巴不得、费尽心机等) được đưa vào để luyện cùng mức độ HSK5/giáo trình; không coi đây là bản sao mục lục hoặc từ điển phân cấp HSK."]};
+const STORAGE_KEY='grammar-review-lesson-1-5-v1';
+const TOTAL=DATA.sections.reduce((v,s)=>v+s.questions.length,0);
+const AUTO_TOTAL=TOTAL-DATA.sections.find(s=>s.id==='writing').questions.length;
+let vals={},active=DATA.sections[0].id,submitted=false,aiGrades={};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const key=(sec,n)=>`${sec}-${n}`;
+const findSection=id=>DATA.sections.find(s=>s.id===id);
+const getQuestion=(id,n)=>findSection(id).questions.find(q=>q.n===Number(n));
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({vals,active,submitted,aiGrades}));document.getElementById('autoSaved').textContent='Đã lưu';}catch(e){document.getElementById('autoSaved').textContent='Không thể tự lưu';}}
+function restore(){try{let v=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');if(v&&typeof v==='object'){
+ vals=(v.vals&&typeof v.vals==='object')?v.vals:{};submitted=!!v.submitted;aiGrades=(v.aiGrades&&typeof v.aiGrades==='object')?v.aiGrades:{};
+ if(findSection(v.active))active=v.active;}}catch(e){}}
+function renderTabs(){document.getElementById('tabs').innerHTML=DATA.sections.map(s=>`<button class="tab ${s.id===active?'active':''}" data-tab="${s.id}" type="button"><span>${esc(s.zh.split('、')[0])}</span>${esc(s.short)} <em>${s.count}</em></button>`).join('');}
+function renderOptions(s,q,mini=false){const k=key(s.id,q.n);
+ return Object.entries(q.opts||{}).map(([v,label])=>{
+  if(mini)return `<button type="button" class="mini-choice ${vals[k]===v?'selected':''}" data-key="${k}" data-value="${esc(v)}" aria-label="${esc(s.short+' câu '+q.n+': '+label)}" aria-pressed="${vals[k]===v}">${esc(v)}</button>`;
+  return `<button type="button" class="opt ${vals[k]===v?'selected':''}" data-key="${k}" data-value="${esc(v)}" aria-pressed="${vals[k]===v}"><span class="letter">${esc(v)}</span><span>${esc(label)}</span></button>`;
+ }).join('');}
+function renderQuestion(s,q){const k=key(s.id,q.n);let middle='';
+ if(q.sentences){middle+=`<div class="sentences">${Object.entries(q.sentences).map(([v,t])=>`<p><strong>${v}.</strong> ${esc(t)}</p>`).join('')}</div>`;}
+ if(q.explanation){middle+=`<div class="explanation"><strong>Giải thích:</strong> ${esc(q.explanation)}</div>`;}
+ if(s.id==='writing'){
+ middle+=`<textarea class="write-box" id="input-${k}" data-write="${k}" placeholder="Nhập câu tiếng Trung của bạn…" aria-label="Viết câu ${q.n}" spellcheck="false">${esc(vals[k]||'')}</textarea>`;
+ }else{middle+=`<div class="question-options">${renderOptions(s,q)}</div>`;}
+ return `<article class="q-card" id="q-${k}" data-question="${k}"><div class="question-hd"><span class="number">${String(q.n).padStart(2,'0')}</span><div class="q-stem" lang="zh-Hans">${esc(q.stem)}</div></div><span class="mark" aria-hidden="true"></span>${middle}<div class="feedback" id="feedback-${k}"></div><div class="ai-feedback" id="ai-${k}"></div></article>`;}
+function renderArticle(id,index){const a=DATA.articles[id][index];return `<div class="article" id="article-${id}-${index+1}"><h3 class="article-tag">${esc(a.title)}</h3>${a.paragraphs.map(t=>`<p lang="zh-Hans">${esc(t)}</p>`).join('')}</div>`;}
+function renderSections(){const host=document.getElementById('mainContent');host.innerHTML=DATA.sections.map(s=>{
+ let papers='';for(let i=0;i<s.questions.length;i+=s.chunk){const list=s.questions.slice(i,i+s.chunk);
+ const article=(s.id==='read'||s.id==='truefalse')?renderArticle(s.id,i/s.chunk):'';
+ papers+=`<div class="paper"><div class="paper-heading"><span>${esc(s.zh)} · ${String(i+1).padStart(2,'0')}–${String(i+list.length).padStart(2,'0')}</span><span class="tiny">${i/s.chunk+1} / ${Math.ceil(s.questions.length/s.chunk)}</span></div>${article}${list.map(q=>renderQuestion(s,q)).join('')}</div>`;
+ }return `<section class="section ${s.id===active?'':'hidden'}" data-section="${s.id}"><div class="section-heading"><div class="section-label"><span>Phần ${s.icon}</span><span>· ${s.questions.length} câu</span></div><h2>${esc(s.zh)}</h2><div class="trans">${esc(s.vi)}</div></div>${papers}</section>`;
+ }).join('');}
+function currentAnswered(){const s=findSection(active);return s.questions.filter(q=>String(vals[key(s.id,q.n)]||'').trim()).length;}
+function allAnswered(){return Object.values(vals).filter(v=>String(v||'').trim()).length;}
+function updateProgress(){const s=findSection(active),curr=currentAnswered();document.getElementById('progressText').textContent=`${curr}/${s.count}`;
+ document.getElementById('progressFill').style.width=`${curr/s.count*100}%`;
+ document.getElementById('globalProgress').textContent=`${allAnswered()}/${TOTAL} câu đã làm`;
+ document.getElementById('sectionStatus').textContent=s.zh+' · '+s.vi;}
+function chooseSection(id,scroll=true){if(!findSection(id))return;active=id;
+ document.querySelectorAll('.section').forEach(node=>node.classList.toggle('hidden',node.dataset.section!==active));
+ document.querySelectorAll('[data-tab]').forEach(node=>node.classList.toggle('active',node.dataset.tab===active));
+ updateProgress();save();if(scroll)window.scrollTo({top:0,behavior:'smooth'});requestAnimationFrame(updateSticky);}
+function jump(k){let node=document.getElementById('q-'+k);if(!node)return;
+ const section=k.slice(0,k.lastIndexOf('-'));if(section!==active)chooseSection(section,false);
+ requestAnimationFrame(()=>node.scrollIntoView({behavior:'smooth',block:'start'}));}
+function chooseAnswer(k,val){vals[k]=val;
+ // Bài đã chấm sẽ được cập nhật sau lần nộp tiếp theo nếu sinh viên sửa.
+ if(submitted){submitted=false;aiGrades={};document.getElementById('resultBox').classList.remove('show');clearMarks();}
+ document.querySelectorAll('[data-key]').forEach(b=>{
+  if(b.dataset.key===k){b.classList.toggle('selected',b.dataset.value===val);b.setAttribute('aria-pressed',String(b.dataset.value===val));}});
+ updateProgress();save();}
+function editWriting(k,val){vals[k]=val;const status=document.getElementById('written-'+k);if(status)status.textContent=val.trim()?'Đã viết câu':'Chưa viết câu';
+ if(submitted){submitted=false;aiGrades={};document.getElementById('resultBox').classList.remove('show');clearMarks();}
+ updateProgress();save();}
+function clearMarks(){document.querySelectorAll('.q-card,.ans-row').forEach(n=>n.classList.remove('correct','wrong'));
+ document.querySelectorAll('.feedback,.side-feedback,.ai-feedback').forEach(n=>{n.classList.remove('show','bad','good','sample','pass','fail');n.innerHTML='';});}
+function showFeedback(el,text,variant){if(!el)return;el.innerHTML=text;el.className=el.classList.contains('side-feedback')?'side-feedback show '+variant:'feedback show '+variant;}
+function gradeObjective(s,q){const v=vals[key(s.id,q.n)]||'',pass=v===q.answer;
+ const label=q.opts[q.answer]||q.answer;
+ let detail=`<strong>Đáp án đúng:</strong> ${esc(q.answer)}. ${esc(label)}`;
+ if(s.id==='sort')detail+=`<br><strong>Trình tự:</strong> ${esc(q.correctSequence)}`;
+ if(s.id==='wrong')detail+=`<br><strong>Gợi ý sửa:</strong> ${esc(q.fix)}`;
+ return {pass,detail};}
+function applyMarking(){if(!submitted)return;
+ for(const s of DATA.sections)for(const q of s.questions){const k=key(s.id,q.n),el=document.getElementById('q-'+k),row=document.getElementById('row-'+k);
+ if(s.id==='writing'){
+  showFeedback(document.getElementById('feedback-'+k),'<strong>Đáp án tham khảo:</strong> '+esc(q.sample),'sample');
+  const ai=aiGrades[q.n];if(ai){const aiel=document.getElementById('ai-'+k);
+   if(aiel){aiel.className='ai-feedback show '+(ai.score===1?'pass':'fail');aiel.innerHTML=`<strong>AI gợi ý · ${ai.score}/1:</strong> ${esc(ai.feedback||'')}${ai.suggestion?'<br><strong>Đề xuất:</strong> '+esc(ai.suggestion):''}`;}
+  }
+  if(row){showFeedback(document.getElementById('sidefeedback-'+k),'Đáp án mẫu: '+esc(q.sample),'sample');}
+ }else{
+  const {pass,detail}=gradeObjective(s,q);
+  if(el){el.classList.toggle('correct',pass);el.classList.toggle('wrong',!pass);const mark=el.querySelector('.mark');if(mark){mark.textContent=pass?'✓':'✕';mark.setAttribute('aria-label',pass?'Đúng':'Sai');}}
+  if(row){row.classList.toggle('correct',pass);row.classList.toggle('wrong',!pass);}
+  if(!pass){showFeedback(document.getElementById('feedback-'+k),detail,'bad');showFeedback(document.getElementById('sidefeedback-'+k),detail,'bad');}
+ }
+ }
+}
+function score(){let scores={},total=0;
+ for(let s of DATA.sections)if(s.id!=='writing'){let n=s.questions.filter(q=>vals[key(s.id,q.n)]===q.answer).length;scores[s.id]=n;total+=n;}
+ return {scores,total};}
+function updateResults(){const box=document.getElementById('resultBox');if(!submitted){box.classList.remove('show');return;}
+ const {scores,total}=score(),writingAnswered=DATA.sections.find(s=>s.id==='writing').questions.filter(q=>String(vals[key('writing',q.n)]||'').trim()).length;
+ let aiNums=Object.values(aiGrades),aiComplete=aiNums.length===20,aiSum=aiComplete?aiNums.reduce((x,y)=>x+Number(y.score||0),0):null;
+ box.classList.add('show');box.innerHTML=`<strong>Kết quả chấm tự động</strong><span class="score-big">${total}/${AUTO_TOTAL} câu</span>`+
+ DATA.sections.filter(s=>s.id!=='writing').map(s=>`<div>${esc(s.short)}: <b>${scores[s.id]}/${s.count}</b></div>`).join('')+
+ `<div style="margin-top:7px;padding-top:7px;border-top:1px solid #cce8f9">Đặt câu: <b>${writingAnswered}/20 câu đã viết</b> · ${aiComplete?'AI gợi ý '+aiSum+'/20 điểm':'chưa chấm tự động'}</div>`+
+ (aiComplete?`<div><strong>Tổng tham khảo (kể cả AI): ${total+aiSum}/${TOTAL}</strong></div>`:`<button type="button" class="btn" data-open-ai="1">AI nhận xét phần đặt câu (tuỳ chọn)</button>`);
+}
+function submit(){const missing=TOTAL-allAnswered();if(missing>0&&!confirm(`Bạn còn ${missing} câu chưa trả lời. Vẫn nộp bài để xem kết quả?`))return;
+ submitted=true;applyMarking();updateResults();save();document.getElementById('resultBox').scrollIntoView({behavior:'smooth',block:'nearest'});}
+function reset(){if(!confirm('Xóa toàn bộ câu trả lời, kết quả chấm và làm lại từ đầu?'))return;
+ vals={};aiGrades={};submitted=false;active='fill';try{localStorage.removeItem(STORAGE_KEY)}catch(e){}
+ renderTabs();renderSections();updateProgress();updateResults();window.scrollTo({top:0,behavior:'smooth'});save();}
+function updateSticky(){const a=document.querySelector('.topbar'),b=document.querySelector('.tabs-wrap');document.documentElement.style.setProperty('--top-h',Math.ceil(a.getBoundingClientRect().height)+'px');document.documentElement.style.setProperty('--tabs-h',Math.ceil(b.getBoundingClientRect().height)+'px');}
+function openAI(){if(!submitted){alert('Hãy bấm “Nộp bài” trước khi yêu cầu AI nhận xét phần đặt câu.');return;}
+ document.getElementById('aiModal').classList.add('show');document.getElementById('aiStatus').classList.remove('show');document.getElementById('aiStatus').textContent='';}
+function closeAI(){document.getElementById('aiModal').classList.remove('show');document.getElementById('aiApiKey').value='';}
+function responseText(data){if(typeof data.output_text==='string'&&data.output_text.trim())return data.output_text.trim();
+ return (data.output||[]).flatMap(x=>x.content||[]).filter(x=>typeof x.text==='string').map(x=>x.text).join('\n');}
+function parseJson(t){let s=t.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'');let i=s.indexOf('{'),j=s.lastIndexOf('}');if(i<0||j<i)throw Error('Dữ liệu trả về không phải JSON.');return JSON.parse(s.slice(i,j+1));}
+async function gradeAI(){let keyval=document.getElementById('aiApiKey').value.trim(),model=document.getElementById('aiModel').value.trim()||'gpt-4.1-mini',status=document.getElementById('aiStatus'),btn=document.getElementById('runAi');
+ if(!keyval){status.textContent='Hãy nhập API key trước khi chấm.';status.classList.add('show');return;}
+ const writing=DATA.sections.find(s=>s.id==='writing').questions,student=writing.map(q=>({n:q.n,word:q.stem,response:vals[key('writing',q.n)]||'',sample:q.sample}));
+ const prompt='Bạn hỗ trợ giảng viên đánh giá 20 câu 用词造句 học phần Ngữ pháp tổng hợp Trung Quốc. Hãy xét ngữ pháp, ngữ nghĩa, mức độ tự nhiên và cách dùng đúng từ bắt buộc; chấp nhận câu khác đáp án mẫu nếu đúng. Mỗi câu 0 hoặc 1 điểm. Câu trống được 0. Nhận xét bằng tiếng Việt; gợi ý sửa bằng tiếng Trung khi cần. Với mẫu 对……来说 và 要不是……就……, cần dùng đầy đủ kết cấu. Dữ liệu:'+JSON.stringify(student)+'\nChỉ trả về JSON dạng {"items":[{"n":1,"score":1,"feedback":"...","suggestion":"..."},...,{"n":20,"score":0,"feedback":"...","suggestion":"..."}]}. Đủ 20 câu, không markdown.';
+ status.textContent='Đang gửi 20 câu để AI nhận xét…';status.classList.add('show');btn.disabled=true;
+ try{
+ const r=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+keyval},body:JSON.stringify({model,input:[{role:'user',content:[{type:'input_text',text:prompt}]}],max_output_tokens:4500})});
+ const body=await r.json();if(!r.ok)throw Error(body.error?.message||'HTTP '+r.status);
+ const parsed=parseJson(responseText(body));if(!Array.isArray(parsed.items)||parsed.items.length!==20)throw Error('AI chưa trả đủ nhận xét cho 20 câu. Vui lòng thử lại.');
+ const newGrades={};for(const it of parsed.items){const n=Number(it.n);if(!Number.isInteger(n)||n<1||n>20||newGrades[n])throw Error('Số câu trong phản hồi AI không hợp lệ.');newGrades[n]={score:Number(it.score)===1?1:0,feedback:String(it.feedback||''),suggestion:String(it.suggestion||'')};}
+ if(Object.keys(newGrades).length!==20)throw Error('Thiếu kết quả một số câu.');aiGrades=newGrades;applyMarking();updateResults();save();status.textContent='AI đã trả đủ 20 nhận xét. Kết quả có ở từng câu phần Đặt câu.';setTimeout(closeAI,1100);
+ }catch(e){status.textContent='Không chấm được bằng AI: '+e.message+' Hãy kiểm tra API key, model và mạng Internet.';}finally{btn.disabled=false;keyval='';}}
+// Bấm đáp án trực tiếp ngay tại câu hỏi.
+document.addEventListener('click',ev=>{const t=ev.target.closest('button');if(!t)return;
+ if(t.dataset.tab){chooseSection(t.dataset.tab);return;}
+ if(t.dataset.key){chooseAnswer(t.dataset.key,t.dataset.value);return;}
+ if(t.dataset.jump){jump(t.dataset.jump);return;}
+ if(t.dataset.openAi){openAI();return;}
+});
+document.addEventListener('input',ev=>{if(ev.target.dataset.write)editWriting(ev.target.dataset.write,ev.target.value);});
+document.getElementById('submitBtn').addEventListener('click',submit);
+document.getElementById('resetBtn').addEventListener('click',reset);
+document.getElementById('runAi').addEventListener('click',gradeAI);
+document.getElementById('closeAi').addEventListener('click',closeAI);
+document.getElementById('cancelAi').addEventListener('click',closeAI);
+document.getElementById('aiModal').addEventListener('click',e=>{if(e.target.id==='aiModal')closeAI();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAI();});
+window.addEventListener('resize',updateSticky);
+window.addEventListener('load',updateSticky);
+restore();renderTabs();renderSections();updateProgress();updateResults();requestAnimationFrame(updateSticky);
+</script>
+</body>
+</html>
