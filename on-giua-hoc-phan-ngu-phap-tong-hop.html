@@ -326,7 +326,11 @@ function requestAIGrade(q,answer){return new Promise((resolve,reject)=>{
  script.onerror=()=>haiyenReceiveAiGrade({type:'haiyen-ai-feedback',requestId,ok:false,payload:{error:'Không thể kết nối tới hệ thống chấm điểm.'}});document.body.appendChild(script);
  setTimeout(()=>{if(pendingAiGrades.has(requestId))haiyenReceiveAiGrade({type:'haiyen-ai-feedback',requestId,ok:false,payload:{error:'Hệ thống phản hồi quá lâu.'}})},45000);
 });}
-async function submit(){if(aiGrading)return;const missing=TOTAL-allAnswered();if(missing>0&&!confirm(`Bạn còn ${missing} câu chưa trả lời. Các câu trống sẽ được tính 0 điểm. Bạn vẫn muốn nộp bài?`))return;
+function askConfirm(message,confirmText){return new Promise(resolve=>{
+ const layer=document.createElement('div');layer.className='modal show';layer.innerHTML=`<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="confirm-title"><div class="modal-header"><h2 id="confirm-title">Xác nhận</h2></div><div class="modal-body"><p>${esc(message)}</p><div class="modal-actions"><button class="btn" type="button" data-confirm="cancel">Hủy</button><button class="btn primary" type="button" data-confirm="ok">${esc(confirmText||'Đồng ý')}</button></div></div></div>`;
+ const finish=value=>{layer.remove();resolve(value)};layer.addEventListener('click',e=>{const action=e.target.closest('[data-confirm]')?.dataset.confirm;if(action)finish(action==='ok');});document.body.appendChild(layer);layer.querySelector('[data-confirm="ok"]').focus();
+ });}
+async function submit(){if(aiGrading)return;const missing=TOTAL-allAnswered();if(missing>0&&!await askConfirm(`Bạn còn ${missing} câu chưa trả lời. Các câu trống sẽ được tính 0 điểm. Bạn vẫn muốn nộp bài?`,'Vẫn nộp bài'))return;
  aiGrading=true;submitted=false;aiGrades={};const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Đang chấm bài…';clearMarks();updateResults();
  const writing=findSection('writing').questions,fresh={};
  try{
@@ -336,7 +340,7 @@ async function submit(){if(aiGrading)return;const missing=TOTAL-allAnswered();if
  }catch(e){submitted=false;const box=document.getElementById('resultBox');box.classList.add('show');box.innerHTML='<strong>Chưa thể chấm bài</strong><div>'+esc(e.message||'Vui lòng thử lại sau.')+'</div>';
  }finally{aiGrading=false;btn.disabled=false;btn.textContent='Nộp bài và chấm điểm';}
 }
-function reset(){if(!confirm('Xóa toàn bộ câu trả lời, kết quả chấm và làm lại từ đầu?'))return;
+async function reset(){if(!await askConfirm('Xóa toàn bộ câu trả lời, kết quả chấm và làm lại từ đầu?','Xóa và làm lại'))return;
  vals={};aiGrades={};submitted=false;aiGrading=false;active='fill';try{localStorage.removeItem(STORAGE_KEY)}catch(e){}
  renderTabs();renderSections();updateProgress();updateResults();window.scrollTo({top:0,behavior:'smooth'});save();}
 function updateSticky(){const a=document.querySelector('.topbar'),b=document.querySelector('.tabs-wrap');document.documentElement.style.setProperty('--top-h',Math.ceil(a.getBoundingClientRect().height)+'px');document.documentElement.style.setProperty('--tabs-h',Math.ceil(b.getBoundingClientRect().height)+'px');}
