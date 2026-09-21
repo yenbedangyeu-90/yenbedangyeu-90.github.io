@@ -278,11 +278,33 @@ function editWriting(k,val){vals[k]=val;const status=document.getElementById('wr
 function clearMarks(){document.querySelectorAll('.q-card,.ans-row').forEach(n=>n.classList.remove('correct','wrong'));
  document.querySelectorAll('.feedback,.side-feedback,.ai-feedback').forEach(n=>{n.classList.remove('show','bad','good','sample','pass','fail');n.innerHTML='';});}
 function showFeedback(el,text,variant){if(!el)return;el.innerHTML=text;el.className=el.classList.contains('side-feedback')?'side-feedback show '+variant:'feedback show '+variant;}
+const TERM_NOTES={
+ '看起来':'“看起来” miêu tả cảm nhận trực tiếp về vẻ bề ngoài hoặc trạng thái.','看来':'“看来” dùng khi người nói rút ra nhận định từ tình huống.','随着':'“随着” nêu sự thay đổi diễn ra cùng một quá trình.','伴随':'“伴随” mang nghĩa đi kèm, cùng xuất hiện với sự vật khác.',
+ '毫无':'“毫无” đứng trước danh từ, nghĩa là hoàn toàn không có.','毫不':'“毫不” đứng trước động từ hoặc tính từ, nghĩa là hoàn toàn không.','造成':'“造成” thường đi với kết quả hay thiệt hại cụ thể.','引起':'“引起” nhấn mạnh việc gây ra phản ứng, sự chú ý hoặc thảo luận.',
+ '再三':'“再三” chỉ hành động được lặp lại nhiều lần có chủ ý.','不断':'“不断” chỉ quá trình liên tục, không ngừng.','培养':'“培养” dùng với năng lực, thói quen hoặc nhân tài.','教育':'“教育” dùng khi giáo dục, khuyên răn con người.',
+ '一向':'“一向” nêu đặc điểm hoặc thói quen nhất quán từ trước đến nay.','一直':'“一直” nhấn mạnh hành động hoặc trạng thái kéo dài liên tục.','只管':'“只管” có nghĩa cứ việc, không cần ngại.','尽管':'“尽管” mở đầu mệnh đề nhượng bộ: mặc dù… nhưng…',
+ '暗暗':'“暗暗” chỉ suy nghĩ hoặc quyết tâm thầm trong lòng.','偷偷':'“偷偷” chỉ hành động làm lén, không để người khác biết.','随即':'“随即” nhấn mạnh hành động xảy ra ngay sau đó.','随后':'“随后” chỉ bước tiếp theo trong trình tự.',
+ '猛然':'“猛然” nhấn mạnh động tác bất ngờ và mạnh.','突然':'“突然” nêu sự việc bất ngờ xảy ra.','以致':'“以致” dẫn ra hậu quả, thường là kết quả không mong muốn.','因此':'“因此” nêu kết quả logic: vì vậy/do đó.',
+ '眼前':'“眼前” chỉ trước mắt hoặc tình hình hiện tại.','面前':'“面前” chỉ vị trí phía trước một người hay tập thể.','体验':'“体验” là trực tiếp tham gia để trải nghiệm.','体会':'“体会” là hiểu, cảm nhận sâu sắc sau khi trải qua.',
+ '从……来说':'“从……来说” nêu góc độ hoặc phương diện đánh giá.','对……来说':'“对……来说” nêu đối tượng mà nhận xét áp dụng.','提供':'“提供” dùng rộng cho thông tin, dịch vụ, điều kiện hoặc vật phẩm.','供应':'“供应” nhấn mạnh cung ứng vật tư/hàng hóa đều đặn.',
+ '这样一来':'“这样一来” nêu hệ quả của toàn bộ cách làm vừa nói.','于是':'“于是” dẫn sang hành động tiếp theo do tình huống trước đó.','从而':'“从而” nối biện pháp/quá trình với kết quả đạt được.'
+};
+function simpleExplanation(s,q){
+ const correctLabel=(q.opts&&q.opts[q.answer])||q.answer;
+ if(s.id==='fill')return TERM_NOTES[correctLabel]||`Đây là từ phù hợp với ngữ cảnh và cách kết hợp từ trong câu.`;
+ if(s.id==='sort')return `Câu đầu nêu bối cảnh, các câu sau phát triển theo quan hệ thời gian–nguyên nhân–kết quả, nên thứ tự hợp lý là ${q.correctSequence}.`;
+ if(s.id==='wrong')return `Câu này dùng từ hoặc cấu trúc chưa đúng ngữ cảnh; thay theo câu gợi ý sẽ đúng nghĩa và tự nhiên hơn.`;
+ if(s.id==='terms')return q.answer==='对'?`Lời giải thích phù hợp với nghĩa và cách dùng của từ trong câu.`:`Lời giải thích đã nêu sai nghĩa hoặc giới hạn cách dùng của từ trong câu.`;
+ if(s.id==='read')return `Chi tiết trong bài đọc phù hợp với phương án “${correctLabel}”.`;
+ if(s.id==='truefalse')return q.answer==='对'?`Nhận định này phù hợp với thông tin được nêu trong bài đọc.`:`Nhận định này trái với hoặc không đúng theo thông tin trong bài đọc.`;
+ return `Đáp án này phù hợp với nội dung và ngữ cảnh của câu.`;
+}
 function gradeObjective(s,q){const v=vals[key(s.id,q.n)]||'',pass=v===q.answer;
  const label=q.opts[q.answer]||q.answer;
  let detail=`<strong>Đáp án đúng:</strong> ${esc(q.answer)}. ${esc(label)}`;
  if(s.id==='sort')detail+=`<br><strong>Trình tự:</strong> ${esc(q.correctSequence)}`;
  if(s.id==='wrong')detail+=`<br><strong>Gợi ý sửa:</strong> ${esc(q.fix)}`;
+ detail+=`<br><strong>Giải thích:</strong> ${esc(simpleExplanation(s,q))}`;
  return {pass,detail};}
 function applyMarking(){if(!submitted)return;
  for(const s of DATA.sections)for(const q of s.questions){const k=key(s.id,q.n),el=document.getElementById('q-'+k),row=document.getElementById('row-'+k);
