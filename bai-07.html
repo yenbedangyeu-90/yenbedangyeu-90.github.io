@@ -17,6 +17,11 @@
 .listening-passage{padding:20px;border:1px solid var(--line);border-radius:14px;background:#fff;font-size:21px;line-height:2.15}.listening-passage p{margin:0}.passage-blank{display:inline-block;width:108px;max-width:34vw;margin:0 5px;padding:4px 8px;border:0;border-bottom:2px solid var(--lemon);background:var(--soft);border-radius:7px 7px 2px 2px;text-align:center;font-size:19px;font-weight:700;outline:0}.passage-blank.correct{border-bottom-color:var(--green);background:#eef9f4;color:var(--green)}.passage-blank.wrong{border-bottom-color:var(--red);background:#fff0f0;color:var(--red)}
 .writing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.writing-card{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}.writing-card img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:11px;background:#f7eee8}.writing-question{margin:12px 0 8px;font-size:19px;font-weight:700}.writing-input{font-size:18px}.writing-card.correct-row{border-color:var(--green);background:#f2fbf7}.writing-card.wrong-row{border-color:var(--red);background:#fff5f5}
 @media(max-width:760px){.writing-grid{grid-template-columns:1fr}}
+
+.audio-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--soft);padding:10px 14px;border-radius:14px;border:1px solid #dbe6a6;margin:12px 0 16px}
+.audio-row audio{width:100%;max-width:100%;flex:1;outline:none;border-radius:30px}
+.audio-badge{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:var(--lime);background:#fff;border:1px solid #cbd99b;padding:5px 12px;border-radius:20px;white-space:nowrap}
+
 </style></head><body>
 <div class="app"><main class="main"><div class="content">
   <div class="backbar"><a class="backlink" href="../index.html">← Quay lại mục lục</a></div>
@@ -31,45 +36,142 @@
 
   <!-- Nghe 1: Điền thanh mẫu (7-1 tr.27) -->
   <section class="card"><div class="card-head"><div><h3>1. Nghe và chọn Thanh mẫu đúng (7-1 Tr.27)</h3><p class="sub">Nghe file âm thanh và chọn thanh mẫu thích hợp điền vào chỗ trống.</p></div></div>
-    <div id="listening-initials-quiz" class="quiz-list"></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 File nghe 7-1 (Trang 27)</span>
+  <audio controls preload="metadata">
+    <source src="b7-nghe-7-1.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-1.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-1.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+<div id="listening-initials-quiz" class="quiz-list"></div>
     <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-initials-quiz','listening-initials-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-initials-quiz','listening-initials-feedback')">Chọn lại</button></div>
     <div id="listening-initials-feedback" class="feedback"></div>
   </section>
 
   <!-- Nghe 2: Điền vận mẫu và thanh điệu (7-2 tr.27) -->
   <section class="card"><div class="card-head"><div><h3>2. Nghe và chọn Vận mẫu & Thanh điệu (7-2 Tr.27)</h3><p class="sub">Nghe file âm thanh và chọn vận mẫu có thanh điệu chuẩn xác.</p></div></div>
-    <div id="listening-finals-quiz" class="quiz-list"></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 File nghe 7-2 (Trang 27)</span>
+  <audio controls preload="metadata">
+    <source src="b7-nghe-7-2.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-2.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-2.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+<div id="listening-finals-quiz" class="quiz-list"></div>
     <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-finals-quiz','listening-finals-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-finals-quiz','listening-finals-feedback')">Chọn lại</button></div>
     <div id="listening-finals-feedback" class="feedback"></div>
   </section>
 
   <!-- Nghe 3: Đánh dấu thanh điệu câu (7-4 tr.28) -->
   <section class="card"><div class="card-head"><div><h3>3. Nghe thanh điệu của từ gạch chân (7-4 Tr.28)</h3><p class="sub">Chọn thanh điệu chính xác của cụm từ gạch chân trong câu nghe được.</p></div></div>
-    <div id="listening-tones-sentence-quiz" class="quiz-list"></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 File nghe 7-4 (Trang 28)</span>
+  <audio controls preload="metadata">
+    <source src="b7-nghe-7-4.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-4.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-4.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+<div id="listening-tones-sentence-quiz" class="quiz-list"></div>
     <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-tones-sentence-quiz','listening-tones-sentence-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-tones-sentence-quiz','listening-tones-sentence-feedback')">Chọn lại</button></div>
     <div id="listening-tones-sentence-feedback" class="feedback"></div>
   </section>
 
   <!-- Nghe 4: Nghe chọn câu trả lời thích hợp (7-6 tr.29) -->
   <section class="card"><div class="card-head"><div><h3>4. Nghe và chọn câu trả lời thích hợp (7-6 Tr.29)</h3><p class="sub">Nghe câu hỏi hoặc tình huống và chọn câu đáp phù hợp A/B/C/D.</p></div></div>
-    <div id="listening-response-quiz" class="quiz-list"></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 File nghe 7-6 (Trang 29)</span>
+  <audio controls preload="metadata">
+    <source src="b7-nghe-7-6.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-6.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-6.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+<div id="listening-response-quiz" class="quiz-list"></div>
     <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-response-quiz','listening-response-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-response-quiz','listening-response-feedback')">Chọn lại</button></div>
     <div id="listening-response-feedback" class="feedback"></div>
   </section>
 
   <!-- Nghe 5: Nghe hội thoại chọn đáp án đúng (7-7 tr.30) -->
   <section class="card"><div class="card-head"><div><h3>5. Nghe hội thoại và chọn đáp án đúng (7-7 Tr.30)</h3><p class="sub">Nghe đoạn đối thoại ngắn và trả lời câu hỏi trắc nghiệm A/B/C/D.</p></div></div>
-    <div id="listening-dialogue-quiz" class="quiz-list"></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 File nghe 7-7 (Trang 30)</span>
+  <audio controls preload="metadata">
+    <source src="b7-nghe-7-7.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-7.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-7.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+<div id="listening-dialogue-quiz" class="quiz-list"></div>
     <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-dialogue-quiz','listening-dialogue-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-dialogue-quiz','listening-dialogue-feedback')">Chọn lại</button></div>
     <div id="listening-dialogue-feedback" class="feedback"></div>
   </section>
 
   <!-- Nghe 6: Nghe hội thoại bài tập về nhà (7-9 tr.31) -->
   <section class="card"><div class="card-head"><div><h3>6. Nghe hội thoại chọn đáp án - Bài tập về nhà (7-9 Tr.31)</h3><p class="sub">Phần luyện tập nâng cao tổng hợp kỹ năng nghe hiểu.</p></div></div>
-    <div id="listening-homework-quiz" class="quiz-list"></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 File nghe 7-9 (Trang 31)</span>
+  <audio controls preload="metadata">
+    <source src="b7-nghe-7-9.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-9.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-9.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+<div id="listening-homework-quiz" class="quiz-list"></div>
     <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-homework-quiz','listening-homework-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-homework-quiz','listening-homework-feedback')">Chọn lại</button></div>
     <div id="listening-homework-feedback" class="feedback"></div>
   </section>
+
+<!-- Nghe bổ sung: 7-3, 7-5, 7-8 -->
+<section class="card"><div class="card-head"><div><h3>7. Luyện nghe bổ sung & Phát âm (7-3, 7-5, 7-8)</h3><p class="sub">Các file nghe luyện thanh điệu, biến điệu thanh nhẹ và hội thoại mở rộng trong giáo trình nghe.</p></div></div>
+  <div style="display:grid;gap:14px;">
+    <div>
+      <p style="font-weight:700;margin-bottom:6px;color:var(--lime);">• Bài 7-3: Luyện nghe và phân biệt thanh điệu (Trang 28)</p>
+      <div class="audio-row">
+  <span class="audio-badge">🎧 File nghe 7-3 (Trang 28)</span>
+  <audio controls preload="metadata">
+    <source src="b7-nghe-7-3.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-3.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-3.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    </div>
+    <div>
+      <p style="font-weight:700;margin-bottom:6px;color:var(--lime);">• Bài 7-5: Luyện đọc các từ mang thanh nhẹ (轻声: 馒头, 包子, 饺子... Trang 29)</p>
+      <div class="audio-row">
+  <span class="audio-badge">🎧 File nghe 7-5 (Trang 29)</span>
+  <audio controls preload="metadata">
+    <source src="b7-nghe-7-5.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-5.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-5.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    </div>
+    <div>
+      <p style="font-weight:700;margin-bottom:6px;color:var(--lime);">• Bài 7-8: Nghe hội thoại điền thông tin món ăn (听后填表 Trang 30)</p>
+      <div class="audio-row">
+  <span class="audio-badge">🎧 File nghe 7-8 (Trang 30)</span>
+  <audio controls preload="metadata">
+    <source src="b7-nghe-7-8.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-8.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-8.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    </div>
+  </div>
+</section>
+
 
   <h2 class="section-title"><span>二、生词与练习</span> · Luyện từ mới Bài 7 《汉语教程 1》</h2>
   <section class="card"><div class="card-head"><div><h3>1. Nối từ mới với nghĩa tiếng Việt</h3><p class="sub">Bấm chọn từ tiếng Trung bên trái và nghĩa tương ứng bên phải.</p></div></div>
