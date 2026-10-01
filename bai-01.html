@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#7a9200"><title>Bài 1 · 你好！ | Giáo trình Hán ngữ 1</title><style>
+:root{--lime:#5f7200;--lemon:#7f9800;--bright:#a1bf00;--soft:#f7fbe6;--cream:#fcfee8;--paper:#fff;--ink:#282b15;--muted:#6f7457;--line:#e2eabb;--green:#187a61;--red:#b52626;--blue:#28578e;--shadow:0 10px 28px rgba(110,130,0,.11)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 Arial,"Noto Sans SC","Microsoft YaHei",sans-serif}button,input{font:inherit}.main{padding:28px}.content{max-width:1120px;margin:auto}
+.backbar{margin:0 0 14px}.backlink{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border:1px solid var(--lemon);border-radius:10px;background:#fff;color:var(--lime);font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(110,130,0,.08)}.backlink:hover{background:var(--soft)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--lime);text-transform:uppercase}.hero{position:relative;overflow:hidden;margin:10px 0 22px;padding:42px;border-radius:26px;background:linear-gradient(135deg,#7f9800,#546500);color:#fff;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;right:-80px;bottom:-120px;width:320px;height:320px;border:60px solid rgba(255,255,255,.14);border-radius:50%}.hero h1{position:relative;z-index:1;margin:0;font-size:clamp(38px,7vw,76px);line-height:1.03}.hero p{position:relative;z-index:1;margin:14px 0 0;font:700 clamp(22px,4vw,38px)/1.25 Arial,"Noto Sans SC",sans-serif}.stage-note{margin:0 0 26px;padding:13px 16px;border-left:4px solid var(--bright);border-radius:10px;background:#f7fbe6;color:#3b4308}.section-title{margin:34px 0 14px;font-size:clamp(25px,4vw,36px)}.section-title span{color:var(--lime)}
+.card{margin:0 0 18px;padding:24px;border:1px solid var(--line);border-radius:20px;background:var(--paper);box-shadow:var(--shadow)}.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:18px}.card h3{margin:0;font-size:21px}.sub{margin:4px 0 0;color:var(--muted);font-size:14px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:10px;padding:10px 14px;background:var(--lemon);color:#fff;font-weight:700;cursor:pointer;text-decoration:none}.btn.dark{background:#2a2f11}.btn.outline{border:1px solid var(--lemon);background:#fff;color:var(--lime)}.btn:disabled{cursor:not-allowed;opacity:.48}.feedback,.note{margin-top:12px;padding:11px 13px;border-radius:10px;background:var(--soft);font-size:14px}.feedback:empty{display:none}.ok{color:var(--green)!important}.bad{color:var(--red)!important}.missing{border-left:4px solid var(--bright);background:#f7fbe6}
+.audio-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.audio-row audio{max-width:100%;flex:1}
+.quiz-list{display:grid;gap:12px}.quiz-row{padding:13px;border:1px solid var(--line);border-radius:12px;background:#fff}.qtitle{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-weight:700}.choices{display:flex;flex-wrap:wrap;gap:7px}.choice,.match-chip,.token,.order-chip{border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer}.choice{padding:8px 11px}.choice.selected,.order-chip.selected{border-color:var(--lemon);background:var(--soft)}.choice.correct{border-color:var(--green);background:#e8f5f0;color:var(--green)}.choice.wrong{border-color:var(--red);background:#fbeaea;color:var(--red)}
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}.match-col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.match-chip{padding:11px;text-align:center;font-weight:700}.match-chip.selected{outline:3px solid var(--soft);border-color:var(--lime)}.match-chip.matched{border-color:var(--green);background:#e8f5f0;color:var(--green)}.match-chip.wrong{animation:shake .25s;border-color:var(--red)}@keyframes shake{50%{transform:translateX(5px)}}
+.patterns{display:grid;gap:10px}.pattern{padding:13px;border-left:4px solid var(--lemon);border-radius:8px;background:var(--soft)}.hanzi{font-size:21px;font-weight:700}.pinyin{color:var(--lime);font-weight:700}.translation{color:#4a4e32}.grammar-note{margin-top:18px;padding:18px;border:1px solid #dbe6a6;border-radius:16px;background:linear-gradient(135deg,#fcfef0,#f7fbe6);box-shadow:0 6px 18px rgba(110,130,0,.07)}.grammar-note-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}.grammar-badge{display:grid;place-items:center;min-width:48px;height:42px;padding:0 8px;border-radius:12px;background:var(--lemon);color:#fff;font-size:24px;font-weight:800}.grammar-note h4{margin:0;color:var(--lime);font-size:19px}.grammar-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.grammar-box{padding:12px;border:1px solid var(--line);border-radius:11px;background:#fff}.grammar-box b{color:var(--lime)}
+.arrange-list{display:grid;gap:12px}.arrange-row{padding:12px;border:1px solid var(--line);border-radius:12px}.arrange-bank,.arrange-answer{display:flex;flex-wrap:wrap;gap:8px;min-height:42px}.arrange-answer{margin-top:9px;padding:8px;border:1px dashed var(--bright);border-radius:9px}
+.answer-note{display:block;width:100%;margin-top:8px;padding:7px 9px;border-radius:8px;font-size:13px;font-weight:700}.answer-note:empty{display:none}.answer-note.ok{background:#e8f5f0;color:var(--green)}.answer-note.bad{background:#fbeaea;color:var(--red)}.quiz-row.correct-row,.arrange-row.correct-row{border-color:var(--green);background:#f2fbf7}.quiz-row.wrong-row,.arrange-row.wrong-row{border-color:var(--red);background:#fff5f5}.arrange-answer.correct{border-color:var(--green)!important;color:var(--green)}.arrange-answer.wrong{border-color:var(--red)!important;color:var(--red)}
+.scorebox{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;margin-top:30px;padding:26px;border-radius:22px;background:#24290e;color:#fff}.score-ring{display:grid;place-items:center;width:112px;height:112px;border:14px solid #4a5424;border-top-color:var(--lemon);border-right-color:var(--lemon);border-radius:50%;font-weight:700;font-size:28px}.scorebox h2{margin:0;font-size:31px}.scorebox p{margin:4px 0;color:#dbe6a6}.score-actions{display:grid;gap:9px;min-width:180px}.toast{position:fixed;right:20px;bottom:20px;z-index:10;max-width:360px;padding:13px 16px;border-radius:12px;background:#24290e;color:#fff;box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(10px);transition:.2s}.toast.show{opacity:1;transform:none}
+.char-table{width:100%;border-collapse:collapse;margin-top:10px;background:#fff;border-radius:12px;overflow:hidden}.char-table th,.char-table td{padding:10px 14px;border:1px solid var(--line);text-align:center}.char-table th{background:var(--soft);color:var(--lime);font-weight:700}
+.pinyin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-top:10px}.pinyin-card{padding:10px;background:#fff;border:1px solid var(--line);border-radius:10px;text-align:center;font-weight:700;font-size:18px}.pinyin-card span{display:block;font-size:13px;color:var(--muted);font-weight:400}
+@media(max-width:900px){.main{padding:18px}.grammar-columns{grid-template-columns:1fr}.scorebox{grid-template-columns:auto 1fr}.score-actions{grid-column:1/-1;grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.hero{padding:28px 22px}.card{padding:18px}.match-wrap{grid-template-columns:1fr}.match-col{grid-template-columns:repeat(2,1fr)}.scorebox{grid-template-columns:1fr;text-align:center}.score-ring{margin:auto}.score-actions{grid-template-columns:1fr}}
+</style></head><body>
+<div class="app"><main class="main"><div class="content">
+  <div class="backbar"><a class="backlink" href="../index.html">← Quay lại mục lục</a></div>
+  <div class="eyebrow">GIÁO TRÌNH HÁN NGỮ 1 (PHIÊN BẢN 3) · BÀI 1</div>
+  <section class="hero"><h1>BÀI 1</h1><p>第一课 · 你好！ (Xin chào!)</p></section>
+  <div class="stage-note"><b>Nội dung chính Bài 1 《汉语教程 1》:</b><br>
+    • <b>Bài khóa (课文):</b> Chào hỏi cơ bản: A: 你好！(Nǐ hǎo!) — B: 你好！(Nǐ hǎo!)<br>
+    • <b>Từ mới (生词):</b> 你 (bạn, anh), 好 (tốt, đẹp), 你好 (xin chào), 一 (1), 五 (5), 八 (8), 大 (to, lớn), 不 (không), 口 (miệng), 白 (trắng), 女 (nữ, phụ nữ), 马 (con ngựa).<br>
+    • <b>Ngữ âm & Luyện nghe:</b> 11 thanh mẫu (b, p, m, f, d, t, n, l, g, k, h), 10 vận mẫu (a, o, e, i, u, ü, ai, ei, ao, ou), 4 thanh điệu và biến điệu thanh ba (2 thanh 3 đi liền: Nǐ hǎo ➔ Ní hǎo).<br>
+    • <b>Chữ Hán:</b> 8 nét cơ bản, thứ tự viết (từ trên xuống dưới, từ trái sang phải, phẩy trước mác sau).</div>
+
+  <h2 class="section-title"><span>一、听力练习</span> · Luyện nghe ngữ âm (Từ Giáo trình Nghe 1)</h2>
+  <section class="card"><div class="card-head"><div><h3>1. Phân biệt Thanh mẫu đối lập (b/p, d/t, g/k)</h3><p class="sub">Nghe file âm thanh và chọn âm tiết chuẩn xác (Bài tập 3 tr.1 sách Nghe 1).</p></div></div>
+    <div class="audio-row"><audio controls preload="metadata" src="../assets/audio/b1-nghe-1.mp3">Trình duyệt không hỗ trợ audio.</audio></div>
+    <div id="listening-initials-quiz" class="quiz-list"></div>
+    <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-initials-quiz','listening-initials-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-initials-quiz','listening-initials-feedback')">Chọn lại</button></div>
+    <div id="listening-initials-feedback" class="feedback"></div>
+  </section>
+
+  <section class="card"><div class="card-head"><div><h3>2. Phân biệt Vận mẫu đơn & ghép</h3><p class="sub">Nghe file âm thanh và chọn vận mẫu đúng (Bài tập 4 tr.2 sách Nghe 1).</p></div></div>
+    <div class="audio-row"><audio controls preload="metadata" src="../assets/audio/b1-nghe-2.mp3">Trình duyệt không hỗ trợ audio.</audio></div>
+    <div id="listening-finals-quiz" class="quiz-list"></div>
+    <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-finals-quiz','listening-finals-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-finals-quiz','listening-finals-feedback')">Chọn lại</button></div>
+    <div id="listening-finals-feedback" class="feedback"></div>
+  </section>
+
+  <section class="card"><div class="card-head"><div><h3>3. Biến điệu của hai thanh 3 (三声变调)</h3><p class="sub">Quy tắc trọng tâm: Khi 2 thanh 3 đi liền nhau, âm thứ nhất đọc thành thanh 2 (theo tr.10 SGK Giáo trình Hán ngữ 1).</p></div></div>
+    <div id="listening-tone-quiz" class="quiz-list"></div>
+    <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-tone-quiz','listening-tone-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-tone-quiz','listening-tone-feedback')">Chọn lại</button></div>
+    <div id="listening-tone-feedback" class="feedback"></div>
+  </section>
+
+  <h2 class="section-title"><span>二、生词练习</span> · Luyện từ mới Bài 1 (生词)</h2>
+  <section class="card"><div class="card-head"><div><h3>1. Nối chữ Hán với nghĩa tiếng Việt</h3><p class="sub">Toàn bộ 11 từ mới xuất hiện trong Bài 1 (trang 23-24 SGK Giáo trình Hán ngữ 1).</p></div></div>
+    <div class="match-wrap"><div class="match-col" id="meaning-left"></div><div class="match-col" id="meaning-right"></div></div>
+    <div class="actions"><button class="btn" onclick="showMatchResult()">Xem kết quả</button><button class="btn outline" onclick="resetMatching()">Làm lại</button></div>
+    <div id="meaning-feedback" class="feedback"></div>
+  </section>
+
+  <section class="card"><div class="card-head"><div><h3>2. Chọn chữ Hán phù hợp theo Pinyin</h3><p class="sub">Luyện nhận diện mặt chữ Hán và phiên âm tương ứng.</p></div></div>
+    <div id="hanzi-quiz" class="quiz-list"></div>
+    <div class="actions"><button class="btn" onclick="checkChoiceQuiz('hanzi-quiz','hanzi-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('hanzi-quiz','hanzi-feedback')">Chọn lại</button></div>
+    <div id="hanzi-feedback" class="feedback"></div>
+  </section>
+
+  <h2 class="section-title"><span>三、汉字与笔顺</span> · Bảng chữ Hán & Bút thuận</h2>
+  <section class="card"><div class="card-head"><div><h3>11 Chữ Hán độc thể & Thứ tự nét Bài 1</h3><p class="sub">Trích trang 34-35 SGK Giáo trình Hán ngữ 1: Tập viết chữ Hán cơ bản.</p></div></div>
+    <table class="char-table">
+      <thead><tr><th>Chữ Hán</th><th>Pinyin</th><th>Âm Hán Việt</th><th>Nghĩa</th><th>Số nét</th><th>Thứ tự nét viết</th></tr></thead>
+      <tbody>
+        <tr><td style="font-size:24px;font-weight:bold">一</td><td>yī</td><td>Nhất</td><td>Số một (1)</td><td>1</td><td>一 (ngang)</td></tr>
+        <tr><td style="font-size:24px;font-weight:bold">五</td><td>wǔ</td><td>Ngũ</td><td>Số năm (5)</td><td>4</td><td>一 丨 𠃍 一</td></tr>
+        <tr><td style="font-size:24px;font-weight:bold">八</td><td>bā</td><td>Bát</td><td>Số tám (8)</td><td>2</td><td>丿 ㄟ (phẩy trước, mác sau)</td></tr>
+        <tr><td style="font-size:24px;font-weight:bold">大</td><td>dà</td><td>Đại</td><td>To, lớn</td><td>3</td><td>一 丿 ㄟ (ngang, phẩy, mác)</td></tr>
+        <tr><td style="font-size:24px;font-weight:bold">不</td><td>bù</td><td>Bất</td><td>Không, chẳng</td><td>4</td><td>一 丿 丨 丶</td></tr>
+        <tr><td style="font-size:24px;font-weight:bold">口</td><td>kǒu</td><td>Khẩu</td><td>Miệng, nhân khẩu</td><td>3</td><td>丨 𠃍 一</td></tr>
+        <tr><td style="font-size:24px;font-weight:bold">白</td><td>bái</td><td>Bạch</td><td>Màu trắng</td><td>5</td><td>丿 丨 𠃍 一 一</td></tr>
+        <tr><td style="font-size:24px;font-weight:bold">女</td><td>nǚ</td><td>Nữ</td><td>Phụ nữ, nữ giới</td><td>3</td><td>𡿨 丿 一</td></tr>
+        <tr><td style="font-size:24px;font-weight:bold">马</td><td>mǎ</td><td>Mã</td><td>Con ngựa</td><td>3</td><td>𠃍 𠄌 一</td></tr>
+        <tr><td style="font-size:24px;font-weight:bold">你</td><td>nǐ</td><td>Nhĩ</td><td>Bạn, anh, chị (ngôi thứ 2)</td><td>7</td><td>Bộ Nhân đứng (亻) + 尔</td></tr>
+        <tr><td style="font-size:24px;font-weight:bold">好</td><td>hǎo</td><td>Hảo</td><td>Tốt, đẹp, khỏe, ngon</td><td>6</td><td>Bộ Nữ (女) + Tử (子)</td></tr>
+      </tbody>
+    </table>
+    <aside class="grammar-note"><div class="grammar-note-head"><span class="grammar-badge">规</span><div><h4>7 Quy tắc bút thuận viết chữ Hán cơ bản (汉字笔顺七条基本规则)</h4><div class="sub">Quy tắc vàng giúp viết chữ Hán đúng thứ tự, cân đối và chuẩn đẹp</div></div></div>
+      <div class="grammar-columns" style="grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));">
+        <div class="grammar-box"><b>1. Ngang trước sổ sau (先横后竖)</b><br>Nét ngang viết trước, nét sổ viết sau.<br>Ví dụ: <span class="hanzi">十</span> (一 ➔ 丨), <span class="hanzi">木</span> (一 ➔ 丨 ➔ 丿 ➔ ㄟ).</div>
+        <div class="grammar-box"><b>2. Phẩy trước mác sau (先撇后捺)</b><br>Nét phẩy xiên trái viết trước, nét mác xiên phải viết sau.<br>Ví dụ: <span class="hanzi">八</span> (丿 ➔ ㄟ), <span class="hanzi">人</span> (丿 ➔ ㄟ), <span class="hanzi">大</span>.</div>
+        <div class="grammar-box"><b>3. Từ trên xuống dưới (从上到下)</b><br>Viết phần phía trên trước, phần phía dưới sau.<br>Ví dụ: <span class="hanzi">三</span> (一 ➔ 一 ➔ 一), <span class="hanzi">五</span>, <span class="hanzi">二</span>.</div>
+        <div class="grammar-box"><b>4. Từ trái sang phải (从左到右)</b><br>Các bộ phận bên trái viết trước, bên phải viết sau.<br>Ví dụ: <span class="hanzi">你</span> (亻 ➔ 尔), <span class="hanzi">好</span> (女 ➔ 子).</div>
+        <div class="grammar-box"><b>5. Ngoài trước trong sau (先外后内)</b><br>Khung bao bọc bên ngoài viết trước, ruột bên trong viết sau.<br>Ví dụ: <span class="hanzi">月</span>, <span class="hanzi">同</span>, <span class="hanzi">问</span>.</div>
+        <div class="grammar-box"><b>6. Vào trước đóng sau (先进入后关门)</b><br>Viết khung bao bọc, viết ruột bên trong, đóng nét đáy cuối cùng.<br>Ví dụ: <span class="hanzi">回</span>, <span class="hanzi">日</span>, <span class="hanzi">国</span>, <span class="hanzi">田</span>.</div>
+        <div class="grammar-box"><b>7. Giữa trước hai bên sau (先中间后两边)</b><br>Nét chính giữa viết trước, hai phần đối xứng viết sau.<br>Ví dụ: <span class="hanzi">小</span> (丨 ➔ 丿 ➔ 丶), <span class="hanzi">水</span> (亅 ➔ ㇇ ➔ 丿 ➔ ㄟ).</div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="card"><div class="card-head"><div><h3>Trắc nghiệm thứ tự nét & cấu tạo chữ Hán</h3><p class="sub">Kiểm tra khả năng đếm nét và ghi nhớ bút thuận.</p></div></div>
+    <div id="stroke-quiz" class="quiz-list"></div>
+    <div class="actions"><button class="btn" onclick="checkChoiceQuiz('stroke-quiz','stroke-feedback')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('stroke-quiz','stroke-feedback')">Chọn lại</button></div>
+    <div id="stroke-feedback" class="feedback"></div>
+  </section>
+
+  <h2 class="section-title"><span>四、语音与交际</span> · Luyện ghép âm & Giao tiếp</h2>
+  <section class="card"><div class="card-head"><div><h3>1. Nhận đọc và ghép âm (认读 - Tr.34 SGK)</h3><p class="sub">Luyện đọc các cụm từ ghép âm cơ bản trong bài học.</p></div></div>
+    <div class="pinyin-grid">
+      <div class="pinyin-card">yīhào<span>一号</span></div>
+      <div class="pinyin-card">bāhào<span>八号</span></div>
+      <div class="pinyin-card">dà mǎ<span>大马</span></div>
+      <div class="pinyin-card">bái mǎ<span>白马</span></div>
+      <div class="pinyin-card">dà lóu<span>大楼</span></div>
+      <div class="pinyin-card">tóu<span>大头</span></div>
+      <div class="pinyin-card">dàyī<span>大衣</span></div>
+      <div class="pinyin-card">kěyǐ<span>可以</span></div>
+      <div class="pinyin-card">yǔfǎ<span>语法</span></div>
+      <div class="pinyin-card">měihǎo<span>美好</span></div>
+    </div>
+  </section>
+
+  <section class="card"><div class="card-head"><div><h3>2. Sắp xếp từ thành câu chào hỏi</h3><p class="sub">Bấm chọn các từ theo đúng thứ tự giao tiếp tự nhiên.</p></div></div>
+    <div class="arrange-list" id="arrange-list"></div>
+    <div class="actions"><button class="btn" onclick="checkArrange()">Kiểm tra đáp án</button><button class="btn outline" onclick="renderArrange()">Làm lại</button></div>
+    <div id="arrange-feedback" class="feedback"></div>
+  </section>
+
+  <section class="scorebox"><div class="score-ring" id="score-ring">0%</div><div><h2 id="score-title">Kết quả bài luyện tập</h2><p id="score-text">Bấm “Chấm toàn bộ” để xem số câu đúng và tỉ lệ phần trăm.</p><p id="score-breakdown"></p></div><div class="score-actions"><button class="btn" onclick="gradeAll()">Chấm toàn bộ</button><button class="btn outline" onclick="location.reload()">Làm lại từ đầu</button></div></section>
+</div></main></div><div class="toast" id="toast"></div>
+
+<script>
+const listeningInitialsQuiz=[
+  ["1. Phân biệt âm g / k: [gài] hay [kài]?",["gai","kai"],0],
+  ["2. Phân biệt âm b / p: [bāo] hay [pāo]?",["pao","bao"],1],
+  ["3. Phân biệt âm d / t: [tóu] hay [dóu]?",["tou","dou"],0],
+  ["4. Phân biệt âm m / f: [fǒu] hay [mǒu]?",["mou","fou"],1],
+  ["5. Phân biệt âm n / l: [nán] hay [lán]?",["nan","lan"],0],
+  ["6. Phân biệt âm h / k: [kǒu] hay [hǒu]?",["kou","hou"],0]
+];
+const listeningFinalsQuiz=[
+  ["1. Phân biệt âm [bā] và [bāo]: bạn nghe thấy âm nào?",["ba","bao"],0],
+  ["2. Phân biệt âm [pā] và [pō]: bạn nghe thấy âm nào?",["pa","po"],1],
+  ["3. Phân biệt âm [mó] và [mǔ]: bạn nghe thấy âm nào?",["mo","mu"],0],
+  ["4. Phân biệt âm [lǐ] và [lǚ]: bạn nghe thấy âm nào?",["li","lü"],1],
+  ["5. Phân biệt âm [kǎi] và [kǎo]: bạn nghe thấy âm nào?",["kai","kao"],0],
+  ["6. Phân biệt âm [dōu] và [dū]: bạn nghe thấy âm nào?",["dou","du"],0]
+];
+const listeningToneQuiz=[
+  ["1. Khi phát âm câu chào 【你好】 (nǐ + hǎo), âm 【你】 sẽ biến điệu thành thanh mấy?",["Thanh 1 (nī)","Thanh 2 (ní)","Giữ nguyên thanh 3 (nǐ)","Thanh 4 (nì)"],1],
+  ["2. Cụm từ nào sau đây xảy ra hiện tượng biến điệu thanh 3 (âm đầu đọc thành thanh 2)?",["大马 (dà mǎ)","白马 (bái mǎ)","美好 (měi hǎo)","不好 (bù hǎo)"],2],
+  ["3. Cụm từ 【可以】 (kě + yǐ) có cách đọc chuẩn xác về thanh điệu là:",["kèyǐ","kēyǐ","kéyǐ","kěyī"],2],
+  ["4. Cụm từ 【五百】 (wǔ + bǎi) khi đọc âm 【五】 đọc thành:",["wū","wú","wǔ","wù"],1]
+];
+const meaningPairs={
+  "你":"bạn, anh, chị (ngôi 2)",
+  "好":"tốt, đẹp, khỏe",
+  "你好":"xin chào!",
+  "一":"số một (1)",
+  "五":"số năm (5)",
+  "八":"số tám (8)",
+  "大":"to, lớn",
+  "不":"không, chẳng",
+  "口":"miệng, nhân khẩu",
+  "白":"trắng",
+  "女":"nữ, phụ nữ",
+  "马":"con ngựa"
+};
+const meaningOrder=[
+  "to, lớn",
+  "bạn, anh, chị (ngôi 2)",
+  "số năm (5)",
+  "con ngựa",
+  "xin chào!",
+  "không, chẳng",
+  "số một (1)",
+  "trắng",
+  "tốt, đẹp, khỏe",
+  "miệng, nhân khẩu",
+  "số tám (8)",
+  "nữ, phụ nữ"
+];
+const hanziQuiz=[
+  ["nǐ (bạn, anh, chị)",["他","你","好","门"],1],
+  ["hǎo (tốt, đẹp)",["女","好","妈","口"],1],
+  ["dà (to, lớn)",["大","太","犬","木"],0],
+  ["bù (không)",["下","不","上","十"],1],
+  ["bái (trắng)",["百","自","白","目"],2],
+  ["mǎ (con ngựa)",["鸟","马","牛","羊"],1],
+  ["kǒu (miệng)",["口","日","田","目"],0],
+  ["yī (số một)",["一","二","三","十"],0],
+  ["wǔ (số năm)",["四","五","六","七"],1],
+  ["bā (số tám)",["八","人","入","几"],0],
+  ["nǚ (nữ giới)",["女","好","安","如"],0]
+];
+const strokeQuiz=[
+  ["1. Chữ 【一】 (yī) có bao nhiêu nét?",["1 nét (nét ngang)","2 nét","3 nét","4 nét"],0],
+  ["2. Chữ 【八】 (bā) được viết theo quy tắc bút thuận nào?",["Từ trên xuống dưới","Phẩy trước, mác sau (先撇后捺)","Từ trong ra ngoài","Bao vây hoàn toàn"],1],
+  ["3. Chữ 【大】 (dà) có thứ tự nét viết là:",["Ngang ➔ Sổ ➔ Chấm","Ngang ➔ Phẩy ➔ Mác","Phẩy ➔ Ngang ➔ Mác","Sổ ➔ Ngang ➔ Phẩy"],1],
+  ["4. Nét đầu tiên của chữ 【口】 (kǒu) là nét gì?",["Nét ngang (横)","Nét sổ thẳng đứng bên trái (竖)","Nét ngang gập (横折)","Nét chấm (点)"],1],
+  ["5. Chữ 【你】 có tất cả bao nhiêu nét viết?",["5 nét","6 nét","7 nét","8 nét"],2],
+  ["6. Chữ 【好】 kết hợp giữa 2 chữ nào?",["Chữ 女 (Nữ) và 子 (Tử)","Chữ 人 (Nhân) và 口 (Khẩu)","Chữ 日 (Nhật) và 月 (Nguyệt)","Chữ 大 (Đại) và 小 (Tiểu)"],0]
+];
+const patterns=[
+  ["A：你好！","Nǐ hǎo!","Chào bạn!"],
+  ["B：你好！","Nǐ hǎo!","Chào bạn!"],
+  ["大马 / 白马","Dà mǎ / Bái mǎ","Ngựa to / Ngựa trắng"],
+  ["大口 / 不大","Dà kǒu / Bú dà","Miệng to / Không to"],
+  ["不白 / 一、五、八","Bù bái / Yī, wǔ, bā","Không trắng / Một, năm, tám"]
+];
+const arrangeData=[
+  ["你","好"],
+  ["白","马"],
+  ["大","马"],
+  ["大","口"],
+  ["不","大"]
+];
+const arrangeAnswers=[
+  ["你好"],
+  ["白马"],
+  ["大马"],
+  ["大口"],
+  ["不大"]
+];
+
+let chosenWord=null,chosenMeaning=null,meaningMatched={},arrangeState=[];
+function showResult(id,got,total){const el=document.getElementById(id);if(!el)return;el.className='feedback '+(got===total?'ok':'bad');el.innerHTML=`Bạn làm đúng <b>${got}/${total}</b> mục.`}
+function toast(text){const el=document.getElementById('toast');el.textContent=text;el.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove('show'),2400)}
+function escapeHtml(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+function makeQuiz(id,data){document.getElementById(id).innerHTML=data.map((q,i)=>`<div class="quiz-row" data-answer="${q[2]}"><div class="qtitle">${q[0]}</div><div class="choices">${q[1].map((x,j)=>`<button class="choice" data-i="${j}" onclick="selectChoice(this)">${String.fromCharCode(65+j)}. ${escapeHtml(x)}</button>`).join('')}</div><div class="answer-note"></div></div>`).join('')}
+function selectChoice(button){const row=button.closest('.quiz-row');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected','correct','wrong'));row.classList.remove('correct-row','wrong-row');const note=row.querySelector('.answer-note');note.className='answer-note';note.textContent='';button.classList.add('selected')}
+function checkChoiceQuiz(id,feedbackId){const rows=[...document.querySelectorAll('#'+id+' .quiz-row')];let got=0;rows.forEach(row=>{const answer=+row.dataset.answer,selected=row.querySelector('.choice.selected'),correct=row.querySelector(`[data-i="${answer}"]`),note=row.querySelector('.answer-note');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('correct','wrong'));row.classList.remove('correct-row','wrong-row');if(selected&&+selected.dataset.i===answer){got++;selected.classList.add('correct');row.classList.add('correct-row');note.className='answer-note ok';note.innerHTML=`✓ Chính xác. Đáp án: <b>${correct.textContent}</b>.`}else{if(selected)selected.classList.add('wrong');correct.classList.add('correct');row.classList.add('wrong-row');note.className='answer-note bad';note.innerHTML=`✕ ${selected?'Bạn chọn: <b>'+selected.textContent+'</b>. ':'Bạn chưa chọn. '}Đáp án đúng: <b>${correct.textContent}</b>.`}});showResult(feedbackId,got,rows.length);return[got,rows.length]}
+function resetChoices(id,feedbackId){document.querySelectorAll('#'+id+' .quiz-row').forEach(row=>{row.classList.remove('correct-row','wrong-row');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected','correct','wrong'));const note=row.querySelector('.answer-note');note.className='answer-note';note.textContent=''});document.getElementById(feedbackId).textContent=''}
+
+function renderMeaning(){document.getElementById('meaning-left').innerHTML=Object.keys(meaningPairs).map(x=>`<button class="match-chip" data-v="${x}" onclick="pickMeaningLeft(this)">${x}</button>`).join('');document.getElementById('meaning-right').innerHTML=meaningOrder.map(x=>`<button class="match-chip" data-v="${x}" onclick="pickMeaningRight(this)">${x}</button>`).join('')}
+function pickMeaningLeft(button){if(button.classList.contains('matched'))return;document.querySelectorAll('#meaning-left .match-chip').forEach(x=>x.classList.remove('selected'));button.classList.add('selected');chosenWord=button.dataset.v;tryMeaning()}
+function pickMeaningRight(button){if(button.classList.contains('matched'))return;document.querySelectorAll('#meaning-right .match-chip').forEach(x=>x.classList.remove('selected'));button.classList.add('selected');chosenMeaning=button.dataset.v;tryMeaning()}
+function tryMeaning(){if(!chosenWord||!chosenMeaning)return;const left=[...document.querySelectorAll('#meaning-left .match-chip')].find(x=>x.dataset.v===chosenWord),right=[...document.querySelectorAll('#meaning-right .match-chip')].find(x=>x.dataset.v===chosenMeaning);if(meaningPairs[chosenWord]===chosenMeaning){left.classList.add('matched');right.classList.add('matched');meaningMatched[chosenWord]=chosenMeaning;chosenWord=chosenMeaning=null}else{left.classList.add('wrong');right.classList.add('wrong');setTimeout(()=>{left.classList.remove('wrong','selected');right.classList.remove('wrong','selected')},350);chosenWord=chosenMeaning=null}}
+function showMatchResult(){const keys=Object.keys(meaningPairs),got=Object.keys(meaningMatched).length,missing=keys.filter(k=>meaningMatched[k]!==meaningPairs[k]);document.querySelectorAll('#meaning-left .match-chip').forEach(b=>b.classList.toggle('wrong',missing.includes(b.dataset.v)));showResult('meaning-feedback',got,keys.length);document.getElementById('meaning-feedback').innerHTML+=`<div class="answer-note ok"><b>Đáp án:</b> ${keys.map(k=>`${k} — ${meaningPairs[k]}`).join('; ')}</div>`;return[got,keys.length]}
+function resetMatching(){chosenWord=chosenMeaning=null;meaningMatched={};renderMeaning();document.getElementById('meaning-feedback').textContent=''}
+
+function shuffledIndexes(length){const a=Array.from({length},(_,i)=>i);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function renderArrange(){arrangeState=arrangeData.map(()=>[]);document.getElementById('arrange-list').innerHTML=arrangeData.map((arr,i)=>{const order=shuffledIndexes(arr.length);return `<div class="arrange-row"><div class="arrange-bank" id="ab-${i}">${order.map(j=>`<button class="token" data-j="${j}" onclick="moveArrange(${i},${j},this)">${arr[j]}</button>`).join('')}</div><div class="arrange-answer" id="aa-${i}"></div><div class="answer-note"></div></div>`}).join('');document.getElementById('arrange-feedback').textContent=''}
+function moveArrange(i,j,button){if(button.parentElement.id.startsWith('ab')){arrangeState[i].push(j);document.getElementById('aa-'+i).appendChild(button)}else{arrangeState[i]=arrangeState[i].filter(x=>x!==j);document.getElementById('ab-'+i).appendChild(button)}}
+function norm(text){return text.replace(/[，。！？、\s]/g,'')}
+function checkArrange(){let got=0;arrangeData.forEach((arr,i)=>{const made=arrangeState[i].map(j=>arr[j]).join(''),box=document.getElementById('aa-'+i),row=box.closest('.arrange-row'),note=row.querySelector('.answer-note'),answers=arrangeAnswers[i],ok=answers.some(answer=>norm(made)===norm(answer));box.classList.remove('correct','wrong');row.classList.remove('correct-row','wrong-row');if(ok){got++;box.classList.add('correct');row.classList.add('correct-row');note.className='answer-note ok';note.innerHTML=`✓ Chính xác: <b>${made}</b>`}else{box.classList.add('wrong');row.classList.add('wrong-row');note.className='answer-note bad';note.innerHTML=`✕ ${made?'Bạn xếp: <b>'+made+'</b>. ':'Chưa xếp. '}Đáp án đúng: <b>${answers.join(' / ')}</b>`}});showResult('arrange-feedback',got,arrangeData.length);return[got,arrangeData.length]}
+
+function gradeAll(){
+  const results=[
+    checkChoiceQuiz('listening-initials-quiz','listening-initials-feedback'),
+    checkChoiceQuiz('listening-finals-quiz','listening-finals-feedback'),
+    checkChoiceQuiz('listening-tone-quiz','listening-tone-feedback'),
+    showMatchResult(),
+    checkChoiceQuiz('hanzi-quiz','hanzi-feedback'),
+    checkChoiceQuiz('stroke-quiz','stroke-feedback'),
+    checkArrange()
+  ];
+  const got=results.reduce((s,x)=>s+x[0],0),total=results.reduce((s,x)=>s+x[1],0),percent=Math.round(got/total*100);
+  document.getElementById('score-ring').textContent=percent+'%';
+  document.getElementById('score-title').textContent=percent>=85?'Xuất sắc!':percent>=60?'Làm tốt lắm, cố gắng thêm nhé!':'Hãy luyện tập thêm nhé!';
+  document.getElementById('score-text').textContent=`Kết quả: ${percent}% — đúng ${got}/${total} câu.`;
+  document.querySelector('.scorebox').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+makeQuiz('listening-initials-quiz',listeningInitialsQuiz);
+makeQuiz('listening-finals-quiz',listeningFinalsQuiz);
+makeQuiz('listening-tone-quiz',listeningToneQuiz);
+renderMeaning();
+makeQuiz('hanzi-quiz',hanziQuiz);
+makeQuiz('stroke-quiz',strokeQuiz);
+renderArrange();
+</script></body></html>
