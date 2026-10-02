@@ -1,0 +1,2411 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài 9: 我换人民币 (Tôi đổi nhân dân tệ) · Giáo trình Hán ngữ 1</title>
+<style>
+:root {
+  --lime: #5f7200;
+  --lemon: #7f9800;
+  --bright: #a1bf00;
+  --soft: #f7fbe6;
+  --cream: #fcfee8;
+  --paper: #fff;
+  --ink: #282b15;
+  --muted: #6f7457;
+  --line: #e2eabb;
+  --green: #187a61;
+  --red: #b52626;
+  --blue: #315c9f;
+  --shadow: 0 10px 28px rgba(110,130,0,.11);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+}
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+.hero {
+  background: linear-gradient(135deg, var(--lime), var(--lemon));
+  color: #fff;
+  padding: 36px 28px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+.hero h1 { margin: 0 0 10px; font-size: 32px; }
+.hero p { margin: 0; font-size: 16px; opacity: .95; }
+.pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: rgba(255,255,255,.22);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: .5px;
+}
+
+.card {
+  margin: 0 0 20px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+.card h2 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  color: var(--lime);
+  border-bottom: 2px solid var(--soft);
+  padding-bottom: 10px;
+}
+.card h3 {
+  margin: 18px 0 12px;
+  font-size: 18px;
+  color: var(--lemon);
+}
+
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--soft);
+  margin-bottom: 14px;
+}
+.audio-badge {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--lime);
+  min-width: 80px;
+}
+.audio-row audio {
+  flex: 1;
+  height: 38px;
+  outline: none;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--lemon);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+}
+.btn:hover { background: var(--lime); }
+.btn.outline {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+.btn.outline:hover { background: var(--soft); }
+
+.feedback, .note {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border-radius: 10px;
+  background: var(--soft);
+  font-size: 14px;
+}
+.feedback:empty { display: none; }
+.feedback.ok { border-left: 4px solid var(--green); }
+.feedback.bad { border-left: 4px solid var(--red); }
+
+/* Choice Quiz */
+.quiz-list { display: grid; gap: 12px; }
+.quiz-row {
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  transition: all .2s;
+}
+.qtitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 15px;
+}
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.choice, .match-chip, .token, .photo-card, .order-chip {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+}
+.choice {
+  padding: 8px 11px;
+  transition: all .15s;
+}
+.choice:hover {
+  border-color: var(--lemon);
+  background: var(--soft);
+}
+.choice.selected, .order-chip.selected {
+  border-color: var(--lemon);
+  background: var(--soft);
+  font-weight: 700;
+}
+.choice.correct {
+  border-color: var(--green) !important;
+  background: #e8f5f0 !important;
+  color: var(--green) !important;
+  font-weight: 700;
+}
+.choice.wrong {
+  border-color: var(--red) !important;
+  background: #fbeaea !important;
+  color: var(--red) !important;
+}
+
+/* Matching */
+.match-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.match-col {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.match-chip {
+  padding: 11px;
+  text-align: center;
+  font-weight: 700;
+  transition: all .15s;
+}
+.match-chip:hover {
+  border-color: var(--lemon);
+  background: var(--soft);
+}
+.match-chip.selected {
+  outline: 3px solid var(--soft);
+  border-color: var(--lime);
+}
+.match-chip.matched {
+  border-color: var(--green);
+  background: #e8f5f0;
+  color: var(--green);
+}
+.match-chip.wrong, .photo-card.wrong {
+  animation: shake .25s;
+  border-color: var(--red);
+}
+@keyframes shake { 50% { transform: translateX(5px); } }
+
+/* Picture Matching */
+.picture-words {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 20px;
+}
+.picture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.photo-card {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1/1;
+  min-height: 160px;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  background: #f7eee8;
+  box-shadow: 0 7px 18px rgba(110,130,0,.11);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform .18s, border-color .18s, box-shadow .18s;
+  box-sizing: border-box;
+}
+.photo-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--lemon);
+}
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+}
+.photo-card.selected {
+  outline: 4px solid var(--lemon);
+  border-color: var(--lemon);
+}
+.photo-card.matched {
+  outline: 4px solid var(--green);
+  border-color: var(--green);
+}
+.photo-num {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 2;
+}
+.photo-tag {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(24,122,97,.88);
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  padding: 8px;
+  z-index: 3;
+}
+.photo-card.matched .photo-tag {
+  display: flex;
+}
+
+/* Fill blanks */
+.fill-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 16px;
+}
+.token {
+  min-width: 48px;
+  padding: 9px 14px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.token:hover {
+  border-color: var(--lemon);
+  background: var(--soft);
+}
+.token.selected {
+  border-color: var(--lemon);
+  background: var(--soft);
+}
+.token.used {
+  opacity: .35;
+  pointer-events: none;
+}
+.fill-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.fill-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  transition: all .2s;
+}
+.blank {
+  display: inline-block;
+  min-width: 80px;
+  border: 0;
+  border-bottom: 2px solid var(--lemon);
+  background: transparent;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  outline: 0;
+  cursor: pointer;
+  padding: 3px 8px;
+  margin: 0 4px;
+  transition: all .2s;
+}
+.blank:hover { background: var(--soft); }
+.blank.correct {
+  border-bottom-color: var(--green) !important;
+  color: var(--green) !important;
+  background: #e8f5f0;
+  border-radius: 6px;
+}
+.blank.wrong {
+  border-bottom-color: var(--red) !important;
+  color: var(--red) !important;
+  background: #fbeaea;
+  border-radius: 6px;
+}
+
+/* Arrange sentences */
+.arrange-list { display: grid; gap: 12px; }
+.arrange-row {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  transition: all .2s;
+}
+.arrange-bank, .arrange-answer, .order-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 42px;
+}
+.arrange-answer {
+  margin-top: 9px;
+  padding: 8px;
+  border: 1px dashed var(--bright);
+  border-radius: 9px;
+  min-height: 42px;
+  background: var(--soft);
+}
+
+/* Dialogue box */
+.order-chip {
+  padding: 9px 12px;
+  text-align: left;
+}
+.order-chip:hover {
+  border-color: var(--lemon);
+  background: var(--soft);
+}
+.dialogue-box {
+  margin: 10px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  transition: all .2s;
+}
+.dialogue-box b {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--lime);
+}
+
+/* Detailed Answer Notes */
+.answer-note {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 7px 9px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.answer-note:empty { display: none; }
+.answer-note.ok { background: #e8f5f0; color: var(--green); }
+.answer-note.bad { background: #fbeaea; color: var(--red); }
+
+/* Row Success / Error Highlights */
+.quiz-row.correct-row, .fill-row.correct-row, .arrange-row.correct-row, .dialogue-box.correct-row {
+  border-color: var(--green);
+  background: #f2fbf7;
+}
+.quiz-row.wrong-row, .fill-row.wrong-row, .arrange-row.wrong-row, .dialogue-box.wrong-row {
+  border-color: var(--red);
+  background: #fff5f5;
+}
+.arrange-answer.correct {
+  border-color: var(--green) !important;
+  background: #e8f5f0;
+}
+.arrange-answer.wrong {
+  border-color: var(--red) !important;
+  background: #fbeaea;
+}
+
+/* Summary Scorebox */
+.scorebox {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--soft), #fff);
+  border: 2px solid var(--lemon);
+  border-radius: 18px;
+  margin-top: 24px;
+}
+.score-ring {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--lemon);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 900;
+  box-shadow: 0 4px 14px rgba(127,152,0,.3);
+  flex-shrink: 0;
+}
+.score-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+/* Pattern items */
+.pattern-item {
+  padding: 14px;
+  border-left: 4px solid var(--lemon);
+  border-radius: 10px;
+  background: var(--soft);
+  margin-bottom: 10px;
+}
+
+/* Toast */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(40,43,21,.92);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all .25s ease;
+  z-index: 9999;
+}
+#toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .match-wrap, .fill-list, .picture-grid {
+    grid-template-columns: 1fr;
+  }
+  .picture-words {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .scorebox {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="backbar"><a class="backlink" href="han-ngu-1-gioi-thieu.html">← Quay lại mục lục</a></div>
+  <div class="eyebrow">GIÁO TRÌNH HÁN NGỮ 1 (PHIÊN BẢN 3) · BÀI 9</div>
+  <section class="hero">
+    <h1>BÀI 9: 我换人民币</h1>
+    <p>第九课 · 我换人民币 (Tôi đổi nhân dân tệ)</p>
+  </section>
+
+  <div class="stage-note">
+    <b>Nội dung trọng tâm Bài 9 《汉语教程 1》 & 《汉语听力教程 1》:</b><br>
+    • <b>Bài khóa & Giao tiếp:</b> Đi ngân hàng đổi tiền (去银行换钱), các đơn vị tiền tệ quốc tế (人民币, 美元, 港币, 日元, 欧元), cách đếm số lớn (百, 千, 万), mẫu câu giao dịch viên (营业员, 请等一会儿, 请数数, 对了, 不客气).<br>
+    • <b>Ngữ âm & Luyện nghe:</b> Phân biệt thanh mẫu (f/h, p/f, r/zh), vận mẫu (an/uan, iu/iu, üe/ie), biến điệu ba thanh ba (ba thanh 3 đi liền: 2 thanh đầu biến thành thanh 2), thành ngữ 4 chữ, nghe đối thoại mua bán & ngân hàng, nghe đoạn văn tính tiền hoá đơn.<br>
+    • <b>Chữ Hán & Ngữ pháp:</b> Cách dùng trợ động từ 要 (muốn, cần), cấu trúc đổi tiền: <code>用 + tiền nguồn + 换 + tiền đích</code>, cách dùng đại từ nhân xưng trang trọng (您, 先生, 小姐).
+  </div>
+
+  <h2 class="section-title"><span>一、听力练习</span> · Trọn bộ bài tập Nghe (Giáo trình Nghe 1 - Bài 9)</h2>
+
+  <!-- 1. Nghe 9-1 (Tr.47) -->
+  <section class="card">
+    <div class="card-head"><div><h3>1. Nghe và chọn Thanh mẫu đúng (9-1 Tr.47)</h3></div></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 Bài nghe 9-1 (Trang 47 SGK)</span>
+  <audio controls preload="metadata">
+    <source src="b9-nghe-9-1.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-1.m4a" type="audio/mp4">
+    <source src="b9-nghe-9-1.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    <div id="listening-initials-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('listening-initials-quiz', 'listening-initials-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('listening-initials-quiz', 'listening-initials-feedback')">Chọn lại</button>
+    </div>
+    <div id="listening-initials-feedback" class="feedback"></div>
+  </section>
+
+  <!-- 2. Nghe 9-2 (Tr.47) -->
+  <section class="card">
+    <div class="card-head"><div><h3>2. Nghe và chọn Vận mẫu & Thanh điệu (9-2 Tr.47)</h3></div></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 Bài nghe 9-2 (Trang 47 SGK)</span>
+  <audio controls preload="metadata">
+    <source src="b9-nghe-9-2.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-2.m4a" type="audio/mp4">
+    <source src="b9-nghe-9-2.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    <div id="listening-finals-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('listening-finals-quiz', 'listening-finals-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('listening-finals-quiz', 'listening-finals-feedback')">Chọn lại</button>
+    </div>
+    <div id="listening-finals-feedback" class="feedback"></div>
+  </section>
+
+  <!-- 3. Nghe 9-3 (Tr.47-48) -->
+  <section class="card">
+    <div class="card-head"><div><h3>3. Nghe và đánh dấu thanh điệu thành ngữ 4 chữ (9-3 Tr.47-48)</h3></div></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 Bài nghe 9-3 (Trang 47-48 SGK)</span>
+  <audio controls preload="metadata">
+    <source src="b9-nghe-9-3.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-3.m4a" type="audio/mp4">
+    <source src="b9-nghe-9-3.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    <div id="listening-idioms-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('listening-idioms-quiz', 'listening-idioms-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('listening-idioms-quiz', 'listening-idioms-feedback')">Chọn lại</button>
+    </div>
+    <div id="listening-idioms-feedback" class="feedback"></div>
+  </section>
+
+  <!-- 4. Nghe 9-4 (Tr.48) -->
+  <section class="card">
+    <div class="card-head"><div><h3>4. Nghe thanh điệu của cụm từ gạch chân trong câu (9-4 Tr.48)</h3></div></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 Bài nghe 9-4 (Trang 48 SGK)</span>
+  <audio controls preload="metadata">
+    <source src="b9-nghe-9-4.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-4.m4a" type="audio/mp4">
+    <source src="b9-nghe-9-4.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    <div id="listening-tones-sentence-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('listening-tones-sentence-quiz', 'listening-tones-sentence-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('listening-tones-sentence-quiz', 'listening-tones-sentence-feedback')">Chọn lại</button>
+    </div>
+    <div id="listening-tones-sentence-feedback" class="feedback"></div>
+  </section>
+
+  <!-- 5. Nghe 9-5 (Tr.48) -->
+  <section class="card">
+    <div class="card-head"><div><h3>5. Nghe phát âm từ mới phần Nghe hiểu (9-5 Tr.48)</h3></div></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 Bài nghe 9-5 (Trang 48 SGK)</span>
+  <audio controls preload="metadata">
+    <source src="b9-nghe-9-5.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-5.m4a" type="audio/mp4">
+    <source src="b9-nghe-9-5.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+      <div style="background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;">
+        <div style="font-size:20px;font-weight:700;color:var(--lime);">香蕉</div>
+        <div style="font-weight:600;">xiāngjiāo</div>
+        <div style="font-size:13px;color:var(--muted);">Quả chuối</div>
+      </div>
+      <div style="background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;">
+        <div style="font-size:20px;font-weight:700;color:var(--lime);">葡萄</div>
+        <div style="font-weight:600;">pútao</div>
+        <div style="font-size:13px;color:var(--muted);">Quả nho</div>
+      </div>
+      <div style="background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;">
+        <div style="font-size:20px;font-weight:700;color:var(--lime);">价钱</div>
+        <div style="font-weight:600;">jiàqian</div>
+        <div style="font-size:13px;color:var(--muted);">Giá tiền</div>
+      </div>
+      <div style="background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;">
+        <div style="font-size:20px;font-weight:700;color:var(--lime);">两</div>
+        <div style="font-weight:600;">liǎng</div>
+        <div style="font-size:13px;color:var(--muted);">Lượng (= 50 gam)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Nghe 9-6 (Tr.49) -->
+  <section class="card">
+    <div class="card-head"><div><h3>6. Nghe câu và chọn câu trả lời thích hợp (9-6 Tr.49)</h3></div></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 Bài nghe 9-6 (Trang 49 SGK)</span>
+  <audio controls preload="metadata">
+    <source src="b9-nghe-9-6.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-6.m4a" type="audio/mp4">
+    <source src="b9-nghe-9-6.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    <div id="listening-response-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('listening-response-quiz', 'listening-response-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('listening-response-quiz', 'listening-response-feedback')">Chọn lại</button>
+    </div>
+    <div id="listening-response-feedback" class="feedback"></div>
+  </section>
+
+  <!-- 7. Nghe 9-7 (Tr.50) -->
+  <section class="card">
+    <div class="card-head"><div><h3>7. Nghe hội thoại và chọn đáp án đúng (9-7 Tr.50)</h3></div></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 Bài nghe 9-7 (Trang 50 SGK)</span>
+  <audio controls preload="metadata">
+    <source src="b9-nghe-9-7.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-7.m4a" type="audio/mp4">
+    <source src="b9-nghe-9-7.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    <div id="listening-dialogue-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('listening-dialogue-quiz', 'listening-dialogue-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('listening-dialogue-quiz', 'listening-dialogue-feedback')">Chọn lại</button>
+    </div>
+    <div id="listening-dialogue-feedback" class="feedback"></div>
+  </section>
+
+  <!-- 8. Nghe 9-8 (Tr.51) -->
+  <section class="card">
+    <div class="card-head"><div><h3>8. Bài tập về nhà: Nghe từ nhận diện thanh điệu (9-8 Tr.51)</h3></div></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 Bài nghe 9-8 (Trang 51 SGK)</span>
+  <audio controls preload="metadata">
+    <source src="b9-nghe-9-8.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-8.m4a" type="audio/mp4">
+    <source src="b9-nghe-9-8.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    <div id="listening-homework-words-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('listening-homework-words-quiz', 'listening-homework-words-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('listening-homework-words-quiz', 'listening-homework-words-feedback')">Chọn lại</button>
+    </div>
+    <div id="listening-homework-words-feedback" class="feedback"></div>
+  </section>
+
+  <!-- 9. Nghe 9-9 (Tr.51-52) -->
+  <section class="card">
+    <div class="card-head"><div><h3>9. Bài tập về nhà: Nghe đoạn văn tính tiền hoá đơn (9-9 Tr.51-52)</h3></div></div>
+    <div class="audio-row">
+  <span class="audio-badge">🎧 Bài nghe 9-9 (Trang 51-52 SGK)</span>
+  <audio controls preload="metadata">
+    <source src="b9-nghe-9-9.m4a" type="audio/mp4">
+    <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-9.m4a" type="audio/mp4">
+    <source src="b9-nghe-9-9.m4a" type="audio/mp4">
+    Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+</div>
+    <div id="listening-homework-calc-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('listening-homework-calc-quiz', 'listening-homework-calc-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('listening-homework-calc-quiz', 'listening-homework-calc-feedback')">Chọn lại</button>
+    </div>
+    <div id="listening-homework-calc-feedback" class="feedback"></div>
+  </section>
+
+  <h2 class="section-title"><span>二、词汇与汉字</span> · Từ vựng & Chữ Hán Bài 9</h2>
+
+  <!-- Nối từ với nghĩa -->
+  <section class="card">
+    <div class="card-head"><div><h3>1. Nối từ mới với nghĩa tiếng Việt</h3></div></div>
+    <div class="match-wrap">
+      <div class="match-col" id="meaning-left"></div>
+      <div class="match-col" id="meaning-right"></div>
+    </div>
+    <div class="actions">
+      <button class="btn" onclick="showMatchResult()">Kiểm tra kết quả</button>
+      <button class="btn outline" onclick="resetMatching()">Nối lại</button>
+    </div>
+    <div id="meaning-feedback" class="feedback"></div>
+  </section>
+
+  <!-- Chọn chữ Hán theo Pinyin -->
+  <section class="card">
+    <div class="card-head"><div><h3>2. Chọn chữ Hán phù hợp theo Pinyin</h3></div></div>
+    <div id="hanzi-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('hanzi-quiz', 'hanzi-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('hanzi-quiz', 'hanzi-feedback')">Chọn lại</button>
+    </div>
+    <div id="hanzi-feedback" class="feedback"></div>
+  </section>
+
+  <!-- Ghép tiền tệ -->
+  <section class="card">
+    <div class="card-head"><div><h3>3. Ghép tên tiền tệ với biểu tượng quốc tế</h3></div></div>
+    <div class="picture-words" id="picture-words"></div>
+    <div class="picture-grid" id="picture-grid"></div>
+    <div class="actions">
+      <button class="btn" onclick="showPictureResult()">Kiểm tra kết quả</button>
+      <button class="btn outline" onclick="resetPictures()">Ghép lại</button>
+    </div>
+    <div id="picture-feedback" class="feedback"></div>
+  </section>
+
+  <!-- Thực hành số đếm lớn & tiền tệ -->
+  <section class="card">
+    <div class="card-head"><div><h3>4. Thực hành số đếm lớn trong ngân hàng (百, 千, 万)</h3></div></div>
+    <div id="money-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('money-quiz', 'money-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('money-quiz', 'money-feedback')">Chọn lại</button>
+    </div>
+    <div id="money-feedback" class="feedback"></div>
+  </section>
+
+  <h2 class="section-title"><span>三、核心句型与表达</span> · Mẫu câu & Giao tiếp đổi tiền</h2>
+
+  <!-- Mẫu câu giao tiếp -->
+  <section class="card">
+    <div class="card-head"><div><h3>Mẫu câu giao tiếp ngân hàng trọng tâm</h3></div></div>
+    <div class="patterns" id="patterns"></div>
+  </section>
+
+  <!-- Phản xạ hội thoại đổi tiền -->
+  <section class="card">
+    <div class="card-head"><div><h3>1. Chọn câu trả lời phù hợp trong ngữ cảnh ngân hàng</h3></div></div>
+    <div id="response-bank-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('response-bank-quiz', 'response-bank-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('response-bank-quiz', 'response-bank-feedback')">Chọn lại</button>
+    </div>
+    <div id="response-bank-feedback" class="feedback"></div>
+  </section>
+
+  <!-- Điền từ vào chỗ trống -->
+  <section class="card">
+    <div class="card-head"><div><h3>2. Điền từ vào chỗ trống</h3></div></div>
+    <div class="fill-bank" id="fill-bank"></div>
+    <div class="fill-list" id="fill-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkFill()">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetFill()">Điền lại</button>
+    </div>
+    <div id="fill-feedback" class="feedback"></div>
+  </section>
+
+  <!-- Sắp xếp từ thành câu -->
+  <section class="card">
+    <div class="card-head"><div><h3>3. Sắp xếp từ thành câu hoàn chỉnh</h3></div></div>
+    <div class="arrange-list" id="arrange-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkArrange()">Kiểm tra kết quả</button>
+      <button class="btn outline" onclick="renderArrange()">Xếp lại</button>
+    </div>
+    <div id="arrange-feedback" class="feedback"></div>
+  </section>
+
+  <!-- Sắp xếp hội thoại -->
+  <section class="card">
+    <div class="card-head"><div><h3>4. Sắp xếp hội thoại đổi tiền tại ngân hàng</h3></div></div>
+    <div id="dialogue-order"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkDialogueOrder()">Kiểm tra thứ tự</button>
+      <button class="btn outline" onclick="renderDialogueOrder()">Xếp lại</button>
+    </div>
+    <div id="dialogue-order-feedback" class="feedback"></div>
+  </section>
+
+  <h2 class="section-title"><span>四、阅读理解</span> · Luyện đọc hiểu</h2>
+
+  <!-- Đọc hiểu Đúng / Sai -->
+  <section class="card">
+    <div class="card-head"><div><h3>1. Đọc đoạn văn và phán đoán Đúng / Sai</h3></div></div>
+    <div class="dialogue-box">
+      <b style="color:var(--lime);font-size:16px;">麦克去银行换钱 (Mike đi ngân hàng đổi tiền)</b>
+      <p style="margin-top:8px;">下午，玛丽去图书馆，她问麦克去不去。麦克说：“我不去图书馆，我要去银行换钱。” 麦克到了中国银行，银行的营业员是一位小姐。营业员问麦克：“先生，您换什么钱？” 麦克说：“我换人民币，换五百美元的人民币。” 营业员说：“请等一会儿。” 营业员给麦克钱，说：“先生，给您钱，请数数。” 麦克数了数，钱对了。麦克很高兴，说：“对了，谢谢！” 营业员说：“不客气！”</p>
+    </div>
+    <div id="reading-judge-quiz" class="quiz-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="checkChoiceQuiz('reading-judge-quiz', 'reading-judge-feedback')">Kiểm tra đáp án</button>
+      <button class="btn outline" onclick="resetChoices('reading-judge-quiz', 'reading-judge-feedback')">Chọn lại</button>
+    </div>
+    <div id="reading-judge-feedback" class="feedback"></div>
+  </section>
+
+  <!-- BẢNG TỔNG KẾT ĐIỂM -->
+  <section class="scorebox">
+    <div class="score-ring" id="score-ring">0%</div>
+    <div>
+      <h2 id="score-title">Tổng kết kết quả học tập Bài 9</h2>
+      <p id="score-text">Hoàn thành các bài tập và bấm nút bên cạnh để chấm điểm tổng hợp toàn bộ bài học.</p>
+    </div>
+    <div class="score-actions">
+      <button class="btn" onclick="gradeAll()">Chấm toàn bộ</button>
+      <button class="btn outline" style="border-color:#fff;color:#fff;" onclick="location.reload()">Làm lại bài</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+// DATA SETUP
+
+// 1. Nghe 9-1 (Tr.47) - 10 câu thanh mẫu
+const listeningInitialsQuiz = [
+  [
+    "1. ___āyīn —— ___uàyīn (发音 —— 话音)",
+    [
+      "h / f",
+      "p / h",
+      "f / b",
+      "f / h"
+    ],
+    3
+  ],
+  [
+    "2. ___uānyíng —— ___ǎnyìng (欢迎 —— 反映)",
+    [
+      "h / f",
+      "w / f",
+      "f / h",
+      "h / p"
+    ],
+    0
+  ],
+  [
+    "3. ___uānhū —— ___uǎfù (欢呼 —— 寡妇)",
+    [
+      "g / h",
+      "f / g",
+      "h / g",
+      "h / k"
+    ],
+    2
+  ],
+  [
+    "4. ___ǔtōng —— ___údòng (普通 —— 浮动)",
+    [
+      "b / f",
+      "p / f",
+      "p / b",
+      "f / p"
+    ],
+    1
+  ],
+  [
+    "5. ___ǔdǎo —— ___útao (辅导 —— 葡萄)",
+    [
+      "b / p",
+      "f / p",
+      "f / b",
+      "p / f"
+    ],
+    1
+  ],
+  [
+    "6. gōng___èi —— gōng___uì (公费 —— 工会)",
+    [
+      "f / h",
+      "p / h",
+      "h / f",
+      "f / w"
+    ],
+    0
+  ],
+  [
+    "7. ___èliè —— ___èqiè (热烈 —— 热切)",
+    [
+      "l / j",
+      "r / q",
+      "r / x",
+      "l / q"
+    ],
+    3
+  ],
+  [
+    "8. ___óngyì —— ___òngyì (容易 —— 中意)",
+    [
+      "r / ch",
+      "zh / r",
+      "r / zh",
+      "l / zh"
+    ],
+    2
+  ],
+  [
+    "9. liè___én —— liè___ēn (猎人 —— 劣绅)",
+    [
+      "r / s",
+      "l / sh",
+      "sh / r",
+      "r / sh"
+    ],
+    3
+  ],
+  [
+    "10. ___ème —— ___è ma (这么 —— 热吗)",
+    [
+      "zh / r",
+      "ch / r",
+      "z / r",
+      "r / zh"
+    ],
+    0
+  ]
+];
+
+// 2. Nghe 9-2 (Tr.47) - 8 câu vận mẫu & thanh điệu
+const listeningFinalsQuiz = [
+  [
+    "1. yōuxi___ —— yōuxu___ (优先 —— 优选)",
+    [
+      "ēn / ěn",
+      "ān / ǎn",
+      "ǎn / ān",
+      "āng / ǎng"
+    ],
+    1
+  ],
+  [
+    "2. quánb___ —— qiánb___ (全部 —— 前部)",
+    [
+      "ù / ú",
+      "ǔ / ù",
+      "ù / ù",
+      "ū / ù"
+    ],
+    2
+  ],
+  [
+    "3. yuánqi___ —— yánxi___ (圆丘 —— 研修)",
+    [
+      "ū / ū",
+      "ǔ / ǔ",
+      "ù / ù",
+      "ú / ú"
+    ],
+    0
+  ],
+  [
+    "4. jiānx___ —— juānku___ (艰险 —— 捐款)",
+    [
+      "ǎn / iǎn",
+      "iān / ǎn",
+      "ān / iǎn",
+      "iǎn / ǎn"
+    ],
+    3
+  ],
+  [
+    "5. shěngl___ —— hángl___ (省略 —— 行列)",
+    [
+      "uò / iè",
+      "iè / üè",
+      "uè / è",
+      "üè / iè"
+    ],
+    3
+  ],
+  [
+    "6. juéd___ —— quéd___ (决定 —— 确定)",
+    [
+      "ìng / ìng",
+      "īng / ìng",
+      "ǐng / ìng",
+      "ìng / ǐng"
+    ],
+    0
+  ],
+  [
+    "7. jiésh___ —— juéb___ (结束 —— 绝不)",
+    [
+      "ú / bù",
+      "ǔ / bù",
+      "ù / ù",
+      "ù / bú"
+    ],
+    2
+  ],
+  [
+    "8. jiěj___ —— jiéy___ (解决 —— 节约)",
+    [
+      "ié / uē",
+      "ué / uē",
+      "ué / uè",
+      "uè / ué"
+    ],
+    1
+  ]
+];
+
+// 3. Nghe 9-3 (Tr.47-48) - 12 câu thành ngữ 4 chữ
+const listeningIdiomsQuiz = [
+  [
+    "1. fafen tuqiang (发奋图强)",
+    [
+      "fà fèn tū qiáng",
+      "fā fèn tú qiáng",
+      "fǎ fēn tú qiáng",
+      "fā fēn tǔ qiǎng"
+    ],
+    1
+  ],
+  [
+    "2. fan tian fu di (翻天覆地)",
+    [
+      "fān tiān fù dì",
+      "fán tiān fǔ dì",
+      "fǎn tiān fù dí",
+      "fān tián fú dì"
+    ],
+    0
+  ],
+  [
+    "3. honghonglielie (轰轰烈烈)",
+    [
+      "hǒng hǒng liè liè",
+      "hōng hóng liè liè",
+      "hōng hōng liè liè",
+      "hóng hóng liē liē"
+    ],
+    2
+  ],
+  [
+    "4. hua yan qiao yu (花言巧语)",
+    [
+      "huà yàn qiǎo yǔ",
+      "huá yán qiáo yú",
+      "huā yǎn qiáo yǔ",
+      "huā yán qiǎo yǔ"
+    ],
+    3
+  ],
+  [
+    "5. li zheng shangyou (力争上游)",
+    [
+      "lì zhēng shàng yóu",
+      "lǐ zhēng shāng yóu",
+      "lì zhèng shàng yóu",
+      "lì zhěng shàng yóu"
+    ],
+    0
+  ],
+  [
+    "6. lianlian bu she (恋恋不舍)",
+    [
+      "lián lián bù shě",
+      "liàn liàn bù shě",
+      "liǎn liǎn bú shě",
+      "liàn liàn bǔ shè"
+    ],
+    1
+  ],
+  [
+    "7. renao feifan (热闹非凡)",
+    [
+      "ré náo fēi fán",
+      "rè nǎo fěi fán",
+      "rè nao fēi fán",
+      "rè nào fēi fàn"
+    ],
+    2
+  ],
+  [
+    "8. ruo ming ruo an (若明若暗)",
+    [
+      "ruò mìng ruò ān",
+      "ruó mǐng ruó àn",
+      "ruō míng ruō ān",
+      "ruò míng ruò àn"
+    ],
+    3
+  ],
+  [
+    "9. fanfu wuchang (反复无常)",
+    [
+      "fǎn fù wú cháng",
+      "fǎn fú wǔ cháng",
+      "fàn fū wú cháng",
+      "fán fǔ wú cháng"
+    ],
+    0
+  ],
+  [
+    "10. feng yi zu shi (丰衣足食)",
+    [
+      "fěng yī zǔ shí",
+      "fēng yī zú shí",
+      "fēng yí zù shǐ",
+      "fèng yì zù shí"
+    ],
+    1
+  ],
+  [
+    "11. hei bai fenming (黑白分明)",
+    [
+      "hèi bái fěn míng",
+      "hěi bái fén míng",
+      "hēi bǎi fēn míng",
+      "hēi bái fēn míng"
+    ],
+    3
+  ],
+  [
+    "12. he qu he cong (何去何从)",
+    [
+      "hè qù hè cōng",
+      "hē qū hē cóng",
+      "hé qù hé cóng",
+      "hé qǔ hé cǒng"
+    ],
+    2
+  ]
+];
+
+// 4. Nghe 9-4 (Tr.48) - 8 câu gạch chân
+const listeningTonesSentenceQuiz = [
+  [
+    "1. Qǐng nín shǎo děng 【yíhuìr】 (一会儿)",
+    [
+      "yīhuǐr",
+      "yìhuīr",
+      "yíhuìr (thanh 2 + 4)",
+      "yíhuír"
+    ],
+    2
+  ],
+  [
+    "2. Wǒ qù 【yínháng】 huàn qián (银行)",
+    [
+      "yínháng (thanh 2 + 2)",
+      "yǐnhāng",
+      "yínhàng",
+      "yīnháng"
+    ],
+    0
+  ],
+  [
+    "3. Wǒ yòng rìyuán huàn 【rénmínbì】 (人民币)",
+    [
+      "rénmǐnbī",
+      "rěnmínbì",
+      "rēnmīnbì",
+      "rénmínbì (thanh 2+2+4)"
+    ],
+    3
+  ],
+  [
+    "4. Jīntiān měiyuán hé rénmínbì de 【páijià】 shì duōshao? (牌价)",
+    [
+      "pǎijiā",
+      "páijià (thanh 2 + 4)",
+      "pàijiǎ",
+      "pāijià"
+    ],
+    1
+  ],
+  [
+    "5. 【Xiānsheng】, zhè shì nín de qián (先生)",
+    [
+      "xiānshēng",
+      "xiānsheng (thanh 1 + nhẹ)",
+      "xiǎnshěng",
+      "xiànshēng"
+    ],
+    1
+  ],
+  [
+    "6. 【Xiǎojiě】, gěi wǒ yì zhāng duìhuàndān (小姐)",
+    [
+      "xiǎojiě (thanh 3 + 3)",
+      "xiàojiē",
+      "xiāojiě",
+      "xiáojiě"
+    ],
+    0
+  ],
+  [
+    "7. Zhè shì wǒ xiānsheng 【Wáng Wèiguó】 (王卫国)",
+    [
+      "Wàng Wēiguó",
+      "Wǎng Wěiguǒ",
+      "Wāng Wèiguō",
+      "Wáng Wèiguó (thanh 2+4+2)"
+    ],
+    3
+  ],
+  [
+    "8. Nǐ huàn duōshao 【ōuyuán】? (欧元)",
+    [
+      "ǒuyuàn",
+      "òuyuǎn",
+      "ōuyuán (thanh 1 + 2)",
+      "óuyuān"
+    ],
+    2
+  ]
+];
+
+// 6. Nghe 9-6 (Tr.49) - 10 câu (Chuẩn NXB: B, C, B, A, A, D, A, A, B, C)
+const listeningResponseQuiz = [
+  [
+    "1. 你还要什么？",
+    [
+      "我还要别的。",
+      "三斤苹果。",
+      "还要吧。",
+      "还要一些。"
+    ],
+    1
+  ],
+  [
+    "2. 这是你的橘子吗？",
+    [
+      "是的。",
+      "你要什么？",
+      "你买多少？",
+      "我有橘子。"
+    ],
+    0
+  ],
+  [
+    "3. 他找你多少钱？",
+    [
+      "给我四块五。",
+      "不找钱。",
+      "找我四块五。",
+      "找我一些钱。"
+    ],
+    2
+  ],
+  [
+    "4. 香蕉怎么卖？",
+    [
+      "他卖。",
+      "没有香蕉。",
+      "在这儿卖。",
+      "五块钱两斤。"
+    ],
+    3
+  ],
+  [
+    "5. 那个商店的水果贵吗？",
+    [
+      "很贵。",
+      "对，水果也贵。",
+      "你问你妈妈吧。",
+      "这个商店的水果不贵。"
+    ],
+    2
+  ],
+  [
+    "6. 你们两个人要多少？",
+    [
+      "要一斤。",
+      "我买了一斤，他没买。",
+      "我们两个都要。",
+      "我们还要两斤。"
+    ],
+    0
+  ],
+  [
+    "7. 你们还有别的老师吗？",
+    [
+      "不要。",
+      "也有别的老师。",
+      "也有两个老师。",
+      "还有两个。"
+    ],
+    3
+  ],
+  [
+    "8. 要两斤，一共多少钱？",
+    [
+      "给你16块。",
+      "你给16吧。",
+      "找你16块。",
+      "一斤16。"
+    ],
+    1
+  ],
+  [
+    "9. 茶七百五十块钱一斤，买吗？",
+    [
+      "挺好的。",
+      "要半斤。",
+      "给您钱。",
+      "请问多少钱一斤？"
+    ],
+    1
+  ],
+  [
+    "10. 请给我三两饺子",
+    [
+      "谢谢！",
+      "给您钱。",
+      "好，请等一会儿。",
+      "多少钱？"
+    ],
+    2
+  ]
+];
+
+// 7. Nghe 9-7 (Tr.50) - 10 câu (Chuẩn NXB: A, C, C, B, C, D, B, A, B, C)
+const listeningDialogueQuiz = [
+  [
+    "1. 女的在做什么？",
+    [
+      "买东西",
+      "去商店",
+      "卖啤酒",
+      "吃饭"
+    ],
+    0
+  ],
+  [
+    "2. 下面哪句话对？",
+    [
+      "茶45块",
+      "咖啡45块",
+      "茶和咖啡一共45块",
+      "两杯咖啡 45块"
+    ],
+    2
+  ],
+  [
+    "3. 女的是什么意思？",
+    [
+      "西瓜很贵",
+      "她买葡萄",
+      "葡萄、西瓜都不买",
+      "她要西瓜"
+    ],
+    3
+  ],
+  [
+    "4. 香蕉多少钱一斤？",
+    [
+      "1块",
+      "4块",
+      "16块",
+      "8块"
+    ],
+    1
+  ],
+  [
+    "5. 下面哪句话对？",
+    [
+      "她要10个包子",
+      "她要12个包子",
+      "她要半斤包子",
+      "她要三个包子"
+    ],
+    2
+  ],
+  [
+    "6. 下面哪句话对？",
+    [
+      "她买两斤苹果",
+      "苹果很贵",
+      "她买六斤苹果",
+      "苹果三块钱一斤"
+    ],
+    3
+  ],
+  [
+    "7. 他们一共买多少包子和多少饺子？",
+    [
+      "三两包子、三两饺子",
+      "三两包子、半斤饺子",
+      "三两包子、二两饺子",
+      "半斤饺子，不要包子"
+    ],
+    1
+  ],
+  [
+    "8. 下面哪句话对？",
+    [
+      "应该找40块",
+      "葡萄和苹果一共35块",
+      "苹果和香蕉一共45块",
+      "应该找30块"
+    ],
+    0
+  ],
+  [
+    "9. 下面哪句话对？",
+    [
+      "女的的国家葡萄便宜",
+      "女的的国家苹果便宜",
+      "女的的国家没有西瓜",
+      "男的喜欢葡萄和西瓜"
+    ],
+    0
+  ],
+  [
+    "10. 关于西瓜和苹果，哪句话对？",
+    [
+      "西瓜、苹果他们都不买",
+      "西瓜便宜，苹果贵",
+      "男的不喜欢吃西瓜",
+      "男的不喜欢吃苹果"
+    ],
+    1
+  ]
+];
+
+// 8. Nghe 9-8 (Tr.51) - 8 câu từ mới
+const listeningHomeworkWordsQuiz = [
+  [
+    "1. rénmín (人民)",
+    [
+      "人民 (thanh 1 + 2)",
+      "人民 (thanh 4 + 2)",
+      "人民 (thanh 2 + 2)",
+      "人民 (thanh 2 + 3)"
+    ],
+    2
+  ],
+  [
+    "2. rénmínbì (人民币)",
+    [
+      "人民币 (thanh 2+2+4)",
+      "人民币 (thanh 2+2+1)",
+      "人民币 (thanh 4+2+4)",
+      "人民币 (thanh 2+3+4)"
+    ],
+    0
+  ],
+  [
+    "3. měiyuán (美元)",
+    [
+      "美元 (thanh 2 + 2)",
+      "美元 (thanh 3 + 2)",
+      "美元 (thanh 1 + 2)",
+      "美元 (thanh 3 + 4)"
+    ],
+    1
+  ],
+  [
+    "4. yíhuìr (一会儿)",
+    [
+      "一会儿 (thanh 1 + 4)",
+      "一会儿 (thanh 2 + 2)",
+      "一会儿 (thanh 4 + 4)",
+      "一会儿 (thanh 2 + 4)"
+    ],
+    3
+  ],
+  [
+    "5. xiānsheng (先生)",
+    [
+      "先生 (thanh 1 + 1)",
+      "先生 (thanh 3 + nhẹ)",
+      "先生 (thanh 1 + nhẹ)",
+      "先生 (thanh 4 + nhẹ)"
+    ],
+    2
+  ],
+  [
+    "6. bú kèqi (不客气)",
+    [
+      "不客气 (thanh 1 + 4 + nhẹ)",
+      "不客气 (thanh 4 + 4 + nhẹ)",
+      "不客气 (thanh 2 + 1 + nhẹ)",
+      "不客气 (thanh 2 + 4 + nhẹ)"
+    ],
+    3
+  ],
+  [
+    "7. xiǎojiě (小姐)",
+    [
+      "小姐 (thanh 3 + nhẹ)",
+      "小姐 (thanh 3 + 3)",
+      "小姐 (thanh 4 + 3)",
+      "小姐 (thanh 2 + 3)"
+    ],
+    1
+  ],
+  [
+    "8. túshūguǎn (图书馆)",
+    [
+      "图书馆 (thanh 2+1+3)",
+      "图书馆 (thanh 1+1+3)",
+      "图书馆 (thanh 4+1+3)",
+      "图书馆 (thanh 2+4+3)"
+    ],
+    0
+  ]
+];
+
+// 9. Nghe 9-9 (Tr.51-52) - 5 câu tính hoá đơn
+const listeningHomeworkCalcQuiz = [
+  [
+    "1. 玛丽买两公斤苹果一共多少钱？",
+    [
+      "16 块",
+      "17 块 (17 元)",
+      "8.5 块",
+      "20 块"
+    ],
+    1
+  ],
+  [
+    "2. 三公斤香蕉一共多少钱？",
+    [
+      "18 块 (18 元)",
+      "24 块",
+      "12 块",
+      "6 块"
+    ],
+    0
+  ],
+  [
+    "3. 两个面包一共多少钱？",
+    [
+      "8.2 块",
+      "10 块",
+      "4.2 块",
+      "8.4 块 (8.4 元)"
+    ],
+    3
+  ],
+  [
+    "4. 一斤茶是多少钱？ (78元一公斤)",
+    [
+      "40 块",
+      "78 块",
+      "39 块 (39 元)",
+      "35 块"
+    ],
+    2
+  ],
+  [
+    "5. 玛丽买的所有东西一共多少钱？",
+    [
+      "188.4 块",
+      "190.4 块",
+      "185 块",
+      "178.4 块"
+    ],
+    0
+  ]
+];
+
+// Từ vựng nối nghĩa
+
+// Chữ Hán theo Pinyin
+const hanziQuiz = [
+  [
+    "1. yínháng (ngân hàng)",
+    [
+      "银行",
+      "行为",
+      "银子",
+      "很行"
+    ],
+    0
+  ],
+  [
+    "2. huàn qián (đổi tiền)",
+    [
+      "买钱",
+      "找钱",
+      "给钱",
+      "换钱"
+    ],
+    3
+  ],
+  [
+    "3. rénmínbì (Nhân dân tệ)",
+    [
+      "人民巾",
+      "人民纸",
+      "人民币",
+      "人民布"
+    ],
+    2
+  ],
+  [
+    "4. měiyuán (Đô la Mỹ)",
+    [
+      "港币",
+      "美元",
+      "欧元",
+      "日元"
+    ],
+    1
+  ],
+  [
+    "5. xiǎojiě (cô gái, tiểu thư)",
+    [
+      "姐姐",
+      "小姐",
+      "妹妹",
+      "老师"
+    ],
+    1
+  ],
+  [
+    "6. xiānsheng (ông, ngài)",
+    [
+      "先生",
+      "医生",
+      "学生",
+      "朋友"
+    ],
+    0
+  ],
+  [
+    "7. yíhuìr (một lát, một lúc)",
+    [
+      "一些",
+      "一点儿",
+      "一块儿",
+      "一会儿"
+    ],
+    3
+  ],
+  [
+    "8. qǐng shǔshu (xin mời đếm lại)",
+    [
+      "请问问",
+      "请看看",
+      "请数数",
+      "请等等"
+    ],
+    2
+  ]
+];
+
+// Biểu tượng tiền tệ
+const pictureWords = [
+  { id: "c1", label: "人民币 (rénmínbì)" },
+  { id: "c2", label: "美元 (měiyuán)" },
+  { id: "c3", label: "欧元 (ōuyuán)" },
+  { id: "c4", label: "日元 (rìyuán)" },
+  { id: "c5", label: "港币 (gǎngbì)" },
+  { id: "c6", label: "越南盾 (Yuènándùn)" }
+];
+
+const pictureItems = [
+  { id: "c1", src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='g_rmb' cx='35%25' cy='35%25' r='65%25'%3E%3Cstop offset='0%25' stop-color='%23ff4d4f'/%3E%3Cstop offset='70%25' stop-color='%23cf1322'/%3E%3Cstop offset='100%25' stop-color='%23820014'/%3E%3C/radialGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='6' stdDeviation='5' flood-opacity='.2'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle filter='url(%23s)' cx='100' cy='100' r='75' fill='url(%23g_rmb)' stroke='%23ffccc7' stroke-width='4'/%3E%3Ccircle cx='100' cy='100' r='62' fill='none' stroke='%23ffa39e' stroke-width='2' stroke-dasharray='4 3'/%3E%3Ctext x='100' y='116' font-size='56' font-family='Arial, sans-serif' font-weight='900' fill='%23fff' text-anchor='middle'%3E¥%3C/text%3E%3Ctext x='100' y='148' font-size='16' font-family='sans-serif' font-weight='700' fill='%23ffe58f' text-anchor='middle'%3ERMB 人民币%3C/text%3E%3C/svg%3E" },
+  { id: "c2", src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='g_usd' cx='35%25' cy='35%25' r='65%25'%3E%3Cstop offset='0%25' stop-color='%2352c41a'/%3E%3Cstop offset='70%25' stop-color='%23237804'/%3E%3Cstop offset='100%25' stop-color='%23135200'/%3E%3C/radialGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='6' stdDeviation='5' flood-opacity='.2'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle filter='url(%23s)' cx='100' cy='100' r='75' fill='url(%23g_usd)' stroke='%23d9f7be' stroke-width='4'/%3E%3Ccircle cx='100' cy='100' r='62' fill='none' stroke='%23b7eb8f' stroke-width='2' stroke-dasharray='4 3'/%3E%3Ctext x='100' y='118' font-size='60' font-family='Arial, sans-serif' font-weight='900' fill='%23fff' text-anchor='middle'%3E$%3C/text%3E%3Ctext x='100' y='148' font-size='16' font-family='sans-serif' font-weight='700' fill='%23fff1b8' text-anchor='middle'%3EUSD 美元%3C/text%3E%3C/svg%3E" },
+  { id: "c3", src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='g_eur' cx='35%25' cy='35%25' r='65%25'%3E%3Cstop offset='0%25' stop-color='%231890ff'/%3E%3Cstop offset='70%25' stop-color='%230050b3'/%3E%3Cstop offset='100%25' stop-color='%23002766'/%3E%3C/radialGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='6' stdDeviation='5' flood-opacity='.2'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle filter='url(%23s)' cx='100' cy='100' r='75' fill='url(%23g_eur)' stroke='%23bae7ff' stroke-width='4'/%3E%3Ccircle cx='100' cy='100' r='62' fill='none' stroke='%2391d5ff' stroke-width='2' stroke-dasharray='4 3'/%3E%3Ctext x='100' y='118' font-size='58' font-family='Arial, sans-serif' font-weight='900' fill='%23fff' text-anchor='middle'%3E€%3C/text%3E%3Ctext x='100' y='148' font-size='16' font-family='sans-serif' font-weight='700' fill='%23ffd666' text-anchor='middle'%3EEUR 欧元%3C/text%3E%3C/svg%3E" },
+  { id: "c4", src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='g_jpy' cx='35%25' cy='35%25' r='65%25'%3E%3Cstop offset='0%25' stop-color='%23fa8c16'/%3E%3Cstop offset='70%25' stop-color='%23ad4e00'/%3E%3Cstop offset='100%25' stop-color='%23612500'/%3E%3C/radialGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='6' stdDeviation='5' flood-opacity='.2'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle filter='url(%23s)' cx='100' cy='100' r='75' fill='url(%23g_jpy)' stroke='%23ffe7ba' stroke-width='4'/%3E%3Ccircle cx='100' cy='100' r='62' fill='none' stroke='%23ffd591' stroke-width='2' stroke-dasharray='4 3'/%3E%3Ctext x='100' y='116' font-size='56' font-family='Arial, sans-serif' font-weight='900' fill='%23fff' text-anchor='middle'%3E¥%3C/text%3E%3Ctext x='100' y='148' font-size='16' font-family='sans-serif' font-weight='700' fill='%23fffbe6' text-anchor='middle'%3EJPY 日元%3C/text%3E%3C/svg%3E" },
+  { id: "c5", src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='g_hkd' cx='35%25' cy='35%25' r='65%25'%3E%3Cstop offset='0%25' stop-color='%239254de'/%3E%3Cstop offset='70%25' stop-color='%23531dab'/%3E%3Cstop offset='100%25' stop-color='%2322075e'/%3E%3C/radialGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='6' stdDeviation='5' flood-opacity='.2'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle filter='url(%23s)' cx='100' cy='100' r='75' fill='url(%23g_hkd)' stroke='%23efdbff' stroke-width='4'/%3E%3Ccircle cx='100' cy='100' r='62' fill='none' stroke='%23d3adf7' stroke-width='2' stroke-dasharray='4 3'/%3E%3Ctext x='100' y='115' font-size='42' font-family='Arial, sans-serif' font-weight='900' fill='%23fff' text-anchor='middle'%3EHK$%3C/text%3E%3Ctext x='100' y='148' font-size='16' font-family='sans-serif' font-weight='700' fill='%23ffe58f' text-anchor='middle'%3EHKD 港币%3C/text%3E%3C/svg%3E" },
+  { id: "c6", src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='g_vnd' cx='35%25' cy='35%25' r='65%25'%3E%3Cstop offset='0%25' stop-color='%23fa541c'/%3E%3Cstop offset='70%25' stop-color='%23ad2102'/%3E%3Cstop offset='100%25' stop-color='%23610b00'/%3E%3C/radialGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='6' stdDeviation='5' flood-opacity='.2'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle filter='url(%23s)' cx='100' cy='100' r='75' fill='url(%23g_vnd)' stroke='%23ffe8e6' stroke-width='4'/%3E%3Ccircle cx='100' cy='100' r='62' fill='none' stroke='%23ffbb96' stroke-width='2' stroke-dasharray='4 3'/%3E%3Ctext x='100' y='116' font-size='56' font-family='Arial, sans-serif' font-weight='900' fill='%23fff' text-anchor='middle'%3E₫%3C/text%3E%3Ctext x='100' y='148' font-size='16' font-family='sans-serif' font-weight='700' fill='%23fff1b8' text-anchor='middle'%3EVND 越南盾%3C/text%3E%3C/svg%3E" }
+];
+
+// Số đếm lớn trong ngân hàng
+const moneyQuiz = [
+  [
+    "1. 500 USD (Năm trăm đô la Mỹ)",
+    [
+      "五万美金",
+      "五百美元",
+      "五千美元",
+      "五十美元"
+    ],
+    1
+  ],
+  [
+    "2. 50.000 Yên Nhật (Năm vạn Yên Nhật)",
+    [
+      "五百日元",
+      "五十万日元",
+      "五千日元",
+      "五万日元"
+    ],
+    3
+  ],
+  [
+    "3. 1.000 Nhân dân tệ (Một nghìn tệ)",
+    [
+      "一百块人民币",
+      "一万块人民币",
+      "一千块人民币",
+      "一千毛人民币"
+    ],
+    2
+  ],
+  [
+    "4. Đổi bao nhiêu?",
+    [
+      "换多少？",
+      "要多少？",
+      "多少钱？",
+      "买多少？"
+    ],
+    0
+  ]
+];
+
+// Mẫu câu giao tiếp
+const patterns = [
+  ["下午我去图书馆，你去不去？ —— 我不去。我要去银行换钱。", "Xiàwǔ wǒ qù túshūguǎn, nǐ qù bu qù? —— Wǒ bú qù. Wǒ yào qù yínháng huàn qián.", "Chiều tôi đi thư viện, bạn đi không? —— Tôi không đi. Tôi muốn đi ngân hàng đổi tiền."],
+  ["小姐，我换钱。 —— 您换什么钱？", "Xiǎojiě, wǒ huàn qián. —— Nín huàn shénme qián?", "Chị ơi, tôi đổi tiền. —— Ông đổi tiền gì ạ?"],
+  ["我换人民币。 —— 换多少？", "Wǒ huàn rénmínbì. —— Huàn duōshao?", "Tôi đổi Nhân dân tệ. —— Đổi bao nhiêu?"],
+  ["二百美元。 / 五万日元。", "Èrbǎi měiyuán. / Wǔwàn rìyuán.", "200 Đô la Mỹ. / 50.000 Yên Nhật."],
+  ["请等一会儿……先生，给您钱。请数数。", "Qǐng děng yíhuìr... Xiānsheng, gěi nín qián. Qǐng shǔshu.", "Xin đợi một lát... Thưa ông, gửi ông tiền. Xin đếm lại ạ."],
+  ["对了。谢谢！ —— 不客气！", "Duì le. Xièxie! —— Bú kèqi!", "Đúng rồi. Cảm ơn! —— Đừng khách sáo!"]
+];
+
+// Phản xạ giao tiếp ngân hàng
+const responseBankQuiz = [
+  [
+    "1. 下午你去图书馆吗？",
+    [
+      "我去食堂吃米饭。",
+      "图书馆很多。",
+      "图书馆不买书。",
+      "我不去，我要去银行换钱。"
+    ],
+    3
+  ],
+  [
+    "2. 您换什么钱？",
+    [
+      "我换人民币。",
+      "我要两斤苹果。",
+      "太贵了。",
+      "找您八块。"
+    ],
+    0
+  ],
+  [
+    "3. 换多少？ (Đổi 500 USD)",
+    [
+      "五十美元。",
+      "五千港币。",
+      "五百美元。",
+      "五百日元。"
+    ],
+    2
+  ],
+  [
+    "4. 先生，给您钱，请数数。",
+    [
+      "不要了。",
+      "对了，谢谢！",
+      "太便宜了。",
+      "很多钱。"
+    ],
+    1
+  ],
+  [
+    "5. 谢谢！",
+    [
+      "不客气！",
+      "没关系！",
+      "再见！",
+      "对不起！"
+    ],
+    0
+  ]
+];
+
+// Điền từ vào chỗ trống
+
+
+const fillBank = ["银行", "换", "人民币", "美元", "等", "数", "不客气"];
+const fillData = [
+  ["下午我不去图书馆，我要去", "换钱。", "银行"],
+  ["小姐，我要", "钱。", "换"],
+  ["您换什么钱？ —— 我换", "。", "人民币"],
+  ["换多少？ —— 二百", "。", "美元"],
+  ["请", "一会儿。", "等"],
+  ["先生，给您钱，请", "。", "数"],
+  ["对了，谢谢！ —— ", "！", "不客气"]
+];
+
+const arrangeData = [
+  ["下午", "我", "去", "银行", "换钱"],
+  ["您", "换", "什么", "钱"],
+  ["我", "换", "五百", "美元", "的", "人民币"],
+  ["先生", "，", "给", "您", "钱"],
+  ["请", "等", "一会儿", "，", "请", "数数"]
+];
+const arrangeAnswers = [
+  ["下午我去银行换钱", "我下午去银行换钱"],
+  ["您换什么钱"],
+  ["我换五百美元的人民币"],
+  ["先生，给您钱", "先生给您钱"],
+  ["请等一会儿，请数数", "请等一会儿请数数"]
+];
+
+const dialogueOrders = [{
+  title: "Hội thoại đổi tiền ở ngân hàng",
+  items: [
+    "您换什么钱？",
+    "先生，给您钱，请数数。",
+    "小姐，我换钱。",
+    "请等一会儿……",
+    "我换人民币。换五百美元。",
+    "对了。谢谢！ —— 不客气！"
+  ],
+  ans: [2, 0, 4, 3, 1, 5]
+}];
+
+const readingJudgeQuiz = [
+  ["1. 玛丽下午去银行换钱。", ["对 (Đúng)", "错 (Sai)"], 1],
+  ["2. 麦克不去图书馆，他去中国银行。", ["对 (Đúng)", "错 (Sai)"], 0],
+  ["3. 麦克用五百美元换人民币。", ["对 (Đúng)", "错 (Sai)"], 0],
+  ["4. 银行的营业员是一位先生。", ["对 (Đúng)", "错 (Sai)"], 1],
+  ["5. 麦克数了数钱，钱是对的。", ["对 (Đúng)", "错 (Sai)"], 0]
+];
+
+const meaningPairs = {
+  "换 (huàn)": "Đổi (tiền), thay",
+  "银行 (yínháng)": "Ngân hàng",
+  "人民币 (rénmínbì)": "Nhân dân tệ",
+  "美元 (měiyuán)": "Đô la Mỹ",
+  "港币 (gǎngbì)": "Đô la Hồng Kông",
+  "日元 (rìyuán)": "Yên Nhật",
+  "欧元 (ōuyuán)": "Đồng Euro",
+  "营业员 (yíngyèyuán)": "Giao dịch viên",
+  "小姐 (xiǎojiě)": "Cô gái / Tiểu thư",
+  "先生 (xiānsheng)": "Ông / Ngài",
+  "等 (děng)": "Chờ, đợi",
+  "数 (shǔ)": "Đếm (tiền)"
+};
+const meaningOrder = [
+  "Đô la Mỹ", "Ngân hàng", "Đổi (tiền), thay", "Giao dịch viên", "Nhân dân tệ",
+  "Đồng Euro", "Yên Nhật", "Chờ, đợi", "Đô la Hồng Kông", "Cô gái / Tiểu thư",
+  "Đếm (tiền)", "Ông / Ngài"
+];
+
+// Utility Functions
+function norm(s) {
+  return String(s || '').replace(/[\s\.,\?!，。？！、]/g, '');
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+}
+
+function shuffledIndexes(n) {
+  const a = [...Array(n).keys()];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function showResult(id, got, total) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.className = 'feedback ' + (got === total ? 'ok' : 'bad');
+  el.innerHTML = `Bạn làm đúng <b>${got}/${total}</b> mục.`;
+}
+
+function toast(text) {
+  let el = document.getElementById('toast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'toast';
+    document.body.appendChild(el);
+  }
+  el.textContent = text;
+  el.classList.add('show');
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+// Choice Quiz Engine
+function makeQuiz(id, data) {
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.innerHTML = data.map((q, i) => {
+    const choicesHtml = q[1].map((x, j) => {
+      const cleanX = String(x).replace(/^[A-D]\.\s*/, '');
+      const text = `${String.fromCharCode(65 + j)}. ${cleanX}`;
+      return `<button class="choice" data-i="${j}" onclick="selectChoice(this)">${escapeHtml(text)}</button>`;
+    }).join('');
+    return `
+      <div class="quiz-row" data-answer="${q[2]}">
+        <div class="qtitle">${q[0]}</div>
+        <div class="choices">${choicesHtml}</div>
+        <div class="answer-note"></div>
+      </div>
+    `;
+  }).join('');
+}
+
+function selectChoice(button) {
+  const row = button.closest('.quiz-row');
+  row.querySelectorAll('.choice').forEach(x => x.classList.remove('selected', 'correct', 'wrong'));
+  row.classList.remove('correct-row', 'wrong-row');
+  const note = row.querySelector('.answer-note');
+  if (note) { note.className = 'answer-note'; note.textContent = ''; }
+  button.classList.add('selected');
+}
+
+function checkChoiceQuiz(id, feedbackId) {
+  const rows = [...document.querySelectorAll('#' + id + ' .quiz-row')];
+  let got = 0;
+  rows.forEach(row => {
+    const answer = +row.dataset.answer,
+          selected = row.querySelector('.choice.selected'),
+          correct = row.querySelector(`[data-i="${answer}"]`),
+          note = row.querySelector('.answer-note');
+    row.querySelectorAll('.choice').forEach(x => x.classList.remove('correct', 'wrong'));
+    row.classList.remove('correct-row', 'wrong-row');
+    if (selected && +selected.dataset.i === answer) {
+      got++;
+      selected.classList.add('correct');
+      row.classList.add('correct-row');
+      note.className = 'answer-note ok';
+      note.innerHTML = `✓ Chính xác. Đáp án: <b>${correct ? correct.textContent : ''}</b>.`;
+    } else {
+      if (selected) selected.classList.add('wrong');
+      if (correct) correct.classList.add('correct');
+      row.classList.add('wrong-row');
+      note.className = 'answer-note bad';
+      note.innerHTML = `✕ ${selected ? 'Bạn chọn: <b>' + selected.textContent + '</b>. ' : 'Bạn chưa chọn. '}Đáp án đúng: <b>${correct ? correct.textContent : ''}</b>.`;
+    }
+  });
+  showResult(feedbackId, got, rows.length);
+  return [got, rows.length];
+}
+
+function resetChoices(id, feedbackId) {
+  document.querySelectorAll('#' + id + ' .quiz-row').forEach(row => {
+    row.classList.remove('correct-row', 'wrong-row');
+    row.querySelectorAll('.choice').forEach(x => x.classList.remove('selected', 'correct', 'wrong'));
+    const note = row.querySelector('.answer-note');
+    if (note) { note.className = 'answer-note'; note.textContent = ''; }
+  });
+  const fb = document.getElementById(feedbackId);
+  if (fb) fb.textContent = '';
+}
+
+// Meaning Matching Engine
+let chosenWord = null, chosenMeaning = null, meaningMatched = {};
+function renderMeaning() {
+  chosenWord = chosenMeaning = null;
+  meaningMatched = {};
+  const leftKeys = Object.keys(meaningPairs);
+  const shuffledRight = [...meaningOrder];
+  document.getElementById('meaning-left').innerHTML = leftKeys.map(x => `<button class="match-chip" data-v="${escapeHtml(x)}" onclick="pickMeaningLeft(this)">${escapeHtml(x)}</button>`).join('');
+  document.getElementById('meaning-right').innerHTML = shuffledRight.map(x => `<button class="match-chip" data-v="${escapeHtml(x)}" onclick="pickMeaningRight(this)">${escapeHtml(x)}</button>`).join('');
+}
+
+function pickMeaningLeft(button) {
+  if (button.classList.contains('matched')) return;
+  document.querySelectorAll('#meaning-left .match-chip').forEach(x => x.classList.remove('selected'));
+  button.classList.add('selected');
+  chosenWord = button.dataset.v;
+  tryMeaning();
+}
+
+function pickMeaningRight(button) {
+  if (button.classList.contains('matched')) return;
+  document.querySelectorAll('#meaning-right .match-chip').forEach(x => x.classList.remove('selected'));
+  button.classList.add('selected');
+  chosenMeaning = button.dataset.v;
+  tryMeaning();
+}
+
+function tryMeaning() {
+  if (!chosenWord || !chosenMeaning) return;
+  const left = [...document.querySelectorAll('#meaning-left .match-chip')].find(x => x.dataset.v === chosenWord);
+  const right = [...document.querySelectorAll('#meaning-right .match-chip')].find(x => x.dataset.v === chosenMeaning);
+  if (meaningPairs[chosenWord] === chosenMeaning) {
+    left.classList.add('matched');
+    right.classList.add('matched');
+    meaningMatched[chosenWord] = chosenMeaning;
+    chosenWord = chosenMeaning = null;
+  } else {
+    left.classList.add('wrong');
+    right.classList.add('wrong');
+    setTimeout(() => {
+      left.classList.remove('wrong', 'selected');
+      right.classList.remove('wrong', 'selected');
+    }, 350);
+    chosenWord = chosenMeaning = null;
+  }
+}
+
+function showMatchResult() {
+  const keys = Object.keys(meaningPairs);
+  const got = Object.keys(meaningMatched).length;
+  const missing = keys.filter(k => meaningMatched[k] !== meaningPairs[k]);
+  document.querySelectorAll('#meaning-left .match-chip').forEach(b => b.classList.toggle('wrong', missing.includes(b.dataset.v)));
+  const fbid = document.getElementById('meaning-feedback') ? 'meaning-feedback' : 'match-feedback';
+  showResult(fbid, got, keys.length);
+  document.getElementById(fbid).innerHTML += `<div class="answer-note ok"><b>Đáp án:</b> ${keys.map(k => `${k} — ${meaningPairs[k]}`).join('; ')}</div>`;
+  return [got, keys.length];
+}
+
+function resetMatching() {
+  renderMeaning();
+  const fbid = document.getElementById('meaning-feedback') ? 'meaning-feedback' : 'match-feedback';
+  const fb = document.getElementById(fbid);
+  if (fb) fb.textContent = '';
+}
+
+// Picture Matching Engine
+let chosenPicWord = null, pictureMatched = {};
+function renderPictures() {
+  chosenPicWord = null;
+  pictureMatched = {};
+  document.getElementById('picture-words').innerHTML = pictureWords.map(x => `<button class="match-chip" data-id="${x.id}" onclick="pickPictureWord(this)">${x.label}</button>`).join('');
+  document.getElementById('picture-grid').innerHTML = pictureItems.map((x, i) => `
+    <button class="photo-card" data-id="${x.id}" onclick="pickPicture(this)" aria-label="Tranh ${i+1}">
+      <span class="photo-num">${i+1}</span>
+      <img src="${x.src}" alt="${x.id}" loading="lazy">
+      <div class="photo-tag"></div>
+    </button>
+  `).join('');
+}
+
+function pickPictureWord(button) {
+  if (button.classList.contains('matched')) return;
+  document.querySelectorAll('#picture-words .match-chip').forEach(x => x.classList.remove('selected'));
+  button.classList.add('selected');
+  chosenPicWord = button.dataset.id;
+}
+
+function pickPicture(button) {
+  if (button.classList.contains('matched')) return;
+  if (!chosenPicWord) {
+    toast('Hãy chọn một từ vựng ở trên trước.');
+    return;
+  }
+  const wordBtn = document.querySelector(`#picture-words [data-id="${chosenPicWord}"]`);
+  if (button.dataset.id === chosenPicWord) {
+    button.classList.add('matched');
+    wordBtn.classList.add('matched');
+    wordBtn.classList.remove('selected');
+    const tag = button.querySelector('.photo-tag');
+    if (tag) {
+      tag.textContent = '✓ ' + wordBtn.textContent;
+      tag.style.display = 'flex';
+      tag.style.background = 'rgba(24,122,97,.88)';
+    }
+    pictureMatched[chosenPicWord] = button.dataset.id;
+    chosenPicWord = null;
+  } else {
+    button.classList.add('wrong');
+    setTimeout(() => button.classList.remove('wrong'), 350);
+  }
+}
+
+function showPictureResult() {
+  const keys = pictureWords.map(x => x.id);
+  const got = Object.keys(pictureMatched).length;
+  const missing = keys.filter(k => !pictureMatched[k]);
+  document.querySelectorAll('#picture-words .match-chip').forEach(b => b.classList.toggle('wrong', missing.includes(b.dataset.id)));
+  document.querySelectorAll('#picture-grid .photo-card').forEach(card => {
+    const wordObj = pictureWords.find(w => w.id === card.dataset.id);
+    const tag = card.querySelector('.photo-tag');
+    if (!card.classList.contains('matched') && tag && wordObj) {
+      tag.textContent = wordObj.label;
+      tag.style.display = 'flex';
+      tag.style.background = 'rgba(181,38,38,.88)';
+    }
+  });
+  showResult('picture-feedback', got, keys.length);
+  const answer = pictureWords.map(w => `${w.label} → tranh ${pictureItems.findIndex(p => p.id === w.id) + 1}`).join('; ');
+  document.getElementById('picture-feedback').innerHTML += `<div class="answer-note ok"><b>Đáp án đúng:</b> ${answer}</div>`;
+  return [got, keys.length];
+}
+
+function resetPictures() {
+  renderPictures();
+  const fb = document.getElementById('picture-feedback');
+  if (fb) fb.textContent = '';
+}
+
+// Fill in the blanks Engine
+let activeFill = null;
+function renderFill() {
+  activeFill = null;
+  document.getElementById('fill-bank').innerHTML = fillBank.map((x, i) => `<button class="token" data-i="${i}" onclick="selectFillToken(this, ${i})">${x}</button>`).join('');
+  document.getElementById('fill-list').innerHTML = fillData.map((x, i) => `
+    <div class="fill-row">
+      ${x[0]}<button class="blank" data-i="${i}" data-v="" data-source="" onclick="placeFill(this)">______</button>${x[1]}
+      <span class="answer-note"></span>
+    </div>
+  `).join('');
+}
+
+function selectFillToken(token, index) {
+  if (token.classList.contains('used')) return;
+  activeFill = index;
+  document.querySelectorAll('#fill-bank .token').forEach(x => x.classList.remove('selected'));
+  token.classList.add('selected');
+}
+
+function placeFill(blank) {
+  if (activeFill === null) {
+    if (blank.dataset.source !== '') {
+      const old = document.querySelector(`#fill-bank [data-i="${blank.dataset.source}"]`);
+      if (old) old.classList.remove('used');
+      blank.dataset.v = '';
+      blank.dataset.source = '';
+      blank.textContent = '______';
+      blank.classList.remove('correct', 'wrong');
+      const note = blank.closest('.fill-row').querySelector('.answer-note');
+      if (note) { note.className = 'answer-note'; note.textContent = ''; }
+      blank.closest('.fill-row').classList.remove('correct-row', 'wrong-row');
+    }
+    return;
+  }
+  const token = document.querySelector(`#fill-bank [data-i="${activeFill}"]`);
+  if (blank.dataset.source !== '') {
+    const old = document.querySelector(`#fill-bank [data-i="${blank.dataset.source}"]`);
+    if (old) old.classList.remove('used');
+  }
+  blank.dataset.v = token.textContent;
+  blank.dataset.source = String(activeFill);
+  blank.textContent = token.textContent;
+  token.classList.add('used');
+  token.classList.remove('selected');
+  activeFill = null;
+}
+
+function checkFill() {
+  const blanks = [...document.querySelectorAll('#fill-list .blank')];
+  let got = 0;
+  blanks.forEach((blank, i) => {
+    const row = blank.closest('.fill-row'),
+          note = row.querySelector('.answer-note'),
+          answer = fillData[i][2],
+          full = fillData[i][0] + answer + fillData[i][1];
+    blank.classList.remove('correct', 'wrong');
+    row.classList.remove('correct-row', 'wrong-row');
+    if (blank.dataset.v === answer) {
+      got++;
+      blank.classList.add('correct');
+      row.classList.add('correct-row');
+      note.className = 'answer-note ok';
+      note.innerHTML = `✓ Chính xác. Đáp án: <b>${answer}</b>.`;
+    } else {
+      blank.classList.add('wrong');
+      row.classList.add('wrong-row');
+      note.className = 'answer-note bad';
+      note.innerHTML = `✕ ${blank.dataset.v ? 'Bạn chọn: <b>' + blank.dataset.v + '</b>. ' : 'Chưa điền. '}Đáp án: <b>${answer}</b>. Câu: <b>${full}</b>`;
+    }
+  });
+  showResult('fill-feedback', got, blanks.length);
+  return [got, blanks.length];
+}
+
+function resetFill() {
+  renderFill();
+  const fb = document.getElementById('fill-feedback');
+  if (fb) fb.textContent = '';
+}
+
+// Arrange Sentences Engine
+let arrangeState = [];
+function renderArrange() {
+  arrangeState = arrangeData.map(() => []);
+  document.getElementById('arrange-list').innerHTML = arrangeData.map((arr, i) => {
+    const order = shuffledIndexes(arr.length);
+    return `
+      <div class="arrange-row">
+        <div class="arrange-bank" id="ab-${i}">
+          ${order.map(j => `<button class="token" data-j="${j}" onclick="moveArrange(${i}, ${j}, this)">${arr[j]}</button>`).join('')}
+        </div>
+        <div class="arrange-answer" id="aa-${i}"></div>
+        <div class="answer-note"></div>
+      </div>
+    `;
+  }).join('');
+  const fb = document.getElementById('arrange-feedback');
+  if (fb) fb.textContent = '';
+}
+
+function moveArrange(i, j, button) {
+  if (button.parentElement.id.startsWith('ab')) {
+    arrangeState[i].push(j);
+    document.getElementById('aa-' + i).appendChild(button);
+  } else {
+    arrangeState[i] = arrangeState[i].filter(x => x !== j);
+    document.getElementById('ab-' + i).appendChild(button);
+  }
+}
+
+function checkArrange() {
+  let got = 0;
+  arrangeData.forEach((arr, i) => {
+    const made = arrangeState[i].map(j => arr[j]).join(''),
+          box = document.getElementById('aa-' + i),
+          row = box.closest('.arrange-row'),
+          note = row.querySelector('.answer-note'),
+          answers = arrangeAnswers[i],
+          ok = answers.some(answer => norm(made) === norm(answer));
+    box.classList.remove('correct', 'wrong');
+    row.classList.remove('correct-row', 'wrong-row');
+    if (ok) {
+      got++;
+      box.classList.add('correct');
+      row.classList.add('correct-row');
+      note.className = 'answer-note ok';
+      note.innerHTML = `✓ Chính xác: <b>${made}</b>`;
+    } else {
+      box.classList.add('wrong');
+      row.classList.add('wrong-row');
+      note.className = 'answer-note bad';
+      note.innerHTML = `✕ ${made ? 'Bạn xếp: <b>' + made + '</b>. ' : 'Chưa xếp. '}Đáp án đúng: <b>${answers.join(' / ')}</b>`;
+    }
+  });
+  showResult('arrange-feedback', got, arrangeData.length);
+  return [got, arrangeData.length];
+}
+
+// Dialogue Ordering Engine
+let dialogueOrderState = [];
+function renderDialogueOrder() {
+  dialogueOrderState = dialogueOrders.map(() => []);
+  document.getElementById('dialogue-order').innerHTML = dialogueOrders.map((dialogue, i) => `
+    <div class="dialogue-box">
+      <b>${dialogue.title || 'Hội thoại giao tiếp'}</b>
+      <div class="order-bank" id="dob-${i}">
+        ${dialogue.items.map((text, j) => `<button class="order-chip" data-j="${j}" onclick="moveOrder(${i}, ${j}, this)">${String.fromCharCode(65 + j)}. ${text}</button>`).join('')}
+      </div>
+      <div style="font-weight:700;margin-top:10px;margin-bottom:6px;color:var(--lime);font-size:14px;">Thứ tự đã xếp:</div>
+      <div class="arrange-answer" id="doa-${i}"></div>
+      <div class="answer-note"></div>
+    </div>
+  `).join('');
+  const fb = document.getElementById('dialogue-order-feedback');
+  if (fb) fb.textContent = '';
+}
+
+function moveOrder(i, j, button) {
+  if (button.parentElement.id.startsWith('dob')) {
+    dialogueOrderState[i].push(j);
+    document.getElementById('doa-' + i).appendChild(button);
+  } else {
+    dialogueOrderState[i] = dialogueOrderState[i].filter(x => x !== j);
+    document.getElementById('dob-' + i).appendChild(button);
+  }
+}
+
+function checkDialogueOrder() {
+  let got = 0;
+  dialogueOrders.forEach((dialogue, i) => {
+    const box = document.getElementById('doa-' + i),
+          row = box.closest('.dialogue-box'),
+          note = row.querySelector('.answer-note'),
+          ok = JSON.stringify(dialogueOrderState[i]) === JSON.stringify(dialogue.ans),
+          letters = dialogue.ans.map(j => String.fromCharCode(65 + j)).join(' → '),
+          answer = dialogue.ans.map(j => dialogue.items[j]).join(' → ');
+    box.classList.remove('correct', 'wrong');
+    row.classList.remove('correct-row', 'wrong-row');
+    if (ok) {
+      got++;
+      box.classList.add('correct');
+      row.classList.add('correct-row');
+      note.className = 'answer-note ok';
+      note.innerHTML = `✓ Thứ tự đúng: <b>${letters}</b><br>${answer}`;
+    } else {
+      box.classList.add('wrong');
+      row.classList.add('wrong-row');
+      note.className = 'answer-note bad';
+      note.innerHTML = `✕ Đáp án: <b>${letters}</b><br>${answer}`;
+    }
+  });
+  showResult('dialogue-order-feedback', got, dialogueOrders.length);
+  return [got, dialogueOrders.length];
+}
+
+function gradeAll() {
+  const results = [
+    checkChoiceQuiz('listening-initials-quiz', 'listening-initials-feedback'),
+    checkChoiceQuiz('listening-finals-quiz', 'listening-finals-feedback'),
+    checkChoiceQuiz('listening-idioms-quiz', 'listening-idioms-feedback'),
+    checkChoiceQuiz('listening-tones-sentence-quiz', 'listening-tones-sentence-feedback'),
+    checkChoiceQuiz('listening-response-quiz', 'listening-response-feedback'),
+    checkChoiceQuiz('listening-dialogue-quiz', 'listening-dialogue-feedback'),
+    checkChoiceQuiz('listening-homework-words-quiz', 'listening-homework-words-feedback'),
+    checkChoiceQuiz('listening-homework-calc-quiz', 'listening-homework-calc-feedback'),
+    showMatchResult(),
+    checkChoiceQuiz('hanzi-quiz', 'hanzi-feedback'),
+    showPictureResult(),
+    checkChoiceQuiz('money-quiz', 'money-feedback'),
+    checkChoiceQuiz('response-bank-quiz', 'response-bank-feedback'),
+    checkFill(),
+    checkArrange(),
+    checkDialogueOrder(),
+    checkChoiceQuiz('reading-judge-quiz', 'reading-judge-feedback')
+  ];
+
+  const got = results.reduce((s, x) => s + x[0], 0);
+  const total = results.reduce((s, x) => s + x[1], 0);
+  const percent = Math.round(got / total * 100);
+
+  document.getElementById('score-ring').textContent = percent + '%';
+  document.getElementById('score-title').textContent = percent >= 85 ? 'Xuất sắc! (太棒了!)' : percent >= 60 ? 'Khá tốt! Cố gắng thêm nhé!' : 'Hãy luyện tập thêm nhé!';
+  document.getElementById('score-text').textContent = `Kết quả: bạn hoàn thành đúng ${got}/${total} mục (${percent}%). Hãy nghe lại các câu sai để củng cố ngữ cảm!`;
+  document.querySelector('.scorebox')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// Khởi chạy
+makeQuiz('listening-initials-quiz', listeningInitialsQuiz);
+makeQuiz('listening-finals-quiz', listeningFinalsQuiz);
+makeQuiz('listening-idioms-quiz', listeningIdiomsQuiz);
+makeQuiz('listening-tones-sentence-quiz', listeningTonesSentenceQuiz);
+makeQuiz('listening-response-quiz', listeningResponseQuiz);
+makeQuiz('listening-dialogue-quiz', listeningDialogueQuiz);
+makeQuiz('listening-homework-words-quiz', listeningHomeworkWordsQuiz);
+makeQuiz('listening-homework-calc-quiz', listeningHomeworkCalcQuiz);
+
+renderMeaning();
+makeQuiz('hanzi-quiz', hanziQuiz);
+renderPictures();
+makeQuiz('money-quiz', moneyQuiz);
+
+document.getElementById('patterns').innerHTML = patterns.map((p, i) => `
+  <div class="pattern-item">
+    <b style="color:var(--lime);">Mẫu ${i+1}</b>
+    <div style="font-size:20px;font-weight:700;margin:4px 0;">${p[0]}</div>
+    <div style="color:var(--lime);font-weight:600;">${p[1]}</div>
+    <div style="color:#555;">${p[2]}</div>
+  </div>
+`).join('');
+
+makeQuiz('response-bank-quiz', responseBankQuiz);
+renderFill();
+renderArrange();
+renderDialogueOrder();
+makeQuiz('reading-judge-quiz', readingJudgeQuiz);
+</script>
+</body>
+</html>
