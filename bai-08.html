@@ -455,34 +455,37 @@ body {
 
 /* Summary Scorebox */
 .scorebox {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 24px;
-  padding: 24px;
-  background: linear-gradient(135deg, var(--soft), #fff);
-  border: 2px solid var(--lemon);
-  border-radius: 18px;
-  margin-top: 24px;
+  margin-top: 30px;
+  padding: 26px;
+  border-radius: 22px;
+  background: #24290e;
+  color: #fff;
 }
 .score-ring {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: var(--lemon);
-  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
-  font-weight: 900;
-  box-shadow: 0 4px 14px rgba(127,152,0,.3);
-  flex-shrink: 0;
+  width: 112px;
+  height: 112px;
+  border: 14px solid #4a5424;
+  border-top-color: var(--lemon);
+  border-right-color: var(--lemon);
+  border-radius: 50%;
+  font-size: 28px;
+  font-weight: 700;
 }
+.scorebox h2 { margin: 0; font-size: 31px; }
+.scorebox p { margin: 4px 0; color: #dbe6a6; }
 .score-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 14px;
+  display: grid;
+  gap: 9px;
+  min-width: 190px;
 }
+.scorebox .btn.outline { border-color: var(--lemon); background: #fff; color: var(--lime); }
 
 /* Pattern items */
 .pattern-item {
@@ -521,16 +524,15 @@ body {
   .picture-words {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .scorebox {
-    flex-direction: column;
-    text-align: center;
-  }
+  .scorebox { grid-template-columns: 1fr; text-align: center; }
+  .score-ring { margin: auto; }
+  .score-actions { grid-template-columns: 1fr; width: 100%; }
 }
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="backbar"><a class="backlink" href="../index.html">← Quay lại mục lục</a></div>
+  <div class="backbar"><a class="backlink" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/t%C3%A0i-li%E1%BB%87u-%C3%B4n-t%E1%BA%ADp-t%E1%BB%95ng-h%E1%BB%A3p/th%E1%BB%B1c-h%C3%A0nh-ti%E1%BA%BFng-a1" target="_top">← Quay lại mục lục</a></div>
   <div class="eyebrow">GIÁO TRÌNH HÁN NGỮ 1 (PHIÊN BẢN 3) · BÀI 8</div>
   
   <section class="hero">
@@ -926,12 +928,14 @@ body {
   <section class="scorebox">
     <div class="score-ring" id="score-ring">0%</div>
     <div>
-      <h2 id="score-title">Chưa chấm điểm</h2>
-      <p id="score-text">Hãy hoàn thành các bài tập và bấm "Chấm điểm toàn bài" để nhận kết quả tổng kết.</p>
+      <h2 id="score-title">Kết quả bài luyện tập</h2>
+      <p id="score-text">Bấm “Chấm toàn bộ” để xem số câu đúng và tỉ lệ phần trăm.</p>
+      <p id="score-breakdown"></p>
     </div>
     <div class="score-actions">
-      <button class="btn" style="background:#ff6b6b;border-color:#ff6b6b;" onclick="gradeAll()">Chấm điểm toàn bài</button>
-      <button class="btn outline" style="color:#fff;border-color:#fff;" onclick="location.reload()">Làm lại từ đầu</button>
+      <button class="btn" onclick="gradeAll()">Chấm toàn bộ</button>
+      <button class="btn outline" onclick="location.reload()">Làm lại từ đầu</button>
+      <a class="btn outline" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/t%C3%A0i-li%E1%BB%87u-%C3%B4n-t%E1%BA%ADp-t%E1%BB%95ng-h%E1%BB%A3p/th%E1%BB%B1c-h%C3%A0nh-ti%E1%BA%BFng-a1" target="_top">← Quay lại mục lục</a>
     </div>
   </section>
 </div>
@@ -2627,8 +2631,8 @@ function gradeAll() {
   const percent = Math.round(got / total * 100);
 
   document.getElementById('score-ring').textContent = percent + '%';
-  document.getElementById('score-title').textContent = percent >= 85 ? 'Xuất sắc! (太棒了!)' : percent >= 60 ? 'Khá tốt! Cố gắng thêm nhé!' : 'Hãy luyện tập thêm nhé!';
-  document.getElementById('score-text').textContent = `Kết quả: bạn hoàn thành đúng ${got}/${total} mục (${percent}%). Hãy nghe lại các câu sai để củng cố ngữ cảm!`;
+  document.getElementById('score-title').textContent = percent >= 85 ? 'Xuất sắc!' : percent >= 60 ? 'Làm tốt lắm, cố gắng thêm nhé!' : 'Hãy luyện tập thêm nhé!';
+  document.getElementById('score-text').textContent = `Kết quả: ${percent}% — đúng ${got}/${total} câu.`;
   document.querySelector('.scorebox')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
