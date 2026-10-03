@@ -3,7 +3,7 @@
 :root{--lime:#5f7200;--lemon:#7f9800;--bright:#a1bf00;--soft:#f7fbe6;--cream:#fcfee8;--paper:#fff;--ink:#282b15;--muted:#6f7457;--line:#e2eabb;--green:#187a61;--red:#b52626;--blue:#315c9f;--shadow:0 10px 28px rgba(110,130,0,.11)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 Arial,"Noto Sans SC","Microsoft YaHei",sans-serif}button,input{font:inherit}.main{padding:28px}.content{max-width:1120px;margin:auto}
 .backbar{margin:0 0 14px}.backlink{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border:1px solid var(--lemon);border-radius:10px;background:#fff;color:var(--lime);font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(110,130,0,.08)}.backlink:hover{background:var(--soft)}
-.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--lime);text-transform:uppercase}.hero{position:relative;overflow:hidden;margin:10px 0 22px;padding:42px;border-radius:26px;background:linear-gradient(135deg,#7f9800,#546500);color:#fff;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;right:-80px;bottom:-120px;width:320px;height:320px;border:60px solid rgba(255,255,255,.14);border-radius:50%}.hero h1{position:relative;z-index:1;margin:0;font-size:clamp(38px,7vw,76px);line-height:1.03}.hero p{position:relative;z-index:1;margin:14px 0 0;font:700 clamp(22px,4vw,38px)/1.25 Arial,"Noto Sans SC",sans-serif}.stage-note{margin:0 0 26px;padding:13px 16px;border-left:4px solid var(--bright);border-radius:10px;background:#f7fbe6;color:#3b4308}.section-title{margin:34px 0 14px;font-size:clamp(25px,4vw,36px)}.section-title span{color:var(--lime)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--lime);text-transform:uppercase}.hero{position:relative;overflow:hidden;margin:10px 0 22px;padding:42px;border-radius:26px;background:linear-gradient(135deg,#7f9800,#546500);color:#fff;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;right:-80px;bottom:-120px;width:320px;height:320px;border:60px solid rgba(255,255,255,.14);border-radius:50%}.hero h1{position:relative;z-index:1;margin:0;font-size:clamp(38px,7vw,76px);line-height:1.03}.hero p{position:relative;z-index:1;margin:14px 0 0;font:700 clamp(22px,4vw,38px)/1.25 Arial,"Noto Sans SC",sans-serif}.section-title{margin:34px 0 14px;font-size:clamp(25px,4vw,36px)}.section-title span{color:var(--lime)}
 .card{margin:0 0 18px;padding:24px;border:1px solid var(--line);border-radius:20px;background:var(--paper);box-shadow:var(--shadow)}.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:18px}.card h3{margin:0;font-size:21px}.sub{margin:4px 0 0;color:var(--muted);font-size:14px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:10px;padding:10px 14px;background:var(--lemon);color:#fff;font-weight:700;cursor:pointer;text-decoration:none}.btn.dark{background:#2a2f11}.btn.outline{border:1px solid var(--lemon);background:#fff;color:var(--lime)}.btn:disabled{cursor:not-allowed;opacity:.48}.feedback,.note{margin-top:12px;padding:11px 13px;border-radius:10px;background:var(--soft);font-size:14px}.feedback:empty{display:none}.ok{color:var(--green)!important}.bad{color:var(--red)!important}.missing{border-left:4px solid var(--bright);background:#f7fbe6}
 .quiz-list{display:grid;gap:12px}.quiz-row{padding:13px;border:1px solid var(--line);border-radius:12px;background:#fff}.qtitle{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-weight:700}.choices{display:flex;flex-wrap:wrap;gap:7px}.choice,.match-chip,.token,.photo-card,.order-chip{border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer}.choice{padding:8px 11px}.choice.selected,.order-chip.selected{border-color:var(--lemon);background:var(--soft)}.choice.correct{border-color:var(--green);background:#e8f5f0;color:var(--green)}.choice.wrong{border-color:var(--red);background:#fbeaea;color:var(--red)}
 .match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}.match-col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.match-chip{padding:11px;text-align:center;font-weight:700}.match-chip.selected{outline:3px solid var(--soft);border-color:var(--lime)}.match-chip.matched{border-color:var(--green);background:#e8f5f0;color:var(--green)}.match-chip.wrong,.photo-card.wrong{animation:shake .25s;border-color:var(--red)}@keyframes shake{50%{transform:translateX(5px)}}
@@ -24,13 +24,9 @@
 
 </style></head><body>
 <div class="app"><main class="main"><div class="content">
-  <div class="backbar"><a class="backlink" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/t%C3%A0i-li%E1%BB%87u-%C3%B4n-t%E1%BA%ADp-t%E1%BB%95ng-h%E1%BB%A3p/th%E1%BB%B1c-h%C3%A0nh-ti%E1%BA%BFng-a1" target="_top">← Quay lại mục lục</a></div>
+  <div class="backbar"><a class="backlink" href="../index.html">← Quay lại mục lục</a></div>
   <div class="eyebrow">GIÁO TRÌNH HÁN NGỮ 1 (PHIÊN BẢN 3) · BÀI 7</div>
   <section class="hero"><h1>BÀI 7</h1><p>第七课 · 你吃什么？ (Bạn ăn gì?)</p></section>
-  <div class="stage-note"><b>Nội dung chính Bài 7 《汉语教程 1》:</b><br>
-    • <b>Bài khóa (课文):</b> Ăn cơm tại nhà ăn: A: 中午你去哪儿吃饭？ (Trưa bạn đi đâu ăn cơm?) — B: 我去食堂。 (Tôi đi nhà ăn.)<br>
-    • <b>Từ mới (生词):</b> 中午, 吃, 饭, 食堂, 馒头, 要, 个, 米饭, 米, 碗, 鸡蛋, 鸡, 蛋, 汤, 啤酒, 酒, 这些, 些, 一些, 那些, 饺子, 包子, 面条儿.<br>
-    • <b>Ngữ âm & Nghe hiểu (汉语听力教程 1 - Bài 7):</b> Đầy đủ trọn bộ các phần luyện nghe: Nghe điền thanh mẫu (7-1), Nghe điền vận mẫu (7-2), Đánh dấu thanh điệu (7-3, 7-4), Nghe chọn câu trả lời (7-6), Nghe hội thoại chọn A/B/C/D (7-7), Nghe chọn đáp án bài tập về nhà (7-9).</div>
 
   <h2 class="section-title"><span>一、听力练习</span> · Trọn bộ bài tập Nghe (Giáo trình Nghe 1 - Bài 7)</h2>
 
@@ -41,7 +37,7 @@
   <audio controls preload="metadata">
     <source src="b7-nghe-7-1.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-1.m4a" type="audio/mp4">
-    <source src="b7-nghe-7-1.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-1.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -57,7 +53,7 @@
   <audio controls preload="metadata">
     <source src="b7-nghe-7-2.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-2.m4a" type="audio/mp4">
-    <source src="b7-nghe-7-2.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-2.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -73,7 +69,7 @@
   <audio controls preload="metadata">
     <source src="b7-nghe-7-3.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-3.m4a" type="audio/mp4">
-    <source src="b7-nghe-7-3.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-3.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -89,7 +85,7 @@
   <audio controls preload="metadata">
     <source src="b7-nghe-7-4.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-4.m4a" type="audio/mp4">
-    <source src="b7-nghe-7-4.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-4.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -105,7 +101,7 @@
   <audio controls preload="metadata">
     <source src="b7-nghe-7-5.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-5.m4a" type="audio/mp4">
-    <source src="b7-nghe-7-5.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-5.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -123,7 +119,7 @@
   <audio controls preload="metadata">
     <source src="b7-nghe-7-6.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-6.m4a" type="audio/mp4">
-    <source src="b7-nghe-7-6.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-6.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -139,7 +135,7 @@
   <audio controls preload="metadata">
     <source src="b7-nghe-7-7.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-7.m4a" type="audio/mp4">
-    <source src="b7-nghe-7-7.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-7.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -155,7 +151,7 @@
   <audio controls preload="metadata">
     <source src="b7-nghe-7-8.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-8.m4a" type="audio/mp4">
-    <source src="b7-nghe-7-8.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-8.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -171,7 +167,7 @@
   <audio controls preload="metadata">
     <source src="b7-nghe-7-9.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b7-nghe-7-9.m4a" type="audio/mp4">
-    <source src="b7-nghe-7-9.m4a" type="audio/mp4">
+    <source src="../assets/audio/b7-nghe-7-9.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -239,7 +235,7 @@
     <div id="reading-judge-feedback" class="feedback"></div>
   </section>
 
-  <section class="scorebox"><div class="score-ring" id="score-ring">0%</div><div><h2 id="score-title">Kết quả bài luyện tập</h2><p id="score-text">Bấm “Chấm toàn bộ” để xem số câu đúng và tỉ lệ phần trăm.</p><p id="score-breakdown"></p></div><div class="score-actions"><button class="btn" onclick="gradeAll()">Chấm toàn bộ</button><button class="btn outline" onclick="location.reload()">Làm lại từ đầu</button><a class="btn outline" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/t%C3%A0i-li%E1%BB%87u-%C3%B4n-t%E1%BA%ADp-t%E1%BB%95ng-h%E1%BB%A3p/th%E1%BB%B1c-h%C3%A0nh-ti%E1%BA%BFng-a1" target="_top">← Quay lại mục lục</a></div></section>
+  <section class="scorebox"><div class="score-ring" id="score-ring">0%</div><div><h2 id="score-title">Kết quả bài luyện tập</h2><p id="score-text">Bấm “Chấm toàn bộ” để xem số câu đúng và tỉ lệ phần trăm.</p><p id="score-breakdown"></p></div><div class="score-actions"><button class="btn" onclick="gradeAll()">Chấm toàn bộ</button><button class="btn outline" onclick="location.reload()">Làm lại từ đầu</button></div></section>
 </div></main></div><div class="toast" id="toast"></div>
 
 <script>
@@ -730,210 +726,230 @@ const listeningTonesSentenceQuiz=[
 ];
 
 // 6. Nghe 7-6 (tr.29) - 听后选择合适的回答 (Chuẩn đáp án NXB: B, C, B, A, D, A, D, C, A, B)
-const listeningResponseQuiz=[
+const listeningResponseQuiz = [
   [
-    "1. 你星期几去学校？",
+    "1.",
     [
-      "不去。",
+      "今天去。",
+      "我去学习。",
       "星期二。",
-      "今天去。",
-      "我去学习。"
+      "不去。"
     ],
-    1
+    2,
+    "Lời thoại: '你星期几去学校？' -> Đáp án: 星期二。"
   ],
   [
-    "2. 你妈妈明天去吗？",
+    "2.",
     [
+      "今天去。",
       "她不去。",
-      "我姐姐去。",
-      "今天去。",
-      "她去银行。"
+      "她去银行。",
+      "我姐姐去。"
     ],
-    0
+    1,
+    "Lời thoại: '你妈妈明天去吗？' -> Đáp án: 她不去。"
   ],
   [
-    "3. 他去哪儿取钱？",
+    "3.",
     [
-      "不去银行。",
       "我去取。",
-      "去邮局。",
-      "他回学校。"
+      "他回学校。",
+      "不去银行。",
+      "去邮局。"
     ],
-    2
+    3,
+    "Lời thoại: '他去哪儿取钱？' -> Đáp án: 去邮局。"
   ],
   [
-    "4. 那儿是天安门吗？",
+    "4.",
     [
       "对，他是。",
+      "对。",
       "不去。",
-      "去。",
-      "对。"
+      "去。"
     ],
-    3
+    1,
+    "Lời thoại: '那儿是天安门吗？' -> Đáp án: 对。"
   ],
   [
-    "5. 你们也回学校吗？",
+    "5.",
     [
-      "我们去学校。",
-      "我们不回。",
       "他们回学校。",
-      "你们回学校。"
+      "我们去学校。",
+      "你们回学校。",
+      "我们不回。"
     ],
-    1
+    3,
+    "Lời thoại: '你们也回学校吗？' -> Đáp án: 我们不回。"
   ],
   [
-    "6. 你们学不学阿拉伯语？",
+    "6.",
     [
       "阿拉伯语很难。",
       "我们学西班牙语。",
-      "我弟弟学。",
-      "学。"
+      "学。",
+      "我弟弟学。"
     ],
-    3
+    2,
+    "Lời thoại: '你们学不学阿拉伯语？' -> Đáp án: 学。"
   ],
   [
-    "7. 今天有没有我的信？",
+    "7.",
     [
       "我有。",
-      "有他的信。",
       "没有，有他的。",
+      "有他的信。",
       "明天有。"
     ],
-    2
+    1,
+    "Lời thoại: '今天有没有我的信？' -> Đáp án: 没有，有他的。"
   ],
   [
-    "8. 这是你的信吗？",
+    "8.",
     [
-      "对，谢谢！",
-      "不，对不起。",
       "有你的。",
-      "我的信。"
+      "对，谢谢！",
+      "我的信。",
+      "不，对不起。"
     ],
-    0
+    1,
+    "Lời thoại: '这是你的信吗？' -> Đáp án: 对，谢谢！"
   ],
   [
-    "9. 今天是不是星期五？",
+    "9.",
     [
-      "今天星期几？",
       "今天是星期五。",
       "明天是星期五。",
+      "今天星期几？",
       "昨天不是星期五。"
     ],
-    1
+    0,
+    "Lời thoại: '今天是不是星期五？' -> Đáp án: 今天是星期五。"
   ],
   [
-    "10. 你们星期几见？",
+    "10.",
     [
-      "星期一见。",
-      "去学校见。",
       "明天见。",
-      "昨天见。"
+      "星期一见。",
+      "昨天见。",
+      "去学校见。"
     ],
-    0
+    1,
+    "Lời thoại: '你们星期几见？' -> Đáp án: 星期一见。"
   ]
 ];
 
 // 7. Nghe 7-7 (tr.29-30) - 对话理解 (Chuẩn đáp án NXB: C, B, B, A, D, B, B, A, C, C)
-const listeningDialogueQuiz=[
+const listeningDialogueQuiz = [
   [
-    "1. 女的做什么？",
+    "1.",
     [
-      "去学校 / 回学校",
-      "在这儿",
+      "去学校",
+      "去银行",
       "去邮局",
-      "去银行"
+      "在这儿"
     ],
-    0
+    0,
+    "Lời thoại: 男：我去银行，你去吗？ 女：我不去，我回学校。 · 问：女的做什么？ -> Đáp án: 去学校."
   ],
   [
-    "2. 这个人叫什么？",
+    "2.",
     [
-      "常彤 (Cháng Tóng)",
-      "张东 (Zhāng Dōng)",
-      "张彤 (Zhāng Tóng)",
-      "张通 (Zhāng Tōng)"
+      "张彤（Zhang Tong）",
+      "张通（Zhang Tong）",
+      "常彤（Chang Tong）",
+      "张东（Zhang Dong）"
     ],
-    2
+    0,
+    "Lời thoại: 女：你叫张东吗？ 男：我不叫张东，我叫张彤。 · 问：这个人叫什么？ -> Đáp án: 张彤."
   ],
   [
-    "3. 谁忙？",
+    "3.",
     [
-      "爸爸和妈妈",
-      "爸爸",
       "我",
-      "妈妈"
+      "妈妈",
+      "爸爸和妈妈",
+      "爸爸"
     ],
-    3
+    1,
+    "Lời thoại: 男：你爸爸、妈妈忙吗？ 女：我妈妈很忙，爸爸不忙。 · 问：谁忙？ -> Đáp án: 妈妈."
   ],
   [
-    "4. 下面哪个句子对？",
+    "4.",
     [
-      "他们是麦克哥哥的朋友",
-      "一个是麦克的朋友，一个不是",
+      "他们是麦克的朋友",
       "他们是麦克的哥哥",
-      "他们是麦克的朋友"
+      "他们是麦克哥哥的朋友",
+      "一个是，一个不是"
     ],
-    1
+    3,
+    "Lời thoại: 女：麦克，他们是你朋友吗？ 男：这个是我朋友，那个是我哥哥的朋友。 · 问：下面哪个句子对？ -> Đáp án: 一个是，一个不是."
   ],
   [
-    "5. 他们明天去做什么？",
+    "5.",
     [
       "去天安门",
-      "去学习",
       "去学校",
-      "去公园"
+      "去公园",
+      "去学习"
     ],
-    0
+    0,
+    "Lời thoại: 男：明天我去天安门，你去吗？ 女：去。明天学校见。 · 问：他们明天去做什么？ -> Đáp án: 去天安门."
   ],
   [
-    "6. 男的老师姓什么？",
+    "6.",
     [
-      "Qiáng (强)",
-      "Zhāng (张)",
-      "Xiàng (向)",
-      "Jiāng (姜)"
+      "Xiang",
+      "Qiang",
+      "Jiang",
+      "Zhang"
     ],
-    3
+    2,
+    "Lời thoại: 女：你们老师姓什么？ 男：我们老师姓姜。 · 问：男的老师姓什么？ -> Đáp án: Jiang."
   ],
   [
-    "7. 下面哪个句子对？",
+    "7.",
     [
-      "有张东的信",
-      "信是张东的",
       "有王老师的信",
-      "张东是老师"
+      "有张东的信",
+      "张东是老师",
+      "信是张东的"
     ],
-    2
+    0,
+    "Lời thoại: 男：王老师，您的信。 女：谢谢你，张东。 · 问：下面哪个句子对？ -> Đáp án: 有王老师的信."
   ],
   [
-    "8. 下面哪个句子对？",
+    "8.",
     [
+      "男的没有英语书",
       "男的有英语书",
       "英语书是妹妹的",
-      "男的没有英语书",
       "女的没有英语书"
     ],
-    1
+    2,
+    "Lời thoại: 女：这是你的英语书吗？ 男：不是，这是我妹妹的英语书。 · 问：下面哪个句子对？ -> Đáp án: 英语书是妹妹的."
   ],
   [
-    "9. 下面哪个句子对？",
+    "9.",
     [
-      "姐姐学习日语",
-      "弟弟学习日语",
+      "哥哥学习日语",
       "他们学习日语",
+      "弟弟学习日语",
       "弟弟学习德语"
     ],
-    1
+    2,
+    "Lời thoại: 男：你弟弟学习德语吗？ 女：我弟弟学习日语，我学习德语。 · 问：下面哪个句子对？ -> Đáp án: 弟弟学习日语."
   ],
   [
-    "10. 什么难？",
+    "10.",
     [
       "汉字",
+      "汉字和发音",
       "发音",
-      "法语",
-      "汉字和发音"
+      "法语难"
     ],
-    3
+    1,
+    "Lời thoại: 女：汉字太难。 男：对，发音也难。 · 问：什么难？ -> Đáp án: 汉字和发音."
   ]
 ];
 
@@ -1082,36 +1098,39 @@ const listeningHomeworkWordsQuiz=[
 ];
 
 // 9. Nghe 7-9 (tr.31) - 3 câu hội thoại bài tập về nhà (Chuẩn đáp án NXB: C, B, D)
-const listeningHomeworkQuiz=[
+const listeningHomeworkQuiz = [
   [
-    "1. 下面哪个句子对？",
+    "1.",
     [
-      "一个是英国人，一个是美国人",
-      "男的是英国人，女的不是",
       "女的是英国人，男的不是",
-      "他们都是英国人"
+      "一个是英国人，一个是美国人",
+      "他们都是英国人",
+      "男的是英国人，女的不是"
     ],
-    3
+    2,
+    "Lời thoại: 男：你是玛丽吗？ 女：对。你叫什么？ 男：我叫查理，是英国人。 女：是吗？我也是。 · 问：下面哪个句子对？ -> Đáp án: 他们都是英国人."
   ],
   [
-    "2. 下面哪个句子对？",
+    "2.",
     [
-      "他们都是学生",
-      "一个是学生，一个不是",
       "男的是老师",
+      "一个是学生，一个不是",
+      "他们都是学生",
       "女的是学生"
     ],
-    1
+    1,
+    "Lời thoại: 女：你是留学生吗？ 男：不是，我是中国学生。 女：你学习什么？ 男：我学习英语。你呢？ 女：我是日本人，是日语老师。 · 问：下面哪个句子对？ -> Đáp án: 一个是学生，一个不是."
   ],
   [
-    "3. 哪个发音对？",
+    "3.",
     [
       "Song Shan",
-      "Song Xian",
       "Zhongshan",
+      "Song Xian",
       "Cong Shan"
     ],
-    2
+    1,
+    "Lời thoại: 女：我的名字是中珊（Zhongshan）。 男：噢，你是宋仙（Song Xian）小姐。 女：不是 Song Xian，是 Zhongshan。 · 问：哪个发音对？ -> Đáp án: Zhongshan."
   ]
 ];
 
@@ -1146,7 +1165,7 @@ const meaningOrder=[
 
 const hanziQuiz=[
   [
-    "zhōngwǔ (buổi trưa)",
+    "zhōngwǔ",
     [
       "下午",
       "晚上",
@@ -1156,7 +1175,7 @@ const hanziQuiz=[
     3
   ],
   [
-    "shítáng (nhà ăn)",
+    "shítáng",
     [
       "礼堂",
       "教室",
@@ -1166,7 +1185,7 @@ const hanziQuiz=[
     2
   ],
   [
-    "mántou (bánh bao chay)",
+    "mántou",
     [
       "馒头",
       "米饭",
@@ -1186,7 +1205,7 @@ const hanziQuiz=[
     1
   ],
   [
-    "píjiǔ (bia)",
+    "píjiǔ",
     [
       "咖啡",
       "啤酒",
@@ -1196,7 +1215,7 @@ const hanziQuiz=[
     1
   ],
   [
-    "mǐfàn (cơm trắng)",
+    "mǐfàn",
     [
       "面包",
       "饺子",
@@ -1253,7 +1272,7 @@ const patterns=[
   ["我要一碗鸡蛋汤。你喝啤酒吗？","Wǒ yào yì wǎn jīdàntāng. Nǐ hē píjiǔ ma?","Tôi lấy một bát canh trứng. Bạn uống bia không?"]
 ];
 
-const fillBank=["中午","食堂","吃","要","个","米饭","碗","喝","啤酒"];
+const fillBank=["中午","食堂","吃","要","个","米饭","碗","喝","啤酒","饺子","包子","鸡蛋","瓶"];
 const fillData=[
   ["","你去哪儿吃饭？","中午"],
   ["我不去饭店，我去学校","。","食堂"],
@@ -1263,7 +1282,11 @@ const fillData=[
   ["中国人很喜欢吃","。","米饭"],
   ["玛丽要了一","鸡蛋汤。","碗"],
   ["你","什么酒？","喝"],
-  ["我不喝水，我要一瓶","。","啤酒"]
+  ["我不喝水，我要一瓶","。","啤酒"],
+  ["今天中午我不吃米饭，我想吃","。","饺子"],
+  ["服务员，你要几个","？ — 我要四个。","包子"],
+  ["我们喝一碗","汤吧。","鸡蛋"],
+  ["服务员，请给我一","青岛啤酒。","瓶"]
 ];
 
 const arrangeData=[
@@ -1298,9 +1321,9 @@ let chosenWord=null,chosenMeaning=null,meaningMatched={},chosenPicWord=null,pict
 function showResult(id,got,total){const el=document.getElementById(id);if(!el)return;el.className='feedback '+(got===total?'ok':'bad');el.innerHTML=`Bạn làm đúng <b>${got}/${total}</b> mục.`}
 function toast(text){const el=document.getElementById('toast');el.textContent=text;el.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove('show'),2400)}
 function escapeHtml(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
-function makeQuiz(id,data){document.getElementById(id).innerHTML=data.map((q,i)=>`<div class="quiz-row" data-answer="${q[2]}"><div class="qtitle">${q[0]}</div><div class="choices">${q[1].map((x,j)=>`<button class="choice" data-i="${j}" onclick="selectChoice(this)">${String.fromCharCode(65+j)}. ${escapeHtml(x)}</button>`).join('')}</div><div class="answer-note"></div></div>`).join('')}
+function makeQuiz(id,data){document.getElementById(id).innerHTML=data.map((q,i)=>`<div class="quiz-row" data-answer="${q[2]}" data-expl="${escapeHtml(q[3]||'')}"><div class="qtitle">${q[0]}</div><div class="choices">${q[1].map((x,j)=>{const cleanX=String(x).replace(/^[A-D]\.\s*/,'');return `<button class="choice" data-i="${j}" onclick="selectChoice(this)">${String.fromCharCode(65+j)}. ${escapeHtml(cleanX)}</button>`;}).join('')}</div><div class="answer-note"></div></div>`).join('')}
 function selectChoice(button){const row=button.closest('.quiz-row');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected','correct','wrong'));row.classList.remove('correct-row','wrong-row');const note=row.querySelector('.answer-note');note.className='answer-note';note.textContent='';button.classList.add('selected')}
-function checkChoiceQuiz(id,feedbackId){const rows=[...document.querySelectorAll('#'+id+' .quiz-row')];let got=0;rows.forEach(row=>{const answer=+row.dataset.answer,selected=row.querySelector('.choice.selected'),correct=row.querySelector(`[data-i="${answer}"]`),note=row.querySelector('.answer-note');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('correct','wrong'));row.classList.remove('correct-row','wrong-row');if(selected&&+selected.dataset.i===answer){got++;selected.classList.add('correct');row.classList.add('correct-row');note.className='answer-note ok';note.innerHTML=`✓ Chính xác. Đáp án: <b>${correct.textContent}</b>.`}else{if(selected)selected.classList.add('wrong');correct.classList.add('correct');row.classList.add('wrong-row');note.className='answer-note bad';note.innerHTML=`✕ ${selected?'Bạn chọn: <b>'+selected.textContent+'</b>. ':'Bạn chưa chọn. '}Đáp án đúng: <b>${correct.textContent}</b>.`}});showResult(feedbackId,got,rows.length);return[got,rows.length]}
+function checkChoiceQuiz(id,feedbackId){const rows=[...document.querySelectorAll('#'+id+' .quiz-row')];let got=0;rows.forEach(row=>{const answer=+row.dataset.answer,selected=row.querySelector('.choice.selected'),correct=row.querySelector(`[data-i="${answer}"]`),note=row.querySelector('.answer-note'),expl=row.dataset.expl;row.querySelectorAll('.choice').forEach(x=>x.classList.remove('correct','wrong'));row.classList.remove('correct-row','wrong-row');const explHtml=expl?` <br><span style="color:#555;font-weight:normal">🎧 Lời thoại / Giải thích: ${expl}</span>`:'';if(selected&&+selected.dataset.i===answer){got++;selected.classList.add('correct');row.classList.add('correct-row');note.className='answer-note ok';note.innerHTML=`✓ Chính xác. Đáp án: <b>${correct?correct.textContent:''}</b>.${explHtml}`}else{if(selected)selected.classList.add('wrong');if(correct)correct.classList.add('correct');row.classList.add('wrong-row');note.className='answer-note bad';note.innerHTML=`✕ ${selected?'Bạn chọn: <b>'+selected.textContent+'</b>. ':'Bạn chưa chọn. '}Đáp án đúng: <b>${correct?correct.textContent:''}</b>.${explHtml}`}});showResult(feedbackId,got,rows.length);return[got,rows.length]}
 function resetChoices(id,feedbackId){document.querySelectorAll('#'+id+' .quiz-row').forEach(row=>{row.classList.remove('correct-row','wrong-row');row.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected','correct','wrong'));const note=row.querySelector('.answer-note');note.className='answer-note';note.textContent=''});document.getElementById(feedbackId).textContent=''}
 
 function renderMeaning(){document.getElementById('meaning-left').innerHTML=Object.keys(meaningPairs).map(x=>`<button class="match-chip" data-v="${x}" onclick="pickMeaningLeft(this)">${x}</button>`).join('');document.getElementById('meaning-right').innerHTML=meaningOrder.map(x=>`<button class="match-chip" data-v="${x}" onclick="pickMeaningRight(this)">${x}</button>`).join('')}
@@ -1397,7 +1420,7 @@ function gradeAll(){
   ];
   const got=results.reduce((s,x)=>s+x[0],0),total=results.reduce((s,x)=>s+x[1],0),percent=Math.round(got/total*100);
   document.getElementById('score-ring').textContent=percent+'%';
-  document.getElementById('score-title').textContent=percent>=85?'Xuất sắc!':percent>=60?'Làm tốt lắm, cố gắng thêm nhé!':'Hãy luyện tập thêm nhé!';
+  document.getElementById('score-title').textContent=percent>=85?'Xuất sắc!':percent>=60?'Khá tốt, cố gắng thêm nhé!':'Hãy luyện tập thêm nhé!';
   document.getElementById('score-text').textContent=`Kết quả: ${percent}% — đúng ${got}/${total} câu.`;
   document.querySelector('.scorebox').scrollIntoView({behavior:'smooth',block:'center'});
 }

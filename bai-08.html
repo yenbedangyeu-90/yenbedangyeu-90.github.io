@@ -455,37 +455,34 @@ body {
 
 /* Summary Scorebox */
 .scorebox {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
   gap: 24px;
-  margin-top: 30px;
-  padding: 26px;
-  border-radius: 22px;
-  background: #24290e;
-  color: #fff;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--soft), #fff);
+  border: 2px solid var(--lemon);
+  border-radius: 18px;
+  margin-top: 24px;
 }
 .score-ring {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--lemon);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 112px;
-  height: 112px;
-  border: 14px solid #4a5424;
-  border-top-color: var(--lemon);
-  border-right-color: var(--lemon);
-  border-radius: 50%;
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 900;
+  box-shadow: 0 4px 14px rgba(127,152,0,.3);
+  flex-shrink: 0;
 }
-.scorebox h2 { margin: 0; font-size: 31px; }
-.scorebox p { margin: 4px 0; color: #dbe6a6; }
 .score-actions {
-  display: grid;
-  gap: 9px;
-  min-width: 190px;
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
 }
-.scorebox .btn.outline { border-color: var(--lemon); background: #fff; color: var(--lime); }
 
 /* Pattern items */
 .pattern-item {
@@ -524,29 +521,22 @@ body {
   .picture-words {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .scorebox { grid-template-columns: 1fr; text-align: center; }
-  .score-ring { margin: auto; }
-  .score-actions { grid-template-columns: 1fr; width: 100%; }
+  .scorebox {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="backbar"><a class="backlink" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/t%C3%A0i-li%E1%BB%87u-%C3%B4n-t%E1%BA%ADp-t%E1%BB%95ng-h%E1%BB%A3p/th%E1%BB%B1c-h%C3%A0nh-ti%E1%BA%BFng-a1" target="_top">← Quay lại mục lục</a></div>
+  <div class="backbar"><a class="backlink" href="../index.html">← Quay lại mục lục</a></div>
   <div class="eyebrow">GIÁO TRÌNH HÁN NGỮ 1 (PHIÊN BẢN 3) · BÀI 8</div>
   
   <section class="hero">
     <h1>BÀI 8 · 第八课</h1>
     <p>苹果一斤多少钱？ · Táo bao nhiêu tiền một cân?</p>
   </section>
-
-  <div class="stage-note">
-    <b>Nội dung trọng tâm Bài 8 《汉语教程 1》 & 《汉语听力教程 1》:</b><br>
-    • <b>Bài khóa & Giao tiếp:</b> Đi chợ mua hoa quả, hỏi giá (多少钱 / 怎么卖), mặc cả (太贵了, 便宜一点儿吧), cân đo (斤 / 公斤), tính tổng tiền (一共多少钱), đưa tiền và trả lại tiền thừa (找钱).<br>
-    • <b>Từ vựng & Món hàng:</b> 买, 水果, 苹果, 斤, 公斤, 贵, 便宜, 橘子, 香蕉, 葡萄, 西瓜, 桃, 还, 别的, 给, 找.<br>
-    • <b>Đơn vị tiền tệ:</b> 块 (元), 毛 (角), 分 (1块 = 10毛 = 100分).<br>
-    • <b>Trọn bộ 10 bài nghe theo đĩa:</b> Điền thanh mẫu (8-1), Vận mẫu & Thanh điệu (8-2), Đánh dấu thanh điệu thành ngữ 4 chữ (8-3), Nghe viết âm tiết (8-4), Thanh điệu câu (8-5), Từ mới nghe hiểu (8-6), Chọn câu đáp (8-7), Đối thoại chọn đáp án (8-8), Đối thoại nâng cao (8-9), Câu đố dân gian đoán quả (8-10).
-  </div>
 
   <h2 class="section-title"><span>一、听力练习</span> · Trọn bộ bài tập Nghe (Giáo trình Nghe 1 - Bài 8)</h2>
 
@@ -560,7 +550,7 @@ body {
   <audio controls preload="metadata">
     <source src="b8-nghe-8-1.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b8-nghe-8-1.m4a" type="audio/mp4">
-    <source src="b8-nghe-8-1.m4a" type="audio/mp4">
+    <source src="../assets/audio/b8-nghe-8-1.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -582,7 +572,7 @@ body {
   <audio controls preload="metadata">
     <source src="b8-nghe-8-2.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b8-nghe-8-2.m4a" type="audio/mp4">
-    <source src="b8-nghe-8-2.m4a" type="audio/mp4">
+    <source src="../assets/audio/b8-nghe-8-2.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -604,7 +594,7 @@ body {
   <audio controls preload="metadata">
     <source src="b8-nghe-8-3.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b8-nghe-8-3.m4a" type="audio/mp4">
-    <source src="b8-nghe-8-3.m4a" type="audio/mp4">
+    <source src="../assets/audio/b8-nghe-8-3.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -626,7 +616,7 @@ body {
   <audio controls preload="metadata">
     <source src="b8-nghe-8-4.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b8-nghe-8-4.m4a" type="audio/mp4">
-    <source src="b8-nghe-8-4.m4a" type="audio/mp4">
+    <source src="../assets/audio/b8-nghe-8-4.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -648,7 +638,7 @@ body {
   <audio controls preload="metadata">
     <source src="b8-nghe-8-5.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b8-nghe-8-5.m4a" type="audio/mp4">
-    <source src="b8-nghe-8-5.m4a" type="audio/mp4">
+    <source src="../assets/audio/b8-nghe-8-5.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -670,7 +660,7 @@ body {
   <audio controls preload="metadata">
     <source src="b8-nghe-8-6.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b8-nghe-8-6.m4a" type="audio/mp4">
-    <source src="b8-nghe-8-6.m4a" type="audio/mp4">
+    <source src="../assets/audio/b8-nghe-8-6.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -692,7 +682,7 @@ body {
   <audio controls preload="metadata">
     <source src="b8-nghe-8-7.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b8-nghe-8-7.m4a" type="audio/mp4">
-    <source src="b8-nghe-8-7.m4a" type="audio/mp4">
+    <source src="../assets/audio/b8-nghe-8-7.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -714,7 +704,7 @@ body {
   <audio controls preload="metadata">
     <source src="b8-nghe-8-8.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b8-nghe-8-8.m4a" type="audio/mp4">
-    <source src="b8-nghe-8-8.m4a" type="audio/mp4">
+    <source src="../assets/audio/b8-nghe-8-8.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -736,7 +726,7 @@ body {
   <audio controls preload="metadata">
     <source src="b8-nghe-8-9.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b8-nghe-8-9.m4a" type="audio/mp4">
-    <source src="b8-nghe-8-9.m4a" type="audio/mp4">
+    <source src="../assets/audio/b8-nghe-8-9.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -758,7 +748,7 @@ body {
   <audio controls preload="metadata">
     <source src="b8-nghe-8-10.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b8-nghe-8-10.m4a" type="audio/mp4">
-    <source src="b8-nghe-8-10.m4a" type="audio/mp4">
+    <source src="../assets/audio/b8-nghe-8-10.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -921,7 +911,7 @@ body {
       <h3>1. Đọc đoạn văn và phán đoán Đúng / Sai</h3>
     </div>
     <div class="dialogue-box">
-      <b>玛丽买水果 (Mary mua hoa quả)</b>
+      <b>玛丽买水果</b>
       <p>下午，玛丽去水果店买水果。 苹果一斤五块钱，玛丽说：“太贵了，四块五一斤吧。” 卖水果的人说：“行，你要几斤？” 玛丽要三斤苹果。 玛丽还买了两斤香蕉，香蕉三块钱一斤。 玛丽还要一斤橘子，橘子两块五一斤。 苹果、香蕉和橘子一共二十二块钱。 玛丽给卖水果的人五十块，卖水果的人找玛丽二十八块。 玛丽很高兴。</p>
     </div>
     <div id="reading-judge-quiz" class="quiz-list" style="margin-top:16px;"></div>
@@ -936,14 +926,12 @@ body {
   <section class="scorebox">
     <div class="score-ring" id="score-ring">0%</div>
     <div>
-      <h2 id="score-title">Kết quả bài luyện tập</h2>
-      <p id="score-text">Bấm “Chấm toàn bộ” để xem số câu đúng và tỉ lệ phần trăm.</p>
-      <p id="score-breakdown"></p>
+      <h2 id="score-title">Chưa chấm điểm</h2>
+      <p id="score-text">Hãy hoàn thành các bài tập và bấm "Chấm điểm toàn bài" để nhận kết quả tổng kết.</p>
     </div>
     <div class="score-actions">
-      <button class="btn" onclick="gradeAll()">Chấm toàn bộ</button>
-      <button class="btn outline" onclick="location.reload()">Làm lại từ đầu</button>
-      <a class="btn outline" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/t%C3%A0i-li%E1%BB%87u-%C3%B4n-t%E1%BA%ADp-t%E1%BB%95ng-h%E1%BB%A3p/th%E1%BB%B1c-h%C3%A0nh-ti%E1%BA%BFng-a1" target="_top">← Quay lại mục lục</a>
+      <button class="btn" style="background:#ff6b6b;border-color:#ff6b6b;" onclick="gradeAll()">Chấm điểm toàn bài</button>
+      <button class="btn outline" style="color:#fff;border-color:#fff;" onclick="location.reload()">Làm lại từ đầu</button>
     </div>
   </section>
 </div>
@@ -1574,286 +1562,313 @@ const listeningTonesSentenceQuiz = [
 // 7. Nghe 8-7 (Tr.34-35) - 10 câu (Chuẩn đáp án NXB: B, B, B, C, D, C, C, D, B, B)
 const listeningResponseQuiz = [
   [
-    "1. 你中午吃什么？",
+    "1.",
     [
-      "我去食堂。",
       "我不喜欢吃。",
+      "我去食堂。",
       "四个包子。",
       "一瓶啤酒。"
     ],
-    2
+    2,
+    "Lời thoại: '你中午吃什么？' -> Đáp án: 四个包子。"
   ],
   [
-    "2. 我们吃米饭好吗？",
+    "2.",
     [
+      "米饭不好。",
       "好。",
       "我们吃一些米饭。",
-      "我们不吃。",
-      "米饭不好。"
+      "我们不吃。"
     ],
-    0
+    1,
+    "Lời thoại: '我们吃米饭好吗？' -> Đáp án: 好。"
   ],
   [
-    "3. 你要什么？",
+    "3.",
     [
-      "我有书。",
-      "有咖啡吗？",
+      "都不要。",
       "我要去食堂。",
-      "都不要。"
+      "有咖啡吗？",
+      "我有书。"
     ],
-    1
+    2,
+    "Lời thoại: '你要什么？' -> Đáp án: 有咖啡吗？"
   ],
   [
-    "4. 去食堂怎么样？",
+    "4.",
     [
-      "不太好。",
+      "好吧。",
       "有馒头吗？",
       "食堂很好。",
-      "好吧。"
+      "不太好。"
     ],
-    3
+    0,
+    "Lời thoại: '去食堂怎么样？' -> Đáp án: 好吧。"
   ],
   [
-    "5. 有包子吗？",
+    "5.",
     [
+      "有报纸。",
       "没有。",
-      "要包子。",
       "饺子也可以。",
-      "有报纸。"
+      "要包子。"
     ],
-    0
+    1,
+    "Lời thoại: '有包子吗？' -> Đáp án: 没有。"
   ],
   [
-    "6. 这是什么啤酒？",
+    "6.",
     [
-      "他有啤酒。",
-      "这是啤酒。",
+      "我没有啤酒。",
+      "青岛啤酒。",
       "我不喝啤酒。",
-      "我没有啤酒。"
+      "德国和中国啤酒。"
     ],
-    2
+    1,
+    "Lời thoại: '这是什么啤酒？' -> Đáp án: 青岛啤酒。"
   ],
   [
-    "7. 他吃什么？",
+    "7.",
     [
-      "一碗鸡蛋汤。",
-      "一碗面条儿。",
       "一瓶啤酒。",
-      "没有饺子。"
+      "一碗鸡蛋汤。",
+      "一碗面条。",
+      "一个饺子。"
     ],
-    1
+    2,
+    "Lời thoại: '他吃什么？' -> Đáp án: 一碗面条。"
   ],
   [
-    "8. 你爸爸、妈妈不喝咖啡吗？",
+    "8.",
     [
       "爸爸、妈妈也不喝。",
-      "我们家人也都喝。",
-      "哥哥喝。",
-      "爸爸喝，妈妈不喝。"
+      "爸爸喝，妈妈不喝。",
+      "我们家人都喝。",
+      "哥哥喝。"
     ],
-    3
+    1,
+    "Lời thoại: '你爸爸、妈妈不喝咖啡吗？' -> Đáp án: 爸爸喝，妈妈不喝。"
   ],
   [
-    "9. 你要哪些？",
+    "9.",
     [
-      "我不要那些。",
+      "我要这些。",
       "我要别的。",
       "我要一些。",
-      "我要这些。"
+      "我不要那些。"
     ],
-    3
+    0,
+    "Lời thoại: '你要哪些？' -> Đáp án: 我要这些。"
   ],
   [
-    "10. 你星期天去哪儿吃饭？",
+    "10.",
     [
-      "我去邮局。",
-      "我回家吃饭。",
       "我在家。",
-      "我不去那儿。"
+      "我去邮局。",
+      "我不去那儿。",
+      "我回家吃饭。"
     ],
-    1
+    3,
+    "Lời thoại: '你星期天去哪儿吃饭？' -> Đáp án: 我回家吃饭。"
   ]
 ];
 
 // 8. Nghe 8-8 (Tr.35) - 10 câu (Chuẩn đáp án NXB: C, B, B, D, C, C, A, D, A, D)
 const listeningDialogueQuiz = [
   [
-    "1. 谁去食堂吃饭？",
+    "1.",
     [
       "他们都去",
-      "男的",
       "没有人去",
+      "男的",
       "女的"
     ],
-    0
+    0,
+    "Lời thoại: 女：我中午去食堂吃饭，你去吗？ 男：我也去。 · 问：谁去食堂吃饭？ -> Đáp án: 他们都去."
   ],
   [
-    "2. 女的要吃什么？",
+    "2.",
     [
-      "饺子和包子",
+      "饺子和米饭",
       "米饭或包子",
-      "饺子",
-      "饺子和米饭"
+      "饺子和包子",
+      "饺子"
     ],
-    1
+    1,
+    "Lời thoại: 男：吃饺子怎么样？ 女：有米饭吗？包子也可以。 · 问：女的要吃什么？ -> Đáp án: 米饭或包子."
   ],
   [
-    "3. 小王喝什么？",
+    "3.",
     [
       "茶、咖啡都喝",
+      "咖啡",
       "茶、咖啡都不喝",
-      "茶",
-      "咖啡"
+      "茶"
     ],
-    2
+    3,
+    "Lời thoại: 女：小王，请坐。喝咖啡吗？ 男：不，谢谢，喝茶吧。 · 问：小王喝什么？ -> Đáp án: 茶."
   ],
   [
-    "4. 玛丽要什么？",
+    "4.",
     [
-      "一个包子和一碗鸡蛋汤",
       "一碗米饭和一碗鸡蛋汤",
       "三碗米饭和一碗鸡蛋汤",
+      "一个包子和一碗鸡蛋汤",
       "三个包子和一碗鸡蛋汤"
     ],
-    3
+    3,
+    "Lời thoại: 男：我要一碗米饭、一碗鸡蛋汤。玛丽，你呢？ 女：我要三个包子、一碗鸡蛋汤。 · 问：玛丽要什么？ -> Đáp án: 三个包子和一碗鸡蛋汤."
   ],
   [
-    "5. 男的买什么？",
+    "5.",
     [
       "英语书和汉语杂志",
-      "杂志",
       "书",
+      "杂志",
       "汉语书和英语杂志"
     ],
-    0
+    0,
+    "Lời thoại: 女：请问，你买英语书吗？ 男：对，我还要买汉语杂志。 · 问：男的买什么？ -> Đáp án: 英语书和汉语杂志."
   ],
   [
-    "6. 下面哪句话对？",
+    "6.",
     [
-      "杂志是玛丽的",
       "杂志不是姐姐的",
+      "杂志是玛丽的",
       "杂志是玛丽姐姐的",
       "杂志是她们的"
     ],
-    2
+    2,
+    "Lời thoại: 男：玛丽，这些是你的杂志吗？ 女：不是，这些是我姐姐的杂志。 · 问：下面哪句话对？ -> Đáp án: 杂志是玛丽姐姐的."
   ],
   [
-    "7. 男的是什么意思？",
+    "7.",
     [
+      "他要吃饺子",
+      "他要吃面条",
       "他们都吃饺子",
-      "他们都吃面条儿",
-      "他要吃面条儿",
-      "他要吃饺子"
+      "他们都吃面条"
     ],
-    3
+    0,
+    "Lời thoại: 女：麦克，你们吃面条吗？ 男：我喜欢吃饺子，他喜欢吃面条。 · 问：男的是什么意思？ -> Đáp án: 他要吃饺子."
   ],
   [
-    "8. 男的是什么意思？",
+    "8.",
     [
-      "他不喜欢中国面条儿",
-      "今天吃日本面条儿",
-      "今天不吃面条儿",
-      "他喜欢日本面条儿"
+      "今天不吃面条",
+      "他不喜欢中国面条",
+      "今天吃日本面条",
+      "他喜欢日本面条"
     ],
-    1
+    2,
+    "Lời thoại: 女：中国面条和日本面条，你吃什么？ 男：今天吃日本面条吧，明天吃中国面条。 · 问：男的是什么意思？ -> Đáp án: 今天吃日本面条."
   ],
   [
-    "9. 女的什么时候回学校？",
+    "9.",
     [
       "明天下午",
+      "今天中午",
       "明天中午",
-      "今天下午",
-      "今天中午"
+      "今天下午"
     ],
-    2
+    3,
+    "Lời thoại: 男：明天中午回学校，好吗？ 女：你明天回吧，我今天下午回。 · 问：女的什么时候回学校？ -> Đáp án: 今天下午."
   ],
   [
-    "10. 关于他们，哪句话对？",
+    "10.",
     [
-      "女的不喜欢这个食堂",
+      "他们都不在食堂",
+      "他们都不吃饭",
       "他们在这个食堂吃饭",
-      "他们在一个学校学习",
-      "女的在这个学校学习"
+      "他们在饭店吃饭"
     ],
-    1
+    2,
+    "Tổng hợp đối thoại: Họ cùng đi đến nhà ăn trường học dùng bữa -> Đáp án: 他们在这个食堂吃饭."
   ]
 ];
 
 // 9. Nghe 8-9 (Tr.36) - 5 câu (Chuẩn đáp án NXB: C, D, C, C, A)
 const listeningHomeworkDialogueQuiz = [
   [
-    "1. 男的要买什么？",
+    "1.",
     [
-      "一个包子",
       "两个包子",
-      "一个面包",
-      "两个馒头"
+      "一个包子",
+      "两个馒头",
+      "一个面包"
     ],
-    1
+    0,
+    "Lời thoại: 男：小姐，有馒头吗？ 女：对不起，没有馒头。 男：这不是馒头吗？ 女：不是，这是包子。 男：对不起，我不知道。我要两个。 · 问：男的要买什么？ -> Đáp án: 两个包子."
   ],
   [
-    "2. 下面哪句话不对？",
+    "2.",
     [
+      "女人不喝啤酒",
       "两国男人都喜欢喝啤酒",
-      "他们都喜欢喝啤酒",
-      "女的不喝啤酒",
-      "德国人都喜欢喝啤酒"
+      "两国人都喜欢喝啤酒",
+      "他们都喜欢喝啤酒"
     ],
-    2
+    0,
+    "Lời thoại: 女：中国男人也喜欢喝。 男：你喝吗？ 女：我也喝。 · 问：下面哪句话不对？ -> Đáp án: 女人不喝啤酒."
   ],
   [
-    "3. 他们吃什么？",
+    "3. (1)",
     [
       "都吃饺子",
-      "女的吃米饭",
       "女的吃面条",
-      "米饭和面条"
+      "米饭和面条",
+      "女的吃米饭"
     ],
-    0
+    0,
+    "Lời thoại: 麦克和玛丽商量吃饺子 · 问：①他们吃什么？ -> Đáp án: 都吃饺子."
   ],
   [
-    "4. 谁喜欢吃饺子？",
+    "3. (2)",
     [
       "他们都不喜欢",
-      "男的",
       "女的",
+      "男的",
       "他们都喜欢"
     ],
-    3
+    3,
+    "Lời thoại: 麦克和玛丽都喜欢吃饺子 · 问：②谁喜欢吃饺子？ -> Đáp án: 他们都喜欢."
   ],
   [
-    "5. 男的是什么意思？",
+    "4.",
     [
-      "他中午喝咖啡",
-      "他现在想喝茶",
+      "他下午喝咖啡",
       "他不喜欢喝咖啡",
-      "他下午喝咖啡"
+      "他中午喝咖啡",
+      "他现在想喝茶"
     ],
-    1
+    3,
+    "Lời thoại: 女：你不要咖啡吗？ 男：我中午不喝咖啡。有茶吗？ 女：有。 · 问：男的是什么意思？ -> Đáp án: 他现在想喝茶."
   ]
 ];
 
 // 10. Nghe 8-10 (Tr.36) - 2 câu đố (Chuẩn đáp án NXB: 白酒, 山田和玛丽)
 const listeningRiddleQuiz = [
   [
-    "1. 中国的什么酒好？",
+    "1.",
     [
-      "米酒 (mǐjiǔ)",
-      "啤酒 (píjiǔ)",
-      "葡萄酒 (pútaojiǔ)",
-      "白酒 (báijiǔ)"
+      "白酒",
+      "啤酒",
+      "米酒",
+      "葡萄酒"
     ],
-    3
+    0,
+    "Lời thoại câu đố: '德国的啤酒好，法国的葡萄酒好，中国呢？当然是白酒。' · 问：中国的什么酒好？ -> Đáp án: 白酒."
   ],
   [
-    "2. 谁不喝啤酒？",
+    "2.",
     [
-      "麦克 (Mike)",
-      "山田 (Shāntián)",
-      "山田和玛丽 (Shāntián hé Mǎlì)",
-      "玛丽 (Mǎlì)"
+      "山田和玛丽",
+      "玛丽",
+      "山田",
+      "麦克"
     ],
-    2
+    0,
+    "Lời thoại câu đố: '麦克喝一瓶啤酒，山田喝一杯葡萄酒，玛丽不喝啤酒，也不喝葡萄酒，她喝可乐。' · 问：谁不喝啤酒？ -> Đáp án: 山田和玛丽."
   ]
 ];
 
@@ -1862,7 +1877,7 @@ const listeningRiddleQuiz = [
 // Chữ Hán theo Pinyin
 const hanziQuiz = [
   [
-    "1. píngguǒ (quả táo)",
+    "1. píngguǒ",
     [
       "苹果",
       "西瓜",
@@ -1872,7 +1887,7 @@ const hanziQuiz = [
     0
   ],
   [
-    "2. xiāngjiāo (quả chuối)",
+    "2. xiāngjiāo",
     [
       "苹果",
       "香蕉",
@@ -1882,7 +1897,7 @@ const hanziQuiz = [
     1
   ],
   [
-    "3. xīguā (dưa hấu)",
+    "3. xīguā",
     [
       "馒头",
       "葡萄",
@@ -1892,7 +1907,7 @@ const hanziQuiz = [
     2
   ],
   [
-    "4. júzi (quả quýt)",
+    "4. júzi",
     [
       "苹果",
       "啤酒",
@@ -2021,20 +2036,20 @@ const responseFruitQuiz = [
   [
     "1. 你要买什么水果？",
     [
-      "苹果不贵。(Táo không đắt.)",
-      "我买苹果。(Tôi mua táo.)",
-      "很好吃。(Rất ngon.)",
-      "我去食堂。(Tôi đi nhà ăn.)"
+      "苹果不贵。",
+      "我买苹果。",
+      "很好吃。",
+      "我去食堂。"
     ],
     1
   ],
   [
     "2. 橘子一斤多少钱？",
     [
-      "给你橘子。(Đưa bạn quýt.)",
-      "橘子很大。(Quýt rất to.)",
-      "三块五一斤。(3 tệ 5 một cân.)",
-      "我要橘子。(Tôi muốn quýt.)"
+      "给你橘子。",
+      "橘子很大。",
+      "三块五一斤。",
+      "我要橘子。"
     ],
     2
   ],
@@ -2061,10 +2076,10 @@ const responseFruitQuiz = [
   [
     "5. 还要别的吗？",
     [
-      "还要苹果。(Vẫn cần táo.)",
-      "不要了，谢谢。(Không lấy thêm nữa, cảm ơn.)",
-      "很好。(Rất tốt.)",
-      "找你钱。(Thối tiền bạn.)"
+      "还要苹果。",
+      "不要了，谢谢。",
+      "很好。",
+      "找你钱。"
     ],
     1
   ]
@@ -2073,14 +2088,18 @@ const responseFruitQuiz = [
 // Điền từ vào chỗ trống
 
 
-const fillBank = ["买", "多少钱", "太贵了", "便宜", "还要", "一共", "找"];
+const fillBank = ["买", "多少钱", "太贵了", "便宜", "还要", "一共", "找", "斤", "块", "香蕉"];
 const fillData = [
   ["中午我去水果超市", "水果。", "买"],
   ["老板，苹果一斤", "？", "多少钱"],
   ["六块钱一斤？", "，便宜一点儿吧！", "太贵了"],
   ["五块五一斤，够", "了吧！", "便宜"],
   ["您", "别的吗？", "还要"],
-  ["苹果和香蕉，", "二十块钱。", "一共"]
+  ["苹果和香蕉，", "二十块钱。", "一共"],
+  ["给你五十块钱。 —— 好的，", "您三十块。", "找"],
+  ["这种苹果很甜，你要买几", "？", "斤"],
+  ["香蕉不贵，两", "八毛一斤。", "块"],
+  ["我不买苹果，我买两斤", "。", "香蕉"]
 ];
 
 const arrangeData = [
@@ -2213,21 +2232,23 @@ function checkChoiceQuiz(id, feedbackId) {
     const answer = +row.dataset.answer,
           selected = row.querySelector('.choice.selected'),
           correct = row.querySelector(`[data-i="${answer}"]`),
-          note = row.querySelector('.answer-note');
+          note = row.querySelector('.answer-note'),
+          expl = row.dataset.expl;
     row.querySelectorAll('.choice').forEach(x => x.classList.remove('correct', 'wrong'));
     row.classList.remove('correct-row', 'wrong-row');
+    const explHtml = expl ? ` <br><span style="color:#555;font-weight:normal">🎧 Lời thoại / Giải thích: ${expl}</span>` : '';
     if (selected && +selected.dataset.i === answer) {
       got++;
       selected.classList.add('correct');
       row.classList.add('correct-row');
       note.className = 'answer-note ok';
-      note.innerHTML = `✓ Chính xác. Đáp án: <b>${correct ? correct.textContent : ''}</b>.`;
+      note.innerHTML = `✓ Chính xác. Đáp án: <b>${correct ? correct.textContent : ''}</b>.${explHtml}`;
     } else {
       if (selected) selected.classList.add('wrong');
       if (correct) correct.classList.add('correct');
       row.classList.add('wrong-row');
       note.className = 'answer-note bad';
-      note.innerHTML = `✕ ${selected ? 'Bạn chọn: <b>' + selected.textContent + '</b>. ' : 'Bạn chưa chọn. '}Đáp án đúng: <b>${correct ? correct.textContent : ''}</b>.`;
+      note.innerHTML = `✕ ${selected ? 'Bạn chọn: <b>' + selected.textContent + '</b>. ' : 'Bạn chưa chọn. '}Đáp án đúng: <b>${correct ? correct.textContent : ''}</b>.${explHtml}`;
     }
   });
   showResult(feedbackId, got, rows.length);
@@ -2606,8 +2627,8 @@ function gradeAll() {
   const percent = Math.round(got / total * 100);
 
   document.getElementById('score-ring').textContent = percent + '%';
-  document.getElementById('score-title').textContent = percent >= 85 ? 'Xuất sắc!' : percent >= 60 ? 'Làm tốt lắm, cố gắng thêm nhé!' : 'Hãy luyện tập thêm nhé!';
-  document.getElementById('score-text').textContent = `Kết quả: ${percent}% — đúng ${got}/${total} câu.`;
+  document.getElementById('score-title').textContent = percent >= 85 ? 'Xuất sắc! (太棒了!)' : percent >= 60 ? 'Khá tốt! Cố gắng thêm nhé!' : 'Hãy luyện tập thêm nhé!';
+  document.getElementById('score-text').textContent = `Kết quả: bạn hoàn thành đúng ${got}/${total} mục (${percent}%). Hãy nghe lại các câu sai để củng cố ngữ cảm!`;
   document.querySelector('.scorebox')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 

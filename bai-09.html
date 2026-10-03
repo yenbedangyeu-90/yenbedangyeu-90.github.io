@@ -455,37 +455,34 @@ body {
 
 /* Summary Scorebox */
 .scorebox {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
   gap: 24px;
-  margin-top: 30px;
-  padding: 26px;
-  border-radius: 22px;
-  background: #24290e;
-  color: #fff;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--soft), #fff);
+  border: 2px solid var(--lemon);
+  border-radius: 18px;
+  margin-top: 24px;
 }
 .score-ring {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--lemon);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 112px;
-  height: 112px;
-  border: 14px solid #4a5424;
-  border-top-color: var(--lemon);
-  border-right-color: var(--lemon);
-  border-radius: 50%;
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 900;
+  box-shadow: 0 4px 14px rgba(127,152,0,.3);
+  flex-shrink: 0;
 }
-.scorebox h2 { margin: 0; font-size: 31px; }
-.scorebox p { margin: 4px 0; color: #dbe6a6; }
 .score-actions {
-  display: grid;
-  gap: 9px;
-  min-width: 190px;
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
 }
-.scorebox .btn.outline { border-color: var(--lemon); background: #fff; color: var(--lime); }
 
 /* Pattern items */
 .pattern-item {
@@ -524,28 +521,22 @@ body {
   .picture-words {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .scorebox { grid-template-columns: 1fr; text-align: center; }
-  .score-ring { margin: auto; }
-  .score-actions { grid-template-columns: 1fr; width: 100%; }
+  .scorebox {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 </style>
 </head>
 <body>
 
 <div class="app">
-  <div class="backbar"><a class="backlink" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/t%C3%A0i-li%E1%BB%87u-%C3%B4n-t%E1%BA%ADp-t%E1%BB%95ng-h%E1%BB%A3p/th%E1%BB%B1c-h%C3%A0nh-ti%E1%BA%BFng-a1" target="_top">← Quay lại mục lục</a></div>
+  <div class="backbar"><a class="backlink" href="../index.html">← Quay lại mục lục</a></div>
   <div class="eyebrow">GIÁO TRÌNH HÁN NGỮ 1 (PHIÊN BẢN 3) · BÀI 9</div>
   <section class="hero">
     <h1>BÀI 9: 我换人民币</h1>
     <p>第九课 · 我换人民币 (Tôi đổi nhân dân tệ)</p>
   </section>
-
-  <div class="stage-note">
-    <b>Nội dung trọng tâm Bài 9 《汉语教程 1》 & 《汉语听力教程 1》:</b><br>
-    • <b>Bài khóa & Giao tiếp:</b> Đi ngân hàng đổi tiền (去银行换钱), các đơn vị tiền tệ quốc tế (人民币, 美元, 港币, 日元, 欧元), cách đếm số lớn (百, 千, 万), mẫu câu giao dịch viên (营业员, 请等一会儿, 请数数, 对了, 不客气).<br>
-    • <b>Ngữ âm & Luyện nghe:</b> Phân biệt thanh mẫu (f/h, p/f, r/zh), vận mẫu (an/uan, iu/iu, üe/ie), biến điệu ba thanh ba (ba thanh 3 đi liền: 2 thanh đầu biến thành thanh 2), thành ngữ 4 chữ, nghe đối thoại mua bán & ngân hàng, nghe đoạn văn tính tiền hoá đơn.<br>
-    • <b>Chữ Hán & Ngữ pháp:</b> Cách dùng trợ động từ 要 (muốn, cần), cấu trúc đổi tiền: <code>用 + tiền nguồn + 换 + tiền đích</code>, cách dùng đại từ nhân xưng trang trọng (您, 先生, 小姐).
-  </div>
 
   <h2 class="section-title"><span>一、听力练习</span> · Trọn bộ bài tập Nghe (Giáo trình Nghe 1 - Bài 9)</h2>
 
@@ -557,7 +548,7 @@ body {
   <audio controls preload="metadata">
     <source src="b9-nghe-9-1.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-1.m4a" type="audio/mp4">
-    <source src="b9-nghe-9-1.m4a" type="audio/mp4">
+    <source src="../assets/audio/b9-nghe-9-1.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -577,7 +568,7 @@ body {
   <audio controls preload="metadata">
     <source src="b9-nghe-9-2.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-2.m4a" type="audio/mp4">
-    <source src="b9-nghe-9-2.m4a" type="audio/mp4">
+    <source src="../assets/audio/b9-nghe-9-2.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -597,7 +588,7 @@ body {
   <audio controls preload="metadata">
     <source src="b9-nghe-9-3.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-3.m4a" type="audio/mp4">
-    <source src="b9-nghe-9-3.m4a" type="audio/mp4">
+    <source src="../assets/audio/b9-nghe-9-3.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -617,7 +608,7 @@ body {
   <audio controls preload="metadata">
     <source src="b9-nghe-9-4.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-4.m4a" type="audio/mp4">
-    <source src="b9-nghe-9-4.m4a" type="audio/mp4">
+    <source src="../assets/audio/b9-nghe-9-4.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -637,7 +628,7 @@ body {
   <audio controls preload="metadata">
     <source src="b9-nghe-9-5.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-5.m4a" type="audio/mp4">
-    <source src="b9-nghe-9-5.m4a" type="audio/mp4">
+    <source src="../assets/audio/b9-nghe-9-5.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -673,7 +664,7 @@ body {
   <audio controls preload="metadata">
     <source src="b9-nghe-9-6.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-6.m4a" type="audio/mp4">
-    <source src="b9-nghe-9-6.m4a" type="audio/mp4">
+    <source src="../assets/audio/b9-nghe-9-6.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -693,7 +684,7 @@ body {
   <audio controls preload="metadata">
     <source src="b9-nghe-9-7.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-7.m4a" type="audio/mp4">
-    <source src="b9-nghe-9-7.m4a" type="audio/mp4">
+    <source src="../assets/audio/b9-nghe-9-7.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -713,7 +704,7 @@ body {
   <audio controls preload="metadata">
     <source src="b9-nghe-9-8.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-8.m4a" type="audio/mp4">
-    <source src="b9-nghe-9-8.m4a" type="audio/mp4">
+    <source src="../assets/audio/b9-nghe-9-8.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -733,7 +724,7 @@ body {
   <audio controls preload="metadata">
     <source src="b9-nghe-9-9.m4a" type="audio/mp4">
     <source src="https://yenbedangyeu-90.github.io/b9-nghe-9-9.m4a" type="audio/mp4">
-    <source src="b9-nghe-9-9.m4a" type="audio/mp4">
+    <source src="../assets/audio/b9-nghe-9-9.m4a" type="audio/mp4">
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
@@ -854,7 +845,7 @@ body {
   <section class="card">
     <div class="card-head"><div><h3>1. Đọc đoạn văn và phán đoán Đúng / Sai</h3></div></div>
     <div class="dialogue-box">
-      <b style="color:var(--lime);font-size:16px;">麦克去银行换钱 (Mike đi ngân hàng đổi tiền)</b>
+      <b style="color:var(--lime);font-size:16px;">麦克去银行换钱</b>
       <p style="margin-top:8px;">下午，玛丽去图书馆，她问麦克去不去。麦克说：“我不去图书馆，我要去银行换钱。” 麦克到了中国银行，银行的营业员是一位小姐。营业员问麦克：“先生，您换什么钱？” 麦克说：“我换人民币，换五百美元的人民币。” 营业员说：“请等一会儿。” 营业员给麦克钱，说：“先生，给您钱，请数数。” 麦克数了数，钱对了。麦克很高兴，说：“对了，谢谢！” 营业员说：“不客气！”</p>
     </div>
     <div id="reading-judge-quiz" class="quiz-list"></div>
@@ -869,14 +860,12 @@ body {
   <section class="scorebox">
     <div class="score-ring" id="score-ring">0%</div>
     <div>
-      <h2 id="score-title">Kết quả bài luyện tập</h2>
-      <p id="score-text">Bấm “Chấm toàn bộ” để xem số câu đúng và tỉ lệ phần trăm.</p>
-      <p id="score-breakdown"></p>
+      <h2 id="score-title">Tổng kết kết quả học tập Bài 9</h2>
+      <p id="score-text">Hoàn thành các bài tập và bấm nút bên cạnh để chấm điểm tổng hợp toàn bộ bài học.</p>
     </div>
     <div class="score-actions">
       <button class="btn" onclick="gradeAll()">Chấm toàn bộ</button>
-      <button class="btn outline" onclick="location.reload()">Làm lại từ đầu</button>
-      <a class="btn outline" href="https://sites.google.com/view/tiengtrunghaiyen-hanu/t%C3%A0i-li%E1%BB%87u-mi%E1%BB%85n-ph%C3%AD/t%C3%A0i-li%E1%BB%87u-%C3%B4n-t%E1%BA%ADp-t%E1%BB%95ng-h%E1%BB%A3p/th%E1%BB%B1c-h%C3%A0nh-ti%E1%BA%BFng-a1" target="_top">← Quay lại mục lục</a>
+      <button class="btn outline" style="border-color:#fff;color:#fff;" onclick="location.reload()">Làm lại bài</button>
     </div>
   </section>
 
@@ -1284,208 +1273,228 @@ const listeningTonesSentenceQuiz = [
 // 6. Nghe 9-6 (Tr.49) - 10 câu (Chuẩn NXB: B, C, B, A, A, D, A, A, B, C)
 const listeningResponseQuiz = [
   [
-    "1. 你还要什么？",
+    "1.",
     [
       "我还要别的。",
-      "三斤苹果。",
       "还要吧。",
+      "三斤苹果。",
       "还要一些。"
     ],
-    1
+    2,
+    "Lời thoại: '你还要什么？' -> Đáp án: 三斤苹果。"
   ],
   [
-    "2. 这是你的橘子吗？",
+    "2.",
     [
       "是的。",
-      "你要什么？",
       "你买多少？",
-      "我有橘子。"
+      "我有橘子。",
+      "你要什么？"
     ],
-    0
+    0,
+    "Lời thoại: '这是你的橘子吗？' -> Đáp án: 是的。"
   ],
   [
-    "3. 他找你多少钱？",
+    "3.",
     [
-      "给我四块五。",
-      "不找钱。",
       "找我四块五。",
-      "找我一些钱。"
+      "给我四块五。",
+      "找我一些钱。",
+      "不找钱。"
     ],
-    2
+    0,
+    "Lời thoại: '他找你多少钱？' -> Đáp án: 找我四块五。"
   ],
   [
-    "4. 香蕉怎么卖？",
+    "4.",
     [
-      "他卖。",
+      "五块钱两斤。",
       "没有香蕉。",
-      "在这儿卖。",
-      "五块钱两斤。"
+      "他卖。",
+      "在这儿卖。"
     ],
-    3
+    0,
+    "Lời thoại: '香蕉怎么卖？' -> Đáp án: 五块钱两斤。"
   ],
   [
-    "5. 那个商店的水果贵吗？",
+    "5.",
     [
-      "很贵。",
+      "也很贵。",
       "对，水果也贵。",
       "你问你妈妈吧。",
       "这个商店的水果不贵。"
     ],
-    2
+    2,
+    "Lời thoại: '那个商店的水果贵吗？' -> Đáp án: 你问你妈妈吧。"
   ],
   [
-    "6. 你们两个人要多少？",
+    "6.",
     [
-      "要一斤。",
-      "我买了一斤，他没买。",
       "我们两个都要。",
-      "我们还要两斤。"
+      "我们还要两斤。",
+      "要一斤。",
+      "我买了一斤，他没买。"
     ],
-    0
+    2,
+    "Lời thoại: '你们两个人要多少？' -> Đáp án: 要一斤。"
   ],
   [
-    "7. 你们还有别的老师吗？",
+    "7.",
     [
-      "不要。",
-      "也有别的老师。",
       "也有两个老师。",
-      "还有两个。"
+      "还有两个。",
+      "也有别的老师。",
+      "不要。"
     ],
-    3
+    1,
+    "Lời thoại: '你们还有别的老师吗？' -> Đáp án: 还有两个。"
   ],
   [
-    "8. 要两斤，一共多少钱？",
+    "8.",
     [
-      "给你16块。",
-      "你给16吧。",
+      "一斤16。",
       "找你16块。",
-      "一斤16。"
+      "给你16块。",
+      "你给16吧。"
     ],
-    1
+    3,
+    "Lời thoại: '要两斤，一共多少钱？' -> Đáp án: 你给16吧。"
   ],
   [
-    "9. 茶七百五十块钱一斤，买吗？",
+    "9.",
     [
       "挺好的。",
-      "要半斤。",
       "给您钱。",
+      "要半斤。",
       "请问多少钱一斤？"
     ],
-    1
+    2,
+    "Lời thoại: '茶七百五十块钱一斤，买吗？' -> Đáp án: 要半斤。"
   ],
   [
-    "10. 请给我三两饺子",
+    "10.",
     [
-      "谢谢！",
       "给您钱。",
+      "谢谢！",
       "好，请等一会儿。",
       "多少钱？"
     ],
-    2
+    2,
+    "Lời thoại: '请给我三两饺子。' -> Đáp án: 好，请等一会儿。"
   ]
 ];
 
 // 7. Nghe 9-7 (Tr.50) - 10 câu (Chuẩn NXB: A, C, C, B, C, D, B, A, B, C)
 const listeningDialogueQuiz = [
   [
-    "1. 女的在做什么？",
+    "1.",
     [
-      "买东西",
-      "去商店",
       "卖啤酒",
+      "去商店",
+      "买东西",
       "吃饭"
     ],
-    0
+    2,
+    "Lời thoại: 男：我们这儿没有那种啤酒。 女：那买这种吧。 · 问：女的在做什么？ -> Đáp án: 买东西."
   ],
   [
-    "2. 下面哪句话对？",
+    "2.",
     [
-      "茶45块",
-      "咖啡45块",
-      "茶和咖啡一共45块",
-      "两杯咖啡 45块"
+      "两杯咖啡45块",
+      "咖啡 45块",
+      "茶和咖啡共45块",
+      "茶45块"
     ],
-    2
+    2,
+    "Lời thoại: 女：这是您的茶。 男：谢谢。再要一杯咖啡，一共多少钱？ 女：一共四十五块。 · 问：下面哪句话对？ -> Đáp án: 茶和咖啡共45块."
   ],
   [
-    "3. 女的是什么意思？",
+    "3.",
     [
-      "西瓜很贵",
+      "她要西瓜",
       "她买葡萄",
-      "葡萄、西瓜都不买",
-      "她要西瓜"
+      "西瓜很贵",
+      "葡萄、西瓜都不买"
     ],
-    3
+    0,
+    "Lời thoại: 男：您买葡萄吗？ 女：葡萄太贵，我买西瓜吧。 · 问：女的是什么意思？ -> Đáp án: 她要西瓜."
   ],
   [
-    "4. 香蕉多少钱一斤？",
+    "4.",
     [
-      "1块",
-      "4块",
-      "16块",
-      "8块"
+      "8元",
+      "16元",
+      "1元",
+      "4元"
     ],
-    1
+    3,
+    "Lời thoại: 男：一斤香蕉八块钱，太贵了。 女：不是一斤，是一公斤。 · 问：香蕉多少钱一斤？ -> Đáp án: 4元 (1公斤=2斤, 8/2=4元/斤)."
   ],
   [
-    "5. 下面哪句话对？",
+    "5.",
     [
       "她要10个包子",
       "她要12个包子",
-      "她要半斤包子",
-      "她要三个包子"
+      "她要三个包子",
+      "她要半斤包子"
     ],
-    2
+    3,
+    "Lời thoại: 女：服务员，我要半斤包子，不是十个包子。 男：一两两个，半斤一共十个。 女：不是一两三个吗？ 男：我们的包子大，一两两个。 · 问：下面哪句话对？ -> Đáp án: 她要半斤包子."
   ],
   [
-    "6. 下面哪句话对？",
+    "6.",
     [
-      "她买两斤苹果",
-      "苹果很贵",
       "她买六斤苹果",
-      "苹果三块钱一斤"
+      "苹果很贵",
+      "苹果三块钱一斤",
+      "她买两斤苹果"
     ],
-    3
+    2,
+    "Lời thoại: 女：要两斤苹果。 男：两斤苹果六块钱。 女：真便宜，再要两斤吧。 男：好。 · 问：下面哪句话对？ -> Đáp án: 苹果三块钱一斤."
   ],
   [
-    "7. 他们一共买多少包子和多少饺子？",
+    "7.",
     [
-      "三两包子、三两饺子",
       "三两包子、半斤饺子",
-      "三两包子、二两饺子",
-      "半斤饺子，不要包子"
+      "半斤饺子，不要包子",
+      "三两包子、三两饺子",
+      "三两包子、二两饺子"
     ],
-    1
+    0,
+    "Lời thoại: 男：三两包子、二两饺子。玛丽，你呢？ 女：我吃二两饺子，不吃包子。 男：二两饺子，太少，三两吧。 女：好吧。 · 问：他们一共买多少包子和多少饺子？ -> Đáp án: 三两包子、半斤饺子 (2两+3两=半斤)."
   ],
   [
-    "8. 下面哪句话对？",
+    "8.",
     [
-      "应该找40块",
-      "葡萄和苹果一共35块",
+      "应该找30块",
       "苹果和香蕉一共45块",
-      "应该找30块"
+      "葡萄和苹果一共35块",
+      "应该找40块"
     ],
-    0
+    3,
+    "Lời thoại: 男：找你三十五块。 女：不对。葡萄二十五块，苹果十五块，香蕉二十块，我给了你一百块。 男：哟，对不起。 · 问：下面哪句话对？ -> Đáp án: 应该找40块 (100 - (25+15+20) = 40)."
   ],
   [
-    "9. 下面哪句话对？",
+    "9.",
     [
-      "女的的国家葡萄便宜",
-      "女的的国家苹果便宜",
       "女的的国家没有西瓜",
-      "男的喜欢葡萄和西瓜"
+      "男的喜欢葡萄和西瓜",
+      "女的的国家苹果便宜",
+      "女的的国家葡萄便宜"
     ],
-    0
+    3,
+    "Lời thoại: 女：我们国家苹果很贵，中国苹果很便宜。 男：那你们国家葡萄很便宜吧？ 女：对，葡萄和西瓜都很便宜。 · 问：下面哪句话对？ -> Đáp án: 女的的国家葡萄便宜."
   ],
   [
-    "10. 关于西瓜和苹果，哪句话对？",
+    "10.",
     [
-      "西瓜、苹果他们都不买",
       "西瓜便宜，苹果贵",
-      "男的不喜欢吃西瓜",
-      "男的不喜欢吃苹果"
+      "西瓜和苹果都很贵",
+      "西瓜贵，苹果便宜",
+      "都不贵"
     ],
-    1
+    0,
+    "Tổng hợp hội thoại: Nước bạn gái dưa hấu và nho rất rẻ, táo đắt -> Đáp án: 西瓜便宜，苹果贵."
   ]
 ];
 
@@ -1576,54 +1585,59 @@ const listeningHomeworkWordsQuiz = [
 // 9. Nghe 9-9 (Tr.51-52) - 5 câu tính hoá đơn
 const listeningHomeworkCalcQuiz = [
   [
-    "1. 玛丽买两公斤苹果一共多少钱？",
+    "1. 苹果合计 (2kg):",
     [
-      "16 块",
-      "17 块 (17 元)",
-      "8.5 块",
-      "20 块"
+      "16元",
+      "18元",
+      "15元",
+      "17元"
     ],
-    1
+    3,
+    "Giá: 8.5元/kg × 2kg = 17元."
   ],
   [
-    "2. 三公斤香蕉一共多少钱？",
+    "2. 香蕉合计 (3kg):",
     [
-      "18 块 (18 元)",
-      "24 块",
-      "12 块",
-      "6 块"
+      "20元",
+      "12元",
+      "16元",
+      "18元"
     ],
-    0
+    3,
+    "Giá: 6元/kg × 3kg = 18元."
   ],
   [
-    "3. 两个面包一共多少钱？",
+    "3. 面包合计 (2个):",
     [
-      "8.2 块",
-      "10 块",
-      "4.2 块",
-      "8.4 块 (8.4 元)"
+      "8.2元",
+      "8.4元",
+      "8元",
+      "9元"
     ],
-    3
+    1,
+    "Giá: 4.2元/cái × 2 = 8.4元."
   ],
   [
-    "4. 一斤茶是多少钱？ (78元一公斤)",
+    "4. 啤酒合计 (4瓶):",
     [
-      "40 块",
-      "78 块",
-      "39 块 (39 元)",
-      "35 块"
+      "20元",
+      "16元",
+      "15元",
+      "18元"
     ],
-    2
+    3,
+    "Giá: 4.5元/chai × 4 = 18元."
   ],
   [
-    "5. 玛丽买的所有东西一共多少钱？",
+    "5. 茶合计 (0.5kg):",
     [
-      "188.4 块",
-      "190.4 块",
-      "185 块",
-      "178.4 块"
+      "35元",
+      "40元",
+      "38元",
+      "39元"
     ],
-    0
+    3,
+    "Giá: 78元/kg × 0.5kg = 39元."
   ]
 ];
 
@@ -1632,7 +1646,7 @@ const listeningHomeworkCalcQuiz = [
 // Chữ Hán theo Pinyin
 const hanziQuiz = [
   [
-    "1. yínháng (ngân hàng)",
+    "1. yínháng",
     [
       "银行",
       "行为",
@@ -1642,7 +1656,7 @@ const hanziQuiz = [
     0
   ],
   [
-    "2. huàn qián (đổi tiền)",
+    "2. huàn qián",
     [
       "买钱",
       "找钱",
@@ -1652,7 +1666,7 @@ const hanziQuiz = [
     3
   ],
   [
-    "3. rénmínbì (Nhân dân tệ)",
+    "3. rénmínbì",
     [
       "人民巾",
       "人民纸",
@@ -1662,7 +1676,7 @@ const hanziQuiz = [
     2
   ],
   [
-    "4. měiyuán (Đô la Mỹ)",
+    "4. měiyuán",
     [
       "港币",
       "美元",
@@ -1843,7 +1857,7 @@ const responseBankQuiz = [
 // Điền từ vào chỗ trống
 
 
-const fillBank = ["银行", "换", "人民币", "美元", "等", "数", "不客气"];
+const fillBank = ["银行", "换", "人民币", "美元", "等", "数", "不客气", "营业员", "百", "给", "日元"];
 const fillData = [
   ["下午我不去图书馆，我要去", "换钱。", "银行"],
   ["小姐，我要", "钱。", "换"],
@@ -1851,7 +1865,11 @@ const fillData = [
   ["换多少？ —— 二百", "。", "美元"],
   ["请", "一会儿。", "等"],
   ["先生，给您钱，请", "。", "数"],
-  ["对了，谢谢！ —— ", "！", "不客气"]
+  ["对了，谢谢！ —— ", "！", "不客气"],
+  ["在中国银行工作的人叫", "。", "营业员"],
+  ["这一张是一", "块人民币。", "百"],
+  ["先生，", "您七百欧元，请数数。", "给"],
+  ["我不换美元，我换五万", "。", "日元"]
 ];
 
 const arrangeData = [
@@ -1984,21 +2002,23 @@ function checkChoiceQuiz(id, feedbackId) {
     const answer = +row.dataset.answer,
           selected = row.querySelector('.choice.selected'),
           correct = row.querySelector(`[data-i="${answer}"]`),
-          note = row.querySelector('.answer-note');
+          note = row.querySelector('.answer-note'),
+          expl = row.dataset.expl;
     row.querySelectorAll('.choice').forEach(x => x.classList.remove('correct', 'wrong'));
     row.classList.remove('correct-row', 'wrong-row');
+    const explHtml = expl ? ` <br><span style="color:#555;font-weight:normal">🎧 Lời thoại / Giải thích: ${expl}</span>` : '';
     if (selected && +selected.dataset.i === answer) {
       got++;
       selected.classList.add('correct');
       row.classList.add('correct-row');
       note.className = 'answer-note ok';
-      note.innerHTML = `✓ Chính xác. Đáp án: <b>${correct ? correct.textContent : ''}</b>.`;
+      note.innerHTML = `✓ Chính xác. Đáp án: <b>${correct ? correct.textContent : ''}</b>.${explHtml}`;
     } else {
       if (selected) selected.classList.add('wrong');
       if (correct) correct.classList.add('correct');
       row.classList.add('wrong-row');
       note.className = 'answer-note bad';
-      note.innerHTML = `✕ ${selected ? 'Bạn chọn: <b>' + selected.textContent + '</b>. ' : 'Bạn chưa chọn. '}Đáp án đúng: <b>${correct ? correct.textContent : ''}</b>.`;
+      note.innerHTML = `✕ ${selected ? 'Bạn chọn: <b>' + selected.textContent + '</b>. ' : 'Bạn chưa chọn. '}Đáp án đúng: <b>${correct ? correct.textContent : ''}</b>.${explHtml}`;
     }
   });
   showResult(feedbackId, got, rows.length);
@@ -2376,8 +2396,8 @@ function gradeAll() {
   const percent = Math.round(got / total * 100);
 
   document.getElementById('score-ring').textContent = percent + '%';
-  document.getElementById('score-title').textContent = percent >= 85 ? 'Xuất sắc!' : percent >= 60 ? 'Làm tốt lắm, cố gắng thêm nhé!' : 'Hãy luyện tập thêm nhé!';
-  document.getElementById('score-text').textContent = `Kết quả: ${percent}% — đúng ${got}/${total} câu.`;
+  document.getElementById('score-title').textContent = percent >= 85 ? 'Xuất sắc! (太棒了!)' : percent >= 60 ? 'Khá tốt! Cố gắng thêm nhé!' : 'Hãy luyện tập thêm nhé!';
+  document.getElementById('score-text').textContent = `Kết quả: bạn hoàn thành đúng ${got}/${total} mục (${percent}%). Hãy nghe lại các câu sai để củng cố ngữ cảm!`;
   document.querySelector('.scorebox')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
