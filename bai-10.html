@@ -11,6 +11,7 @@
 .fill-bank{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px}.token{min-width:48px;padding:9px 14px;font-size:19px;font-weight:700}.token.selected{border-color:var(--lemon);background:var(--soft)}.token.used{opacity:.35;pointer-events:none}.fill-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fill-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:12px;border:1px solid var(--line);border-radius:12px}.blank{min-width:76px;border:0;border-bottom:2px solid var(--lemon);background:transparent;text-align:center;font-size:20px;outline:0;cursor:pointer}.arrange-list{display:grid;gap:12px}.arrange-row{padding:12px;border:1px solid var(--line);border-radius:12px}.arrange-bank,.arrange-answer,.order-bank{display:flex;flex-wrap:wrap;gap:8px;min-height:42px}.arrange-answer{margin-top:9px;padding:8px;border:1px dashed var(--bright);border-radius:9px}.order-chip{padding:9px 12px;text-align:left}.dialogue-box{margin:10px 0;padding:14px;border:1px solid var(--line);border-radius:12px;background:#fff}.dialogue-box p{margin:7px 0}.text-input{min-width:0;width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;outline:0}.reading-box{padding:16px 18px;border-left:4px solid var(--lime);border-radius:12px;background:var(--soft);font-size:16px;line-height:1.8}
 .answer-note{display:block;width:100%;margin-top:8px;padding:7px 9px;border-radius:8px;font-size:13px;font-weight:700}.answer-note:empty{display:none}.answer-note.ok{background:#e8f5f0;color:var(--green)}.answer-note.bad{background:#fbeaea;color:var(--red)}.quiz-row.correct-row,.fill-row.correct-row,.arrange-row.correct-row,.dialogue-box.correct-row{border-color:var(--green);background:#f2fbf7}.quiz-row.wrong-row,.fill-row.wrong-row,.arrange-row.wrong-row,.dialogue-box.wrong-row{border-color:var(--red);background:#fff5f5}.blank.correct,.arrange-answer.correct{border-color:var(--green)!important;color:var(--green)}.blank.wrong,.arrange-answer.wrong{border-color:var(--red)!important;color:var(--red)}
 .scorebox{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;margin-top:30px;padding:26px;border-radius:22px;background:#24290e;color:#fff}.score-ring{display:grid;place-items:center;width:112px;height:112px;border:14px solid #4a5424;border-top-color:var(--lemon);border-right-color:var(--lemon);border-radius:50%;font-weight:700;font-size:28px}.scorebox h2{margin:0;font-size:31px}.scorebox p{margin:4px 0;color:#dbe6a6}.score-actions{display:grid;gap:9px;min-width:180px}.toast{position:fixed;right:20px;bottom:20px;z-index:10;max-width:360px;padding:13px 16px;border-radius:12px;background:#24290e;color:#fff;box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(10px);transition:.2s}.toast.show{opacity:1;transform:none}
+.lesson-audio{display:block;width:100%;margin:14px 0 18px;accent-color:var(--lemon)}
 @media(max-width:900px){.main{padding:18px}.picture-words,.picture-grid{grid-template-columns:repeat(3,1fr)}.fill-list{grid-template-columns:1fr}.scorebox{grid-template-columns:auto 1fr}.score-actions{grid-column:1/-1;grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.hero{padding:28px 22px}.card{padding:18px}.match-wrap{grid-template-columns:1fr}.match-col{grid-template-columns:repeat(2,1fr)}.picture-words,.picture-grid{grid-template-columns:repeat(2,1fr)}.scorebox{grid-template-columns:1fr;text-align:center}.score-ring{margin:auto}.score-actions{grid-template-columns:1fr}}
 </style></head><body>
@@ -23,6 +24,7 @@
 
   <!-- 1. Nghe 10-1 -->
   <section class="card"><div class="card-head"><div><h3>1. Nghe và chọn Vận mẫu & Thanh điệu (10-1 Tr.42)</h3></div></div>
+  <audio class="lesson-audio" controls preload="metadata"><source src="h1-b10-nghe-1.m4a" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio>
   <div id="listening-10-1-quiz" class="quiz-list"></div>
   <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-10-1-quiz', listening10_1Quiz, 'fb-listen-1')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-10-1-quiz', listening10_1Quiz, 'fb-listen-1')">Chọn lại</button></div>
   <div id="fb-listen-1" class="feedback"></div>
@@ -30,6 +32,7 @@
 
   <!-- 2. Nghe 10-2 -->
   <section class="card"><div class="card-head"><div><h3>2. Phân biệt âm uốn lưỡi 儿化 (10-2 Tr.42)</h3></div></div>
+  <audio class="lesson-audio" controls preload="metadata"><source src="h1-b10-nghe-2.m4a" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio>
   <div id="listening-10-2-quiz" class="quiz-list"></div>
   <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-10-2-quiz', listening10_2Quiz, 'fb-listen-2')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-10-2-quiz', listening10_2Quiz, 'fb-listen-2')">Chọn lại</button></div>
   <div id="fb-listen-2" class="feedback"></div>
@@ -37,6 +40,7 @@
 
   <!-- 3. Nghe 10-3 -->
   <section class="card"><div class="card-head"><div><h3>3. Nghe và đánh dấu thanh nhẹ 轻声 (10-3 Tr.43)</h3></div></div>
+  <audio class="lesson-audio" controls preload="metadata"><source src="h1-b10-nghe-3.m4a" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio>
   <div id="listening-10-3-quiz" class="quiz-list"></div>
   <div class="actions"><button class="btn" onclick="checkChoiceQuiz('listening-10-3-quiz', listening10_3Quiz, 'fb-listen-3')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetChoices('listening-10-3-quiz', listening10_3Quiz, 'fb-listen-3')">Chọn lại</button></div>
   <div id="fb-listen-3" class="feedback"></div>
