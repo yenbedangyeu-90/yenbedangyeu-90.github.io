@@ -528,6 +528,7 @@ body {
   .score-ring { margin: auto; }
   .score-actions { grid-template-columns: 1fr; width: 100%; }
 }
+.tone-answer{width:100%;margin-top:9px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font-size:16px}.tone-answer.correct{border-color:var(--green);background:#f2fbf7}.tone-answer.wrong{border-color:var(--red);background:#fff5f5}
 </style>
 </head>
 <body>
@@ -943,253 +944,11 @@ body {
 <script>
 // ==================== DỮ LIỆU BÀI TẬP ====================
 
-// 1. Nghe 8-1 (Tr.32) - 12 cặp thanh mẫu
-const listeningInitialsQuiz = [
-  [
-    "1. ___ètīng —— ___ètīng",
-    [
-      "zh / ch",
-      "z / c",
-      "ch / zh",
-      "j / q"
-    ],
-    0
-  ],
-  [
-    "2. jié___ù —— jié___òu",
-    [
-      "x / j",
-      "s / ch",
-      "c / s",
-      "sh / c"
-    ],
-    3
-  ],
-  [
-    "3. ___ùdìsù —— ___ùisù",
-    [
-      "x / j",
-      "j / q",
-      "zh / ch",
-      "q / j"
-    ],
-    1
-  ],
-  [
-    "4. ___ǒngtǒng —— ___ǒngtóu",
-    [
-      "c / z",
-      "s / z",
-      "z / c",
-      "ch / sh"
-    ],
-    2
-  ],
-  [
-    "5. ___cí —— ___ái",
-    [
-      "s / c",
-      "z / c",
-      "q / x",
-      "c / s"
-    ],
-    3
-  ],
-  [
-    "6. ___ngxià —— ___àngxià",
-    [
-      "sh / ch",
-      "ch / sh",
-      "zh / ch",
-      "c / s"
-    ],
-    1
-  ],
-  [
-    "7. ___iàolì —— ___iàolì",
-    [
-      "j / x",
-      "q / x",
-      "x / j",
-      "x / q"
-    ],
-    2
-  ],
-  [
-    "8. ___ǎntǎ —— ___ǎndù",
-    [
-      "c / z",
-      "s / c",
-      "zh / z",
-      "z / c"
-    ],
-    0
-  ],
-  [
-    "9. ___uánjié —— ___uánjué",
-    [
-      "t / d",
-      "j / q",
-      "d / t",
-      "b / p"
-    ],
-    0
-  ],
-  [
-    "10. ___uǐfú —— ___uǐwǔ",
-    [
-      "s / z",
-      "ch / zh",
-      "zh / sh",
-      "sh / zh"
-    ],
-    3
-  ],
-  [
-    "11. ch___ —— sh___",
-    [
-      "sh / ch",
-      "ch / sh",
-      "c / s",
-      "zh / ch"
-    ],
-    1
-  ],
-  [
-    "12. z___ —— c___",
-    [
-      "s / c",
-      "zh / ch",
-      "z / c",
-      "c / z"
-    ],
-    2
-  ]
-];
+// 1. Nghe 8-1 (Tr.32) - 10 cặp thanh mẫu
+const listeningInitialsQuiz = [["1. gētīng —— kètīng（歌厅 —— 客厅）",["g / k","k / g","d / t","j / q"],0],["2. jièkǒu —— jiégòu（借口 —— 结构）",["k / g","g / k","q / j","h / k"],0],["3. kuàisù —— guīsù（快速 —— 归宿）",["k / g","g / k","h / f","q / j"],0],["4. gòngtóng —— kōngtóu（共同 —— 空头）",["g / k","k / g","d / t","b / p"],0],["5. gǔlì —— kǔlì（鼓励 —— 苦力）",["g / k","k / g","d / t","h / f"],0],["6. dǎngjià —— tǎngxià（挡驾 —— 躺下）",["d / t","t / d","zh / ch","j / q"],0],["7. diàolí —— tiáolǐ（调离 —— 调理）",["d / t","t / d","j / q","z / c"],0],["8. tāntú —— dāndú（贪图 —— 单独）",["t / d","d / t","k / g","p / b"],0],["9. tuánjié —— duànjué（团结 —— 断绝）",["t / d","d / t","j / q","z / c"],0],["10. duìfu —— tuìwǔ（对付 —— 退伍）",["d / t","t / d","b / p","f / h"],0]];
 
-// 2. Nghe 8-2 (Tr.32-33) - 12 cặp vận mẫu & thanh điệu
-const listeningFinalsQuiz = [
-  [
-    "1. w___guó —— w___guó",
-    [
-      "èi / ǎi",
-      "ēi / uī",
-      "ài / èi",
-      "ān / āng"
-    ],
-    0
-  ],
-  [
-    "2. b___bù —— b___bù",
-    [
-      "bǔ / bù",
-      "bù / bú",
-      "bái / bǎi",
-      "pù / bù"
-    ],
-    1
-  ],
-  [
-    "3. l___le —— l___le",
-    [
-      "ǎi / āi",
-      "ào / ǎo",
-      "è / é",
-      "ái / ài"
-    ],
-    3
-  ],
-  [
-    "4. h___le —— h___le",
-    [
-      "āo / áo",
-      "ǒu / óu",
-      "ǎo / ào",
-      "ǎi / ài"
-    ],
-    2
-  ],
-  [
-    "5. b___zi —— p___zi",
-    [
-      "bēi / pēi",
-      "bāo / pāo",
-      "bǐ / pǐ",
-      "bái / pái"
-    ],
-    0
-  ],
-  [
-    "6. n___xīn —— n___xīn",
-    [
-      "ái / ài",
-      "ài / ǎi",
-      "ào / áo",
-      "ān / ǎn"
-    ],
-    1
-  ],
-  [
-    "7. n___yǒu —— m___yǒu",
-    [
-      "ōu / ǒu",
-      "ǎi / ǎi",
-      "éi / éi",
-      "í / í"
-    ],
-    2
-  ],
-  [
-    "8. b___tiān —— b___biān",
-    [
-      "ào / áo",
-      "ěi / ái",
-      "ān / āng",
-      "ái / ěi"
-    ],
-    3
-  ],
-  [
-    "9. l___zi —— l___zi",
-    [
-      "ì / ī",
-      "í / ǐ",
-      "ǐ / í",
-      "ù / ǔ"
-    ],
-    2
-  ],
-  [
-    "10. zh___yào —— zh___yào",
-    [
-      "ū / ú",
-      "à / è",
-      "ì / ǔ",
-      "ǔ / ì"
-    ],
-    3
-  ],
-  [
-    "11. mèi k___ —— mèi k___",
-    [
-      "è / ě",
-      "ì / í",
-      "ǒu / óu",
-      "ā / á"
-    ],
-    0
-  ],
-  [
-    "12. y___dà —— y___dà",
-    [
-      "ī / ǐ",
-      "í / ì",
-      "ì / í",
-      "á / à"
-    ],
-    1
-  ]
-];
+// 2. Nghe 8-2 (Tr.32-33) - 14 cặp vận mẫu & thanh điệu
+const listeningFinalsQuiz = [["1. wèiguó —— wàiguó（卫国 —— 外国）",["wèiguó —— wàiguó","wàiguó —— wèiguó"],0],["2. běibù —— bǎibù（北部 —— 摆布）",["běibù —— bǎibù","bǎibù —— běibù"],0],["3. láile —— lèile（来了 —— 累了）",["láile —— lèile","lèile —— láile"],0],["4. huàile —— huìle（坏了 —— 会了）",["huàile —— huìle","huìle —— huàile"],0],["5. bēizi —— páizi（杯子 —— 牌子）",["bēizi —— páizi","páizi —— bēizi"],0],["6. nàixīn —— nèixīn（耐心 —— 内心）",["nàixīn —— nèixīn","nèixīn —— nàixīn"],0],["7. nǎiyóu —— méiyǒu（奶油 —— 没有）",["nǎiyóu —— méiyǒu","méiyǒu —— nǎiyóu"],0],["8. báitiān —— běibiān（白天 —— 北边）",["báitiān —— běibiān","běibiān —— báitiān"],0],["9. lúnzi —— lóngzi（轮子 —— 聋子）",["lúnzi —— lóngzi","lóngzi —— lúnzi"],0],["10. zhōngyào —— zhèngyào（中药 —— 政要）",["zhōngyào —— zhèngyào","zhèngyào —— zhōngyào"],0],["11. méi kùn —— méi kòng（没困 —— 没空）",["méi kùn —— méi kòng","méi kòng —— méi kùn"],0],["12. yì dǒng —— yī děng（易懂 —— 一等）",["yì dǒng —— yī děng","yī děng —— yì dǒng"],0],["13. sūnzi —— sōngzǐ（孙子 —— 松子）",["sūnzi —— sōngzǐ","sōngzǐ —— sūnzi"],0],["14. xiǎocūn —— xiǎocōng（小村 —— 小葱）",["xiǎocūn —— xiǎocōng","xiǎocōng —— xiǎocūn"],0]];
 
 // 3. Nghe 8-3 (Tr.33) - 14 thành ngữ 4 chữ
 const listeningIdiomsQuiz = [
@@ -1284,11 +1043,11 @@ const listeningIdiomsQuiz = [
     1
   ],
   [
-    "10. yiwu zhi shu (医务之术)",
+    "10. yiwu zhi shu (义务植树)",
     [
       "yíwù zhǐ shù",
       "yǐwù zhī shū",
-      "yīwù zhī shù",
+      "yìwù zhíshù",
       "yìwù zhì shù"
     ],
     2
@@ -1336,128 +1095,7 @@ const listeningIdiomsQuiz = [
 ];
 
 // 4. Nghe 8-4 (Tr.33) - 12 câu âm tiết
-const listeningSyllablesQuiz = [
-  [
-    "1.",
-    [
-      "píjiǔ",
-      "píbǎo",
-      "píqi",
-      "pǐjiǔ"
-    ],
-    0
-  ],
-  [
-    "2.",
-    [
-      "yóujú",
-      "yòupiào",
-      "yǒupiào",
-      "yóupiào"
-    ],
-    3
-  ],
-  [
-    "3.",
-    [
-      "shuǐtǒng",
-      "shuìjiào",
-      "shuǐguǒ",
-      "shuǐpíng"
-    ],
-    2
-  ],
-  [
-    "4.",
-    [
-      "zuòyè",
-      "zuìjìn",
-      "zuìhòu",
-      "zuòfàn"
-    ],
-    1
-  ],
-  [
-    "5.",
-    [
-      "kāishǐ",
-      "kǎoshì",
-      "kāfēi",
-      "kànshū"
-    ],
-    2
-  ],
-  [
-    "6.",
-    [
-      "yìqǐ",
-      "yígòng",
-      "yíqiè",
-      "yíyàng"
-    ],
-    1
-  ],
-  [
-    "7.",
-    [
-      "diǎnr",
-      "diànhuà",
-      "diànshì",
-      "diànyǐng"
-    ],
-    0
-  ],
-  [
-    "8.",
-    [
-      "kě'ài",
-      "kěkǒu",
-      "kěnéng",
-      "kèqi"
-    ],
-    3
-  ],
-  [
-    "9.",
-    [
-      "huānyíng",
-      "huānyuè",
-      "huānyú",
-      "huánjìng"
-    ],
-    0
-  ],
-  [
-    "10.",
-    [
-      "shēnfèn",
-      "shēnyīn",
-      "shēnbiān",
-      "shēntǐ"
-    ],
-    3
-  ],
-  [
-    "11.",
-    [
-      "píng'ān",
-      "píngcháng",
-      "píngguǒ",
-      "píngzi"
-    ],
-    2
-  ],
-  [
-    "12.",
-    [
-      "xiāngshuǐ",
-      "xiāngjiāo",
-      "xiāngcūn",
-      "xiāngtóng"
-    ],
-    1
-  ]
-];
+const listeningSyllablesQuiz = [["1. 喜欢",["xǐhuan","xìhuan","xǐhuanr"],0,"Đáp án theo băng 8-4: 喜欢 — xǐhuan."],["2. 咖啡",["kāfēi","káfēi","kāfēir"],0,"Đáp án theo băng 8-4: 咖啡 — kāfēi."],["3. 绿茶",["lǜchá","lǜchá","lǜchár"],0,"Đáp án theo băng 8-4: 绿茶 — lǜchá."],["4. 花茶",["huāchá","huáchá","huāchár"],0,"Đáp án theo băng 8-4: 花茶 — huāchá."],["5. 乌龙茶",["wūlóngchá","wūlóngchá","wūlóngchár"],0,"Đáp án theo băng 8-4: 乌龙茶 — wūlóngchá."],["6. 菊花茶",["júhuāchá","júhuáchá","júhuāchár"],0,"Đáp án theo băng 8-4: 菊花茶 — júhuāchá."],["7. 冰水",["bīngshuǐ","bīngshuì","bīngshuǐr"],0,"Đáp án theo băng 8-4: 冰水 — bīngshuǐ."],["8. 白水",["báishuǐ","báishuì","báishuǐr"],0,"Đáp án theo băng 8-4: 白水 — báishuǐ."],["9. 矿泉水",["kuàngquánshuǐ","kuàngquánshuì","kuàngquánshuǐr"],0,"Đáp án theo băng 8-4: 矿泉水 — kuàngquánshuǐ."],["10. 冰淇淋",["bīngqílín","bīngqílín","bīngqílínr"],0,"Đáp án theo băng 8-4: 冰淇淋 — bīngqílín."],["11. 雪糕",["xuěgāo","xuěgáo","xuěgāor"],0,"Đáp án theo băng 8-4: 雪糕 — xuěgāo."],["12. 可乐",["kělè","kělè","kělèr"],0,"Đáp án theo băng 8-4: 可乐 — kělè."]];
 
 // 5. Nghe 8-5 (Tr.33-34) - 10 câu gạch chân
 const listeningTonesSentenceQuiz = [
@@ -1568,112 +1206,112 @@ const listeningResponseQuiz = [
   [
     "1.",
     [
-      "我不喜欢吃。",
-      "我去食堂。",
+      "一瓶啤酒。",
       "四个包子。",
-      "一瓶啤酒。"
+      "我去食堂。",
+      "我不喜欢吃。"
     ],
-    2,
-    "Lời thoại: '你中午吃什么？' -> Đáp án: 四个包子。"
+    1,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "2.",
     [
-      "米饭不好。",
-      "好。",
       "我们吃一些米饭。",
+      "好。",
+      "米饭不好。",
       "我们不吃。"
     ],
     1,
-    "Lời thoại: '我们吃米饭好吗？' -> Đáp án: 好。"
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "3.",
     [
       "都不要。",
-      "我要去食堂。",
       "有咖啡吗？",
+      "我要去食堂。",
       "我有书。"
     ],
-    2,
-    "Lời thoại: '你要什么？' -> Đáp án: 有咖啡吗？"
+    1,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "4.",
     [
-      "好吧。",
       "有馒头吗？",
       "食堂很好。",
+      "好吧。",
       "不太好。"
     ],
-    0,
-    "Lời thoại: '去食堂怎么样？' -> Đáp án: 好吧。"
+    2,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "5.",
     [
+      "要包子。",
       "有报纸。",
-      "没有。",
       "饺子也可以。",
-      "要包子。"
+      "没有。"
     ],
-    1,
-    "Lời thoại: '有包子吗？' -> Đáp án: 没有。"
+    3,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "6.",
     [
-      "我没有啤酒。",
-      "青岛啤酒。",
+      "这是啤酒。",
+      "他有啤酒。",
       "我不喝啤酒。",
-      "德国和中国啤酒。"
+      "我没有啤酒。"
     ],
-    1,
-    "Lời thoại: '这是什么啤酒？' -> Đáp án: 青岛啤酒。"
+    0,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "7.",
     [
-      "一瓶啤酒。",
+      "没有饺子。",
       "一碗鸡蛋汤。",
-      "一碗面条。",
-      "一个饺子。"
+      "一碗面条儿。",
+      "一瓶啤酒。"
     ],
     2,
-    "Lời thoại: '他吃什么？' -> Đáp án: 一碗面条。"
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "8.",
     [
+      "哥哥喝。",
+      "我们家人也都喝。",
       "爸爸、妈妈也不喝。",
-      "爸爸喝，妈妈不喝。",
-      "我们家人都喝。",
-      "哥哥喝。"
+      "爸爸喝，妈妈不喝。"
     ],
-    1,
-    "Lời thoại: '你爸爸、妈妈不喝咖啡吗？' -> Đáp án: 爸爸喝，妈妈不喝。"
+    3,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "9.",
     [
+      "我要一些。",
       "我要这些。",
       "我要别的。",
-      "我要一些。",
       "我不要那些。"
     ],
-    0,
-    "Lời thoại: '你要哪些？' -> Đáp án: 我要这些。"
+    1,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "10.",
     [
-      "我在家。",
       "我去邮局。",
-      "我不去那儿。",
-      "我回家吃饭。"
+      "我回家吃饭。",
+      "我在家。",
+      "我不去那儿。"
     ],
-    3,
-    "Lời thoại: '你星期天去哪儿吃饭？' -> Đáp án: 我回家吃饭。"
+    1,
+    "Theo đáp án tham khảo của giáo trình."
   ]
 ];
 
@@ -1682,57 +1320,57 @@ const listeningDialogueQuiz = [
   [
     "1.",
     [
-      "他们都去",
-      "没有人去",
+      "女的",
       "男的",
-      "女的"
+      "他们都去",
+      "没有人去"
     ],
-    0,
-    "Lời thoại: 女：我中午去食堂吃饭，你去吗？ 男：我也去。 · 问：谁去食堂吃饭？ -> Đáp án: 他们都去."
+    2,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "2.",
     [
-      "饺子和米饭",
+      "饺子",
       "米饭或包子",
-      "饺子和包子",
-      "饺子"
+      "饺子和米饭",
+      "饺子和包子"
     ],
     1,
-    "Lời thoại: 男：吃饺子怎么样？ 女：有米饭吗？包子也可以。 · 问：女的要吃什么？ -> Đáp án: 米饭或包子."
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "3.",
     [
-      "茶、咖啡都喝",
       "咖啡",
+      "茶",
       "茶、咖啡都不喝",
-      "茶"
+      "茶、咖啡都喝"
     ],
-    3,
-    "Lời thoại: 女：小王，请坐。喝咖啡吗？ 男：不，谢谢，喝茶吧。 · 问：小王喝什么？ -> Đáp án: 茶."
+    1,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "4.",
     [
+      "一个包子和一碗鸡蛋汤",
       "一碗米饭和一碗鸡蛋汤",
       "三碗米饭和一碗鸡蛋汤",
-      "一个包子和一碗鸡蛋汤",
       "三个包子和一碗鸡蛋汤"
     ],
     3,
-    "Lời thoại: 男：我要一碗米饭、一碗鸡蛋汤。玛丽，你呢？ 女：我要三个包子、一碗鸡蛋汤。 · 问：玛丽要什么？ -> Đáp án: 三个包子和一碗鸡蛋汤."
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "5.",
     [
-      "英语书和汉语杂志",
       "书",
       "杂志",
+      "英语书和汉语杂志",
       "汉语书和英语杂志"
     ],
-    0,
-    "Lời thoại: 女：请问，你买英语书吗？ 男：对，我还要买汉语杂志。 · 问：男的买什么？ -> Đáp án: 英语书和汉语杂志."
+    2,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "6.",
@@ -1743,51 +1381,51 @@ const listeningDialogueQuiz = [
       "杂志是她们的"
     ],
     2,
-    "Lời thoại: 男：玛丽，这些是你的杂志吗？ 女：不是，这些是我姐姐的杂志。 · 问：下面哪句话对？ -> Đáp án: 杂志是玛丽姐姐的."
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "7.",
     [
       "他要吃饺子",
-      "他要吃面条",
+      "他要吃面条儿",
       "他们都吃饺子",
-      "他们都吃面条"
+      "他们都吃面条儿"
     ],
     0,
-    "Lời thoại: 女：麦克，你们吃面条吗？ 男：我喜欢吃饺子，他喜欢吃面条。 · 问：男的是什么意思？ -> Đáp án: 他要吃饺子."
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "8.",
     [
-      "今天不吃面条",
-      "他不喜欢中国面条",
-      "今天吃日本面条",
-      "他喜欢日本面条"
+      "他不喜欢中国面条儿",
+      "他喜欢日本面条儿",
+      "今天不吃面条儿",
+      "今天吃日本面条儿"
     ],
-    2,
-    "Lời thoại: 女：中国面条和日本面条，你吃什么？ 男：今天吃日本面条吧，明天吃中国面条。 · 问：男的是什么意思？ -> Đáp án: 今天吃日本面条."
+    3,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "9.",
     [
+      "今天下午",
       "明天下午",
       "今天中午",
-      "明天中午",
-      "今天下午"
+      "明天中午"
     ],
-    3,
-    "Lời thoại: 男：明天中午回学校，好吗？ 女：你明天回吧，我今天下午回。 · 问：女的什么时候回学校？ -> Đáp án: 今天下午."
+    0,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "10.",
     [
-      "他们都不在食堂",
-      "他们都不吃饭",
-      "他们在这个食堂吃饭",
-      "他们在饭店吃饭"
+      "他们在一个学校学习",
+      "女的在这个学校学习",
+      "女的不喜欢这个食堂",
+      "他们在这个食堂吃饭"
     ],
-    2,
-    "Tổng hợp đối thoại: Họ cùng đi đến nhà ăn trường học dùng bữa -> Đáp án: 他们在这个食堂吃饭."
+    3,
+    "Theo đáp án tham khảo của giáo trình."
   ]
 ];
 
@@ -1796,57 +1434,57 @@ const listeningHomeworkDialogueQuiz = [
   [
     "1.",
     [
-      "两个包子",
-      "一个包子",
+      "一个面包",
       "两个馒头",
-      "一个面包"
+      "两个包子",
+      "一个包子"
     ],
-    0,
-    "Lời thoại: 男：小姐，有馒头吗？ 女：对不起，没有馒头。 男：这不是馒头吗？ 女：不是，这是包子。 男：对不起，我不知道。我要两个。 · 问：男的要买什么？ -> Đáp án: 两个包子."
+    2,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "2.",
     [
-      "女人不喝啤酒",
+      "他们都喜欢喝啤酒",
+      "德国人都喜欢喝啤酒",
       "两国男人都喜欢喝啤酒",
-      "两国人都喜欢喝啤酒",
-      "他们都喜欢喝啤酒"
+      "女的不喝啤酒"
     ],
-    0,
-    "Lời thoại: 女：中国男人也喜欢喝。 男：你喝吗？ 女：我也喝。 · 问：下面哪句话不对？ -> Đáp án: 女人不喝啤酒."
+    3,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "3. (1)",
     [
+      "女的吃米饭",
+      "女的吃面条儿",
       "都吃饺子",
-      "女的吃面条",
-      "米饭和面条",
-      "女的吃米饭"
+      "米饭和面条儿"
     ],
-    0,
-    "Lời thoại: 麦克和玛丽商量吃饺子 · 问：①他们吃什么？ -> Đáp án: 都吃饺子."
+    2,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "3. (2)",
     [
-      "他们都不喜欢",
-      "女的",
       "男的",
-      "他们都喜欢"
+      "女的",
+      "他们都喜欢",
+      "他们都不喜欢"
     ],
-    3,
-    "Lời thoại: 麦克和玛丽都喜欢吃饺子 · 问：②谁喜欢吃饺子？ -> Đáp án: 他们都喜欢."
+    2,
+    "Theo đáp án tham khảo của giáo trình."
   ],
   [
     "4.",
     [
-      "他下午喝咖啡",
-      "他不喜欢喝咖啡",
+      "他现在想喝茶",
       "他中午喝咖啡",
-      "他现在想喝茶"
+      "他下午喝咖啡",
+      "他不喜欢喝咖啡"
     ],
-    3,
-    "Lời thoại: 女：你不要咖啡吗？ 男：我中午不喝咖啡。有茶吗？ 女：有。 · 问：男的是什么意思？ -> Đáp án: 他现在想喝茶."
+    0,
+    "Theo đáp án tham khảo của giáo trình."
   ]
 ];
 
@@ -2201,6 +1839,31 @@ function toast(text) {
 }
 
 // Choice Quiz Engine
+
+// Các mục viết thanh điệu chấp nhận cả dấu (qù) và số (qu4).
+const toneQuizIds = new Set(['listening-idioms-quiz','listening-syllables-quiz','listening-tones-sentence-quiz','listening-homework-words-quiz']);
+function pinyinCanonical(value) {
+  let s = String(value || '').toLowerCase().split(/[（(]/)[0].trim();
+  const marked = {
+    'ā':'a1','á':'a2','ǎ':'a3','à':'a4','ē':'e1','é':'e2','ě':'e3','è':'e4',
+    'ī':'i1','í':'i2','ǐ':'i3','ì':'i4','ō':'o1','ó':'o2','ǒ':'o3','ò':'o4',
+    'ū':'u1','ú':'u2','ǔ':'u3','ù':'u4','ǖ':'ü1','ǘ':'ü2','ǚ':'ü3','ǜ':'ü4'
+  };
+  s = s.replace(/[a-züv:]+[1-5]/g, token => {
+    const tone = token.slice(-1), syl = token.slice(0,-1).replace(/u:/g,'ü').replace(/v/g,'ü');
+    if (tone === '5') return syl;
+    let at = syl.indexOf('a');
+    if (at < 0) at = syl.indexOf('e');
+    if (at < 0 && syl.includes('ou')) at = syl.indexOf('o');
+    if (at < 0) { for (let i=syl.length-1;i>=0;i--) if ('aeiouü'.includes(syl[i])) { at=i; break; } }
+    return at < 0 ? syl + tone : syl.slice(0,at+1) + tone + syl.slice(at+1);
+  });
+  s = [...s].map(ch => marked[ch] || ch).join('');
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/u:|v/g,'ü').replace(/[^a-zü1-4]/g,'');
+}
+function toneInputHtml(id, i) {
+  return toneQuizIds.has(id) ? `<input class="tone-answer" aria-label="Viết pinyin câu ${i+1}" placeholder="Có thể viết dấu hoặc số, ví dụ: qù / qu4">` : '';
+}
 function makeQuiz(id, data) {
   const el = document.getElementById(id);
   if(!el) return;
@@ -2214,6 +1877,7 @@ function makeQuiz(id, data) {
       <div class="quiz-row" data-answer="${q[2]}">
         <div class="qtitle">${q[0]}</div>
         <div class="choices">${choicesHtml}</div>
+        ${toneInputHtml(id, i)}
         <div class="answer-note"></div>
       </div>
     `;
@@ -2237,13 +1901,17 @@ function checkChoiceQuiz(id, feedbackId) {
           selected = row.querySelector('.choice.selected'),
           correct = row.querySelector(`[data-i="${answer}"]`),
           note = row.querySelector('.answer-note'),
-          expl = row.dataset.expl;
+          expl = row.dataset.expl,
+          typed = row.querySelector('.tone-answer'),
+          correctText = correct ? correct.textContent.replace(/^[A-D]\.\s*/, '') : '',
+          typedOk = !!(typed && typed.value.trim() && pinyinCanonical(typed.value) === pinyinCanonical(correctText));
     row.querySelectorAll('.choice').forEach(x => x.classList.remove('correct', 'wrong'));
     row.classList.remove('correct-row', 'wrong-row');
     const explHtml = expl ? ` <br><span style="color:#555;font-weight:normal">🎧 Lời thoại / Giải thích: ${expl}</span>` : '';
-    if (selected && +selected.dataset.i === answer) {
+    if ((selected && +selected.dataset.i === answer) || typedOk) {
       got++;
-      selected.classList.add('correct');
+      if (selected) selected.classList.add('correct');
+      if (typed) typed.classList.add('correct');
       row.classList.add('correct-row');
       note.className = 'answer-note ok';
       note.innerHTML = `✓ Chính xác. Đáp án: <b>${correct ? correct.textContent : ''}</b>.${explHtml}`;
@@ -2252,7 +1920,7 @@ function checkChoiceQuiz(id, feedbackId) {
       if (correct) correct.classList.add('correct');
       row.classList.add('wrong-row');
       note.className = 'answer-note bad';
-      note.innerHTML = `✕ ${selected ? 'Bạn chọn: <b>' + selected.textContent + '</b>. ' : 'Bạn chưa chọn. '}Đáp án đúng: <b>${correct ? correct.textContent : ''}</b>.${explHtml}`;
+      note.innerHTML = `✕ ${typed && typed.value.trim() ? 'Bạn viết: <b>' + escapeHtml(typed.value) + '</b>. ' : (selected ? 'Bạn chọn: <b>' + selected.textContent + '</b>. ' : 'Bạn chưa trả lời. ')}Đáp án đúng: <b>${correct ? correct.textContent : ''}</b>.${explHtml}`;
     }
   });
   showResult(feedbackId, got, rows.length);
@@ -2263,6 +1931,7 @@ function resetChoices(id, feedbackId) {
   document.querySelectorAll('#' + id + ' .quiz-row').forEach(row => {
     row.classList.remove('correct-row', 'wrong-row');
     row.querySelectorAll('.choice').forEach(x => x.classList.remove('selected', 'correct', 'wrong'));
+    const toneInput = row.querySelector('.tone-answer'); if (toneInput) { toneInput.value = ''; toneInput.classList.remove('correct','wrong'); }
     const note = row.querySelector('.answer-note');
     if (note) { note.className = 'answer-note'; note.textContent = ''; }
   });
