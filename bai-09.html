@@ -528,7 +528,7 @@ body {
   .score-ring { margin: auto; }
   .score-actions { grid-template-columns: 1fr; width: 100%; }
 }
-.tone-answer{width:100%;margin-top:9px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font-size:16px}.tone-answer.correct{border-color:var(--green);background:#f2fbf7}.tone-answer.wrong{border-color:var(--red);background:#fff5f5}
+.tone-answer{width:100%;margin-top:9px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font-size:16px}.tone-answer.correct{border-color:var(--green);background:#f2fbf7}.tone-answer.wrong{border-color:var(--red);background:#fff5f5}.exercise-note{margin:8px 0 14px;padding:10px 12px;border-left:4px solid var(--gold);border-radius:8px;background:#fff8e8;color:#5f4a20;line-height:1.55}
 </style>
 </head>
 <body>
@@ -565,7 +565,7 @@ body {
 
   <!-- 2. Nghe 9-2 (Tr.37) -->
   <section class="card">
-    <div class="card-head"><div><h3>2. Nghe và chọn Vận mẫu & Thanh điệu (9-2 Tr.37)</h3></div></div>
+    <div class="card-head"><div><h3>2. Nghe và điền Vận mẫu & Thanh điệu (9-2 Tr.37)</h3></div></div>
     <div class="audio-row">
   <span class="audio-badge">🎧 Bài nghe 9-2 (Trang 37 SGK)</span>
   <audio controls preload="metadata">
@@ -575,6 +575,7 @@ body {
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
+    <p class="exercise-note">Nghe rồi tự điền pinyin vào ô trống. Có thể viết dấu thanh hoặc dùng số 1–4 sau âm tiết; ví dụ: <b>qù</b> có thể viết là <b>qu4</b>.</p>
     <div id="listening-finals-quiz" class="quiz-list"></div>
     <div class="actions">
       <button class="btn" onclick="checkChoiceQuiz('listening-finals-quiz', 'listening-finals-feedback')">Kiểm tra đáp án</button>
@@ -595,6 +596,7 @@ body {
     Trình duyệt không hỗ trợ phát âm thanh.
   </audio>
 </div>
+    <p class="exercise-note">Điền thanh điệu cho từng thành ngữ. Có thể viết dấu thanh hoặc dùng số 1–4 sau mỗi âm tiết; ví dụ: <b>qù</b> có thể viết là <b>qu4</b>.</p>
     <div id="listening-idioms-quiz" class="quiz-list"></div>
     <div class="actions">
       <button class="btn" onclick="checkChoiceQuiz('listening-idioms-quiz', 'listening-idioms-feedback')">Kiểm tra đáp án</button>
@@ -1904,7 +1906,8 @@ function toast(text) {
 // Choice Quiz Engine
 
 // Các mục viết thanh điệu chấp nhận cả dấu (qù) và số (qu4).
-const toneQuizIds = new Set(['listening-idioms-quiz','listening-syllables-quiz','listening-tones-sentence-quiz','listening-homework-words-quiz']);
+const inputOnlyQuizIds = new Set(['listening-finals-quiz','listening-idioms-quiz']);
+const toneQuizIds = new Set(['listening-finals-quiz','listening-idioms-quiz','listening-syllables-quiz','listening-tones-sentence-quiz','listening-homework-words-quiz']);
 function pinyinCanonical(value) {
   let s = String(value || '').toLowerCase().split(/[（(]/)[0].trim();
   const marked = {
@@ -1931,15 +1934,21 @@ function makeQuiz(id, data) {
   const el = document.getElementById(id);
   if(!el) return;
   el.innerHTML = data.map((q, i) => {
-    const choicesHtml = q[1].map((x, j) => {
+    const inputOnly = inputOnlyQuizIds.has(id);
+    const answerText = String(q[1][q[2]]).replace(/^[A-D]\.\s*/, '');
+    const rawTitle = String(q[0]);
+    const title = id === 'listening-finals-quiz'
+      ? (rawTitle.includes('_') ? rawTitle : `${i + 1}. ${(rawTitle.match(/[（(]([^）)]+)[）)]/) || [,''])[1]}`)
+      : q[0];
+    const choicesHtml = inputOnly ? '' : q[1].map((x, j) => {
       const cleanX = String(x).replace(/^[A-D]\.\s*/, '');
       const text = `${String.fromCharCode(65 + j)}. ${cleanX}`;
       return `<button class="choice" data-i="${j}" onclick="selectChoice(this)">${escapeHtml(text)}</button>`;
     }).join('');
     return `
-      <div class="quiz-row" data-answer="${q[2]}">
-        <div class="qtitle">${q[0]}</div>
-        <div class="choices">${choicesHtml}</div>
+      <div class="quiz-row" data-answer="${q[2]}" data-answer-text="${escapeHtml(answerText)}">
+        <div class="qtitle">${title}</div>
+        ${inputOnly ? '' : `<div class="choices">${choicesHtml}</div>`}
         ${toneInputHtml(id, i)}
         <div class="answer-note"></div>
       </div>
@@ -1966,7 +1975,7 @@ function checkChoiceQuiz(id, feedbackId) {
           note = row.querySelector('.answer-note'),
           expl = row.dataset.expl,
           typed = row.querySelector('.tone-answer'),
-          correctText = correct ? correct.textContent.replace(/^[A-D]\.\s*/, '') : '',
+          correctText = row.dataset.answerText || (correct ? correct.textContent.replace(/^[A-D]\.\s*/, '') : ''),
           typedOk = !!(typed && typed.value.trim() && pinyinCanonical(typed.value) === pinyinCanonical(correctText));
     row.querySelectorAll('.choice').forEach(x => x.classList.remove('correct', 'wrong'));
     row.classList.remove('correct-row', 'wrong-row');
@@ -1977,13 +1986,14 @@ function checkChoiceQuiz(id, feedbackId) {
       if (typed) typed.classList.add('correct');
       row.classList.add('correct-row');
       note.className = 'answer-note ok';
-      note.innerHTML = `✓ Chính xác. Đáp án: <b>${correct ? correct.textContent : ''}</b>.${explHtml}`;
+      note.innerHTML = `✓ Chính xác. Đáp án: <b>${escapeHtml(correctText)}</b>.${explHtml}`;
     } else {
       if (selected) selected.classList.add('wrong');
+      if (typed) typed.classList.add('wrong');
       if (correct) correct.classList.add('correct');
       row.classList.add('wrong-row');
       note.className = 'answer-note bad';
-      note.innerHTML = `✕ ${typed && typed.value.trim() ? 'Bạn viết: <b>' + escapeHtml(typed.value) + '</b>. ' : (selected ? 'Bạn chọn: <b>' + selected.textContent + '</b>. ' : 'Bạn chưa trả lời. ')}Đáp án đúng: <b>${correct ? correct.textContent : ''}</b>.${explHtml}`;
+      note.innerHTML = `✕ ${typed && typed.value.trim() ? 'Bạn viết: <b>' + escapeHtml(typed.value) + '</b>. ' : (selected ? 'Bạn chọn: <b>' + selected.textContent + '</b>. ' : 'Bạn chưa trả lời. ')}Đáp án đúng: <b>${escapeHtml(correctText)}</b>.${explHtml}`;
     }
   });
   showResult(feedbackId, got, rows.length);
