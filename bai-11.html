@@ -17,6 +17,7 @@ main{padding:26px}.content{max-width:1140px;margin:auto}.hero{padding:38px;borde
 .pair{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:18px}input{font:inherit}.small-input,.text-input,.tone-number-input{padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;outline:0}.small-input{width:78px;text-align:center;font-weight:700}.tone-number-input{width:145px;font-weight:800;letter-spacing:.12em;text-align:center}.text-input{width:175px;max-width:62%}.inline-blank{display:inline-block;vertical-align:middle;margin:0 3px}
 .correct{border-color:var(--green)!important;background:#eef9f4!important;color:var(--green)}.wrong{border-color:var(--red)!important;background:#fff1f1!important;color:var(--red)}
 .quiz-list{display:grid;gap:11px}.quiz-row{padding:12px;border:1px solid var(--line);border-radius:12px}.qtitle{font-weight:800;margin-bottom:8px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:7px}.choice{padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:#fff;cursor:pointer;text-align:left}.choice.selected{background:#fff0ed;border-color:var(--main2)}.choice.correct{background:#e8f6ef;border-color:var(--green);color:var(--green)}.choice.wrong{background:#fdecec;border-color:var(--red);color:var(--red)}
+.reference-answer{margin-top:9px;padding:8px 10px;border-left:4px solid var(--main2);border-radius:7px;background:#fff0ed;color:#8e3537;font-weight:700}.reference-answer[hidden]{display:none}
 .source-box{padding:16px;border:1px solid var(--line);border-radius:13px;background:#fffaf8;font-size:18px;line-height:1.9}
 .words{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:8px 11px;border-radius:999px;border:1px solid var(--line);background:#fff1ee;font-weight:700}
 .picture-words{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px}.match-word{padding:9px;border:1px solid var(--line);border-radius:10px;background:#fff;font-weight:800;cursor:pointer}.match-word.selected{outline:3px solid #f7d4ce;border-color:var(--main2)}.match-word.matched{background:#eaf8f2;border-color:var(--green);color:var(--green)}
@@ -39,31 +40,28 @@ main{padding:26px}.content{max-width:1140px;margin:auto}.hero{padding:38px;borde
 <div id="listen-11-1" class="quiz-list"></div>
 <div class="actions"><button class="btn" onclick="checkQuiz('listen-11-1')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetQuiz('listen-11-1')">Chọn lại</button></div><div class="feedback" data-feedback="listen-11-1"></div></section>
 
-<section class="card"><div class="card-head"><div><h3>2. 听后跟读</h3><p class="sub">Nghe và đọc theo. Phần này không tính điểm tự động.</p><div class="track">🔊 Track 11-2</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-2.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
-<div class="source-box">四声＋二声：<br>qu nián / qu hú / qu pí　　pò mén / pò chuáng / pò ké　　fàn qián / fàn dú / fàn nàn　　jìyuán / jì qián / jìhuí　　jiànquán / jiànxí<br><br>四声＋三声：<br>kàn nǎr / kàn wǒ / kàn jǐng　　jìng jiǔ / jìng lǐ / jìng gǎn　　miànfěn / miàndiǎn / miànbǐng　　xiàng guǐ / xiàngwǎng / xiàng mǎ</div></section>
-
-<section class="card"><div class="card-head"><div><h3>3. 听后标出句中画线词语的声调</h3><p class="sub">Phần gạch chân đã bỏ dấu thanh; nhập dãy số thanh điệu theo thứ tự các âm tiết được gạch chân.</p><div class="track">🔊 Track 11-3</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-3.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
+<section class="card"><div class="card-head"><div><h3>2. 听后标出句中画线词语的声调</h3><p class="sub">Phần gạch chân đã bỏ dấu thanh; nhập dãy số thanh điệu theo thứ tự các âm tiết được gạch chân.</p><div class="track">🔊 Track 11-3</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-3.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
 <div class="note tone-note"><b>Cách làm:</b> 1 = thanh 1, 2 = thanh 2, 3 = thanh 3, 4 = thanh 4. Thanh nhẹ có thể không ghi số hoặc ghi <b>0</b>. Chỉ nhập các chữ số. Nếu trong một câu có <b>hai cụm được gạch chân</b>, hãy ghi liên tiếp thanh điệu của cả hai cụm theo đúng thứ tự xuất hiện trong câu.</div>
 <div id="tone-11-3" class="quiz-list"></div><div class="actions"><button class="btn" onclick="checkInputs('tone-11-3')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetInputs('tone-11-3')">Làm lại</button></div><div class="feedback" data-feedback="tone-11-3"></div></section>
 
-<section class="card"><div class="card-head"><div><h3>4. 听后标出句重音并跟读</h3><p class="sub">Nghe, xác định trọng âm câu rồi đọc theo. Phần này không tính điểm tự động.</p><div class="track">🔊 Track 11-4</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-4.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
+<section class="card"><div class="card-head"><div><h3>3. 听后标出句重音并跟读</h3><p class="sub">Nghe, xác định trọng âm câu rồi đọc theo. Phần này không tính điểm tự động.</p><div class="track">🔊 Track 11-4</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-4.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
 <div class="source-box">1. Nǐ kànguo zhè běn shū ma?<br>2. Shuí zài fángjiān li?<br>3. Nǐ kànle jǐ bù diànyǐng?<br>4. Zhè shì wǒ de xīn tóngxué.<br>5. Wǒ bù xiǎng gěi tā dǎ diànhuà.<br>6. Zuótiān 28 hào, nǐ shuō jīntiān jǐ hào?<br>7. Nǐ bàba zài nǎr gōngzuò?<br>8. Lìli yě zhùzài zhèr.<br>9. Wǒ mǎi liǎng jīn píngguǒ, sān jīn xiāngjiāo.</div>
 <div class="actions"><button class="btn" onclick="showStress()">Xem đáp án trọng âm</button></div><div id="stress-answer" class="feedback"></div></section>
 
-<section class="card"><div class="card-head"><div><h3>5. 听下列句子，根据句重音提问</h3><p class="sub">Nghe câu và đặt câu hỏi cho phần mang trọng âm. Phần này không tính điểm tự động.</p><div class="track">🔊 Track 11-5</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-5.m4a?v=book-20261005" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
+<section class="card"><div class="card-head"><div><h3>4. 听下列句子，根据句重音提问</h3><p class="sub">Nghe câu và đặt câu hỏi cho phần mang trọng âm. Phần này không tính điểm tự động.</p><div class="track">🔊 Track 11-5</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-5.m4a?v=book-20261005" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
 <div class="source-box">1. 我们学校里有一个中国银行。<br>2. 王记者是我朋友。<br>3. 我没有他的电话号码。<br>4. 那种水果叫草莓。<br>5. 对不起，他们不在。<br>6. 这些都是我的同学。<br>7. 那位是王教授。<br>8. 这是泰国水果。</div>
 <div class="actions"><button class="btn" onclick="showQuestions()">Xem câu hỏi tham khảo</button></div><div id="question-answer" class="feedback"></div></section>
 
-<section class="card"><div class="card-head"><div><h3>6. 听后根据所给提示快速回答问题</h3><p class="sub">Nghe và nhập câu trả lời. Có chấm tự động theo đáp án tham khảo.</p><div class="track">🔊 Track 11-6</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-6.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
+<section class="card"><div class="card-head"><div><h3>5. 听后根据所给提示快速回答问题</h3><p class="sub">Nghe và nhập câu trả lời. Có chấm tự động theo đáp án tham khảo.</p><div class="track">🔊 Track 11-6</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-6.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
 <div id="quick-answers" class="grid2"></div><div class="actions"><button class="btn" onclick="checkInputs('quick-answers')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetInputs('quick-answers')">Làm lại</button></div><div class="feedback" data-feedback="quick-answers"></div></section>
 
-<section class="card"><div class="card-head"><div><h3>7. 听下列对话，选择正确答案</h3><div class="track">🔊 Track 11-7</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-7.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
+<section class="card"><div class="card-head"><div><h3>6. 听下列对话，选择正确答案</h3><div class="track">🔊 Track 11-7</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-7.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
 <div id="listen-11-7" class="quiz-list"></div><div class="actions"><button class="btn" onclick="checkQuiz('listen-11-7')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetQuiz('listen-11-7')">Chọn lại</button></div><div class="feedback" data-feedback="listen-11-7"></div></section>
 
-<section class="card"><div class="card-head"><div><h3>8. 课外练习（一）听下列对话，选择正确答案</h3><div class="track">🔊 Track 11-8</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-8.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
+<section class="card"><div class="card-head"><div><h3>7. 课外练习（一）听下列对话，选择正确答案</h3><div class="track">🔊 Track 11-8</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-8.m4a?v=correct-20261004" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
 <div id="listen-11-8" class="quiz-list"></div><div class="actions"><button class="btn" onclick="checkQuiz('listen-11-8')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetQuiz('listen-11-8')">Chọn lại</button></div><div class="feedback" data-feedback="listen-11-8"></div></section>
 
-<section class="card"><div class="card-head"><div><h3>9. 课外练习（二）听一听，猜一猜</h3><div class="track">🔊 Track 11-9</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-9.m4a?v=book-20261005" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
+<section class="card"><div class="card-head"><div><h3>8. 课外练习（二）听一听，猜一猜</h3><div class="track">🔊 Track 11-9</div><audio class="lesson-audio" controls preload="metadata"><source src="h1-b11-nghe-9.m4a?v=book-20261005" type="audio/mp4">Trình duyệt của bạn không hỗ trợ phát âm thanh.</audio></div></div>
 <div id="guess-box"><div class="item"><div class="pair"><span>5门504号是谁的家？</span><input class="text-input" data-answers='["王老师的家","王老师家"]'></div></div></div>
 <div class="actions"><button class="btn" onclick="checkInputs('guess-box')">Kiểm tra đáp án</button><button class="btn outline" onclick="resetInputs('guess-box')">Làm lại</button></div><div class="feedback" data-feedback="guess-box"></div>
 <div class="note">Đáp án tham khảo: 王老师的家。</div></section>
@@ -96,26 +94,29 @@ const strip=s=>(s||'').trim().toLowerCase().replace(/[’'·，。！？,.!?：:
 function fb(id,msg,good){const e=document.querySelector(`[data-feedback="${id}"]`)||document.getElementById(id+'-feedback');if(e){e.textContent=msg;e.className='feedback '+(good===true?'ok':good===false?'bad':'')}}
 function inputItem(prompt,answers,cls='text-input'){const input=`<input class="${cls} inline-blank" data-answers='${JSON.stringify(answers)}'>`;const m=prompt.match(/_{3,}/);if(m){const i=m.index;return `<div class="item"><div class="pair"><span>${prompt.slice(0,i)}${input}${prompt.slice(i+m[0].length)}</span></div></div>`}return `<div class="item"><div class="pair"><span>${prompt}</span>${input}</div></div>`}
 function toneItem(prompt,answers){return `<div class="item"><div>${prompt}</div><input class="tone-number-input" inputmode="numeric" pattern="[0-4]*" data-tone-seq="1" data-answers='${JSON.stringify(answers)}'></div>`}
-function checkInputs(id,silent=false){const root=document.getElementById(id);if(!root)return [0,0];let c=0,t=0;root.querySelectorAll('[data-answers]').forEach(inp=>{t++;const a=JSON.parse(inp.dataset.answers);let ok;if(inp.dataset.toneSeq){const v=inp.value.replace(/\s+/g,'');ok=a.includes(v)}else{const v=strip(inp.value);ok=a.some(x=>strip(x)===v)}inp.classList.toggle('correct',ok);inp.classList.toggle('wrong',!ok);inp.closest('.item')?.classList.toggle('correct-row',ok);inp.closest('.item')?.classList.toggle('wrong-row',!ok);if(ok)c++});if(!silent)fb(id,`Đúng ${c}/${t}.`,c===t);return [c,t]}
-function resetInputs(id){const r=document.getElementById(id);if(!r)return;r.querySelectorAll('input').forEach(i=>{i.value='';i.classList.remove('correct','wrong');i.closest('.item')?.classList.remove('correct-row','wrong-row')});fb(id,'')}
+const listeningInputIds=new Set(['tone-11-3','quick-answers','guess-box']);
+const listeningQuizIds=new Set(['listen-11-1','listen-11-7','listen-11-8']);
+function showReference(row,text,show){if(!row)return;let e=row.querySelector('.reference-answer');if(!e){e=document.createElement('div');e.className='reference-answer';row.appendChild(e)}e.textContent=show?`Đáp án tham khảo: ${text}`:'';e.hidden=!show}
+function checkInputs(id,silent=false){const root=document.getElementById(id);if(!root)return [0,0];let c=0,t=0;const showRefs=listeningInputIds.has(id);root.querySelectorAll('[data-answers]').forEach(inp=>{t++;const a=JSON.parse(inp.dataset.answers);let ok;if(inp.dataset.toneSeq){const v=inp.value.replace(/\s+/g,'');ok=a.includes(v)}else{const v=strip(inp.value);ok=a.some(x=>strip(x)===v)}inp.classList.toggle('correct',ok);inp.classList.toggle('wrong',!ok);const row=inp.closest('.item');row?.classList.toggle('correct-row',ok);row?.classList.toggle('wrong-row',!ok);if(showRefs)showReference(row,a[0],!ok);if(ok)c++});if(!silent)fb(id,`Đúng ${c}/${t}.`,c===t);return [c,t]}
+function resetInputs(id){const r=document.getElementById(id);if(!r)return;r.querySelectorAll('input').forEach(i=>{i.value='';i.classList.remove('correct','wrong');i.closest('.item')?.classList.remove('correct-row','wrong-row')});r.querySelectorAll('.reference-answer').forEach(e=>e.remove());fb(id,'')}
 function pick(btn){const row=btn.closest('.quiz-row');row.querySelectorAll('.choice').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected')}
 function renderQuiz(id,data){const root=document.getElementById(id);root.dataset.answers=JSON.stringify(data.map(x=>x[2]));root.innerHTML=data.map((q,qi)=>`<div class="quiz-row"><div class="qtitle">${q[0]}</div><div class="choices">${q[1].map((c,i)=>`<button class="choice" data-i="${i}" onclick="pick(this)">${String.fromCharCode(65+i)}. ${c}</button>`).join('')}</div></div>`).join('')}
-function checkQuiz(id,silent=false){const root=document.getElementById(id),ans=JSON.parse(root.dataset.answers||'[]');let c=0;root.querySelectorAll('.quiz-row').forEach((row,i)=>{const sel=row.querySelector('.choice.selected');row.querySelectorAll('.choice').forEach((b,j)=>{b.classList.remove('correct','wrong');if(j===ans[i])b.classList.add('correct');if(sel===b&&j!==ans[i])b.classList.add('wrong')});if(sel&&+sel.dataset.i===ans[i])c++});if(!silent)fb(id,`Đúng ${c}/${ans.length}.`,c===ans.length);return [c,ans.length]}
-function resetQuiz(id){document.getElementById(id).querySelectorAll('.choice').forEach(b=>b.classList.remove('selected','correct','wrong'));fb(id,'')}
+function checkQuiz(id,silent=false){const root=document.getElementById(id),ans=JSON.parse(root.dataset.answers||'[]');let c=0;const showRefs=listeningQuizIds.has(id);root.querySelectorAll('.quiz-row').forEach((row,i)=>{const sel=row.querySelector('.choice.selected');let correctChoice=null;row.querySelectorAll('.choice').forEach((b,j)=>{b.classList.remove('correct','wrong');if(j===ans[i]){b.classList.add('correct');correctChoice=b}if(sel===b&&j!==ans[i])b.classList.add('wrong')});const ok=!!sel&&+sel.dataset.i===ans[i];if(showRefs)showReference(row,correctChoice?.textContent||'',!ok);if(ok)c++});if(!silent)fb(id,`Đúng ${c}/${ans.length}.`,c===ans.length);return [c,ans.length]}
+function resetQuiz(id){const root=document.getElementById(id);root.querySelectorAll('.choice').forEach(b=>b.classList.remove('selected','correct','wrong'));root.querySelectorAll('.reference-answer').forEach(e=>e.remove());fb(id,'')}
 function shuffleArray(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
 
 // Listening 11-1
 renderQuiz('listen-11-1',[
-['1.',['shēngzǎn','chēngzǎn'],1],
-['2.',['dàidù','tàidu'],1],
+['1.',['shēngzàn','chēngzàn'],1],
+['2.',['dàidú','tàidu'],1],
 ['3.',['zìzhuàn','jìsuàn'],0],
 ['4.',['Ānkāng','Āngāng'],1],
-['5.',['dǎgāi','dǎ kāi'],1],
+['5.',['dàgài','dǎ kāi'],1],
 ['6.',['chūnjuǎnr','chūnjuǎn'],0],
 ['7.',['yùjì','yùqī'],0],
-['8.',['chízǎo','qízǎo'],0],
-['9.',['huíyì','huǐyì'],1],
-['10.',['yuán lái','yuánlái'],1]
+['8.',['chízǎo','qǐzǎo'],0],
+['9.',['huìyì','huíyì'],1],
+['10.',['yuàn lái','yuánlái'],1]
 ]);
 
 // Listening 11-3
@@ -169,10 +170,10 @@ renderQuiz('listen-11-7',[
 
 // 11-8 homework
 renderQuiz('listen-11-8',[
-['1. 刘老师在哪儿？',['513办公室','514办公室','913办公室','524办公室'],1],
-['2. 下面哪句话对？',['女的打电话时麦克没在家','女的打电话时麦克在家','女的打电话时麦克在家里没人','女的打电话时麦克家里没人'],2],
-['3. 麦克的电话号码是多少？',['64681913','64681931','64861913','64681193'],3],
-['4. 哪句话对？',['女的知道','男的知道','刘教授知道','没人知道'],2]
+['1.',['513办公室','514办公室','913办公室','524办公室'],1],
+['2.（1）',['女的打电话时麦克没在家','女的打通电话了','女的打电话时麦克在家','女的打电话时麦克家里没人'],2],
+['2.（2）',['64681913','64681931','64861913','64681193'],3],
+['3.',['女的知道','男的知道','刘英知道','没人知道'],2]
 ]);
 
 // Text fill
