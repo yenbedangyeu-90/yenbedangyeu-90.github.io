@@ -187,7 +187,7 @@ button,.btn,.choice,.token,.toc-link{touch-action:manipulation;-webkit-tap-highl
 }
 </style>
 </head>
-<body><main id="app"><div class="navtop" style="gap:10px;flex-wrap:wrap"><a class="backtoc" href="hsk2-gioi-thieu.html" onclick="return goToHsk2Toc(event)" style="text-decoration:none">← Quay lại mục lục HSK2</a><button class="backtoc" type="button" onclick="goToContents()">☰ Các phần trong bài</button></div>
+<body><main id="app"><div class="navtop"><a class="backtoc" href="hsk2-gioi-thieu.html" onclick="return goToHsk2Toc(event)" style="text-decoration:none">← Quay lại mục lục HSK2</a></div>
 <header class="top"><small>HSK 2 (3.0) · BÀI TẬP BỔ TRỢ · BÀI 1</small><h1>她请我们吃了北京烤鸭</h1><p>Tā qǐng wǒmen chī le Běijīng kǎoyā</p><p class="subtitle">词语 · 语法 · 听读 · 口语 · 写作</p></header>
 <nav class="navbar" aria-label="Điều hướng bài học"><div class="navrow" id="navbuttons"></div><div class="prog"><span id="progress"></span></div></nav>
 <section class="card" id="tocPanel" hidden aria-label="Mục lục bài học">
@@ -305,13 +305,7 @@ const MOBILE_NAV=['Từ vựng','Ngữ pháp','Nghe/đọc','Giao tiếp','Ôn t
 function navRender(){document.getElementById('navbuttons').innerHTML=NAV.map((n,i)=>`<button class="navitem ${current===i?'active':''}" onclick="goToStage(${i})" aria-label="${H(n)}" aria-current="${current===i?'step':'false'}"><span class="nav-label-wide">${H(n)}</span><span class="nav-label-mobile" aria-hidden="true"><b>${String(i+1).padStart(2,'0')}</b><span>${MOBILE_NAV[i]}</span></span></button>`).join('');document.getElementById('progress').style.width=((Object.keys(S.seen).length)/5*100)+'%';document.getElementById('prev').disabled=current===0;document.getElementById('next').disabled=current===4;document.getElementById('footerLabel').textContent=(current+1)+'/5'}
 function openPage(n){document.getElementById('tocPanel').hidden=true;current=Math.max(0,Math.min(4,n));S.seen[current]=true;save();navRender();const x=PAGES[current];let out=`<div class="eyebrow">CHẶNG ${current+1} / 5 · ${x.cn}</div><h2 class="page-title">${x.vi}</h2>${x.desc?`<p class="lead">${x.desc}</p>`:""}`;
  if(current===0)out+=vocabPage();if(current===1)out+=grammarPage();if(current===2)out+=inputPage();if(current===3)out+=outputPage();if(current===4)out+=reviewPage();document.getElementById('view').innerHTML=out;restoreFields();if(current===4){renderTest();renderReport();renderMistakes();renderReview()}if(current===0)renderCoverage();const allBox=document.getElementById('hsk-totalbox');if(allBox)allBox.style.display=current===4?'block':'none';if(current===4)renderGlobalScore();window.scrollTo({top:0,behavior:'instant'});}
-function goToContents(){
-  const panel=document.getElementById('tocPanel');
-  document.getElementById('tocLinks').innerHTML=NAV.map((n,i)=>
-    `<button type="button" class="toc-link" onclick="goToStage(${i})">${H(n)}</button>`).join('');
-  panel.hidden=false;
-  panel.scrollIntoView({behavior:'smooth',block:'start'});
-}
+function goToContents(e){return window.goToHsk2Toc(e);}
 function goToStage(n){
   openPage(n);
   requestAnimationFrame(()=>{
