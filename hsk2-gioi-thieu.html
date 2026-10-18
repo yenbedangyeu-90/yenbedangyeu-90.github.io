@@ -52,9 +52,9 @@ function openHsk2Lesson(e){
   if(location.protocol==='file:'){
     window.location.href='HSK2_Bai1_她请我们吃了北京烤鸭.html';
   }else if(location.hostname.endsWith('github.io')){
-    window.location.href='hsk2-bai-01.html';
+    window.location.href='hsk2-bai-01.html?v='+Date.now();
   }else{
-    window.location.href='https://yenbedangyeu-90.github.io/hsk2-bai-01.html';
+    window.location.href='https://yenbedangyeu-90.github.io/hsk2-bai-01.html?v='+Date.now();
   }
   return false;
 }
