@@ -187,14 +187,15 @@ button,.btn,.choice,.token,.toc-link{touch-action:manipulation;-webkit-tap-highl
 }
 </style>
 </head>
-<body><main id="app"><div class="navtop"><button class="backtoc" type="button" onclick="goToContents()">← Quay lại mục lục</button></div>
+<body><main id="app"><div class="navtop" style="gap:10px;flex-wrap:wrap"><a class="backtoc" href="hsk2-gioi-thieu.html" onclick="return goToHsk2Toc(event)" style="text-decoration:none">← Quay lại mục lục HSK2</a><button class="backtoc" type="button" onclick="goToContents()">☰ Các phần trong bài</button></div>
 <header class="top"><small>HSK 2 (3.0) · BÀI TẬP BỔ TRỢ · BÀI 1</small><h1>她请我们吃了北京烤鸭</h1><p>Tā qǐng wǒmen chī le Běijīng kǎoyā</p><p class="subtitle">词语 · 语法 · 听读 · 口语 · 写作</p></header>
 <nav class="navbar" aria-label="Điều hướng bài học"><div class="navrow" id="navbuttons"></div><div class="prog"><span id="progress"></span></div></nav>
 <section class="card" id="tocPanel" hidden aria-label="Mục lục bài học">
  <h2 class="page-title">Mục lục · 目录</h2>
  <div class="toc-grid" id="tocLinks"></div>
 </section><div id="view"></div>
-<div class="footer"><button class="btn light" id="prev" onclick="navigate(-1)">← Chặng trước</button><span id="footerLabel" class="subtle"></span><button class="btn" id="next" onclick="navigate(1)">Chặng tiếp →</button></div>
+<div class="footer"><button class="btn light" id="prev" onclick="navigate(-1)">← Chặng trước</button><a class="btn light" href="hsk2-gioi-thieu.html" onclick="return goToHsk2Toc(event)" style="text-decoration:none">← Quay lại mục lục HSK2</a><span id="footerLabel" class="subtle"></span><button class="btn" id="next" onclick="navigate(1)">Chặng tiếp →</button></div>
+<script>window.goToHsk2Toc=function(e){if(e)e.preventDefault();const target=location.protocol==='file:'||location.hostname.endsWith('github.io')?'hsk2-gioi-thieu.html':'https://yenbedangyeu-90.github.io/hsk2-gioi-thieu.html';window.location.href=target;return false;};</script>
 
 <section class="hsk-totalbox" id="hsk-totalbox" style="display:none" aria-label="Kết quả chấm toàn bộ">
   <div class="hsk-scoretop">
