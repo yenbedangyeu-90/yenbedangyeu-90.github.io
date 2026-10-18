@@ -366,8 +366,146 @@ function setXiaoyuReview(id,message,kind='info'){
  const box=document.getElementById('xiaoyu-'+id);if(!box)return;
  box.textContent=String(message??'');box.className='ai-review-box '+kind;
 }
-// Mỗi nhóm bài được gửi trong một yêu cầu nhận xét. Chưa kết nối API sẽ không giả lập kết quả.
-// Website tích hợp: window.HSK_XIAOYU_REVIEW = async (payload) => ({feedback:'...'});
+// Mỗi nhóm bài được gửi trong một yêu cầu nhận xét. Kết nối trực tiếp tới Apps Script AI của trung tâm.
+const AI_REVIEW_URL='https://script.google.com/macros/s/AKfycbwfr3m68nMa45UHO07JhEITsYSi2n-Xr9imIq_COjqG-IzG9zVQTG2xQC093p5AxjpCLA/exec';
+const pendingXiaoyuRequests=new Map();
+window.haiyenReceiveAiGrade=function(message){
+ if(!message||message.type!=='haiyen-ai-feedback'||!pendingXiaoyuRequests.has(message.requestId))return;
+ const pending=pendingXiaoyuRequests.get(message.requestId);
+ pendingXiaoyuRequests.delete(message.requestId);
+ if(pending.script)pending.script.remove();
+ clearTimeout(pending.timer);
+ pending.resolve(message);
+};
+function callAppsScriptGradeItem(item,groupTitle){
+ return new Promise(resolve=>{
+  const answer=String(item.studentAnswer||'').trim();
+  if(!answer){resolve(null);return;}
+  const requestId='hsk2-b1-'+item.id+'-'+Date.now()+'-'+Math.random().toString(36).slice(2);
+  const rawKeyword=item.hints||(Array.isArray(item.keywords)?item.keywords.join('、'):'')||(Array.isArray(item.structures)?item.structures.join('、'):'')||item.firstHalf||item.prompt||groupTitle||'HSK2';
+  const rawRef=[
+   item.firstHalf?('Nửa câu đầu: '+item.firstHalf):'',
+   item.prompt?('Yêu cầu: '+item.prompt):'',
+   item.scenario?('Tình huống: '+item.scenario):'',
+   item.goal?('Mục tiêu: '+item.goal):'',
+   (item.sampleAnswer||item.reference)?('Câu tham khảo: '+(item.sampleAnswer||item.reference)):'',
+   (item.assessmentFocus||item.criteria)?('Tiêu chí: '+(item.assessmentFocus||item.criteria)):''
+  ].filter(Boolean).join(' | ');
+  const fields=new URLSearchParams({
+   mode:'grade_hsk4_picture_sentence',
+   requestId,
+   studentAnswer:answer.slice(0,300),
+   keyword:String(rawKeyword).trim().slice(0,30)||'HSK2',
+   reference:String(rawRef||item.prompt||'Đúng ngữ pháp và ngữ cảnh HSK2 Bài 1').trim().slice(0,500)
+  });
+  const script=document.createElement('script');
+  const timer=setTimeout(()=>{
+   if(pendingXiaoyuRequests.has(requestId)){
+    pendingXiaoyuRequests.delete(requestId);
+    script.remove();
+    resolve({ok:false,payload:{error:'AI phản hồi quá lâu. Hãy thử lại.'}});
+   }
+  },45000);
+  pendingXiaoyuRequests.set(requestId,{resolve,script,timer});
+  script.src=AI_REVIEW_URL+'?'+fields.toString();
+  script.onerror=()=>{
+   if(pendingXiaoyuRequests.has(requestId)){
+    pendingXiaoyuRequests.delete(requestId);
+    clearTimeout(timer);
+    script.remove();
+    resolve({ok:false,payload:{error:'Không thể kết nối tới AI. Hãy thử lại.'}});
+   }
+  };
+  document.body.appendChild(script);
+ });
+}
+function callAppsScriptGradeAudio(blob){
+ return new Promise(resolve=>{
+  if(!blob){resolve({ok:false,payload:{error:'Chưa có bản ghi âm.'}});return;}
+  const reader=new FileReader();
+  reader.onerror=()=>resolve({ok:false,payload:{error:'Không thể đọc bản ghi âm.'}});
+  reader.onload=()=>{
+   const base64=String(reader.result||'').split(',')[1]||'';
+   const requestId='hsk2-b1-audio-'+Date.now()+'-'+Math.random().toString(36).slice(2);
+   let frame=document.getElementById('xiaoyu-audio-frame');
+   if(!frame){
+    frame=document.createElement('iframe');
+    frame.id='xiaoyu-audio-frame';
+    frame.name='xiaoyu-audio-frame';
+    frame.style.display='none';
+    document.body.appendChild(frame);
+   }
+   const onMsg=event=>{
+    if(!event.origin.endsWith('.googleusercontent.com')&&event.origin!=='https://script.google.com')return;
+    const data=event.data;
+    if(!data||data.type!=='haiyen-ai-feedback'||data.requestId!==requestId)return;
+    window.removeEventListener('message',onMsg);
+    clearTimeout(timer);
+    resolve(data);
+   };
+   const timer=setTimeout(()=>{
+    window.removeEventListener('message',onMsg);
+    resolve({ok:false,payload:{error:'Chưa nhận được phản hồi sau 45 giây. Hãy thử lại.'}});
+   },45000);
+   window.addEventListener('message',onMsg);
+   const form=document.createElement('form');
+   form.method='POST';
+   form.action=AI_REVIEW_URL;
+   form.target='xiaoyu-audio-frame';
+   const fields={requestId,activity:'pronunciation',mimeType:blob.type||'audio/webm',audio:base64};
+   Object.entries(fields).forEach(([k,v])=>{
+    const inp=document.createElement('input');
+    inp.type='hidden';inp.name=k;inp.value=v;
+    form.appendChild(inp);
+   });
+   document.body.appendChild(form);
+   form.submit();
+   form.remove();
+  };
+  reader.readAsDataURL(blob);
+ });
+}
+window.HSK_XIAOYU_REVIEW=async function(payload){
+ if(payload.groupId==='speaking'){
+  const res=await callAppsScriptGradeAudio(payload.audioBlob);
+  if(!res||!res.ok){
+   return {feedback:(res&&res.payload&&res.payload.error)||'Chưa thể phân tích bản ghi âm lúc này.',items:[]};
+  }
+  const p=res.payload||{};
+  const corr=Array.isArray(p.corrections)?p.corrections:[];
+  const score= !p.transcript?0:corr.length===0?9:corr.length<=2?8:7;
+  const parts=[
+   p.summary?('• Nhận xét: '+p.summary):'',
+   p.transcript?('• AI nghe được: '+p.transcript):'',
+   Array.isArray(p.strengths)&&p.strengths.length?('• Điểm tốt: '+p.strengths.join('; ')):'',
+   corr.length?('• Cần sửa: '+corr.map(c=>`${c.item}: ${c.issue} (${c.suggestion})`).join(' | ')):'',
+   Array.isArray(p.practice)&&p.practice.length?('• Gợi ý luyện lại: '+p.practice.join('; ')):''
+  ].filter(Boolean).join('\n');
+  return {feedback:parts||'Đã nhận xét bản ghi âm.',items:[{id:'speaking',score,maxScore:10,feedback:p.summary||''}]};
+ }
+ const answered=(payload.items||[]).filter(x=>String(x.studentAnswer||'').trim());
+ const results=await Promise.all(answered.map(async(item,idx)=>{
+  const res=await callAppsScriptGradeItem(item,payload.title);
+  return {item,res,idx};
+ }));
+ const items=[],lines=[];
+ results.forEach(({item,res},idx)=>{
+  const label=answered.length>1?`Câu ${idx+1}: `:'';
+  if(!res||!res.ok){
+   const err=(res&&res.payload&&res.payload.error)||'Chưa thể chấm câu này.';
+   lines.push(`• ${label}${err}`);
+   return;
+  }
+  const p=res.payload||{};
+  const score=Math.max(0,Math.min(10,Number(p.score)||0));
+  const verdict=p.verdict||'Đã nhận xét';
+  const fb=p.feedback||'';
+  const sug=p.corrected_sentence?` (Câu gợi ý: ${p.corrected_sentence})`:'';
+  items.push({id:item.id,score,maxScore:10,feedback:fb});
+  lines.push(`• ${label}[${verdict} · ${score}/10 điểm] ${fb}${sug}`);
+ });
+ return {feedback:lines.join('\n'),items};
+};
 const GROUP_IDS=['vocab-pictures','vocab-challenge','sentence-completion','grammar-transfer','picture-writing','picture-dialogue','picture-story','situational-dialogue','speaking','short-writing'];
 function getXiaoyuGroupPayload(groupId){
  const draft=id=>String(S.drafts[id]||'').trim();
