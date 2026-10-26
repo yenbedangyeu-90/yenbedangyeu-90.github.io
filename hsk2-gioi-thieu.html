@@ -21,11 +21,11 @@
     <section class="card"><h2>Cách học</h2><ul><li>Chọn bài học trong mục lục bên dưới.</li><li>Hoàn thành từng thẻ bài tập theo thứ tự.</li><li>Kiểm tra đáp án và xem lại câu làm sai.</li><li>Cuối bài, chọn “Quay lại mục lục HSK2” để học bài tiếp theo.</li></ul></section>
   </div>
 
-  <div class="section-head"><div><h2>Mục lục bài học</h2><p>Chọn một bài đã mở để bắt đầu luyện tập.</p></div><p><b>Đã có 2/19 phần</b></p></div>
+  <div class="section-head"><div><h2>Mục lục bài học</h2><p>Chọn một bài đã mở để bắt đầu luyện tập.</p></div><p><b>Đã có 3/19 phần</b></p></div>
   <nav class="lesson-grid" aria-label="Mục lục Giáo trình New HSK2">
-    <a class="lesson ready" href="hsk2-bai-01.html" onclick="return openHsk2Lesson(event)"><span class="num">BÀI 1</span><h3>她请我们吃了北京烤鸭</h3><p>Cô ấy mời chúng tôi ăn vịt quay Bắc Kinh</p><strong>Mở bài học →</strong></a>
-    <a class="lesson ready" href="hsk2-bai-02.html"><span class="num">BÀI 2</span><h3>还是打车去北大吧</h3><p>Hay là đi taxi đến Đại học Bắc Kinh nhé</p><strong>Mở bài học →</strong></a>
-    <div class="lesson pending"><span class="num">BÀI 3</span><span class="status">Đang cập nhật</span></div>
+    <a class="lesson ready" href="hsk2-bai-01.html" onclick="return openHsk2Lesson(event,'hsk2-bai-01.html','HSK2_Bai1_她请我们吃了北京烤鸭.html')"><span class="num">BÀI 1</span><h3>她请我们吃了北京烤鸭</h3><p>Cô ấy mời chúng tôi ăn vịt quay Bắc Kinh</p><strong>Mở bài học →</strong></a>
+    <a class="lesson ready" href="hsk2-bai-02.html" onclick="return openHsk2Lesson(event,'hsk2-bai-02.html','hsk2-bai-02.html')"><span class="num">BÀI 2</span><h3>还是打车去北大吧</h3><p>Hay là đi taxi đến Đại học Bắc Kinh nhé</p><strong>Mở bài học →</strong></a>
+    <a class="lesson ready" href="hsk2-bai-03.html" onclick="return openHsk2Lesson(event,'hsk2-bai-03.html','HSK2_Bai3_我想去西安旅游.html')"><span class="num">BÀI 3</span><h3>我想去西安旅游</h3><p>Tôi muốn đi du lịch Tây An</p><strong>Mở bài học →</strong></a>
     <div class="lesson pending"><span class="num">BÀI 4</span><span class="status">Đang cập nhật</span></div>
     <div class="lesson pending"><span class="num">BÀI 5</span><span class="status">Đang cập nhật</span></div>
     <div class="lesson pending"><span class="num">ÔN TẬP 1</span><span class="status">Đang cập nhật</span></div>
@@ -43,18 +43,20 @@
     <div class="lesson pending"><span class="num">ÔN TẬP 3</span><span class="status">Đang cập nhật</span></div>
     <div class="lesson pending"><span class="num">KIỂM TRA</span><span class="status">Đang cập nhật</span></div>
   </nav>
-  <div class="note">Bài 1 và Bài 2 đã sẵn sàng. Các bài chưa có nội dung được hiển thị rõ là “Đang cập nhật” và chưa gắn liên kết, tránh học sinh mở nhầm trang trống.</div>
+  <div class="note">Bài 1, Bài 2 và Bài 3 đã sẵn sàng. Các bài chưa có nội dung được hiển thị rõ là “Đang cập nhật” và chưa gắn liên kết, tránh học sinh mở nhầm trang trống.</div>
   <div class="footer">TIẾNG TRUNG HẢI YẾN · Học bài bản – Nói tự tin – Vững bước chinh phục HSK</div>
 </main>
 <script>
-function openHsk2Lesson(e){
+function openHsk2Lesson(e,ghFile,localFile){
   if(e)e.preventDefault();
+  ghFile=ghFile||'hsk2-bai-01.html';
+  localFile=localFile||ghFile;
   if(location.protocol==='file:'){
-    window.location.href='HSK2_Bai1_她请我们吃了北京烤鸭.html';
+    window.location.href=localFile;
   }else if(location.hostname.endsWith('github.io')){
-    window.location.href='hsk2-bai-01.html?v='+Date.now();
+    window.location.href=ghFile+'?v='+Date.now();
   }else{
-    window.location.href='https://yenbedangyeu-90.github.io/hsk2-bai-01.html?v='+Date.now();
+    window.location.href='https://yenbedangyeu-90.github.io/'+ghFile+'?v='+Date.now();
   }
   return false;
 }
