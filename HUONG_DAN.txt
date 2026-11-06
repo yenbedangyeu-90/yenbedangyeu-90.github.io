@@ -1,0 +1,5 @@
+HSK 5 Thượng - Bài 1: 爱的细节
+Mở HSK5_Bai_1_Luyen_Tap_Tong_Hop.html.
+4 phần học dạng tab trong cùng một file; có nút quay lại mục lục và điều hướng trước/sau.
+Để nghe được audio, cần tạo MP3 từ 3 file SRT trong CapCut và gắn URL MP3 HTTPS theo cấu hình HTML.
+Kết nối AI cần Worker được cấu hình dữ liệu bài 1.

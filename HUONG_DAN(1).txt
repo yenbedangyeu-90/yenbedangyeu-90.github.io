@@ -1,0 +1,11 @@
+HSK 5 Thượng – Bài 2: 留串钥匙给父母
+
+Mở HTML để học theo 4 trang trong cùng một file. Mỗi trang có nút Kiểm tra toàn bộ ở cuối.
+
+Ba file SRT là kịch bản mới, KHÔNG phải transcript âm thanh gốc của giáo trình. Nhập từng SRT vào CapCut, tạo giọng tiếng Trung rồi xuất MP3 theo tên HSK5_Bai_2_Track_01.mp3, 02.mp3, 03.mp3.
+
+Đặt các MP3 vào thư mục audio/ cạnh HTML, hoặc sửa đường dẫn src thành URL HTTPS sau khi đăng. Cần nghe đối chiếu MP3 với SRT sau khi xuất.
+
+Gemini AI: HTML gửi POST đến Cloudflare Worker đã cấu hình. Backend cần có dữ liệu bài 2 và tiêu chí chấm câu B2-xx thì mới đánh giá chính xác; chưa kiểm nghiệm kết nối Gemini thật.
+
+Giữ nguyên file HTML và các SRT để sử dụng trên GitHub Pages.
