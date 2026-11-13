@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#7a8263" name="theme-color"/><title>HSK2 · Bài 6 | 小雪，生日快乐！· 60 câu bài tập bổ trợ</title><style>
+:root{--wine:#7a8263;--rose:#a9b07c;--cream:#f5f3df;--paper:#fcfcf6;--ink:#394132;--muted:#6d7960;--line:#cfd3b0;--green:#6d7960;--red:#8b6b5c;--soft:#ece9cb;--shade:#e7e5bf}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:transparent;color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI","Microsoft YaHei","Noto Sans CJK SC",sans-serif}
+button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #b4bd85;outline-offset:2px}
+#app{max-width:1180px;margin:0 auto;background:var(--cream);min-height:100vh;padding:20px 28px 60px;border-radius:18px}
+.top{background:linear-gradient(118deg,#bfc67f,#7a8263);color:#fff;border-radius:21px;padding:25px 29px;position:relative;overflow:hidden}.top:after{content:"";position:absolute;right:-42px;top:-120px;width:280px;height:280px;border:35px solid #ffffff33;border-radius:100%;pointer-events:none}
+.top small{font-weight:750;letter-spacing:.13em}.top h1{font-size:clamp(25px,4.2vw,39px);line-height:1.2;margin:12px 0 4px;position:relative}.top p{margin:3px 0;font-size:15px;position:relative}.top .subtitle{opacity:.95}.top .measure{margin-top:13px;font-size:12px;display:flex;gap:10px;flex-wrap:wrap}.measure span{border:1px solid #ffffff66;padding:2px 10px;border-radius:20px}
+.navbar{position:sticky;top:0;z-index:8;background:#f7f6eede;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);margin:15px -8px 17px;padding:9px 8px}.navrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.navitem{border:1px solid var(--line);border-radius:10px;color:var(--muted);background:#fff;text-align:center;padding:10px 5px;font-size:13px;line-height:1.35;font-weight:700;transition:.14s}.navitem.active{background:var(--wine);border-color:var(--wine);color:white}.navitem:hover:not(.active){background:var(--soft);color:var(--wine)}.prog{height:5px;background:#dde1c0;border-radius:99px;overflow:hidden;margin-top:8px}.prog span{display:block;width:0;height:100%;background:var(--green);transition:width .2s}
+.page{display:none}.page.active{display:block}.eyebrow{font-size:12px;color:var(--wine);font-weight:850;letter-spacing:.11em;margin:13px 0 2px}.page-title{font-size:clamp(23px,3.7vw,31px);line-height:1.3;margin:4px 0}.lead{color:var(--muted);margin:0 0 18px;font-size:15px}
+.card{border:1px solid var(--line);background:var(--paper);padding:21px 22px;border-radius:18px;box-shadow:0 5px 20px #63321e09;margin:15px 0}.card h3{font-size:19px;line-height:1.35;margin:0 0 7px}.card p{margin:7px 0}.subtle{font-size:13px;color:var(--muted)}.set{border:1px solid var(--line);background:#fff;border-radius:17px;margin:15px 0;overflow:hidden}.set>summary{padding:17px 19px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:18px;list-style:none;cursor:pointer;font-weight:800;background:#f0efdb}.set>summary::-webkit-details-marker{display:none}.set>summary::after{content:'⌄';font-size:22px;color:var(--wine)}.set[open]>summary::after{content:'⌃'}.setbody{padding:15px 18px}.counter{font-size:12px;font-weight:650;color:var(--wine);background:#e2e5c0;padding:3px 9px;border-radius:30px}.setheading{display:flex;flex-direction:column}.setheading .subtle{font-weight:450}
+.q{border:1px solid var(--line);border-radius:13px;padding:14px 15px;margin:12px 0;background:#fff}.qtitle{display:flex;gap:9px;align-items:flex-start}.qindex{border-radius:8px;background:#e6e8c8;color:var(--wine);min-width:32px;text-align:center;padding:4px 6px;font-size:12px;font-weight:800}.qtitle strong{font-weight:660;font-size:17px;line-height:1.55}.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:11px 0 0}.choice,.token{border:1px solid #cfd3b0;padding:9px 11px;text-align:left;border-radius:10px;background:white;line-height:1.4;color:var(--ink);min-height:44px}.choice:hover:not(:disabled),.token:hover:not(:disabled){border-color:var(--rose);background:#f7f6ea}.choice.chosen,.token.chosen{border-color:var(--wine);background:var(--soft)}.choice.correct{border-color:var(--green);color:var(--green);background:#edf3e3}.choice.incorrect{border-color:var(--red);color:var(--red);background:#f3ece8}.hanzi-input{width:100%;padding:10px 12px;border:1px solid #c8ccb0;background:#fffefa;border-radius:10px;margin-top:9px;font-size:17px}.tokens{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.token:disabled{opacity:.38}.assembled{border:1px dashed #a9b07c;background:#f6f5e8;border-radius:11px;padding:9px 12px;min-height:47px}.fb{margin-top:10px;padding:11px 13px;border-radius:9px;font-size:14px}.fb.good{background:#e7f6ee;border-left:3px solid var(--green)}.fb.bad{background:#fff0ec;border-left:3px solid var(--red)}
+.btn{border:1px solid var(--wine);background:var(--wine);color:white;font-weight:750;border-radius:10px;padding:9px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px}.btn.light{color:var(--wine);background:white}.btn.neutral{border-color:#e2cec2;background:#eef0df;color:var(--ink)}.btn:disabled{opacity:.48;cursor:not-allowed}.btn.sm{font-size:13px;padding:5px 9px}.actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:16px}.result{color:var(--green);font-weight:700}.tip{padding:13px 16px;background:#efefdd;border-left:4px solid var(--rose);border-radius:8px;margin:13px 0}.muted{color:var(--muted)}.rule{padding:13px;border:1px solid #cfd3b0;background:#f6f5e8;border-radius:12px}.rule b{color:var(--wine)}.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.reading{white-space:pre-wrap;border-left:4px solid #a9b07c;background:#f8f8ee;border-radius:8px;padding:17px;line-height:1.95;font-size:18px;margin:10px 0}.passage{padding:12px;border:1px solid var(--line);border-radius:12px;margin:14px 0}.passage summary{font-weight:700;color:var(--wine);cursor:pointer}.content-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.scenario{background:#f8f8ee;padding:17px;border:1px solid var(--line);border-radius:14px}.scenario strong{color:var(--wine)}.compose{width:100%;min-height:115px;border:1px solid #c8ccb0;border-radius:10px;resize:vertical;padding:11px;background:#fff}.skillbox{border:1px solid var(--line);border-radius:12px;padding:15px}.skillbox .value{font-size:27px;font-weight:800;color:var(--wine)}.rating{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #dde1c0;padding:12px 0}.rating:last-child{border-bottom:0}.list-error{border-left:3px solid var(--rose);margin:8px 0;padding:8px 12px;background:#f7f6ea}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.footer{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid var(--line);margin:30px 0 0;padding:16px 0}.tiny{font-size:12px;color:var(--muted)}
+@media(max-width:760px){#app{padding:9px 11px 38px;border-radius:0}.top{padding:22px 18px;border-radius:14px}.navbar{margin:9px -2px 12px;padding:8px 2px}.navrow{display:flex;overflow-x:auto}.navitem{flex:0 0 125px;padding:9px 7px}.choices,.rules,.content-grid{grid-template-columns:1fr}.card{padding:17px 14px}.setbody{padding:11px}.set>summary{padding:13px}.q{padding:12px}.qtitle strong{font-size:16px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{.navbar,.actions,.footer,.listenbutton{display:none!important}.page{display:block!important;break-before:page}.set{break-inside:avoid}.set:not([open])>.setbody{display:block!important}#app{padding:0}}
+
+/* V7: picture-based production tasks */
+.scene-card{display:block;background:#f8f8ee;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:10px 0 15px;max-width:100%}
+.scene-card img{display:block;width:100%;height:auto;aspect-ratio:600/340;object-fit:cover}
+.q>.scene-card{max-width:510px}
+.pic-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.picwriting{padding:15px;border:1px solid var(--line);border-radius:16px;background:white;display:flex;flex-direction:column;gap:7px}
+.picwriting h4{margin:0;font-size:17px;color:var(--wine)}
+.picwriting .scene-card{margin:0}
+.picwriting .compose{min-height:90px}
+.v7-keywords{font-size:14px;background:#ece9cb;padding:7px 9px;border-radius:8px}
+.v7-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.matchgrid{display:grid;grid-template-columns:1fr 2fr;gap:14px}
+.matchchoices{display:grid;grid-template-columns:1fr;gap:7px}
+.matchchoices button{padding:10px;border:1px solid var(--line);background:#fff;border-radius:10px;text-align:left;color:var(--ink)}
+.matchchoices button.selected{border-color:var(--wine);background:#fae9e5}
+.matchchoices button.assigned{background:#f0f8f2;border-color:#9bc4aa}
+.seq-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.seq-gallery .seqbtn{background:#fff;border-radius:12px;padding:7px;border:1px solid var(--line);cursor:pointer;position:relative}
+.seq-gallery img{width:100%;display:block;aspect-ratio:600/340;object-fit:cover;border-radius:8px}
+.seq-num{position:absolute;left:8px;top:8px;background:var(--wine);color:#fff;border-radius:50%;width:27px;height:27px;display:grid;place-items:center;font-size:12px;font-weight:800}
+.pic-count{font-size:12px;color:var(--muted)}
+@media(max-width:760px){.pic-gallery,.v7-grid{grid-template-columns:1fr}.seq-gallery{grid-template-columns:repeat(2,1fr)}.matchgrid{grid-template-columns:1fr}}
+
+.navtop{display:flex;align-items:center;justify-content:flex-start;margin:0 0 13px;padding:0;position:relative;z-index:1}
+.backtoc{display:inline-flex;align-items:center;gap:7px;border:1px solid #e2cfc4;background:#fff;color:var(--wine);border-radius:10px;padding:7px 12px;font-weight:750;font-size:14px;cursor:pointer}
+.backtoc:hover{background:var(--soft)}
+.toc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.toc-link{border:1px solid var(--line);background:var(--cream);border-radius:11px;padding:12px 14px;color:var(--ink);text-align:left;font-weight:700;cursor:pointer}
+.toc-link:hover{background:var(--soft);border-color:var(--rose)}
+.open-write{display:grid;grid-template-columns:1fr;gap:8px}
+.open-write .scene-card{max-width:550px;margin:10px 0 4px}
+.open-write textarea{min-height:90px;max-width:750px;font-size:18px;line-height:1.75}
+@media(max-width:760px){.toc-grid{grid-template-columns:1fr}.backtoc{font-size:13px;padding:6px 10px}}
+@media print{.navtop,#tocPanel{display:none!important}}
+
+/* Một thanh trình phát MP3 cho toàn bộ mỗi bài nghe */
+.lesson-player{background:#f6f5e8;border:1px solid #ead3c7;border-radius:13px;padding:12px 14px;margin:13px 0 15px;max-width:760px}
+.player-label{font-weight:750;color:var(--wine);font-size:14px;margin-bottom:7px}
+.lesson-audio{display:block;width:100%;max-width:680px;min-height:44px}
+@media(max-width:620px){.lesson-player{padding:11px}.lesson-audio{max-width:100%}}
+
+.completion-card .hint-words{color:var(--wine);font-weight:700;margin:4px 0 8px;font-size:16px}
+.completion-card .compose{max-width:760px;min-height:86px}
+.ai-xiaoyu{background:#fff;color:var(--wine);border-color:var(--wine)}
+.ai-xiaoyu:hover{background:#fff1e9}
+.ai-review-box{white-space:pre-wrap;line-height:1.65;margin-top:9px;font-size:14px}
+.ai-review-box:empty{display:none}
+.ai-review-box.warn{border-left:3px solid #cb9250;padding:9px 12px;background:#fff8ec}
+.ai-review-box.info{border-left:3px solid #a277b5;padding:9px 12px;background:#f8f2ff}
+.ai-review-box.done{border-left:3px solid var(--green);padding:9px 12px;background:#eff9f3}
+.reading-dialogue{max-width:850px;font-size:17px;line-height:2.05}
+.ai-review-box.done{white-space:pre-wrap}
+@media(max-width:760px){.ai-xiaoyu{width:100%;justify-content:center}}
+
+/* Lesson 2 uses the exact five-stage visual shell of Lesson 1. */
+.vocab-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.vocab-card{min-width:0;background:#f7f6ea;border:1px solid var(--line);border-radius:12px;padding:12px}
+.vocab-card b{font-size:23px;color:var(--wine)}.vocab-card .meaning{font-size:13px}.vocab-card .tiny{line-height:1.4}.vocab-card .sentence{font-size:13px;padding-top:6px;margin-top:6px;border-top:1px solid var(--line)}
+.vocab-head{display:flex;gap:5px;align-items:flex-start;justify-content:space-between}
+.vocab-head button{border:1px solid var(--line);background:#fff;color:var(--wine);border-radius:8px;padding:3px 6px}
+.qa-row{white-space:pre-wrap}.q .scene-card img{max-height:250px;object-fit:cover}
+.img-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.img-grid img{display:block;object-fit:cover;width:100%;height:185px;border-radius:10px}
+.media-card{border:1px solid var(--line);background:#f6f5e8;border-radius:13px;padding:12px;margin:12px 0}.media-card audio{width:100%;margin:8px 0}.audio-status{font-size:12px;color:var(--muted)}
+.writing-input{min-height:110px}.recap{padding:15px;background:#f6f5e8;border-radius:13px;border:1px solid var(--line)}
+.grade-banner{background:linear-gradient(115deg,#8e3733,#c0604d);border-radius:16px;padding:19px;color:#fff;margin:14px 0}
+.grade-banner strong{font-size:41px}.grade-banner .tiny{color:#fff}.summary-pieces{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.grade-action{display:inline-flex;width:auto;padding:12px 18px;font-size:16px;margin-top:0;align-items:center;justify-content:center}
+.faint-status{margin-top:8px;color:var(--muted);font-size:13px}
+.group-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:11px 0}
+.section-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+[hidden]{display:none!important}.choice{overflow-wrap:anywhere}.qtitle strong{white-space:pre-wrap}
+.table-wrap{max-width:100%;overflow:auto}.table-wrap table{border-collapse:collapse;width:100%;min-width:490px}.table-wrap td,.table-wrap th{border:1px solid var(--line);padding:10px;text-align:left}.table-wrap th{background:#fff0e8;color:var(--wine)}
+.imgsmall{max-width:550px}.ai-inline{font-size:13px;color:var(--muted)}.footer button{min-height:41px}
+@media(max-width:850px){.vocab-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.summary-pieces{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.vocab-grid,.img-grid,.summary-pieces{grid-template-columns:1fr}.navitem{flex-basis:132px}.footer .subtle{font-size:12px;text-align:center}.footer{gap:6px}.footer button{font-size:12px;padding:8px}}
+/* AI speaking-feedback panel follows the existing olive theme. */
+#speechFeedback{margin-top:12px;max-width:760px}
+#speechFeedback:not(:empty){border:1px solid var(--line);border-left:4px solid var(--rose);border-radius:12px;padding:12px 14px;background:var(--soft)}
+#speechFeedback > div{margin:6px 0}
+@media(max-width:620px){#speechAIButton{width:100%}}
+
+/* Lesson 4 refinements: responsive safe, neutral olive score banner, no embedded TTS in listening. */
+.grade-banner{background:linear-gradient(115deg,#6D7960,#7A8263)}
+@media(max-width:430px){#app{padding:7px 8px 28px}.choices{gap:6px}.q{padding:10px}.card{padding:13px 11px}.top h1{font-size:27px;overflow-wrap:anywhere}.lesson-audio{width:100%}}
+.listenHint{font-size:13px;color:#6d7960;margin:7px 0 3px}.photo-wrap{border-radius:12px;overflow:hidden}
+
+/* Bài 5: nút chấm toàn bộ ở cuối chặng 04 */
+#tong-ket {scroll-margin-top:20px}
+#tong-ket .end-of-page-grade {display:flex;width:100%;max-width:100%;min-height:54px;margin:16px 0 0;font-size:18px;letter-spacing:.01em}
+@media(max-width:560px){#tong-ket .end-of-page-grade {min-height:56px;font-size:17px}}
+</style></head>
+<body><main id="app">
+<header class="top"><small>HSK 2 · BÀI TẬP BỔ TRỢ · BÀI 6 · 60 CÂU</small><h1 lang="zh-CN">小雪，生日快乐！</h1><p>Xiǎoxuě, shēngrì kuàilè!</p><p class="subtitle">词语 · 语法 · 听力 · 阅读 · 写作 · Ôn tập tích lũy Bài 1–5</p><div class="measure"><span>10 từ vựng</span><span>10 ngữ pháp</span><span>18 nghe</span><span>6 đọc</span><span>16 viết AI</span></div></header>
+<nav aria-label="Điều hướng bài học" class="navbar"><div class="navrow" id="navbuttons"></div><div class="prog"><span id="progress"></span></div></nav>
+<section aria-label="Mục lục bài học" class="card" id="tocPanel"><h2 class="page-title">Các chặng · 目录</h2><div class="toc-grid" id="tocLinks"></div></section>
+<div id="view"></div><div class="footer" hidden="" id="pageFoot"><button class="btn light" id="prev" onclick="navigate(-1)">← Chặng trước</button><span class="subtle" id="footerLabel"></span><button class="btn" id="next" onclick="navigate(1)">Chặng tiếp →</button></div>
+</main><script id="lesson-data" type="application/json">{"vocab":[{"hanzi":"生日","pinyin":"shēngrì","meaning":"sinh nhật","example":"明天是妈妈的生日。"},{"hanzi":"快乐","pinyin":"kuàilè","meaning":"vui vẻ","example":"祝你生日快乐！"},{"hanzi":"忘","pinyin":"wàng","meaning":"quên","example":"我差点儿忘了带礼物。"},{"hanzi":"画画","pinyin":"huàhuà","meaning":"vẽ tranh","example":"奶奶喜欢画画。"},{"hanzi":"画笔","pinyin":"huàbǐ","meaning":"bút vẽ","example":"我买了一盒彩色画笔。"},{"hanzi":"蛋糕","pinyin":"dàngāo","meaning":"bánh kem","example":"大家一起吃生日蛋糕。"},{"hanzi":"打开","pinyin":"dǎkāi","meaning":"mở ra","example":"请打开这个盒子。"},{"hanzi":"舒服","pinyin":"shūfu","meaning":"dễ chịu","example":"这张床很舒服。"},{"hanzi":"长","pinyin":"cháng","meaning":"dài","example":"这条鱼很长。"},{"hanzi":"什么的","pinyin":"shénmede","meaning":"vân vân","example":"我们买水果、花什么的。"},{"hanzi":"地","pinyin":"de","meaning":"trợ từ trạng ngữ","example":"她开开心心地笑了。"},{"hanzi":"礼物","pinyin":"lǐwù","meaning":"quà tặng (ôn Bài 5)","example":"我给爷爷准备了一份礼物。"},{"hanzi":"准备","pinyin":"zhǔnbèi","meaning":"chuẩn bị (ôn Bài 5)","example":"妈妈正在准备晚饭。"},{"hanzi":"等","pinyin":"děng","meaning":"đợi (ôn Bài 5)","example":"等我一会儿吧。"},{"hanzi":"来","pinyin":"lái","meaning":"đến/hướng về (ôn bài trước)","example":"朋友上来了。"}],"questions":[{"section":"v2","type":"mc","stem":"妈妈的生日快到了，我想给她买一份____。","opts":["礼物","比赛","车票"],"answer":0,"ex":"生日常见搭配：买一份礼物。","kind":"vocab","id":"b6_001","target":"礼物"},{"section":"v2","type":"mc","stem":"小丽在纸上画了一只猫，她很喜欢____。","opts":["打球","画画","游泳"],"answer":1,"ex":"在纸上画东西：画画。","kind":"vocab","id":"b6_002","target":"画画"},{"section":"v3","type":"mc","stem":"弟弟把盒子____，看见里面有一盒彩笔。","opts":["忘了","打开","回来"],"answer":1,"ex":"打开盒子：mở hộp.","kind":"vocab","id":"b6_003","target":"打开"},{"section":"v3","type":"mc","stem":"明天是爷爷的生日，我们今天要先____好晚饭。","opts":["准备","游泳","介绍"],"answer":0,"ex":"准备好晚饭：chuẩn bị xong bữa ăn.","kind":"vocab","id":"b6_004","target":"准备"},{"section":"v3","type":"mc","stem":"这条鱼很____，快有一米了。","opts":["远","长","快"],"answer":1,"ex":"Dùng 长 mô tả cá có chiều dài lớn.","kind":"vocab","id":"b6_005","target":"长"},{"section":"v3","type":"mc","stem":"这张床很____，奶奶睡得很好。","opts":["舒服","安静","客气"],"answer":0,"ex":"舒服 mô tả cảm giác dễ chịu khi nằm ngủ.","kind":"vocab","id":"b6_006","target":"舒服"},{"section":"v4","type":"mc","stem":"小朋友想画一张生日卡片，最需要什么？","opts":["画笔和纸","奶茶和米饭","车票和地图"],"answer":0,"ex":"Vẽ thiệp cần bút vẽ và giấy.","kind":"vocab","id":"b6_007","target":"画笔"},{"section":"v4","type":"mc","stem":"妈妈说：“我忘了今天是你的生日！”她的意思是：","opts":["她早就记得很清楚。","她没有记住这个生日。","她不喜欢过生日。"],"answer":1,"ex":"忘了 = không nhớ, đã quên.","kind":"vocab","id":"b6_008","target":"忘"},{"section":"v4","type":"mc","stem":"朋友送你一个蛋糕，你最自然的回答是：","opts":["谢谢你！你太客气了！","今天的车票在哪儿？","我去学校打篮球。"],"answer":0,"ex":"Nhận quà nên cảm ơn lịch sự.","kind":"vocab","id":"b6_009","target":"蛋糕"},{"section":"v4","type":"mc","stem":"孩子过生日，大家一起唱歌。最合适的祝福是：","opts":["祝你生日快乐！","请问洗手间在哪儿？","你怎么还不下去？"],"answer":0,"ex":"生日快乐 là lời chúc sinh nhật phổ biến.","kind":"vocab","id":"b6_010","target":"生日"},{"section":"g1","type":"mc","stem":"大家高高兴兴地进了教室。这里“高高兴兴地”说明：","opts":["怎么进教室","去了哪个教室","什么时候进教室"],"answer":0,"ex":"“地”连接状语 cách thức với động từ.","kind":"grammar","id":"b6_011"},{"section":"g1","type":"mc","stem":"哪一句的“地”用得正确？","opts":["妹妹认真地画了一张画。","妹妹认真得画了一张画。","妹妹认真了画一张画。"],"answer":0,"ex":"Trạng từ/cụm miêu tả cách thức + 地 + động từ.","kind":"grammar","id":"b6_012"},{"section":"g1","type":"mc","stem":"看到教室很干净，老师会说：","opts":["教室干干净净的。","教室干净净净的。","教室干干净的。"],"answer":0,"ex":"干净 là tính từ song âm tiết, láy AABB → 干干净净.","kind":"grammar","id":"b6_013"},{"section":"g1","type":"mc","stem":"哪一句最自然地描述“走得慢”的样子？","opts":["他慢慢地走进房间。","他慢慢得走进房间。","他慢慢地走进来房间。"],"answer":0,"ex":"慢慢地 + động từ; tân ngữ nơi chốn đứng trước 来.","kind":"grammar","id":"b6_014"},{"section":"g1","type":"mc","stem":"周末我们可以买水果、蛋糕什么的。“什么的”表示：","opts":["还包括其他类似的东西","只能买这两样东西","不知道蛋糕是什么"],"answer":0,"ex":"“什么的” liệt kê mở, nghĩa là “v.v.”","kind":"grammar","id":"b6_015"},{"section":"g1","type":"mc","stem":"下面哪句“什么的”最自然？","opts":["我喜欢打篮球、游泳什么的。","我什么的喜欢打篮球。","打什么的篮球游泳我。"],"answer":0,"ex":"“什么的” ở sau danh sách hoạt động cùng loại.","kind":"grammar","id":"b6_016"},{"section":"g1","type":"mc","stem":"妈妈问：“生日想吃什么？”最自然的回答是：","opts":["吃面条、鱼什么的都可以。","什么的面条、鱼我吃。","我吃什么的面条昨天。"],"answer":0,"ex":"Cụm liệt kê thực phẩm + 什么的 đúng vị trí.","kind":"grammar","id":"b6_017"},{"section":"g2","type":"order","stem":"请把词语排成一句自然、通顺的话。","tokens":["孩子们","开开心心地","唱","生日歌"],"answer":["孩子们","开开心心地","唱","生日歌"],"model":"孩子们开开心心地唱生日歌。","ex":"AABB + 地 làm trạng ngữ của 唱.","kind":"grammar","id":"b6_018"},{"section":"g2","type":"order","stem":"请把词语排成一句自然、通顺的话。","tokens":["我们","买","水果","、","蛋糕","什么的"],"answer":["我们","买","水果","、","蛋糕","什么的"],"model":"我们买水果、蛋糕什么的。","ex":"什么的 đặt cuối một chuỗi danh từ cùng loại.","kind":"grammar","id":"b6_019"},{"section":"g2","type":"order","stem":"请把词语排成一句自然、通顺的话。","tokens":["姐姐","慢慢地","走进","房间"],"answer":["姐姐","慢慢地","走进","房间"],"model":"姐姐慢慢地走进房间。","ex":"慢慢地 đứng trước động từ; tân ngữ phòng đứng sau 走进.","kind":"grammar","id":"b6_020"},{"section":"l1","type":"mc","stem":"奶奶什么时候过生日？","opts":["星期日","星期五","星期三"],"answer":0,"ex":"Nghe: 星期日是奶奶的生日。","kind":"listening","id":"b6_021","track":"L1"},{"section":"l1","type":"mc","stem":"奶奶喜欢做什么？","opts":["游泳","画画","踢足球"],"answer":1,"ex":"Nghe: 奶奶喜欢画画。","kind":"listening","id":"b6_022","track":"L1"},{"section":"l1","type":"mc","stem":"小明想自己做什么？","opts":["一张生日卡片","一杯奶茶","一双鞋"],"answer":0,"ex":"Nghe: 我还想做一张生日卡片。","kind":"listening","id":"b6_023","track":"L1"},{"section":"l1","type":"mc","stem":"他们打算什么时候去商场？","opts":["星期天早上","星期六下午","星期二晚上"],"answer":1,"ex":"Nghe: 那我们星期六下午去商场吧。","kind":"listening","id":"b6_024","track":"L1"},{"section":"l1","type":"mc","stem":"去商场以前，小明要先做什么？","opts":["吃蛋糕","给朋友打电话","把作业做完"],"answer":2,"ex":"Nghe: 先把作业做完，我们再一起去。","kind":"listening","id":"b6_025","track":"L1"},{"section":"l1","type":"mc","stem":"爸爸为什么先不让小雪进客厅？","opts":["大家在准备生日会","客厅里没有人","小雪要去上课"],"answer":0,"ex":"Nghe: 我们在准备一个小小的生日会。","kind":"listening","id":"b6_026","track":"L2"},{"section":"l1","type":"mc","stem":"妈妈什么时候让小雪进来？","opts":["明天早上","准备好以后","朋友走了以后"],"answer":1,"ex":"Nghe: 好了！小雪，快进来吧！","kind":"listening","id":"b6_027","track":"L2"},{"section":"l1","type":"mc","stem":"桌子上除了蛋糕还有什么？","opts":["书和画笔","鞋和帽子","鱼和面条"],"answer":2,"ex":"Nghe: 桌子上有蛋糕，还有鱼、面条什么的。","kind":"listening","id":"b6_028","track":"L2"},{"section":"l1","type":"mc","stem":"妈妈让小雪先做什么？","opts":["先打开礼物","先回学校","先下楼等人"],"answer":0,"ex":"Nghe: 先打开礼物，再和大家一起吃饭。","kind":"listening","id":"b6_029","track":"L2"},{"section":"l1","type":"mc","stem":"小雪最后心情怎么样？","opts":["很着急","很高兴","不舒服"],"answer":1,"ex":"Nghe: 我很高兴。","kind":"listening","id":"b6_030","track":"L2"},{"section":"l1","type":"mc","stem":"安妮现在在哪里？","opts":["楼下","电影院","教室里"],"answer":0,"ex":"Nghe: 我到楼下了。","kind":"listening","id":"b6_031","track":"L3"},{"section":"l1","type":"mc","stem":"安妮给小雪带了什么？","opts":["画笔","生日蛋糕","中文书"],"answer":2,"ex":"Nghe: 我给你带了一本中文书。","kind":"listening","id":"b6_032","track":"L3"},{"section":"l1","type":"mc","stem":"朋友们正在做什么？","opts":["打篮球","唱歌","买车票"],"answer":1,"ex":"Nghe: 朋友们正在开开心心地唱歌。","kind":"listening","id":"b6_033","track":"L3"},{"section":"l1","type":"mc","stem":"他们打算唱歌以后做什么？","opts":["吃蛋糕","去酒店","去机场"],"answer":0,"ex":"Nghe: 唱完歌，我们再吃蛋糕。","kind":"listening","id":"b6_034","track":"L3"},{"section":"l1","type":"mc","stem":"小雪的生日是哪一天？","opts":["明天","昨天","下个星期"],"answer":1,"ex":"Nghe: 昨天是我的生日。","kind":"listening","id":"b6_035","track":"L4"},{"section":"l1","type":"mc","stem":"爸爸给小雪买了什么？","opts":["一个蛋糕","一件红衣服","两张电影票"],"answer":0,"ex":"Nghe: 爸爸买了一个大蛋糕。","kind":"listening","id":"b6_036","track":"L4"},{"section":"l1","type":"mc","stem":"小雪收到的礼物里有什么？","opts":["鱼和面条","水果和奶茶","画笔和书"],"answer":2,"ex":"Nghe: 朋友送了我画笔和一本书。","kind":"listening","id":"b6_037","track":"L4"},{"section":"l1","type":"mc","stem":"朋友们什么时候回家？","opts":["上午十点以前","晚上十点以前","晚上十二点以后"],"answer":1,"ex":"Nghe: 十点以前就回家了。","kind":"listening","id":"b6_038","track":"L4"},{"section":"r1","type":"mc","stem":"小明和妈妈什么时候去买礼物？","opts":["星期六下午","星期日晚上","星期五早上"],"answer":0,"ex":"Đoạn đọc: 文中说“星期六下午去商场”。","kind":"reading","id":"b6_039","passage":"R1"},{"section":"r1","type":"mc","stem":"小明送礼物以前先做了什么？","opts":["买电影票","写生日卡片","去学校上课"],"answer":1,"ex":"Đoạn đọc: 先写好卡片，再送礼物。","kind":"reading","id":"b6_040","passage":"R1"},{"section":"r1","type":"mc","stem":"安妮现在在哪儿？","opts":["客厅里","商场里","小雪家楼下"],"answer":2,"ex":"Đoạn đọc: 消息中说“我已经到你家楼下了”。","kind":"reading","id":"b6_041","passage":"R2"},{"section":"r1","type":"mc","stem":"小雪打算先做什么？","opts":["先唱歌","先吃蛋糕","先去买花"],"answer":0,"ex":"Đoạn đọc: “先唱歌，再吃蛋糕”。","kind":"reading","id":"b6_042","passage":"R2"},{"section":"r1","type":"mc","stem":"刘老师下午做了什么？","opts":["去商场买衣服","在家准备晚饭","跟朋友去看电影"],"answer":1,"ex":"Đoạn đọc: 下午在家准备晚饭。","kind":"reading","id":"b6_043","passage":"R3"},{"section":"r1","type":"mc","stem":"朋友们几点左右离开？","opts":["八点半","十点半","九点半"],"answer":2,"ex":"Đoạn đọc: 文中说“九点半就回家了”。","kind":"reading","id":"b6_044","passage":"R3"},{"section":"w1","type":"open","stem":"今天是好朋友的生日。请写一句祝福的话，并使用“生日快乐”。","model":"祝你生日快乐！希望你今天很开心。","answer":"祝你生日快乐！希望你今天很开心。","keywords":"生日快乐","ex":"Lời chúc ngắn, lịch sự.","kind":"writing","id":"b6_045"},{"section":"w1","type":"open","stem":"你想送给喜欢画画的朋友一份礼物。请用“画笔”写一句话。","model":"我想给她买一盒彩色画笔。","answer":"我想给她买一盒彩色画笔。","keywords":"画笔","ex":"Đặt câu theo tình huống tặng quà.","kind":"writing","id":"b6_046"},{"section":"w1","type":"open","stem":"朋友收到生日礼物很开心。请用“高高兴兴地”写一句话。","model":"她高高兴兴地打开了礼物。","answer":"她高高兴兴地打开了礼物。","keywords":"高高兴兴地","ex":"Dùng cụm AABB + 地 + động từ.","kind":"writing","id":"b6_047"},{"section":"w1","type":"open","stem":"请写一句话，介绍生日桌上有什么，并使用“什么的”。","model":"桌子上有蛋糕、水果、面条什么的。","answer":"桌子上有蛋糕、水果、面条什么的。","keywords":"什么的","ex":"“什么的” đặt sau danh sách cùng loại.","kind":"writing","id":"b6_048"},{"section":"w2","type":"open","stem":"朋友在楼下等你，你还在家里准备蛋糕。请回复朋友（1–2句），使用“一会儿”。","model":"请等我一会儿，我马上下来。","answer":"请等我一会儿，我马上下来。","keywords":"一会儿","ex":"Tái sử dụng bổ ngữ hướng Bài 5.","kind":"writing","id":"b6_049"},{"section":"w2","type":"open","stem":"你第一次去同学家参加生日会。主人开门后，你怎么打招呼并说明来意？写1–2句。","model":"你好！祝你生日快乐！这是送给你的礼物。","answer":"你好！祝你生日快乐！这是送给你的礼物。","keywords":"生日快乐|礼物","ex":"Chào hỏi, tặng quà tự nhiên.","kind":"writing","id":"b6_050"},{"section":"w2","type":"open","stem":"你和朋友想给奶奶准备生日饭。请用“准备”写一句分工的话。","model":"我来准备水果，你来做面条，好吗？","answer":"我来准备水果，你来做面条，好吗？","keywords":"准备","ex":"Vận dụng ngữ liệu Bài 5 trong chủ đề Bài 6.","kind":"writing","id":"b6_051"},{"section":"w2","type":"open","stem":"弟弟想在房间里画画。你请他把画笔拿进来。写一句话。","model":"请把画笔拿进来，我们一起画画吧。","answer":"请把画笔拿进来，我们一起画画吧。","keywords":"画笔|拿进来","ex":"Vị trí/hướng nói và lời mời hợp lý.","kind":"writing","id":"b6_052"},{"section":"w3","type":"open","stem":"A：今天是妈妈的生日，你给她准备了什么？\nB：____（用“蛋糕”回答）","model":"我给她准备了一个蛋糕。","answer":"我给她准备了一个蛋糕。","keywords":"蛋糕","ex":"Trả lời đúng câu hỏi về quà.","kind":"writing","id":"b6_053"},{"section":"w3","type":"open","stem":"A：你们买了什么菜？\nB：____（列举两样食品，用“什么的”）","model":"我们买了鱼、鸡蛋什么的。","answer":"我们买了鱼、鸡蛋什么的。","keywords":"什么的","ex":"Liệt kê mở đúng trật tự.","kind":"writing","id":"b6_054"},{"section":"w3","type":"open","stem":"A：生日会开始了吗？\nB：____（回答还没有，先等安妮）","model":"还没有，我们要先等安妮一会儿。","answer":"还没有，我们要先等安妮一会儿。","keywords":"等","ex":"Trả lời phù hợp hội thoại.","kind":"writing","id":"b6_055"},{"section":"w3","type":"open","stem":"A：你为什么这么高兴？\nB：____（因为今天过生日）","model":"因为今天是我的生日，所以我很高兴。","answer":"因为今天是我的生日，所以我很高兴。","keywords":"生日","ex":"Nêu lý do rõ, tự nhiên; có thể dùng 因为……所以…… từ Bài 4.","kind":"writing","id":"b6_056"},{"section":"w4","type":"open","stem":"写2–3句话，介绍你准备的一次生日会。至少使用“礼物”和“蛋糕”。","model":"明天是妹妹的生日。我准备了一个蛋糕，还给她买了一份礼物。朋友们也会来。","answer":"明天是妹妹的生日。我准备了一个蛋糕，还给她买了一份礼物。朋友们也会来。","keywords":"礼物|蛋糕","ex":"Đoạn ngắn có bối cảnh và hai từ bắt buộc.","kind":"writing","id":"b6_057"},{"section":"w4","type":"open","stem":"写2–3句话，介绍你的一项爱好，并使用“什么的”。","model":"我喜欢画画，也喜欢游泳。星期天我常常画画、听音乐什么的。","answer":"我喜欢画画，也喜欢游泳。星期天我常常画画、听音乐什么的。","keywords":"什么的","ex":"Miêu tả sở thích; liệt kê hoạt động cùng loại.","kind":"writing","id":"b6_058"},{"section":"w4","type":"open","stem":"你给朋友发一条生日消息（2–3句），请自然地使用“高高兴兴地”。","model":"祝你生日快乐！希望你今天高高兴兴地和家人一起吃饭、聊天。我们明天见！","answer":"祝你生日快乐！希望你今天高高兴兴地和家人一起吃饭、聊天。我们明天见！","keywords":"高高兴兴地","ex":"Chúc mừng và dùng trạng ngữ 地.","kind":"writing","id":"b6_059"},{"section":"w4","type":"open","stem":"写3句话，说说昨天你怎么庆祝一个生日。至少使用“先……再……”或“……以后……”，并提到一项活动。","model":"昨天是爷爷的生日。我们先一起吃饭，再给爷爷唱生日歌。吃完饭以后，大家一起聊天。","answer":"昨天是爷爷的生日。我们先一起吃饭，再给爷爷唱生日歌。吃完饭以后，大家一起聊天。","keywords":"先|再","ex":"Tái sử dụng mẫu trình tự thời gian và hoạt động.","kind":"writing","id":"b6_060"}],"tracks":[{"id":"L1","title":"给奶奶准备生日礼物 · Chuẩn bị quà cho bà","role":"对话","turns":[["小明","妈妈，星期日是奶奶的生日，我们送什么礼物好呢？"],["妈妈","奶奶喜欢画画，你可以给她买一盒彩笔。"],["小明","我还想做一张生日卡片，写上祝福。"],["妈妈","真好。奶奶也喜欢花，我们可以买一些花什么的。"],["小明","那我们星期六下午去商场吧。"],["妈妈","好。先把作业做完，我们再一起去。"]],"questions":["奶奶什么时候过生日？","奶奶喜欢做什么？","小明想自己做什么？","他们打算什么时候去商场？","去商场以前，小明要先做什么？"],"proof":["星期日是奶奶的生日。","奶奶喜欢画画。","我还想做一张生日卡片。","那我们星期六下午去商场吧。","先把作业做完，我们再一起去。"]},{"id":"L2","title":"家里的生日准备 · Chuẩn bị tiệc tại nhà","role":"对话","turns":[["爸爸","小雪，生日快乐！你先别进客厅。"],["小雪","为什么呀？你们在做什么？"],["爸爸","我们在准备一个小小的生日会。你等一会儿。"],["妈妈","好了！小雪，快进来吧！"],["小雪","哇，桌子上有蛋糕，还有鱼、面条什么的！"],["妈妈","今天你可以先打开礼物，再和大家一起吃饭。"],["小雪","谢谢你们！我很高兴。"]],"questions":["爸爸为什么先不让小雪进客厅？","妈妈什么时候让小雪进来？","桌子上除了蛋糕还有什么？","妈妈让小雪先做什么？","小雪最后心情怎么样？"],"proof":["我们在准备一个小小的生日会。","好了！小雪，快进来吧！","桌子上有蛋糕，还有鱼、面条什么的。","先打开礼物，再和大家一起吃饭。","我很高兴。"]},{"id":"L3","title":"朋友来过生日 · Bạn bè đến dự sinh nhật","role":"对话","turns":[["安妮","小雪，我到楼下了，你在家吗？"],["小雪","我在家！你上来吧，我们都在客厅等你。"],["安妮","好。我给你带了一本中文书。"],["小雪","谢谢！我的朋友们正在开开心心地唱歌呢。"],["安妮","我也想跟大家一起唱。"],["小雪","当然可以。唱完歌，我们再吃蛋糕。"]],"questions":["安妮现在在哪里？","安妮给小雪带了什么？","朋友们正在做什么？","他们打算唱歌以后做什么？"],"proof":["我到楼下了。","我给你带了一本中文书。","朋友们正在开开心心地唱歌。","唱完歌，我们再吃蛋糕。"]},{"id":"L4","title":"生日后的留言 · Lời nhắn sau sinh nhật","role":"独白","turns":[["小雪","昨天是我的生日。下午，朋友们来我家，我很开心。"],["小雪","妈妈做了面条，爸爸买了一个大蛋糕。"],["小雪","朋友送了我画笔和一本书。我先打开礼物，再跟大家一起画画。"],["小雪","晚上，大家高高兴兴地唱歌，十点以前就回家了。"]],"questions":["小雪的生日是哪一天？","爸爸给小雪买了什么？","小雪收到的礼物里有什么？","朋友们什么时候回家？"],"proof":["昨天是我的生日。","爸爸买了一个大蛋糕。","朋友送了我画笔和一本书。","十点以前就回家了。"]}],"readings":[{"id":"R1","name":"奶奶的生日 · Sinh nhật của bà","text":"星期日是奶奶的生日。奶奶今年七十岁了，她喜欢画画。小明和妈妈星期六下午去商场买了彩笔和花。星期日早上，小明先写好一张生日卡片，再把礼物送给奶奶。奶奶看了，笑着说：“谢谢你们！”"},{"id":"R2","name":"生日会上的消息 · Tin nhắn về tiệc sinh nhật","text":"安妮：我已经到你家楼下了。\n小雪：快上来吧！我们在客厅等你。\n安妮：我带了一本书给你。你们开始吃蛋糕了吗？\n小雪：还没有。我们先唱歌，再吃蛋糕。你进来以后就可以跟大家一起唱。"},{"id":"R3","name":"忙碌的一天 · Một ngày bận rộn","text":"昨天是刘老师的生日。上午她去学校上课，下午在家准备晚饭。朋友们带来了水果、花什么的。刘老师的房间干干净净的。晚上，大家高高兴兴地吃饭、聊天，九点半就回家了。"}],"photos":{}}</script><script>'use strict';
+const DB=JSON.parse(document.getElementById('lesson-data').textContent);
+const NAV=['01 · Luyện từ vựng','02 · Ngữ pháp & câu','03 · Nghe & đọc','04 · Luyện nói & viết'];
+const SPEECH_PROMPT='你一般怎么过生日？你最想收到什么礼物？';
+const PAGES=[
+ {cn:'词语练习',vi:'Luyện từ vựng'},
+ {cn:'语法与句子',vi:'Luyện ngữ pháp và tạo câu'},
+ {cn:'听力与阅读',vi:'Nghe hiểu và đọc hiểu'},
+ {cn:'口语与写作',vi:'Luyện nói và viết'}
+];
+const STORAGE='HSK2_BAI_6_OLIVE_60_CUMULATIVE_V1';
+const CENTER_AI_ENDPOINT = ''; // vi du: 'https://ten-mien-cua-trung-tam.vn/api/hsk2-ai'
+function hasCenterAI(){return /^https:\/\//i.test(CENTER_AI_ENDPOINT)||CENTER_AI_ENDPOINT.startsWith('/api/')}
+async function centerAI(data){if(!hasCenterAI())throw Error('Chưa thể kết nối tính năng nhận xét.');const rsp=await fetch(CENTER_AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const ret=await rsp.json().catch(()=>null);if(!rsp.ok)throw Error(ret?.error||('Máy chủ AI trả về lỗi '+rsp.status));if(!ret||typeof ret!=='object')throw Error('Máy chủ AI trả về dữ liệu không hợp lệ');return ret;}
+const H=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s??'').normalize('NFKC').replace(/[\s，。、：；！!？?,.\-；：]/g,'').trim().toLowerCase();
+const Q=Object.fromEntries(DB.questions.map(q=>[q.id,q]));
+const G=g=>DB.questions.filter(q=>q.section===g);
+const sel=(g)=>G(g).map(q=>q.id);
+let S={answers:{},grades:{},page:-1,order:{},tokenOrders:{},review:{},submittedAt:null};
+try{const old=JSON.parse(localStorage.getItem(STORAGE)||'null');if(old&&typeof old==='object')S={...S,...old,answers:old.answers||{},grades:old.grades||{},order:old.order||{},tokenOrders:old.tokenOrders||{},review:old.review||{}}}catch(e){}
+const save=()=>{try{localStorage.setItem(STORAGE,JSON.stringify(S))}catch(e){}};
+let current=S.page>=0&&S.page<5?S.page:0;
+let busy=false,audioObjectUrls={},audioElements={},speech=null;
+const AUDIO_PATHS={L1:'assets/hsk2/bai6/nghe-1.mp3',L2:'assets/hsk2/bai6/nghe-2.mp3',L3:'assets/hsk2/bai6/nghe-3.mp3',L4:'assets/hsk2/bai6/nghe-4.mp3'};
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function seedOf(str){let h=2166136261>>>0;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296}}
+function seededShuffle(arr,seed){arr=[...arr];const rand=mulberry32(seedOf(seed));for(let i=arr.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
+function initializeOrders(){
+ const needsReset=S.orderVersion!==2||!S.order||typeof S.order!=='object';
+ if(needsReset)S.order={};
+ const groups={};DB.questions.filter(q=>q.type==='mc').forEach(q=>(groups[q.section]??=[]).push(q));
+ for(const [sec,items] of Object.entries(groups)){
+  const ordered=seededShuffle(items,sec+'-questions');
+  const positions=seededShuffle(ordered.map((_,i)=>i%3),sec+'-positions');
+  ordered.forEach((q,i)=>{
+   const others=seededShuffle(q.opts.map((_,j)=>j).filter(x=>x!==q.answer),q.id+'-others');
+   const slot=positions[i]%q.opts.length;
+   others.splice(slot,0,q.answer);
+   S.order[q.id]=others;
+  });
+ }
+ for(const q of DB.questions.filter(q=>q.type==='order'))if(!S.tokenOrders[q.id])S.tokenOrders[q.id]=seededShuffle(q.tokens.map((_,i)=>i),q.id+'-tokens');
+ S.orderVersion=2;
+ save();
+}
+initializeOrders();
+function navRender(){
+ document.getElementById('navbuttons').innerHTML=NAV.map((n,i)=>`<button class="navitem ${i===current?'active':''}" onclick="openPage(${i})" type="button">${H(n)}</button>`).join('');
+ document.getElementById('tocLinks').innerHTML=NAV.map((n,i)=>`<button class="toc-link" onclick="openPage(${i})" type="button"><span>${H(n)}</span><span class="subtle" style="display:block">${H(PAGES[i].cn)}</span></button>`).join('');
+ let done=DB.questions.filter(q=>answered(q)).length;document.getElementById('progress').style.width=(100*done/DB.questions.length).toFixed(1)+'%';
+}
+function answered(q){const a=S.answers[q.id];return q.type==='mc'?Number.isInteger(a):q.type==='order'?Array.isArray(a)&&a.length>0:!!String(a??'').trim()}
+function showContents(){stopAudio();current=-1;S.page=-1;save();document.getElementById('view').innerHTML='';document.getElementById('tocPanel').hidden=false;document.getElementById('pageFoot').hidden=true;navRender();window.scrollTo({top:0,behavior:'instant'});}
+function openPage(i){if(i<0||i>=4)return;stopAudio();current=i;S.page=i;save();document.getElementById('tocPanel').hidden=true;document.getElementById('pageFoot').hidden=false;
+ const fn=[pageVocab,pageGrammar,pageListenRead,pageApply][i];document.getElementById('view').innerHTML=`<section class="page active"><div class="eyebrow">${String(i+1).padStart(2,'0')} / 04 · ${H(PAGES[i].cn)}</div><h2 class="page-title">${H(PAGES[i].vi)}</h2>${fn()}</section>`;
+ document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===3;document.getElementById('footerLabel').textContent=`Chặng ${i+1}/4`;navRender();window.scrollTo({top:0,behavior:'instant'});
+ if(i===2){for(const [id,url] of Object.entries(AUDIO_PATHS)){const a=document.getElementById('player-'+id);if(a){a.src=url;audioElements[id]=a;}}for(const [id,url] of Object.entries(audioObjectUrls)){const a=document.getElementById('player-'+id);if(a){a.src=url;audioElements[id]=a;}}}if(i===3){renderReport();renderMistakes()}
+}
+function navigate(d){openPage(current+d)}
+function photo(key,caption=false){const p=DB.photos[key];return p?`<figure class="scene-card imgsmall"><img loading="lazy" src="${p.uri}" alt="${H(p.alt||key)}">${caption?`<figcaption class="subtle" style="padding:7px">${H(p.alt||'')}</figcaption>`:''}</figure>`:''}
+function promptN(q){let id=DB.questions.indexOf(q)+1;return String(id).padStart(3,'0')}
+function questionHTML(q){
+ const a=S.answers[q.id],g=S.grades[q.id],graded=!!g;
+ let body='';
+ if(q.photo)body+=photo(q.photo);
+ if(q.type==='mc'){
+  const opts=S.order[q.id]||q.opts.map((_,i)=>i);
+  body+=`<div class="choices">${opts.map((original,i)=>`<button type="button" aria-pressed="${a===original?'true':'false'}" class="choice ${a===original?'chosen':''} ${graded&&original===q.answer?'correct':''} ${graded&&a===original&&original!==q.answer?'incorrect':''}" onclick="choose('${q.id}',${original})">${'ABCDEF'[i]}. ${H(q.opts[original])}</button>`).join('')}</div>`;
+ } else if(q.type==='fill'){
+  body+=`<input class="hanzi-input" aria-label="Điền câu ${promptN(q)}" lang="zh-CN" value="${H(a??'')}" oninput="writeAnswer('${q.id}',this.value)" placeholder="请输入……">`;
+ } else if(q.type==='order'){
+  const chosen=Array.isArray(a)?a:[],order=S.tokenOrders[q.id]||q.tokens.map((_,i)=>i);
+  body+=`<div class="assembled" lang="zh-CN">${chosen.map(i=>`<button class="token chosen" type="button" onclick="undoToken('${q.id}',${i})">${H(q.tokens[i])} ×</button>`).join('')||'<span class="subtle">点击词语，组成句子</span>'}</div><div class="tokens">${order.filter(i=>!chosen.includes(i)).map(i=>`<button class="token" onclick="pickToken('${q.id}',${i})" type="button">${H(q.tokens[i])}</button>`).join('')}</div><button type="button" class="btn light sm" onclick="clearOrder('${q.id}')">重排</button>`;
+ } else {
+  body+=`<textarea class="compose writing-input" aria-label="Viết câu ${promptN(q)}" id="answer-${q.id}" lang="zh-CN" placeholder="请用中文回答……" oninput="writeAnswer('${q.id}',this.value)">${H(a??'')}</textarea>`;
+ }
+ let fb=graded?`<div class="fb ${g.mode==='pending'?'good':g.score>=.99?'good':'bad'}"><strong>${g.mode==='pending'?'⌛ 待评价':g.mode==='blank'?'— 未作答':g.score>=.99?'✓ 正确':q.type==='open'?'✦ 已评价':'✕ 再想一想'}</strong>${H(g.feedback||q.ex||'')}${q.type!=='open'&&g.score===0?`<div lang="zh-CN"><b>Đáp án:</b> ${H(q.type==='mc'?q.opts[q.answer]:q.type==='order'?q.model:q.answer)}</div>`:''}${q.type==='open'&&g.rewrite?`<div lang="zh-CN">${H(g.rewrite)}</div>`:''}</div>`:'';
+ return `<div class="q" id="q-${q.id}"><div class="qtitle"><span class="qindex">${promptN(q)}</span><strong lang="zh-CN">${H(q.stem)}</strong></div>${body}${fb}</div>`;
+}
+function replaceQ(id){const el=document.getElementById('q-'+id);if(el?.classList.contains('picwriting')){el.querySelector('.fb')?.remove();const g=S.grades[id];if(g){const box=document.createElement('div');box.className='fb '+(g.mode==='ai'?'good':'bad');box.textContent=g.feedback||'';el.appendChild(box)}navRender();return;}if(el){el.outerHTML=questionHTML(Q[id]);}navRender();}
+function choose(id,answer){S.answers[id]=answer;delete S.grades[id];save();replaceQ(id)}
+function writeAnswer(id,value){S.answers[id]=value;delete S.grades[id];save();const card=document.getElementById('q-'+id);if(card)card.querySelector('.fb')?.remove();navRender()}
+function pickToken(id,token){const arr=S.answers[id]||[];if(arr.includes(token))return;S.answers[id]=[...arr,token];delete S.grades[id];save();replaceQ(id)}
+function undoToken(id,token){S.answers[id]=(S.answers[id]||[]).filter(x=>x!==token);delete S.grades[id];save();replaceQ(id)}
+function clearOrder(id){S.answers[id]=[];delete S.grades[id];save();replaceQ(id)}
+function objective(q){const a=S.answers[q.id];let ok=false;if(q.type==='mc')ok=Number.isInteger(a)&&a===q.answer;
+ else if(q.type==='fill')ok=norm(a)===norm(q.answer);
+ else if(q.type==='order')ok=Array.isArray(a)&&a.length===q.answer.length&&a.every((pos,i)=>q.tokens[pos]===q.answer[i]);
+ return {score:ok?1:0,mode:'automatic',feedback:q.ex||'',rewrite:''};}
+function writingRule(q){const filled=!!String(S.answers[q.id]||'').trim();return {score:0,mode:filled?'pending':'blank',feedback:filled?'Bài viết đang chờ AI chấm; chưa có điểm cuối.':'Bỏ trống khi nộp: 0/1 điểm.',rewrite:filled?'':''};}
+function gradeGroup(sec){const arr=G(sec);arr.forEach(q=>S.grades[q.id]=q.type==='open'?(S.grades[q.id]?.mode==='ai'?S.grades[q.id]:writingRule(q)):objective(q));save();arr.forEach(q=>replaceQ(q.id));
+ const score=arr.reduce((a,q)=>a+(S.grades[q.id]?.score||0),0),el=document.getElementById('score-'+sec);
+ if(el)el.textContent=`${Math.round(score*100)/100}/${arr.length}`;
+ if(sec.startsWith('L')){let transcript=document.getElementById('transcript-'+sec);if(transcript)transcript.hidden=false;}
+}
+function redoGroup(sec){if(!confirm('Làm lại phần này?'))return;for(const q of G(sec)){delete S.answers[q.id];delete S.grades[q.id];if(q.type==='mc')delete S.order[q.id];if(q.type==='order')S.tokenOrders[q.id]=shuffle(q.tokens.map((_,i)=>i));}
+ initializeOrders();save();const y=window.scrollY;openPage(current);window.scrollTo(0,y)}
+function actions(sec,writing=false){return `<div class="group-actions"><button class="btn" onclick="gradeGroup('${sec}')">${writing?'Ghi nhận bài làm':'Kiểm tra đáp án'}</button><button class="btn light" onclick="redoGroup('${sec}')">Làm lại</button>${writing?`<button class="btn light" onclick="gradeWrittenGroup('${sec}')">✦ AI小语 nhận xét</button>`:''}<span class="result" id="score-${sec}">${G(sec).every(q=>S.grades[q.id])?`${G(sec).reduce((n,q)=>n+(S.grades[q.id]?.score||0),0).toFixed(1)}/${G(sec).length}`:''}</span></div>`;}
+function group(sec,title,lead='',first=false,writing=false){let items=G(sec);return `<details class="set" ${first?'open':''}><summary><span class="setheading">${H(title)}${lead?`<span class="subtle">${H(lead)}</span>`:''}</span><span class="counter">${items.length} câu</span></summary><div class="setbody">${items.map(questionHTML).join('')}${actions(sec,writing)}</div></details>`}
+function pageVocab(){return `<article class="card"><h3>生词 · Từ trọng tâm và ôn bài cũ</h3><div class="vocab-grid">${DB.vocab.map((v,i)=>`<div class="vocab-card"><b lang="zh-CN">${H(v.hanzi)}</b><div class="subtle">${H(v.pinyin)}</div><div>${H(v.meaning)}</div><div class="sentence" lang="zh-CN">${H(v.example)}</div></div>`).join('')}</div></article>`+group('v2','1. 看情景选词','Chọn từ theo tình huống',true)+group('v3','2. 选择合适的词','Dùng từ đúng ngữ cảnh')+group('v4','3. 生活中的词语','Ứng dụng vào sinh hoạt');}
+function pageGrammar(){return `<article class="card"><h3>重点语法 · Trọng tâm Bài 6</h3><div class="rules"><div class="rule"><b>形容词重叠 · Từ láy tính từ</b><p lang="zh-CN">干净 → 干干净净<br>高兴 → 高高兴兴</p><span class="subtle">Miêu tả trạng thái, sắc thái sinh động.</span></div><div class="rule"><b>“什么的” · Liệt kê mở</b><p lang="zh-CN">我们买了水果、花什么的。</p><span class="subtle">Đặt sau danh sách cùng loại.</span></div><div class="rule"><b>结构助词“地” · Trợ từ 地</b><p lang="zh-CN">孩子们开开心心地唱歌。</p><span class="subtle">Cách thức/trạng thái + 地 + động từ.</span></div></div></article>`+group('g1','1. 语法与情景','Chọn cách diễn đạt tự nhiên',true)+group('g2','2. 连词成句','Sắp xếp câu');}
+function trackScript(t){return t.turns.map(([role,line])=>`${role}：${line}`).join('\n')+'\n\n'+t.questions.map((line,i)=>`问题${i+1}：${line}`).join('\n')}
+function speak(str){if(!('speechSynthesis' in window)){alert('Trình duyệt không hỗ trợ đọc tiếng Trung.');return;}window.speechSynthesis.cancel();speech=new SpeechSynthesisUtterance(str);speech.lang='zh-CN';speech.rate=.82;window.speechSynthesis.speak(speech)}
+function stopAudio(){try{window.speechSynthesis.cancel()}catch(e){};Object.values(audioElements).forEach(a=>a.pause());}
+function trackCard(t,i){const graded=G('l1').filter(q=>q.track===t.id).every(q=>S.grades[q.id]);return `<article class="card"><h3>${i+1}. 听力 · ${H(t.title)}</h3><div class="lesson-player"><div class="player-label">🎧 Bài nghe ${i+1}</div><audio controls preload="none" class="lesson-audio" id="player-${t.id}" aria-label="Phát bài nghe ${i+1}"></audio></div>${G('l1').filter(q=>q.track===t.id).map(questionHTML).join('')}<div class="group-actions"><button class="btn" onclick="gradeTrack('${t.id}')">Kiểm tra đáp án</button><span class="result" id="score-${t.id}"></span></div><details id="transcript-${t.id}" ${graded?'':'hidden'}><summary>Xem bản chép lời sau khi chấm</summary><div lang="zh-CN" class="reading">${H(trackScript(t))}</div></details></article>`;}
+function gradeTrack(id){G('l1').filter(q=>q.track===id).forEach(q=>S.grades[q.id]=objective(q));save();G('l1').filter(q=>q.track===id).forEach(q=>replaceQ(q.id));document.getElementById('transcript-'+id).hidden=false;const arr=G('l1').filter(q=>q.track===id),s=arr.reduce((n,q)=>n+S.grades[q.id].score,0);document.getElementById('score-'+id).textContent=`${s}/${arr.length}`}
+function readingCard(r,i){return `<article class="card"><h3>${i+1}. 阅读 · ${H(r.name)}</h3><div class="reading" lang="zh-CN">${H(r.text)}</div>${G('r1').filter(q=>q.passage===r.id).map(questionHTML).join('')}<div class="group-actions"><button class="btn" onclick="gradeReading('${r.id}')">Kiểm tra đáp án</button><span class="result" id="score-${r.id}"></span></div></article>`}
+function gradeReading(id){const arr=G('r1').filter(q=>q.passage===id);arr.forEach(q=>S.grades[q.id]=objective(q));save();arr.forEach(q=>replaceQ(q.id));document.getElementById('score-'+id).textContent=`${arr.reduce((n,q)=>n+S.grades[q.id].score,0)}/${arr.length}`}
+function tableCard(){return `<article class="card"><h3>5. 阅读 · 交通信息</h3><div class="table-wrap"><table><thead><tr>${DB.table.columns.map(x=>`<th>${H(x)}</th>`).join('')}</tr></thead><tbody>${DB.table.rows.map(r=>`<tr>${r.map(x=>`<td lang="zh-CN">${H(x)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>${G('r2').map(questionHTML).join('')}${actions('r2')}</article>`}
+function pageListenRead(){return `<div class="eyebrow">听力练习 · NGHE HIỂU</div>`+DB.tracks.map(trackCard).join('')+`<div class="eyebrow">阅读理解 · ĐỌC HIỂU</div>`+DB.readings.map(readingCard).join('')}
+function pageApply(){return group('w1','1. 写一句话 · Viết câu theo tình huống','Dùng đúng từ hoặc mẫu bài mới',true,true)+group('w2','2. 生活情景 · Giao tiếp sinh nhật','Kết hợp ngữ liệu Bài 1–5',false,true)+group('w3','3. 完成对话 · Hoàn thành hội thoại','Có nhiều cách trả lời đúng',false,true)+group('w4','4. 自由表达 · Viết đoạn ngắn','Tự viết theo chủ đề sinh nhật',false,true)+`<article class="card"><h3>补充口语 · Luyện nói tự chọn (không tính trong 60 câu)</h3><p lang="zh-CN">${H(SPEECH_PROMPT)}</p><div class="actions"><button type="button" class="btn light" onclick="speak(SPEECH_PROMPT)">🔊 Nghe câu hỏi</button><button type="button" class="btn" onclick="beginRecord()">🎙 Ghi âm</button><button type="button" class="btn light" onclick="endRecord()">■ Dừng</button><button type="button" class="btn light ai-xiaoyu" id="speechAIButton" onclick="reviewSpeaking()">✦ AI 小语 nhận xét</button><span class="subtle" id="micStat"></span></div><div id="micOut"></div><div id="speechFeedback" class="ai-review-box" role="status" aria-live="polite"></div></article>`+gradePanel();}
+let recorder=null,recordPieces=[],speechRecording=null,speechRecordingURL=null,speechBusy=false;
+async function beginRecord(){
+ const stat=document.getElementById('micStat');
+ if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){if(stat)stat.textContent='Trình duyệt không hỗ trợ ghi âm.';return}
+ if(recorder?.state==='recording')return;
+ try{
+  const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+  recordPieces=[];speechRecording=null;
+  const fb=document.getElementById('speechFeedback');if(fb){fb.textContent='';fb.className='ai-review-box';}
+  recorder=new MediaRecorder(stream);
+  recorder.ondataavailable=e=>{if(e.data.size)recordPieces.push(e.data)};
+  recorder.onstop=()=>{
+   speechRecording=new Blob(recordPieces,{type:recorder.mimeType||'audio/webm'});
+   if(speechRecordingURL)URL.revokeObjectURL(speechRecordingURL);
+   speechRecordingURL=URL.createObjectURL(speechRecording);
+   const out=document.getElementById('micOut');if(out)out.innerHTML=`<audio controls src="${speechRecordingURL}"></audio>`;
+   stream.getTracks().forEach(t=>t.stop());if(stat)stat.textContent='Đã ghi âm';
+  };
+  recorder.start();if(stat)stat.textContent='Đang ghi âm';
+ }catch(e){if(stat)stat.textContent='Không mở được micro. Hãy cho phép truy cập micro hoặc mở trang bằng HTTPS.'}
+}
+function endRecord(){if(recorder?.state==='recording')recorder.stop()}
+function audioBase64(blob){return new Promise((resolve,reject)=>{const f=new FileReader();f.onload=()=>resolve(String(f.result).split(',')[1]||'');f.onerror=()=>reject(Error('Không đọc được bản ghi âm'));f.readAsDataURL(blob)})}
+async function reviewSpeaking(){
+ const box=document.getElementById('speechFeedback'),btn=document.getElementById('speechAIButton');
+ if(!box)return;
+ const say=(msg,type='warn')=>{box.className='ai-review-box '+type;box.textContent=msg;};
+ if(speechBusy)return;
+ if(recorder?.state==='recording'){say('Hãy bấm Dừng trước khi xin nhận xét.');return}
+ if(!speechRecording||speechRecording.size===0){say('Hãy ghi âm câu trả lời trước.');return}
+ if(speechRecording.size>7*1024*1024){say('Bản ghi âm quá dài. Hãy ghi lại trong khoảng 30–60 giây.');return}
+ if(!hasCenterAI()){say('Tính năng nhận xét hiện chưa khả dụng. Bạn có thể thử lại sau.');return}
+ speechBusy=true;if(btn)btn.disabled=true;say('AI 小语 đang nghe và nhận xét bản ghi âm…','info');
+ try{
+  const data=await centerAI({action:'comment_speech',question:SPEECH_PROMPT,level:'HSK1–HSK2 Bài 6',audio:{mimeType:speechRecording.type||'audio/webm',base64:await audioBase64(speechRecording)}});
+  if(typeof data.feedback!=='string'||!data.feedback.trim())throw Error('Máy chủ AI chưa trả nhận xét hợp lệ.');const score=data.score!==null&&data.score!==undefined&&Number.isFinite(Number(data.score))&&Number(data.score)>=0&&Number(data.score)<=10?`<p><b>Đánh giá nội dung: ${Math.min(10,Math.max(0,Number(data.score))).toFixed(1)}/10</b> <span class="subtle">(không cộng vào điểm tổng)</span></p>`:'';
+  box.className='ai-review-box done';
+  box.innerHTML=`${data.transcript?`<div><b>AI nghe được:</b> <span lang="zh-CN">${H(data.transcript)}</span></div>`:''}${score}<div><b>Nhận xét:</b> ${H(data.feedback||'Chưa nhận được nhận xét.')}</div>${data.suggestion?`<div><b>Gợi ý:</b> <span lang="zh-CN">${H(data.suggestion)}</span></div>`:''}`;
+ }catch(e){say('Chưa thể nhận xét bản ghi âm: '+e.message)}
+ finally{speechBusy=false;if(btn)btn.disabled=false}
+}
+function getCounts(){
+ const O=DB.questions.filter(q=>q.type!=='open'),W=DB.questions.filter(q=>q.type==='open');
+ const score=DB.questions.reduce((sum,q)=>sum+(S.grades[q.id]?.score||0),0);
+ const graded=DB.questions.filter(q=>!!S.grades[q.id]).length;
+ const pending=W.filter(q=>!S.grades[q.id]||S.grades[q.id].mode==='pending');
+ const aiDone=W.filter(q=>S.grades[q.id]?.mode==='ai').length;
+ const blank=W.filter(q=>S.grades[q.id]?.mode==='blank').length;
+ return {O,W,score,graded,rule:pending.length,aiDone,blank,answered:DB.questions.filter(answered).length,final:graded===DB.questions.length&&pending.length===0};
+}
+function gradePanel(){const d=getCounts();return `<article class="card"><h3>Điểm theo kỹ năng</h3><div id="reportBox"></div></article><article class="card"><h3>Nhận xét câu sai</h3><div id="mistakeBox"></div></article><article class="card" id="tong-ket"><h3>成绩 · Chấm toàn bộ bài</h3><div class="recap"><div class="subtle" id="resultLabel">${d.graded===DB.questions.length&&d.rule===0?'Đã chấm xong':'Đã làm '+d.answered+'/'+DB.questions.length+' câu'}</div><div class="grade-banner"><strong id="resultNumber">${d.graded===DB.questions.length&&d.rule===0?(10*d.score/DB.questions.length).toFixed(2):'—'}</strong><span> /10</span><div class="tiny">Chỉ có điểm cuối khi mọi câu đã được chấm hoặc xác nhận bỏ trống.</div></div><div id="gradeSplit"></div></div><div class="group-actions"><button type="button" class="btn light sm" onclick="downloadProgress()">Xuất kết quả</button><button type="button" class="btn light sm" onclick="resetAll()">Làm lại từ đầu</button></div><div class="faint-status" id="gradeStatus" role="status" aria-live="polite"></div><button type="button" class="btn grade-action end-of-page-grade" id="globalGrade" onclick="gradeAll()">✓ CHẤM TOÀN BỘ</button></article>`}
+function renderReport(){
+ const b=document.getElementById('reportBox');if(!b)return;
+ const specs=[['Từ vựng',['v1','v2','v3','v4']],['Ngữ pháp',['g1','g2']],['Nghe hiểu',['l1']],['Đọc hiểu',['r1','r2']],['Giao tiếp / Viết AI',['w1','w2','w3','w4']]];
+ b.innerHTML=`<div class="summary-pieces">${specs.map(([title,groups])=>{
+  const qs=DB.questions.filter(q=>groups.includes(q.section));
+  const real=qs.filter(q=>S.grades[q.id]&&S.grades[q.id].mode!=='pending');
+  const pending=qs.filter(q=>S.grades[q.id]?.mode==='pending');
+  const value=real.reduce((n,q)=>n+S.grades[q.id].score,0);
+  return `<div class="skillbox"><div class="subtle">${title}</div><div class="value">${real.length?Math.round(100*value/real.length)+'%':pending.length?'Chờ AI':'—'}</div><div class="tiny">${real.length}/${qs.length} đã chấm${pending.length?' · '+pending.length+' chờ AI':''}</div></div>`;
+ }).join('')}</div>`;
+ const d=getCounts(),lb=document.getElementById('resultLabel'),num=document.getElementById('resultNumber'),split=document.getElementById('gradeSplit');
+ if(lb)lb.textContent=d.final?'ĐIỂM CUỐI CÙNG · đã tính đủ 60 câu':S.submittedAt?'CHƯA CÓ ĐIỂM CUỐI · đang chờ AI':'Đã trả lời '+d.answered+'/'+DB.questions.length+' câu';
+ if(num)num.textContent=d.final?(d.score/6).toFixed(2):'—';
+ if(split){
+  const os=d.O.reduce((sum,q)=>sum+(S.grades[q.id]?.score||0),0),as=d.W.reduce((sum,q)=>sum+(S.grades[q.id]?.mode==='ai'?S.grades[q.id].score:0),0);
+  split.innerHTML=`<div class="subtle">Khách quan: ${os.toFixed(0)}/${d.O.length} · AI đã chấm: ${d.aiDone}/${d.W.length} câu (${as.toFixed(2)} điểm) · Bỏ trống: ${d.blank} câu (0 điểm) · Còn chờ AI: ${d.rule} câu</div>`;
+ }
+ renderReviewWords();
+}
+function renderMistakes(){let b=document.getElementById('mistakeBox');if(!b)return;const wrong=DB.questions.filter(q=>S.grades[q.id]&&S.grades[q.id].score<.6&&(q.type!=='open'||S.grades[q.id].mode==='ai'));
+ b.innerHTML=wrong.length?wrong.slice(0,50).map(q=>`<div class="list-error"><div class="subtle">${H(q.id)}</div><b lang="zh-CN">${H(q.stem)}</b><div>${H(S.grades[q.id].feedback||'')}</div><div class="subtle" lang="zh-CN">${H(q.model||q.opts?.[q.answer]||q.answer)}</div></div>`).join(''):'<p class="subtle">Chưa có câu cần sửa.</p>'}
+function renderReviewWords(){let b=document.getElementById('reviewWords');if(!b)return;const now=Date.now();const weak=new Set(DB.questions.filter(q=>q.target&&S.grades[q.id]?.mode==='automatic'&&S.grades[q.id].score===0).map(q=>q.target));let pending=DB.vocab.map((v,i)=>({v,i,r:S.review[i]})).filter(x=>!x.r||x.r.due<=now);pending.sort((a,b)=>Number(weak.has(b.v.hanzi))-Number(weak.has(a.v.hanzi)));b.innerHTML=pending.length?pending.map(x=>`<div class="rating"><span lang="zh-CN"><strong>${H(x.v.hanzi)}</strong>${weak.has(x.v.hanzi)?' <span class="subtle">· cần ôn thêm</span>':''} <span class="subtle">${H(x.v.meaning)}</span></span><div class="actions" style="margin:0"><button class="btn light sm" onclick="reviewWord(${x.i},false)">Chưa nhớ</button><button class="btn sm" onclick="reviewWord(${x.i},true)">Đã nhớ</button></div></div>`).join(''):'<p class="subtle">Đã hoàn thành phần ôn hôm nay.</p>'}
+function reviewWord(i,ok){let prev=S.review[i]?.level||0,level=ok?Math.min(prev+1,3):0;S.review[i]={level,due:Date.now()+[1,1,3,7][level]*86400000};save();renderReviewWords()}
+async function callAI(items){
+ const data=await centerAI({action:'grade_writing',level:'HSK1–HSK2 Bài 6',items:items.map(q=>({id:q.id,prompt:q.stem,reference:q.model||'',student:String(S.answers[q.id]||''),criteria:'Chấm tối đa 1 điểm: đúng yêu cầu 0–0.4; ngữ pháp 0–0.3; từ vựng 0–0.2; tự nhiên 0–0.1. '+(q.ex||'')+(q.scene?' Ảnh được mô tả: '+q.scene:''),keywords:q.keywords||''}))});
+ if(!Array.isArray(data.results))throw Error('AI trả về sai định dạng danh sách bài viết');
+ return data.results;
+}
+function mergeAI(results,items,submitted){
+ let done=0;const seen=new Set();
+ for(const row of results){
+  if(!row||typeof row.id!=='string'||seen.has(row.id))continue;seen.add(row.id);
+  const q=items.find(x=>x.id===row.id);
+  if(!q||typeof row.score!=='number'||!Number.isFinite(row.score)||row.score<0||row.score>1||typeof row.feedback!=='string'||!row.feedback.trim())continue;
+  const answer=String(S.answers[q.id]||'').trim();
+  if(!answer||answer!==submitted[q.id])continue;
+  S.grades[q.id]={score:row.score,mode:'ai',feedback:row.feedback,rewrite:String(row.rewrite||'')};done++;
+ }
+ return done;
+}
+async function gradeWrittenGroup(sec){let qs=G(sec).filter(q=>q.type==='open'&&String(S.answers[q.id]||'').trim()&&S.grades[q.id]?.mode!=='ai');if(!qs.length){alert('Chưa có câu mới cần AI chấm trong vòng này.');return;}if(!hasCenterAI()){alert('Hiện chưa thể chấm tự luận bằng AI. Bạn có thể thử lại sau.');return}if(busy)return;busy=true;try{const submitted=Object.fromEntries(qs.map(q=>[q.id,String(S.answers[q.id]||'').trim()]));const results=await callAI(qs);const done=mergeAI(results,qs,submitted);save();qs.forEach(q=>replaceQ(q.id));alert('AI 小语 đã chấm '+done+'/'+qs.length+' câu.')}catch(e){alert('Chưa chấm AI được: '+e.message)}finally{busy=false}}
+async function gradeAll(){if(busy)return;busy=true;let btn=document.getElementById('globalGrade'),status=document.getElementById('gradeStatus');if(btn)btn.disabled=true;if(status)status.textContent=`Đang chấm ${DB.questions.filter(q=>q.type!=='open').length} câu khách quan…`;
+ for(const q of DB.questions){S.grades[q.id]=q.type==='open'?(S.grades[q.id]?.mode==='ai'?S.grades[q.id]:writingRule(q)):objective(q)}
+ let need=DB.questions.filter(q=>q.type==='open'&&String(S.answers[q.id]||'').trim()&&S.grades[q.id]?.mode!=='ai');let msg='Đã chấm 44 câu khách quan. Câu viết có nội dung còn chờ AI; câu bỏ trống tính 0 điểm.';
+ if(need.length&&hasCenterAI()){try{if(status)status.textContent='Đang chấm bài tự luận với AI trung tâm…';const submitted=Object.fromEntries(need.map(q=>[q.id,String(S.answers[q.id]||'').trim()]));const results=await callAI(need);const n=mergeAI(results,need,submitted);msg=n===need.length?`AI đã chấm ${n} câu được gửi.`:`AI đã chấm ${n}/${need.length} câu được gửi. Câu còn lại chưa chấm AI.`}catch(e){msg='Chưa thể chấm tự luận bằng AI: '+e.message}}
+ else if(!need.length)msg='Đã chấm 44 câu khách quan; các câu viết đã có điểm AI hoặc được xác nhận bỏ trống (0 điểm).';
+ S.submittedAt=Date.now();save();busy=false;openPage(3);const st=document.getElementById('gradeStatus');if(st)st.textContent=msg;document.getElementById('resultLabel')?.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function downloadProgress(){let d={lesson:'HSK2-B6',total:DB.questions.length,submittedAt:S.submittedAt,answers:S.answers,grades:S.grades};const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='HSK2_Bai6_60Cau_Ket_qua.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1200)}
+function resetAll(){if(!confirm('Xóa tiến độ và làm lại?'))return;localStorage.removeItem(STORAGE);S={answers:{},grades:{},page:0,order:{},tokenOrders:{},review:{},submittedAt:null};initializeOrders();openPage(0)}
+openPage(current);
+</script></body></html>
